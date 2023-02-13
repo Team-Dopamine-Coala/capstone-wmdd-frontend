@@ -1,5 +1,5 @@
 import AttendanceScreen from '../screens/AttendanceScreen'
-import EvaluationStack from '../stacks/EvaluationStack';
+import EvaluationScreen from '../screens/EvaluationScreen'
 import ReportsScreen from '../screens/ReportsScreen';
 import CurriculumScreen from '../screens/CurriculumScreen';
 import StudentsScreen from '../screens/students/StudentsScreen';
