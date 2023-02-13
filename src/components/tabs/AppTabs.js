@@ -1,8 +1,8 @@
-import AttendanceStack from '../stacks/AttendanceStack'
-import EvaluationStack from '../stacks/EvaluationStack';
-import ReportStack from '../stacks/ReportStack';
-import CurriculumScreen from '../screens/Curriculum/CurriculumScreen';
-import StudentStack from '../stacks/StudentStack';
+import AttendanceScreen from '../screens/AttendanceScreen'
+import EvaluationScreen from '../screens/EvaluationScreen'
+import ReportsScreen from '../screens/ReportsScreen';
+import CurriculumScreen from '../screens/CurriculumScreen';
+import StudentsScreen from '../screens/students/StudentsScreen';
 
 import { Ionicons } from '@expo/vector-icons'
 import { Icon, View, Box, Text } from 'native-base'
