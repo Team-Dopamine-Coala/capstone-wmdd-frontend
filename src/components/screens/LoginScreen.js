@@ -2,7 +2,7 @@ import { Box, Container, Text, View, VStack } from 'native-base';
 import React from 'react';
 import LoginForm from '../forms/LoginForm';
 
-const Login = () => {
+const LoginScreen = () => {
     return (
         <View>
             <LoginForm />
@@ -10,4 +10,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default LoginScreen;
