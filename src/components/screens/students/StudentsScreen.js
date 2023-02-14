@@ -7,7 +7,6 @@ const StudentsScreen = ({ navigation }) => {
   const [myClassIds, setMyclassIds] = useState([])
   const [myStudents, setMyStudents] = useState([])
   const [allStudents, setAllstudents] = useState([])
-  const [yourInfo, setYourInfo] = useState('')
   let list = []
 
   //1.userIDを持ったclassを全部fetch(all classはuserIDからfetch)
@@ -71,7 +70,7 @@ const StudentsScreen = ({ navigation }) => {
       <Box>
         {myStudents.map((item) => (
           <>
-            <TouchableOpacity onPress={() => console.log(item)} student={item} navigation={navigation}>
+            <TouchableOpacity onPress={() => console.log('clickしたよ',item)} student={item} navigation={navigation}>
               <Text>{item.firstname} {item.lasname}</Text>
             </TouchableOpacity>
           </>
@@ -84,3 +83,10 @@ const StudentsScreen = ({ navigation }) => {
 
 export default StudentsScreen
 // onPress={() => { navigation.navigate('Students') }
+
+
+//TO DO LIST
+{/*1. alphabetの最初の頭にtitleをつける
+   2. navigationで次のページに移動
+   3.,3nv fileにfetch addressを変える 
+*/}
