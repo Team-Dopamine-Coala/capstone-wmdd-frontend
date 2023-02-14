@@ -1,7 +1,8 @@
 import { View, Box, Text } from "native-base"
 import { useEffect, useState } from "react"
-import StudentsSearch from "./StudentsSearch"
 import { TouchableOpacity } from "react-native"
+
+import StudentsSearch from "./StudentsSearch"
 
 const StudentsScreen = ({ navigation }) => {
   const [myClassIds, setMyclassIds] = useState([])
@@ -88,5 +89,5 @@ export default StudentsScreen
 //TO DO LIST
 {/*1. alphabetの最初の頭にtitleをつける
    2. navigationで次のページに移動
-   3.,3nv fileにfetch addressを変える 
+   3. .env fileにfetch addressを変える 
 */}
