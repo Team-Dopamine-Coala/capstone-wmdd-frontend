@@ -5,6 +5,8 @@ import React, { useState } from 'react';
 
 const SignUpForm = () => {
 
+    const [showPassword, setShowPassword] = useState(false);
+
     return(
         <VStack justifyContent="center" space={2} py={30} px={15}>
             <FormControl>
