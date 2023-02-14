@@ -3,8 +3,6 @@ import StudentsScreen from "./StudentsScreen";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-const Stack = createNativeStackNavigator()
-
 const AttendanceScreen = () => {
   return (
     <Stack.Navigator>
