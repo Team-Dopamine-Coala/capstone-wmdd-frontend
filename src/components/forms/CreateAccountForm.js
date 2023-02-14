@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 
 const CreateAccountForm = props => {
 
+    const {navigation} = props
+
     return(
         <VStack justifyContent="center" space={2} py={30} px={15}>
             <FormControl>
@@ -23,7 +25,7 @@ const CreateAccountForm = props => {
                 </Box>
                 <Button 
                     mt={5}
-                    onPress={() => {props.navigation.navigate("SignUpFormTwo")}}
+                    onPress={() => {navigation.navigate('Sign Up Form')}}
                 >Next</Button>
             </FormControl>
         </VStack>
