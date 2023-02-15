@@ -1,14 +1,19 @@
-import { View, Text, Box } from "native-base"
+import { View, Text, VStack } from "native-base"
 
 
 const ReportView = (student, navigation) => {
 console.log(student)
-  return (
+
+const clickStudent = () => {
+    //Open to biometrics modal
+    //Pass the student's data
+}
+return (
     <View>
-        <Box>
-        <Text>{student.firstname}{student.lasname}</Text> 
-        <Text>View profile and Contact Information</Text>
-        </Box>
+        <VStack onPress={clickStudent} student={student}>
+            <Text>{student.firstname}{student.lasname}</Text> 
+            <Text>View profile and Contact Information</Text>
+        </VStack>
         
     </View>
   )
