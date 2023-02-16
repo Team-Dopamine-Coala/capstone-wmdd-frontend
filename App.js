@@ -7,7 +7,7 @@ export default function App() {
   return (
     <NativeBaseProvider>
       <AppTabs />
-      <StatusBar style="auto" />
+      <StatusBar style="auto" hidden />
     </NativeBaseProvider>
   );
 }
