@@ -1,5 +1,5 @@
 import AttendanceScreen from '../screens/AttendanceScreen'
-import EvaluationScreen from '../screens/EvaluationScreen'
+import EvaluationStack from '../stacks/EvaluationStack';
 import ReportsScreen from '../screens/ReportsScreen';
 import CurriculumScreen from '../screens/CurriculumScreen';
 import StudentsScreen from '../screens/students/StudentsScreen';
@@ -15,16 +15,8 @@ const Tab = createBottomTabNavigator();
 const AppTabs = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-            screenOptions={({ route }) => ({
-                headerShown: false,
-                tabBarActiveTintColor: '#655AE9',
-                tabBarInactiveTintColor: '#667080',
-                tabBarStyle:{ position: 'absolute', height: 80 },
-                tabBarLabelStyle:{ paddingBottom: 6, fontSize: 12 }
-            })}
-      >
-        <Tab.Screen name="Attendance" component={AttendanceStack} options={{
+      <Tab.Navigator screenOptions={{ headerShown: false }}>
+        {/* <Tab.Screen name="Attendance" component={AttendanceScreen} options={{
           tabBarIcon: ({ color }) => (
             <Icon size={5} color={color} as={<Ionicons name='ios-calendar' />} />
           )
@@ -48,7 +40,11 @@ const AppTabs = () => {
           tabBarIcon: ({ color }) => (
             <Icon size={5} color={color} as={<Ionicons name='ios-people' />} />
           )
-        }} />
+        }} /> */}
+        <Tab.Screen name="Evaluation" component={EvaluationStack} />
+        <Tab.Screen name="Reports" component={ReportsScreen} />
+        <Tab.Screen name="Curriculum" component={CurriculumScreen} />
+        <Tab.Screen name="Students" component={StudentsScreen} />
       </Tab.Navigator>
   )
 }
