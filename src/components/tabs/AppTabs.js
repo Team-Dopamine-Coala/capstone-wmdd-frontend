@@ -26,7 +26,7 @@ const AppTabs = () => {
             <Icon size={5} color={color} as={<Ionicons name='ios-list' />} />
           )
         }} />
-        <Tab.Screen name="Reports" component={ReportStack} options={{
+        <Tab.Screen name="Reports" component={ReportsScreen} options={{
           tabBarIcon: ({ color }) => (
             <Icon size={5} color={color} as={<Ionicons name='ios-copy' />} />
           )
@@ -36,15 +36,11 @@ const AppTabs = () => {
             <Icon size={5} color={color} as={<Ionicons name='ios-bookmarks' />} />
           )
         }} />
-        <Tab.Screen name="Students" component={StudentStack} options={{
+        <Tab.Screen name="Students" component={StudentsScreen} options={{
           tabBarIcon: ({ color }) => (
             <Icon size={5} color={color} as={<Ionicons name='ios-people' />} />
           )
         }} />
-        <Tab.Screen name="Evaluation" component={EvaluationStack} />
-        <Tab.Screen name="Reports" component={ReportsScreen} />
-        <Tab.Screen name="Curriculum" component={CurriculumScreen} />
-        <Tab.Screen name="Students" component={StudentsScreen} />
       </Tab.Navigator>
   )
 }
