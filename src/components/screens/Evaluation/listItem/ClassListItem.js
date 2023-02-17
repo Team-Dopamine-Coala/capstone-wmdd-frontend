@@ -14,10 +14,7 @@ const ClassListItem = ({ item, navigation }) => {
         <Button
           bgColor="#667080"
           onPress={() => {
-            navigation.navigate('Evaluation Student List', {
-              classId: item._id,
-              className: item.title
-            })
+            navigation.navigate('Evaluation Student List')
           }}
         ><Text fontWeight="700" color="#ffffff">Start Evaluation</Text></Button>
       </VStack>
