@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Center, Heading, VStack } from 'native-base'
 import CalendarStrip from 'react-native-calendar-strip';
+import moment from 'moment';
+
 import ClassList from './lists/ClassList';
 import Loading from '../../layout/Loading'
 
@@ -15,7 +17,7 @@ const IndexScreen = ({ navigation }) => {
     console.log(dateSelected)
 
     setIsLoading(true)
-    setClasses([{"classDay":[],"_id":"63e065e53e54d66c36ab24ec","title":"Gymnastics 1","programId":"","userId":"63e9fcf20386d6f0fd9053b3"},{"_id":"63e066913e54d66c36ab24f0","title":"Gymnastics 3","programId":"63e065093e54d66c36ab24e8","userId":"63e9fcf20386d6f0fd9053b3","classDay":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]}])
+    setClasses([{"classDay":[],"_id":"63e065e53e54d66c36ab24ec","title":"Gymnastics 1","programId":"","startTime":"9:00AM","endTime":"10:00AM","userId":"63e9fcf20386d6f0fd9053b3"},{"_id":"63e066913e54d66c36ab24f0","title":"Gymnastics 3","programId":"63e065093e54d66c36ab24e8","startTime":"2:00PM","endTime":"3:00PM","userId":"63e9fcf20386d6f0fd9053b3","classDay":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]}])
     setIsLoading(false)
     // getClassesOfCoach('63e9fcf20386d6f0fd9053b3').then(
     //   data => {
@@ -46,7 +48,8 @@ const IndexScreen = ({ navigation }) => {
         fontSize: 18,
         alignSelf: 'flex-start',
       }}
-      selectedDate={new Date()}
+      startingDate={moment().subtract(3, 'days')}
+      selectedDate={moment()}
       onDateSelected={onDateClick}
       minDate="2023-01-01"
       maxDate="2023-12-31"
