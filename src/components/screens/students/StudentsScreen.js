@@ -1,4 +1,4 @@
-import { View, Box, Text } from "native-base"
+import { View, Box, Text, VStack } from "native-base"
 import { useEffect, useState } from "react"
 import { TouchableOpacity } from "react-native"
 
@@ -70,11 +70,11 @@ const StudentsScreen = ({ navigation }) => {
       </Box>
       <Box>
         {myStudents.map((item) => (
-          <>
+          <VStack>
             <TouchableOpacity onPress={() => console.log('clickしたよ',item)} student={item} navigation={navigation}>
               <Text>{item.firstname} {item.lasname}</Text>
             </TouchableOpacity>
-          </>
+          </VStack>
         ))}
       </Box>
       

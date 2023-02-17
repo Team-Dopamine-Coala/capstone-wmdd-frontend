@@ -1,12 +1,15 @@
-import { View, Text, Box } from "native-base"
+import { Text, VStack } from "native-base"
 
 
 const SkillsAchievementView = (student, navigation) => {
 console.log(student)
   return (
-    <View>
-        
-    </View>
+    <>
+        <Text>ここにtitle入る</Text>
+        <VStack>
+                <Text>Current Level</Text>
+        </VStack>
+    </>
   )
 }
 
