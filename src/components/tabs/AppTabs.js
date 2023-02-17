@@ -2,7 +2,7 @@ import AttendanceScreen from '../screens/AttendanceScreen'
 import EvaluationScreen from '../screens/EvaluationScreen'
 import ReportsScreen from '../screens/ReportsScreen';
 import CurriculumScreen from '../screens/CurriculumScreen';
-import StudentsScreen from '../screens/Students/StudentsScreen';
+import StudentsScreen from '../screens/students/StudentsScreen';
 
 import { Ionicons } from '@expo/vector-icons'
 import { Icon } from 'native-base'
