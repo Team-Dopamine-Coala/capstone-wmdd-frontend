@@ -1,5 +1,6 @@
 import IndexScreen from "../screens/Evaluation/IndexScreen"
 import EvaluationStudentListScreen from "../screens/Evaluation/EvaluationStudentListScreen"
+import EvaluationIndividualStudent from "../screens/Evaluation/EvaluationIndividualStudent"
 
 import { createStackNavigator, TransitionPresets } from "@react-navigation/stack"
 
@@ -20,6 +21,14 @@ const EvaluationStack = () => {
           title: 'Gymnastics Evaluation',
           headerBackTitle: 'Evaluation',
           headerTitleAlign: 'center'
+        })}
+      />
+      <Stack.Screen
+        name="Evaluation Individual Student"
+        component={EvaluationIndividualStudent}
+        options={({ route }) => ({
+          title: '',
+          headerBackTitle: 'Gymnastics Evaluation'
         })}
       />
     </Stack.Navigator>
