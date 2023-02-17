@@ -2,13 +2,16 @@ import { View, Box, Text, VStack } from "native-base"
 import { useEffect, useState } from "react"
 import { TouchableOpacity } from "react-native"
 
-import StudentsSearch from "./StudentsSearch"
+import StudentsSearch from "./myStudents/StudentsSearch"
 
 const StudentsScreen = ({ navigation }) => {
   const [myClassIds, setMyclassIds] = useState([])
   const [myStudents, setMyStudents] = useState([])
   const [allStudents, setAllstudents] = useState([])
+  const [nameTitle, setNameTitle] = useState([])
   let list = []
+  // let title = 
+  
 
   //1.userIDを持ったclassを全部fetch(all classはuserIDからfetch)
   useEffect(() => {
@@ -50,11 +53,24 @@ const StudentsScreen = ({ navigation }) => {
       })
       setMyStudents(list)
       console.log('matchしたもの',myStudents)
-      
+    
+      //Alphabetic Title display
+      let title = list.reduce((c,d) => {
+        let group = d.firstname[0]
+
+        if(!c[group]) c[group] = {group, groupedConn: [d]}
+        else c[group].groupedConn.push(d);
+        return c      
+      },{})
+
+      setNameTitle(Object.values(title)) 
+      console.log(nameTitle)    
     }
+
     getAllStudents()
   },[])
 
+  
   const fetchAllStudents = async () => {
     const res = await fetch(`http://localhost:5003/api/student/${myClassIds[0]}`)
     const data = await res.json()
@@ -63,21 +79,31 @@ const StudentsScreen = ({ navigation }) => {
     }
   }
 
+  
+  
+
   return (
     <View>
       <Box>
         <StudentsSearch mystudents={myStudents}/>
       </Box>
       <Box>
-        {myStudents.map((item) => (
-          <VStack>
-            <TouchableOpacity onPress={() => console.log('clickしたよ',item)} student={item} navigation={navigation}>
-              <Text>{item.firstname} {item.lasname}</Text>
-            </TouchableOpacity>
-          </VStack>
-        ))}
+          {nameTitle.map((initial, i) =>(
+            <Box key={i}> 
+              <Text>{initial.group}</Text>
+              {myStudents.map((item, index) => (
+                <VStack key={index}>
+                  <TouchableOpacity onPress={() => (console.log('clickしたよ',item)
+                                    // navigation.navigate('StudentDetailStack',{item, index})
+                                    )}
+                                    >
+                    <Text>{item.firstname} {item.lasname}</Text>
+                  </TouchableOpacity>
+                </VStack>
+              ))}
+            </Box>
+          ))}
       </Box>
-      
     </View>
   )
 }

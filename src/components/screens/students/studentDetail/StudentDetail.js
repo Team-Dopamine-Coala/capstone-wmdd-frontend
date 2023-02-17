@@ -4,8 +4,8 @@ import CurrentLevelView from "./CurrentLevelView"
 import SkillsAchievementView from "./SkillsAchievementView"
 import AttendanceListView from "./AttendanceListView"
 
-const StudentDetailScreen = (student, navigation) => {
-console.log(student)
+const StudentDetail = () => {
+const student = item.props
   return (
     <View>
         <ReportView student={student}/>
@@ -16,4 +16,4 @@ console.log(student)
   )
 }
 
-export default StudentDetailScreen
+export default StudentDetail

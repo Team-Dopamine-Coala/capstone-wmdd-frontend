@@ -5,10 +5,10 @@ const SkillsAchievementView = (student, navigation) => {
 console.log(student)
   return (
     <>
-        <Text>ここにtitle入る</Text>
-        <VStack>
-                <Text>Current Level</Text>
-        </VStack>
+      <Text>LEVEL TITLE</Text>
+      <VStack>
+        <Text>Current Level</Text>
+      </VStack>
     </>
   )
 }
