@@ -1,11 +1,11 @@
 import AttendanceStack from '../stacks/AttendanceStack'
 import EvaluationStack from '../stacks/EvaluationStack';
-import ReportsScreen from '../screens/ReportsScreen';
+import ReportStack from '../stacks/ReportStack';
 import CurriculumScreen from '../screens/CurriculumScreen';
 import StudentsScreen from '../screens/StudentsScreen';
 
 import { Ionicons } from '@expo/vector-icons'
-import { Icon } from 'native-base'
+import { Icon, View, Box, Text } from 'native-base'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { BlurView } from 'expo-blur';
@@ -34,7 +34,7 @@ const AppTabs = () => {
             <Icon size={5} color={color} as={<Ionicons name='ios-list' />} />
           )
         }} />
-        <Tab.Screen name="Reports" component={ReportsScreen} options={{
+        <Tab.Screen name="Reports" component={ReportStack} options={{
           tabBarIcon: ({ color }) => (
             <Icon size={5} color={color} as={<Ionicons name='ios-copy' />} />
           )

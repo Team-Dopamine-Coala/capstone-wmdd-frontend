@@ -7,7 +7,16 @@ const Loading = () => {
   return (
     <View style={styles.container}>
       <FadeLoading
-        style={[styles.boxSmall]}
+        style={[styles.box]}
+        children={''}
+        primaryColor="gray"
+        secondaryColor="lightgray"
+        duration={5000}
+        visible={false}
+        animated={false}
+      />
+      <FadeLoading
+        style={[styles.box]}
         children={''}
         primaryColor="gray"
         secondaryColor="lightgray"
@@ -50,6 +59,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    paddingTop: 10
   },
   box: {
     width: '90%',
