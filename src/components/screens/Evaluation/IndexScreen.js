@@ -26,7 +26,6 @@ const IndexScreen = ({ navigation }) => {
         throw error
       }
     )
-    setIsLoading(false)
   }, [dateSelected])
   
 
