@@ -10,6 +10,8 @@ const StudentsScreen = ({ navigation }) => {
   const [allStudents, setAllstudents] = useState([])
   const [nameTitle, setNameTitle] = useState([])
   let list = []
+  // let title = 
+  
 
   //1.userIDを持ったclassを全部fetch(all classはuserIDからfetch)
   useEffect(() => {
@@ -71,6 +73,7 @@ const StudentsScreen = ({ navigation }) => {
     getAllStudents()
   },[])
 
+  
   const fetchAllStudents = async () => {
     const res = await fetch(`http://localhost:5003/api/student/${myClassIds[0]}`)
     const data = await res.json()
