@@ -10,8 +10,6 @@ const StudentsScreen = ({ navigation }) => {
   const [allStudents, setAllstudents] = useState([])
   const [nameTitle, setNameTitle] = useState([])
   let list = []
-  // let title = 
-  
 
   //1.userIDを持ったclassを全部fetch(all classはuserIDからfetch)
   useEffect(() => {
@@ -42,6 +40,7 @@ const StudentsScreen = ({ navigation }) => {
       myClassIds.forEach((eachId) => {res.map((item) => {
           item.class_id == eachId ? list = [...list, item] : null})
       })
+
       //Sorting alphabetically
       list.sort((a,b) => {
         if (a.firstname < b.firstname) {
@@ -52,25 +51,12 @@ const StudentsScreen = ({ navigation }) => {
         return 0
       })
       setMyStudents(list)
-      console.log('matchしたもの',myStudents)
-    
-      //Alphabetic Title display
-      let title = list.reduce((c,d) => {
-        let group = d.firstname[0]
-
-        if(!c[group]) c[group] = {group, groupedConn: [d]}
-        else c[group].groupedConn.push(d);
-        return c      
-      },{})
-
-      setNameTitle(Object.values(title)) 
-      console.log(nameTitle)    
+      console.log('matchしたもの',myStudents) 
     }
-
+    
     getAllStudents()
   },[])
 
-  
   const fetchAllStudents = async () => {
     const res = await fetch(`http://localhost:5003/api/student/${myClassIds[0]}`)
     const data = await res.json()
@@ -79,29 +65,42 @@ const StudentsScreen = ({ navigation }) => {
     }
   }
 
+  //Alphabetic Title display
+  const titleDisplay = () => {
+    const title = list.reduce((c,d) => {
+      let group = d.firstname[0]
   
+      if(!c[group]) c[group] = {group, groupedConn: [d]}
+      else c[group].groupedConn.push(d);
+      return c      
+    },{})
   
+    setNameTitle(Object.values(title)) 
+    console.log('タイトル',nameTitle)   
+  }
+   
 
-  return (
+
+  return(
     <View>
       <Box>
         <StudentsSearch mystudents={myStudents}/>
       </Box>
       <Box>
-          {nameTitle.map((initial, i) =>(
+          {nameTitle.map((initial, i) => (
             <Box key={i}> 
-              <Text>{initial.group}</Text>
+            <Text>{initial.group}</Text> 
               {myStudents.map((item, index) => (
                 <VStack key={index}>
-                  <TouchableOpacity onPress={() => (console.log('clickしたよ',item)
-                                    // navigation.navigate('StudentDetailStack',{item, index})
+                  <TouchableOpacity onPress={() => (console.log('clickしたよ',item),
+                                    navigation.navigate('StudentDetailStack',{item, index})
                                     )}
                                     >
-                    <Text>{item.firstname} {item.lasname}</Text>
+                    <Text>{item.firstname} {item.lastname}</Text>
                   </TouchableOpacity>
                 </VStack>
               ))}
-            </Box>
+            </Box> 
           ))}
       </Box>
     </View>
@@ -109,11 +108,24 @@ const StudentsScreen = ({ navigation }) => {
 }
 
 export default StudentsScreen
-// onPress={() => { navigation.navigate('Students') }
 
 
 //TO DO LIST
-{/*1. alphabetの最初の頭にtitleをつける
-   2. navigationで次のページに移動
-   3. .env fileにfetch addressを変える 
-*/}
+  //   1. alphabetの最初の頭にtitleをつける
+  //  2. navigationで次のページに移動
+  //  3. .env fileにfetch addressを変える 
+
+
+
+
+  // //Alphabetic Title display
+  // let title = list.reduce((c,d) => {
+  //   let group = d.firstname[0]
+
+  //   if(!c[group]) c[group] = {group, groupedConn: [d]}
+  //   else c[group].groupedConn.push(d);
+  //   return c      
+  // },{})
+
+  // setNameTitle(Object.values(title)) 
+  // // console.log(nameTitle)    
