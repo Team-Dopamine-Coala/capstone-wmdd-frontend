@@ -1,13 +1,13 @@
-import { View, Text, Box } from "native-base"
+import { Text, VStack } from "native-base"
 
 
 const CurrentLevelView = (student, navigation) => {
 console.log(student)
   return (
-    <View>
+    <VStack>
         
         
-    </View>
+    </VStack>
   )
 }
 

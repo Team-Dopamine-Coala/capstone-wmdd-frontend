@@ -1,13 +1,13 @@
-import { View, Text, Box } from "native-base"
+import { View, Text, VStack } from "native-base"
 
 
 const AttendanceListView = (student, navigation) => {
 console.log(student)
   return (
-    <View>
+    <VStack>
         
         
-    </View>
+    </VStack>
   )
 }
 
