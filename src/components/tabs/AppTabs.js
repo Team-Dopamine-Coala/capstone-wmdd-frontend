@@ -26,27 +26,27 @@ const AppTabs = () => {
       >
         <Tab.Screen name="Attendance" component={AttendanceStack} options={{
           tabBarIcon: ({ color }) => (
-            <Icon size={5} ml={2} color={color} as={<Ionicons name='ios-search' />} />
+            <Icon size={5} color={color} as={<Ionicons name='ios-calendar' />} />
           )
         }} />
         <Tab.Screen name="Evaluation" component={EvaluationStack} options={{
           tabBarIcon: ({ color }) => (
-            <Icon size={5} ml={2} color={color} as={<Ionicons name='ios-search' />} />
+            <Icon size={5} color={color} as={<Ionicons name='ios-list' />} />
           )
         }} />
         <Tab.Screen name="Reports" component={ReportsScreen} options={{
           tabBarIcon: ({ color }) => (
-            <Icon size={5} ml={2} color={color} as={<Ionicons name='ios-search' />} />
+            <Icon size={5} color={color} as={<Ionicons name='ios-copy' />} />
           )
         }} />
         <Tab.Screen name="Curriculum" component={CurriculumScreen} options={{
           tabBarIcon: ({ color }) => (
-            <Icon size={5} ml={2} color={color} as={<Ionicons name='ios-search' />} />
+            <Icon size={5} color={color} as={<Ionicons name='ios-bookmarks' />} />
           )
         }} />
         <Tab.Screen name="Students" component={StudentsScreen} options={{
           tabBarIcon: ({ color }) => (
-            <Icon size={5} ml={2} color={color} as={<Ionicons name='ios-search' />} />
+            <Icon size={5} color={color} as={<Ionicons name='ios-people' />} />
           )
         }} />
       </Tab.Navigator>
