@@ -1,6 +1,6 @@
 import AttendanceStack from '../stacks/AttendanceStack'
 import EvaluationStack from '../stacks/EvaluationStack';
-import ReportsScreen from '../screens/ReportsScreen';
+import ReportStack from '../stacks/ReportStack';
 import CurriculumScreen from '../screens/CurriculumScreen';
 import StudentsScreen from '../screens/StudentsScreen';
 
@@ -34,7 +34,7 @@ const AppTabs = () => {
             <Icon size={5} color={color} as={<Ionicons name='ios-list' />} />
           )
         }} />
-        <Tab.Screen name="Reports" component={ReportsScreen} options={{
+        <Tab.Screen name="Reports" component={ReportStack} options={{
           tabBarIcon: ({ color }) => (
             <Icon size={5} color={color} as={<Ionicons name='ios-copy' />} />
           )
