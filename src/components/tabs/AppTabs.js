@@ -15,7 +15,15 @@ const Tab = createBottomTabNavigator();
 const AppTabs = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator screenOptions={{ headerShown: false }}>
+      <Tab.Navigator
+            screenOptions={({ route }) => ({
+                headerShown: false,
+                tabBarActiveTintColor: '#655AE9',
+                tabBarInactiveTintColor: '#667080',
+                tabBarStyle:{ position: 'absolute', height: 60 },
+                tabBarLabelStyle:{ paddingBottom: 6, fontSize: 12 }
+            })}
+      >
         <Tab.Screen name="Attendance" component={AttendanceScreen} options={{
           tabBarIcon: ({ color }) => (
             <Icon size={5} color={color} as={<Ionicons name='ios-calendar' />} />
@@ -41,10 +49,26 @@ const AppTabs = () => {
             <Icon size={5} color={color} as={<Ionicons name='ios-people' />} />
           )
         }} />
-        <Tab.Screen name="Evaluation" component={EvaluationStack} />
-        <Tab.Screen name="Reports" component={ReportsScreen} />
-        <Tab.Screen name="Curriculum" component={CurriculumScreen} />
-        <Tab.Screen name="Students" component={StudentsScreen} />
+        <Tab.Screen name="Evaluation" component={EvaluationStack} options={{
+          tabBarIcon: ({ color }) => (
+            <Icon size={5} ml={2} color={color} as={<Ionicons name='ios-search' />} />
+          )
+        }} />
+        <Tab.Screen name="Reports" component={ReportsScreen} options={{
+          tabBarIcon: ({ color }) => (
+            <Icon size={5} ml={2} color={color} as={<Ionicons name='ios-search' />} />
+          )
+        }} />
+        <Tab.Screen name="Curriculum" component={CurriculumScreen} options={{
+          tabBarIcon: ({ color }) => (
+            <Icon size={5} ml={2} color={color} as={<Ionicons name='ios-search' />} />
+          )
+        }} />
+        <Tab.Screen name="Students" component={StudentsScreen} options={{
+          tabBarIcon: ({ color }) => (
+            <Icon size={5} ml={2} color={color} as={<Ionicons name='ios-search' />} />
+          )
+        }} />
       </Tab.Navigator>
   )
 }
