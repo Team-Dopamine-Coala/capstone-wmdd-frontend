@@ -1,5 +1,5 @@
 import CurriculumScreen from "./CurriculumScreen";
-import StudentsScreen from "./Students/StudentsScreen";
+import StudentsScreen from "./students/StudentsScreen";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
