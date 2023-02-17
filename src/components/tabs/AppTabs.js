@@ -16,7 +16,7 @@ const AppTabs = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator screenOptions={{ headerShown: false }}>
-        {/* <Tab.Screen name="Attendance" component={AttendanceScreen} options={{
+        <Tab.Screen name="Attendance" component={AttendanceScreen} options={{
           tabBarIcon: ({ color }) => (
             <Icon size={5} color={color} as={<Ionicons name='ios-calendar' />} />
           )
@@ -40,7 +40,7 @@ const AppTabs = () => {
           tabBarIcon: ({ color }) => (
             <Icon size={5} color={color} as={<Ionicons name='ios-people' />} />
           )
-        }} /> */}
+        }} />
         <Tab.Screen name="Evaluation" component={EvaluationStack} />
         <Tab.Screen name="Reports" component={ReportsScreen} />
         <Tab.Screen name="Curriculum" component={CurriculumScreen} />
