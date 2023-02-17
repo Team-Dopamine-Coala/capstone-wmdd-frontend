@@ -17,17 +17,16 @@ const IndexScreen = ({ navigation }) => {
     console.log(dateSelected)
 
     setIsLoading(true)
-    setClasses([{"classDay":[],"_id":"63e065e53e54d66c36ab24ec","title":"Gymnastics 1","programId":"","startTime":"9:00AM","endTime":"10:00AM","userId":"63e9fcf20386d6f0fd9053b3"},{"_id":"63e066913e54d66c36ab24f0","title":"Gymnastics 3","programId":"63e065093e54d66c36ab24e8","startTime":"2:00PM","endTime":"3:00PM","userId":"63e9fcf20386d6f0fd9053b3","classDay":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]}])
+    getClassesOfCoach('63e9fcf20386d6f0fd9053b3').then(
+      data => {
+        setClasses(data)
+        setIsLoading(false)
+      },
+      error => {
+        throw error
+      }
+    )
     setIsLoading(false)
-    // getClassesOfCoach('63e9fcf20386d6f0fd9053b3').then(
-    //   data => {
-    //     setClasses(data)
-    //     setIsLoading(false)
-    //   },
-    //   error => {
-    //     throw error
-    //   }
-    // )
   }, [dateSelected])
   
 
@@ -36,7 +35,7 @@ const IndexScreen = ({ navigation }) => {
   }
 
   return (
-    <VStack p={3} bgColor="#ffffff" flex={1}>
+    <VStack p={3} pb={20} bgColor="#ffffff" flex={1}>
       <Center>
         <Heading>Evaluation</Heading>
       </Center>
