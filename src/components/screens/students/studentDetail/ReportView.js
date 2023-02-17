@@ -5,7 +5,7 @@ const ReportView = (student, navigation) => {
 console.log(student)
 
 const clickStudent = () => {
-    //Open to biometrics modal
+    //Open to biometrics modal(mini 四角)
     //Pass the student's data
 }
 return (
