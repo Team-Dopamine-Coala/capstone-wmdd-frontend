@@ -1,4 +1,4 @@
-import AttendanceScreen from '../screens/AttendanceScreen'
+import AttendanceStack from '../stacks/AttendanceStack'
 import EvaluationStack from '../stacks/EvaluationStack';
 import ReportsScreen from '../screens/ReportsScreen';
 import CurriculumScreen from '../screens/CurriculumScreen';
@@ -24,7 +24,7 @@ const AppTabs = () => {
                 tabBarLabelStyle:{ paddingBottom: 6, fontSize: 12 }
             })}
       >
-        <Tab.Screen name="Attendance" component={AttendanceScreen} options={{
+        <Tab.Screen name="Attendance" component={AttendanceStack} options={{
           tabBarIcon: ({ color }) => (
             <Icon size={5} ml={2} color={color} as={<Ionicons name='ios-search' />} />
           )
