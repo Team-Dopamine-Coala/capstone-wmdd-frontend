@@ -23,14 +23,13 @@ const EvaluationStudentListScreen = ({ navigation }) => {
         throw error
       }
     )
-    setIsLoading(false)
   }, [dateSelected])
 
   return (
     <VStack width="100%" space={1} p={3} pb={20} bgColor="#ffffff" flex={1}>
       <Input placeholder="Search" variant="filled" width="100%" borderRadius="10" py="1" px="2" InputLeftElement={<Icon ml="2" size="4" color="gray.400" as={<Ionicons name="ios-search" />} />} />
 
-      <StudentList students={students} navigation={navigation} />
+      {isLoading ? <Loading /> : <StudentList students={students} navigation={navigation} />}
 
       <Button
         bgColor="#667080"
