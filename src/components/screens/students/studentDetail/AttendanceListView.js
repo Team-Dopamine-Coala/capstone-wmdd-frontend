@@ -1,8 +1,8 @@
 import { View, Text, VStack } from "native-base"
 
 
-const AttendanceListView = (student, navigation) => {
-console.log(student)
+const AttendanceListView = (trainee, navigation) => {
+console.log(trainee)
   return (
     <VStack>
         <Text>Attendance List</Text>

@@ -4,15 +4,15 @@ import CurrentLevelView from "./CurrentLevelView"
 import SkillsAchievementView from "./SkillsAchievementView"
 import AttendanceListView from "./AttendanceListView"
 
-const StudentDetail = ({item, navigation}) => {
-// const student = item.
-console.log('到着',student)
+const StudentDetail = ({trainee, navigation}) => {
+// const student = trainee
+console.log('到着',trainee)
   return (
     <View>
-        <ReportView student={student}/>
-        <CurrentLevelView student={student} />
-        <SkillsAchievementView student={student} />
-        <AttendanceListView student={student} />
+        <ReportView student={trainee}/>
+        <CurrentLevelView student={trainee} />
+        <SkillsAchievementView student={trainee} />
+        <AttendanceListView student={trainee} />
     </View>
   )
 }

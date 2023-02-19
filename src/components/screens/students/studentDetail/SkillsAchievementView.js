@@ -1,8 +1,8 @@
 import { Text, VStack } from "native-base"
 
 
-const SkillsAchievementView = (student, navigation) => {
-console.log(student)
+const SkillsAchievementView = (trainee, navigation) => {
+console.log(trainee)
   return (
     <>
       <Text>LEVEL TITLE</Text>

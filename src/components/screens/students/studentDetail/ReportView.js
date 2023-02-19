@@ -1,8 +1,8 @@
 import { View, Text, VStack } from "native-base"
 
 
-const ReportView = (student) => {
-console.log('レポートまで来たぞ',student)
+const ReportView = (trainee) => {
+console.log('レポートまで来たぞ',trainee)
 
 const clickStudent = () => {
     //Open to biometrics modal(mini 四角)
@@ -10,8 +10,8 @@ const clickStudent = () => {
 }
 return (
     <View>
-        <VStack onPress={clickStudent} student={student}>
-            <Text>{student.firstname}{student.lasname}</Text> 
+        <VStack onPress={clickStudent} trainee={trainee}>
+            <Text>{trainee.firstname}{trainee.lasname}</Text> 
             <Text>View profile and Contact Information</Text>
         </VStack>
         
