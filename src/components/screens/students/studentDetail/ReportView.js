@@ -1,8 +1,8 @@
 import { View, Text, VStack } from "native-base"
 
 
-const ReportView = (student, navigation) => {
-console.log(student)
+const ReportView = (student) => {
+console.log('レポートまで来たぞ',student)
 
 const clickStudent = () => {
     //Open to biometrics modal(mini 四角)

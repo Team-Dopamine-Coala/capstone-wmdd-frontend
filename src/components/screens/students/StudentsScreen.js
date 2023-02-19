@@ -8,8 +8,9 @@ const StudentsScreen = ({ navigation }) => {
   const [myClassIds, setMyclassIds] = useState([])
   const [myStudents, setMyStudents] = useState([])
   const [allStudents, setAllstudents] = useState([])
-  const [nameTitle, setNameTitle] = useState([])
+  // const [nameTitle, setNameTitle] = useState([])
   let list = []
+  let nameTitle = []
 
   //1.userIDを持ったclassを全部fetch(all classはuserIDからfetch)
   useEffect(() => {
@@ -52,6 +53,8 @@ const StudentsScreen = ({ navigation }) => {
       })
       setMyStudents(list)
       console.log('matchしたもの',myStudents) 
+
+      // titleDisplay()
     }
     
     getAllStudents()
@@ -74,8 +77,9 @@ const StudentsScreen = ({ navigation }) => {
       else c[group].groupedConn.push(d);
       return c      
     },{})
-  
-    setNameTitle(Object.values(title)) 
+    console.log('title',title)
+    // setNameTitle(Object.values(title)) 
+    nameTitle.push(Object.values(title)) 
     console.log('タイトル',nameTitle)   
   }
    
@@ -87,21 +91,22 @@ const StudentsScreen = ({ navigation }) => {
         <StudentsSearch mystudents={myStudents}/>
       </Box>
       <Box>
-          {nameTitle.map((initial, i) => (
+          {/* {nameTitle.map((initial, i) => (
             <Box key={i}> 
-            <Text>{initial.group}</Text> 
+            <Text>{initial.group}</Text>  */}
               {myStudents.map((item, index) => (
                 <VStack key={index}>
                   <TouchableOpacity onPress={() => (console.log('clickしたよ',item),
-                                    navigation.navigate('StudentDetailStack',{item, index})
+                                    // navigation.navigate('StudentDetailScreen',{ screen: 'StudentRetailScreen', params: {user: item}})
+                                    navigation.navigate('StudentDetail',{ screen: 'StudentDetail', params: {user: item}})
                                     )}
                                     >
                     <Text>{item.firstname} {item.lastname}</Text>
                   </TouchableOpacity>
                 </VStack>
               ))}
-            </Box> 
-          ))}
+            {/* </Box> 
+          ))}  */}
       </Box>
     </View>
   )

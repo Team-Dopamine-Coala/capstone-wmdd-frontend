@@ -4,8 +4,9 @@ import CurrentLevelView from "./CurrentLevelView"
 import SkillsAchievementView from "./SkillsAchievementView"
 import AttendanceListView from "./AttendanceListView"
 
-const StudentDetail = () => {
-const student = item.props
+const StudentDetail = ({item, navigation}) => {
+// const student = item.
+console.log('到着',student)
   return (
     <View>
         <ReportView student={student}/>
