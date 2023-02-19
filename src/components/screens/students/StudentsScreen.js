@@ -8,9 +8,8 @@ const StudentsScreen = ({ navigation }) => {
   const [myClassIds, setMyclassIds] = useState([])
   const [myStudents, setMyStudents] = useState([])
   const [allStudents, setAllstudents] = useState([])
-  // const [nameTitle, setNameTitle] = useState([])
+  const [nameTitle, setNameTitle] = useState([])
   let list = []
-  let nameTitle = []
 
   //1.userIDを持ったclassを全部fetch(all classはuserIDからfetch)
   useEffect(() => {
@@ -52,9 +51,21 @@ const StudentsScreen = ({ navigation }) => {
         return 0
       })
       setMyStudents(list)
-      console.log('matchしたもの',myStudents) 
+      console.log('matchしたもの1',list) 
+      console.log('matchしたもの2',myStudents) 
 
-      // titleDisplay()
+
+      //Alphabetic Title display
+      const title = list.reduce((c,d) => {
+        let group = d.firstname[0]
+    
+        if(!c[group]) c[group] = {group, groupedConn: [d]}
+        else c[group].groupedConn.push(d);
+        return c      
+      },{})
+      setNameTitle(Object.values(title)) 
+      console.log('nameタイトル',nameTitle)   
+
     }
     
     getAllStudents()
@@ -68,46 +79,27 @@ const StudentsScreen = ({ navigation }) => {
     }
   }
 
-  //Alphabetic Title display
-  const titleDisplay = () => {
-    const title = list.reduce((c,d) => {
-      let group = d.firstname[0]
-  
-      if(!c[group]) c[group] = {group, groupedConn: [d]}
-      else c[group].groupedConn.push(d);
-      return c      
-    },{})
-    console.log('title',title)
-    // setNameTitle(Object.values(title)) 
-    nameTitle.push(Object.values(title)) 
-    console.log('タイトル',nameTitle)   
-  }
-   
-
-
   return(
     <View>
       <Box>
-        <StudentsSearch mystudents={myStudents}/>
+        <StudentsSearch mystudents={list}/>
       </Box>
-      <Box>
-          {/* {nameTitle.map((initial, i) => (
-            <Box key={i}> 
-            <Text>{initial.group}</Text>  */}
-              {myStudents.map((item, index) => (
-                <VStack key={index}>
-                  <TouchableOpacity onPress={() => (console.log('clickしたよ',item),
+      {nameTitle.map((title, i) => (
+        <Box key={i}> 
+          <Text>{title.group}</Text>
+          {title.groupedConn.map((trainee, index) => (
+            <VStack key={index}>
+              <TouchableOpacity onPress={() => (console.log('clickしたよ',trainee),
                                     // navigation.navigate('StudentDetailScreen',{ screen: 'StudentRetailScreen', params: {user: item}})
-                                    navigation.navigate('StudentDetail',{ screen: 'StudentDetail', params: {user: item}})
+                                    navigation.navigate('StudentDetail',{ screen: 'StudentDetail', params: {user: trainee}})
                                     )}
                                     >
-                    <Text>{item.firstname} {item.lastname}</Text>
-                  </TouchableOpacity>
-                </VStack>
-              ))}
-            {/* </Box> 
-          ))}  */}
-      </Box>
+                <Text>{trainee.firstname} {trainee.lastname}</Text>
+              </TouchableOpacity>
+            </VStack>
+          ))}
+        </Box> 
+      ))}
     </View>
   )
 }
@@ -116,21 +108,5 @@ export default StudentsScreen
 
 
 //TO DO LIST
-  //   1. alphabetの最初の頭にtitleをつける
   //  2. navigationで次のページに移動
   //  3. .env fileにfetch addressを変える 
-
-
-
-
-  // //Alphabetic Title display
-  // let title = list.reduce((c,d) => {
-  //   let group = d.firstname[0]
-
-  //   if(!c[group]) c[group] = {group, groupedConn: [d]}
-  //   else c[group].groupedConn.push(d);
-  //   return c      
-  // },{})
-
-  // setNameTitle(Object.values(title)) 
-  // // console.log(nameTitle)    

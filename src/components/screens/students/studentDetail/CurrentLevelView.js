@@ -1,13 +1,25 @@
-import { Text, VStack } from "native-base"
+import { Text, VStack, View } from "native-base"
 
 
-const CurrentLevelView = (student, navigation) => {
-console.log(student)
+const CurrentLevelView = (trainee, navigation) => {
+console.log(trainee)
+
+    
   return (
-    <VStack>
+    <View>
+      <Text>Gymnastics  </Text>
+      <VStack>
         <Text>Current Level</Text>
-    </VStack>
-  )
+        <Text>Level </Text>
+
+      <Text>  skills</Text>  
+      </VStack>
+    </View>
+      )
 }
 
 export default CurrentLevelView
+
+//Task
+//1.levelfetchする
+//2.progress bar入れる
