@@ -1,13 +1,14 @@
-import StudentDetail from "../screens/students/studentDetail/StudentDetail"
+import StudentDetail from "../screens/students/studentDetails/StudentDetail"
 
-import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { createStackNavigator } from "@react-navigation/stack"
 
-const Stack = createNativeStackNavigator()
+const Stack = createStackNavigator()
+
 
 const StudentStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="StudentDetail" component={StudentDetail}/>
+      <Stack.Screen name="Student Detail" component={StudentDetail}/>
     </Stack.Navigator>
   )
 }

@@ -1,7 +1,6 @@
 import { View, Box, Text, VStack } from "native-base"
 import { useEffect, useState } from "react"
-import { TouchableOpacity } from "react-native"
-
+import { TouchableOpacity, StyleSheet } from "react-native"
 import StudentsSearch from "./myStudents/StudentsSearch"
 
 const StudentsScreen = ({ navigation }) => {
@@ -10,28 +9,26 @@ const StudentsScreen = ({ navigation }) => {
   const [allStudents, setAllstudents] = useState([])
   const [nameTitle, setNameTitle] = useState([])
   let list = []
-  // let title = 
   
-
-  //1.userIDを持ったclassを全部fetch(all classはuserIDからfetch)
+  //1.Fetch all classes which has this userID(All class can fetch by userID)
   useEffect(() => {
     const getMyclass = async () => {
       const res = await fetchMyclass()
       setMyclassIds(res.map((item) => item._id))
-      // console.log('user has this classes: class_Id',myClassIds)
     }
     getMyclass()
   },[])
   //(api/class/userId)
   const fetchMyclass = async () => {
-    const res = await fetch('http://localhost:5003/api/class/63e9fcf20386d6f0fd9053b3')
+    // const res = await fetch('http://localhost:5002/api/class/63e9fcf20386d6f0fd9053b3')
+    const res = await fetch('http://3.84.131.140:3000/api/class/63e9fcf20386d6f0fd9053b3')
+
     const data = await res.json()
     if(res.ok){
       return data
     }
   }
-
-  //2.class IDからstudentをfetch(all studentsはclassIDでFetchだから)
+  //2.Fetch All students from class ID(all students need to fetch by classID)
   useEffect(() => {
     const getAllStudents = async () => {
       const res = await fetchAllStudents()
@@ -53,9 +50,7 @@ const StudentsScreen = ({ navigation }) => {
         return 0
       })
       setMyStudents(list)
-      console.log('matchしたもの1',list) 
-      console.log('matchしたもの2',myStudents) 
-
+      console.log('matchしたもの',list) 
 
       //Alphabetic Title display
       const title = list.reduce((c,d) => {
@@ -75,7 +70,8 @@ const StudentsScreen = ({ navigation }) => {
 
   
   const fetchAllStudents = async () => {
-    const res = await fetch(`http://localhost:5003/api/student/${myClassIds[0]}`)
+    // const res = await fetch(`http://localhost:5002/api/student/${myClassIds[0]}`)
+    const res = await fetch(`http://3.84.131.140:3000/api/student/${myClassIds[0]}`)
     const data = await res.json()
     if(res.ok) {
       return data
@@ -83,20 +79,18 @@ const StudentsScreen = ({ navigation }) => {
   }
 
   return(
-    <View>
+    <View style={styles.container}>
       <Box>
         <StudentsSearch mystudents={list}/>
       </Box>
       {nameTitle.map((title, i) => (
-        <Box key={i}> 
-          <Text>{title.group}</Text>
+        <Box key={i} > 
+          <Text style={styles.abc}>{title.group}</Text>
           {title.groupedConn.map((trainee, index) => (
-            <VStack key={index}>
-              <TouchableOpacity onPress={() => (console.log('clickしたよ',trainee),
-                                    // navigation.navigate('StudentDetailScreen',{ screen: 'StudentRetailScreen', params: {user: item}})
-                                    navigation.navigate('StudentDetail',{ screen: 'StudentDetail', params: {user: trainee}})
-                                    )}
-                                    >
+            <VStack key={index} style={styles.nameContainer}>
+              <TouchableOpacity onPress={() => {console.log('clickしたよ',trainee),
+                                    navigation.navigate('Student Detail')
+              }}>
                 <Text>{trainee.firstname} {trainee.lastname}</Text>
               </TouchableOpacity>
             </VStack>
@@ -106,10 +100,29 @@ const StudentsScreen = ({ navigation }) => {
     </View>
   )
 }
-
+const styles = StyleSheet.create ({
+  container: {
+    marginRight:10,
+     marginLeft:10, 
+  },
+  abc: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    marginBottom: 5,
+    marginTop: 15,
+  },
+  nameContainer: {
+     backgroundColor: '#bbb',
+     borderRadius: '10',
+     paddingHorizontal: 16,
+     paddingTop: 10,
+     paddingBottom: 10,
+  }
+})
 export default StudentsScreen
 
 
 //TO DO LIST
   //  2. navigationで次のページに移動
   //  3. .env fileにfetch addressを変える 
+  // ,{ screen: 'Student Detail', params: {user: trainee}}

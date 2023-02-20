@@ -5,7 +5,8 @@ const AttendanceListView = (trainee, navigation) => {
 console.log(trainee)
   return (
     <VStack>
-        <Text>Attendance List</Text>
+        <Text>Attendance</Text>
+        
     </VStack>
   )
 }
