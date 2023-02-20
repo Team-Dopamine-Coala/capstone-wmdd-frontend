@@ -11,10 +11,8 @@ export default function App() {
 
   return (
     <NativeBaseProvider>
-      <AuthProvider>
-          <AppNav />
-      </AuthProvider>
-      <StatusBar style="auto" hidden />
+      <AppTabs />
+      <StatusBar style="auto" hidden/>
     </NativeBaseProvider>
   );
 }
