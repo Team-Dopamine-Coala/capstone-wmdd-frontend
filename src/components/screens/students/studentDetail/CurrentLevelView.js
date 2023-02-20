@@ -4,7 +4,7 @@ import { Text, VStack, View } from "native-base"
 const CurrentLevelView = (trainee, navigation) => {
 console.log(trainee)
 
-    
+
   return (
     <View>
       <Text>Gymnastics  </Text>
@@ -23,3 +23,4 @@ export default CurrentLevelView
 //Task
 //1.levelfetchする
 //2.progress bar入れる
+//3.確認しないといけないこと！　どこにこれらのdataをstoreするのか全て確認！
