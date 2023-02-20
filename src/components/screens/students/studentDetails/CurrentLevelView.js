@@ -3,7 +3,11 @@ import { Text, VStack, View } from "native-base"
 
 const CurrentLevelView = (trainee, navigation) => {
 console.log(trainee)
+const traineeId = trainee._id
 
+//Fetch program
+//Fetch level
+//Fetch skills
 
   return (
     <View>
