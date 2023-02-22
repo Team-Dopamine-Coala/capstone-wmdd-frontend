@@ -30,7 +30,7 @@ const percent = completedSkillNumber / totalSkillNumber
 useEffect(() => {
   const getSkill = async () => {
     const res = await fetchSkill()
-    console.log('実際のskill',res)
+    // console.log('実際のskill',res)
     setLevelName(res.title)
     check(res)
   }
