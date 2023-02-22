@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { TouchableOpacity, StyleSheet } from "react-native"
 import StudentsSearch from "./myStudents/StudentsSearch"
 
-const StudentsScreen = ({ navigation }) => {
+const IndexScreen = ({ navigation }) => {
   const [myClassIds, setMyclassIds] = useState([])
   const [myStudents, setMyStudents] = useState([])
   const [allStudents, setAllstudents] = useState([])
@@ -89,7 +89,7 @@ const StudentsScreen = ({ navigation }) => {
           {title.groupedConn.map((trainee, index) => (
             <VStack key={index} style={styles.nameContainer}>
               <TouchableOpacity onPress={() => {console.log('clickしたよ',trainee),
-                                    navigation.navigate('Student Detail')
+                                    navigation.navigate('Student Detail',{trainee})
               }}>
                 <Text>{trainee.firstname} {trainee.lastname}</Text>
               </TouchableOpacity>
@@ -119,10 +119,9 @@ const styles = StyleSheet.create ({
      paddingBottom: 10,
   }
 })
-export default StudentsScreen
+export default IndexScreen
 
 
 //TO DO LIST
-  //  2. navigationで次のページに移動
   //  3. .env fileにfetch addressを変える 
   // ,{ screen: 'Student Detail', params: {user: trainee}}
