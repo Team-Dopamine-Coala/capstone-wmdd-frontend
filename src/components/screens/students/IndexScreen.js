@@ -20,7 +20,6 @@ const IndexScreen = ({ navigation }) => {
   },[])
   //(api/class/userId)
   const fetchMyclass = async () => {
-    // const res = await fetch('http://localhost:5002/api/class/63e9fcf20386d6f0fd9053b3')
     const res = await fetch('http://3.84.131.140:3000/api/class/63e9fcf20386d6f0fd9053b3')
 
     const data = await res.json()
@@ -70,7 +69,6 @@ const IndexScreen = ({ navigation }) => {
 
   
   const fetchAllStudents = async () => {
-    // const res = await fetch(`http://localhost:5002/api/student/${myClassIds[0]}`)
     const res = await fetch(`http://3.84.131.140:3000/api/student/${myClassIds[0]}`)
     const data = await res.json()
     if(res.ok) {
