@@ -2,7 +2,7 @@ import AttendanceStack from '../stacks/AttendanceStack'
 import EvaluationStack from '../stacks/EvaluationStack';
 import ReportStack from '../stacks/ReportStack';
 import CurriculumScreen from '../screens/CurriculumScreen';
-import StudentsScreen from '../screens/students/StudentsScreen';
+import StudentStack from '../stacks/StudentStack';
 
 import { Ionicons } from '@expo/vector-icons'
 import { Icon, View, Box, Text } from 'native-base'
@@ -44,7 +44,7 @@ const AppTabs = () => {
             <Icon size={5} color={color} as={<Ionicons name='ios-bookmarks' />} />
           )
         }} />
-        <Tab.Screen name="Students" component={StudentsScreen} options={{
+        <Tab.Screen name="Students" component={StudentStack} options={{
           tabBarIcon: ({ color }) => (
             <Icon size={5} color={color} as={<Ionicons name='ios-people' />} />
           )
