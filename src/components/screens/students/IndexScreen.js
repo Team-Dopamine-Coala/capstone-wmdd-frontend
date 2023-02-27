@@ -121,5 +121,5 @@ export default IndexScreen
 
 
 //TO DO LIST
-  //  3. .env fileにfetch addressを変える 
-  // ,{ screen: 'Student Detail', params: {user: trainee}}
+  //  3. fetch codeを全部utilsに移してそこからimportすること！
+ 
