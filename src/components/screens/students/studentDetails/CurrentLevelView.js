@@ -1,7 +1,6 @@
 import { Text, VStack, View, Box } from "native-base"
 import { useEffect, useState } from "react"
 import { StyleSheet } from "react-native"
-// import { ProgressBar } from "react-native-progress/Bar"
 import * as Progress from 'react-native-progress';
 
 
