@@ -1,15 +1,15 @@
 import { Text, VStack, View, Box } from "native-base"
 
 
-const ViewProfileScreen = ({trainee}) => {
-console.log(trainee)
+const ViewProfileScreen = ({student}) => {
+console.log('最後',student)
 
   return (
     <View>
         <Box>
             <Text>Birthday</Text>
             <VStack>
-                <Text>{trainee.birthday}</Text>
+                <Text>{student.birthday}</Text>
             </VStack>
         </Box>
         <Box>
@@ -17,11 +17,11 @@ console.log(trainee)
             <VStack>
                 <Box>
                     <Text>Allegies</Text>
-                    {/* <Text>{trainee.}</Text> */}
+                    {/* <Text>{student.}</Text> */}
                 </Box>
                 <Box>
                     <Text>Conditions</Text>
-                    <Text>{trainee.medicalInfo}</Text>
+                    <Text>{student.medicalInfo}</Text>
                 </Box>
             </VStack>
         </Box>
@@ -30,15 +30,15 @@ console.log(trainee)
             <VStack>
                 <Box>
                     <Text>Name</Text>
-                    <Text>{trainee.guardianName}</Text>
+                    <Text>{student.guardianName}</Text>
                 </Box>
                 <Box>
                     <Text>Phone Number</Text>
-                    <Text>{trainee.guardianNumber}</Text>
+                    <Text>{student.guardianNumber}</Text>
                 </Box>
                 <Box>
                     <Text>Email</Text>
-                    <Text>{trainee.guardianEmail}</Text>
+                    <Text>{student.guardianEmail}</Text>
                 </Box>
                 
             </VStack>

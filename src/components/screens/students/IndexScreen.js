@@ -20,7 +20,7 @@ const IndexScreen = ({ navigation }) => {
   },[])
   //(api/class/userId)
   const fetchMyclass = async () => {
-    const res = await fetch('http://3.84.131.140:3000/api/class/63e9fcf20386d6f0fd9053b3')
+    const res = await fetch('http://3.84.131.140:3000/api/class/63fcf0bd354e8150f45dd4d2')
 
     const data = await res.json()
     if(res.ok){
