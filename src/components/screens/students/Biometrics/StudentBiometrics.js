@@ -4,7 +4,7 @@ import { View } from "native-base"
 import * as LocalAuthentication from 'expo-local-authentication'
 import { result } from 'lodash'
 
-const StudentBiometrics = ({student}) => {
+const StudentBiometrics = ({student, navigation}) => {
   console.log('this student',student)
   const userID = '63fcf0bd354e8150f45dd4d2'
   // const bcrypt = require ('bcrypt')
@@ -89,8 +89,8 @@ const StudentBiometrics = ({student}) => {
             'Biometric Authentication not supported',
             'OK',
           )  
-          console.log('success!');
-          navigation.navigate('Profile', {student})
+          console.log('success!')
+          navigation.navigate('Student Profile', {student})
         } else {
           Alert.prompt(
             "Invalid Password",
@@ -140,8 +140,8 @@ const StudentBiometrics = ({student}) => {
     console.log('ここまで')
     console.log('何が入ってる？',biometricAuth)
     if (biometricAuth){
-      console.log('success!');
-      navigation.navigate('Profile', {student})
+      console.log('success!')
+      navigation.navigate('Student Profile', {student})
     } 
   
     console.log({ isBiometricAvailable });
