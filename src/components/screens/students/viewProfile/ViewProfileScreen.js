@@ -1,7 +1,7 @@
 import { Text, VStack, View, Box } from "native-base"
 
 
-const ViewProfileScreen = ({student}) => {
+const ViewProfileScreen = ({student, navigation}) => {
 console.log('最後',student)
 
   return (
