@@ -1,2 +1,2 @@
 <key>NSFaceIDUsageDescription</key>
-<string>$(PRODUCT_NAME) Authentication with TouchId or FaceID</string>
+<string>Coala app use TouchId or FaceID to secure student's personal information</string>

@@ -5,35 +5,37 @@ import * as LocalAuthentication from 'expo-local-authentication'
 import { result } from 'lodash'
 
 const StudentBiometrics = ({student, navigation}) => {
-  console.log('this student',student)
+  // console.log('this student',student)
+   // const bcrypt = require ('bcrypt')
   const userID = '63fcf0bd354e8150f45dd4d2'
-  // const bcrypt = require ('bcrypt')
+ 
 
   //get user's password
   const [pwdOpen, setPwdOpen] = useState(false)
-  const [password, setPassword] = useState('')
+  const [userPassword, setUserPassword] = useState('')
   const [isBiometricSupported, setIsBiometricSupported] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   
-  //Get user Password
-  useEffect(() => {
-    const getUserId = async () => {
-      const res = await fetchUser()
-      setPassword(res.password)
-      console.log('PWD',password)
-    }
-    getUserId()
-  },[])
   
-  const fetchUser = async () => {
-    const res = await fetch(`http://3.84.131.140:3000/api/users/${userID}`)
-    const data = await res.json()
+  //Get user Password
+  // useEffect(() => {
+  //   const getUserId = async () => {
+  //     const res = await fetchUser()
+  //     setUserPassword(res.password)
+  //     console.log('PWD',password)
+  //   }
+  //   getUserId()
+  // },[])
+  
+  // const fetchUser = async () => {
+  //   const res = await fetch(`http://3.84.131.140:3000/api/users/${userID}`)
+  //   const data = await res.json()
    
-    if(res.ok){
-      return data
-    }
+  //   if(res.ok){
+  //     return data
+  //   }
     
-  }
+  // }
 
   //1.check if device suppert biometrics (ture || false)
   //ここFalseだった場合password入力に進むようにする
@@ -47,17 +49,15 @@ const StudentBiometrics = ({student, navigation}) => {
         fallBackToDefaultAuth()
       }if (isBiometricSupported === true) {
         console.log('Face or Fingerprint scanner is available on this device')
+        handleBiometricAuth()
       }
-      
     })();
   });
       
-      
+    //===========================================================  
   //Function if devide does not support biometrics (Enter password!)　パスワード入力コードを作成
   const fallBackPassword = () => {
     //check useID and input id is equal!
-    console.log('passwordで確認');
-
     //Password入力
     Alert.prompt(
       "Enter Password",
@@ -71,18 +71,19 @@ const StudentBiometrics = ({student, navigation}) => {
         {
           text: "OK",
           onPress: password => checkPWD(password),
-          
         }
       ],
       "secure-text"
     )
    
-
       //1.userID(fetchしたもの)と入力したものを比べる
       const checkPWD = (password) => {
-        const enteredPWD = password 
+        const enteredPWD = password
+        console.log('入力',enteredPWD)
+        console.log('持ってきたPWD',userPassword)
+
         // const checkPWD = bcrypt.compare(password, enteredPWD);
-        console.log(checkPWD)
+        // console.log(checkPWD)
         if(enteredPWD == true ) {
           alertComponent(
             'Password Confirmed',
@@ -90,7 +91,7 @@ const StudentBiometrics = ({student, navigation}) => {
             'OK',
           )  
           console.log('success!')
-          navigation.navigate('Student Profile', {student})
+          movepage()
         } else {
           Alert.prompt(
             "Invalid Password",
@@ -104,54 +105,15 @@ const StudentBiometrics = ({student, navigation}) => {
               {
                 text: "OK",
                 onPress: password => checkPWD(password),
-                
               }
             ],
             "secure-text"
           )
         }
-        
-
-       
       }
-
-
-      //２。passwordがmatchしたら！しなかったら！
-      // if (){
-      //   console.log('success!');
-      //   navigation.navigate('Profile', {student})
-      // } else {
-      //   console.log('please input collect password')
-      // }
-  
   };
 
-  const alertComponent = (title, mess, btnTxt, btnFunc) => {
-    return Alert.alert(title, mess, [
-      {
-        text: btnTxt,
-        onPress: btnFunc,
-      },
-    ]);
-  };
-
-  //When BioAuth success
-  const successProcess = (biometricAuth) => {
-    console.log('ここまで')
-    console.log('何が入ってる？',biometricAuth)
-    if (biometricAuth){
-      console.log('success!')
-      navigation.navigate('Student Profile', {student})
-    } 
-  
-    console.log({ isBiometricAvailable });
-    console.log({ supportedBiometrics });
-    console.log({ savedBiometrics });
-    console.log({ biometricAuth });
-  }
-  
-
-
+ //============================================== 
 
   //2.Check if Hardware support biometrics 
   const handleBiometricAuth = async () => {
@@ -178,47 +140,66 @@ const StudentBiometrics = ({student, navigation}) => {
     
     
     //4.Check if biometric record exist in your local device or not (facial or fingerprints record)
-    const savedBiometrics = await LocalAuthentication.isEnrolledAsync();
-      if (savedBiometrics) {
-        setIsAuthenticated(result.success)
-        console.log('Authenticationについて',result.success)
-        //if not, proceed password
-      }else if (!savedBiometrics) {
-        return alertComponent(
-          'Biometrics record not found on your Device',
-          'Please verify with password',
-          'OK',
-          () => {fallBackPassword(), console.log('PW行くよ')}
-        )}
+    // const savedBiometrics = await LocalAuthentication.isEnrolledAsync();
+    // console.log('record exist in your device?',savedBiometrics)  
+    //     //if not, proceed password
+    //   if (!savedBiometrics) {
+    //     return alertComponent(
+    //       'Biometrics record not found on your Device',
+    //       'Please verify with password',
+    //       'OK',
+    //       () => {fallBackPassword(), console.log('PW行くよ')}
+    //     )}
       
 
       //5. Authenticate use with Biometrics (Fingerprint, Facial recognition)
-      const biometricAuth = await LocalAuthentication.authenticateAsync({
+      const result = await LocalAuthentication.authenticateAsync
+      ({
         promptMessage: 'Login with Biometrics',
         cancelLabel: 'Cancel',
         disableDeviceFallback: true,
       });
-
-      successProcess(biometricAuth)
-      // Log the user in on success
+        successProcess(result)
     }
-handleBiometricAuth()
- 
-  
+    // handleBiometricAuth()
 
-  
-  
+//==========Functions ===========================================================
+  const alertComponent = (title, mess, btnTxt, btnFunc) => {
+    return Alert.alert(title, mess, [
+      {
+        text: btnTxt,
+        onPress: btnFunc,
+      },
+    ]);
+  };
 
+  //navigation
+  const movepage = () => {
+    navigation.navigate('Student Profile', {student: student})
+  }
 
+  //When BioAuth success
+  const successProcess = (result) => {
+    console.log('bio success or fail?',result)
+    if (result.success == true){
+      console.log('success!')
+      movepage()
+    } else if (result.success == false){
+      console.log('failed bio')
+    }
+  }
   return (
     <View>
-      
-
+     
         <StatusBar style="auto" />
-      
-   
     </View>
   )
 }
 
 export default StudentBiometrics
+
+
+//TO DO LIST
+//1. bcryptされたものとどのように比べるか！？
+//2. navigation.nagigate を解消！
+//3. face idのLogoはどうなるのか？
