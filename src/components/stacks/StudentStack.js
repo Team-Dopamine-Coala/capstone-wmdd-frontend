@@ -1,6 +1,6 @@
-import IndexScreen from "../screens/Students/IndexScreen"
-import StudentDetail from "../screens/Students/studentDetails/StudentDetail"
-import ViewProfileScreen from "../screens/Students/viewProfile/ViewProfileScreen"
+import IndexScreen from "../screens/students/IndexScreen"
+import StudentDetail from "../screens/students/studentDetails/StudentDetail"
+import ViewProfileScreen from "../screens/students/viewProfile/ViewProfileScreen"
 
 import { createStackNavigator } from "@react-navigation/stack"
 

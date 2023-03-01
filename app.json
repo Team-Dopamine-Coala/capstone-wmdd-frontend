@@ -20,7 +20,7 @@
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
-        "NSFaceIDUsageDescription": "Coala use Face ID or Touch ID to secure student information."
+        "NSFaceIDUsageDescription": "Coala uses Face ID or Touch ID to access student information."
       }
     },
     "android": {
@@ -31,6 +31,14 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Allow Coala to use Face ID."
+        }
+      ]
+    ]
   }
 }
