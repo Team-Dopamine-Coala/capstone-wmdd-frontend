@@ -1,6 +1,6 @@
 import { Box, Container, Text, View, VStack, Center } from 'native-base';
 import React from 'react';
-import CreateAccountForm from '../forms/CreateAccountForm';
+import CreateAccountForm from '../../forms/signup/CreateAccountForm';
 
 const Stack = createNativeStackNavigator()
 
