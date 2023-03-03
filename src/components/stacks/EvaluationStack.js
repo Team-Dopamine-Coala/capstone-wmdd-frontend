@@ -25,9 +25,11 @@ const EvaluationStack = () => {
         name="Evaluation Student List"
         component={EvaluationStudentListScreen}
         options={({ route }) => ({
-          title: 'Gymnastics Evaluation',
+          title: `${route.params.className} Evaluation`,
           headerBackTitle: '',
-          headerTitleAlign: 'center'
+          headerTitleAlign: 'center',
+          classId: route.params.classId,
+          className: route.params.className
         })}
       />
       <Stack.Screen
@@ -35,7 +37,9 @@ const EvaluationStack = () => {
         component={EvaluationIndividualStudent}
         options={({ route }) => ({
           title: '',
-          headerBackTitle: 'Gymnastics Evaluation'
+          headerBackTitle: '',
+          studentsList: route.params.students,
+          className: route.params.className
         })}
       />
     </Stack.Navigator>

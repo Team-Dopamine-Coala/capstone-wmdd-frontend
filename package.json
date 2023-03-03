@@ -23,6 +23,7 @@
     "native-base": "^3.4.25",
     "react": "18.1.0",
     "react-native": "0.70.5",
+    "react-native-basic-carousel": "^1.0.9",
     "react-native-calendar-strip": "^2.2.6",
     "react-native-fade-loading": "^1.0.1",
     "react-native-gesture-handler": "^2.8.0",
