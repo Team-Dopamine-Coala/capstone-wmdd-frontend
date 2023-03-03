@@ -12,7 +12,7 @@ export const AuthProvider = ({children}) => {
 
         console.log(email, password)
 
-        const res = await fetch(`http://localhost:5002/api/users/login`, {
+        const res = await fetch(`http://3.84.131.140:3000/api/users/login`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
