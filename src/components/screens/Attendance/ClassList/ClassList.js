@@ -2,7 +2,7 @@ import Card from "../Card/Card"
 import {FlatList} from "native-base"
 
 
-const ClassList = ({ classes }) => {
+const ClassList = ({ classes, navigation }) => {
 
  
 
@@ -16,6 +16,7 @@ const ClassList = ({ classes }) => {
             startTime={item.startTime}
             endTime={item.endTime}
             id={item.id}
+            navigation={navigation}
           />
         )}
       />
