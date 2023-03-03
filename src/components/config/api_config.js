@@ -1,0 +1,1 @@
+export const BASE_URL = '3.84.131.140:3000'

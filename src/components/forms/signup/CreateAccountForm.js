@@ -2,9 +2,17 @@ import { FormControl, Input, Text, VStack, Icon, Pressable, Button, Box, Center 
 import { MaterialIcons } from "@expo/vector-icons";
 import React, { useState } from 'react';
 
-const CreateAccountForm = props => {
+const CreateAccountForm = ({navigation, route }) => {
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
 
-    const {navigation} = props
+    const nextPage = () => {
+        console.log(firstName, lastName)
+        navigation.navigate('Sign up two', {
+            firstName: firstName,
+            lastName: lastName
+        })
+    }
 
     return(
         <VStack justifyContent="center" space={2} py={30} px={15}>
@@ -14,6 +22,8 @@ const CreateAccountForm = props => {
                 <Input 
                     placeholder="First Name"
                     variant="underlined"
+                    onChangeText={(e) => setFirstName(e)}
+                    value={firstName}
                 />
                 </Box>
                 <Box py={2}>
@@ -21,11 +31,13 @@ const CreateAccountForm = props => {
                 <Input 
                     placeholder="Last Name"
                     variant="underlined"
+                    onChangeText={(e) => setLastName(e)}
+                    value={lastName}
                 />
                 </Box>
                 <Button 
                     mt={5}
-                    onPress={() => {navigation.navigate('Sign Up Form')}}
+                    onPress={nextPage}
                 >Next</Button>
             </FormControl>
         </VStack>
