@@ -1,7 +1,7 @@
 import { Box, Icon, HStack, Text, VStack, Button, Heading } from "native-base";
 import { Ionicons } from "@expo/vector-icons"
 
-const Card = ({ title, startTime, endTime, id, navigation }) => {
+const Card = ({ title, startTime, endTime, id, navigation, dateSelected }) => {
   // const {  title, startTime, endTime, id, navigation } = props;
 
   return (
@@ -13,13 +13,14 @@ const Card = ({ title, startTime, endTime, id, navigation }) => {
             <HStack space={1} mb={2}>      
               <VStack >
                 <Heading fontSize={22}>{title}</Heading>
-                <Text>{startTime} - {endTime}</Text>
+                <Text>{startTime} -{'>'} {endTime}</Text>
                 <Text>Venue</Text>
               </VStack>
               <Icon ml="2" size="70" color="gray.200" as={<Ionicons name="checkmark-circle-outline"/>} />         
             </HStack>
           
             <Button
+              dateSelected = {dateSelected}
               borderRadius="61"
               variant="solid"
               bgColor="#404142"
