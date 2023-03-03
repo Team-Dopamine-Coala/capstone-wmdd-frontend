@@ -9,7 +9,7 @@ export const getClassesOfCoach = async (coachid, userToken) => {
       },
     })
     const data = await res.json()
-
+    console.log("class of coach data", data)
     return data
   }
 }
@@ -59,3 +59,12 @@ export const getSkillsById = async (skillid) => {
     return data
   }
 }
+
+// ATTENDANCE
+export const getAllAttendance = async () => {
+
+    const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/attendance`)
+    const data = await res.json()
+
+}
+
