@@ -13,7 +13,6 @@ const AttendanceStudentList = ({ navigation, dateSelected }) => {
   const [isLoading, setIsLoading] = useState(true)
   const [attendance, setAttendance] = useState([])
   const [allAttendance, setAllAttendance] = useState([])
-
   useEffect(() => {
     setIsLoading(true)
     getStudentsByClass('63e066913e54d66c36ab24f0').then(
