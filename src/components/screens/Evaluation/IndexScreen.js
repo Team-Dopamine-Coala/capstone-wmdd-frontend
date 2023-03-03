@@ -17,14 +17,12 @@ const IndexScreen = ({ navigation }) => {
 
   useEffect(() => {
     console.log(dateSelected)
-    console.log(userToken)
 
     setIsLoading(true)
     getClassesOfCoach('63fcf0bd354e8150f45dd4d2', userToken).then(
       data => {
         setClasses(data)
         setIsLoading(false)
-        console.log(data)
       },
       error => {
         throw error
