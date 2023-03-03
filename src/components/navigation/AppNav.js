@@ -4,7 +4,8 @@ import AppTabs from '../tabs/AppTabs'
 import { NavigationContainer } from "@react-navigation/native";
 import React, { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { View, ActivityIndicator } from 'react-native';
+import { View } from 'react-native';
+import Loading from "../layout/Loading";
 
 
 const AppNav = () => {
@@ -15,15 +16,15 @@ const AppNav = () => {
     if (isLoading){
         return(
             <View>
-                <ActivityIndicator size={'large'}/>
+                <Loading />
             </View>
         )
     }
 
     return(
         <NavigationContainer>
-            {/* { userToken !== null ? <AppTabs /> : <LoginSignUpStack /> } */}
-            <LoginSignUpStack />
+            { userToken !== null ? <AppTabs /> : <LoginSignUpStack /> }
+            {/* <LoginSignUpStack /> */}
         </NavigationContainer>
     )
 }
