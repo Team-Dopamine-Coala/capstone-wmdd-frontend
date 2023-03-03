@@ -1,26 +1,30 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { Box, Center, Heading, VStack } from 'native-base'
 import CalendarStrip from 'react-native-calendar-strip';
 import moment from 'moment';
 
+import { AuthContext } from '../../context/AuthContext';
 import ClassList from './lists/ClassList';
 import Loading from '../../layout/Loading'
 
 import { getClassesOfCoach } from '../../../utils/queries';
 
 const IndexScreen = ({ navigation }) => {
+  const {userToken} = useContext(AuthContext)
   const [classes, setClasses] = useState([])
   const [dateSelected, setSelectedDate] = useState(new Date())
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     console.log(dateSelected)
+    console.log(userToken)
 
     setIsLoading(true)
-    getClassesOfCoach('63fcf0bd354e8150f45dd4d2').then(
+    getClassesOfCoach('63fcf0bd354e8150f45dd4d2', userToken).then(
       data => {
         setClasses(data)
         setIsLoading(false)
+        console.log(data)
       },
       error => {
         throw error
