@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react'
 import { getStudentsByClass } from '../../../../utils/queries'
 import { getAllAttendance } from '../../../../utils/queries'
 import { DrawerLayoutAndroidBase } from "react-native"
+import { AWS_BACKEND_BASE_URL } from "../../../../utils/static"
+
 // import StudentList from "../ClassList/StudentList"
 
 
@@ -13,6 +15,7 @@ const AttendanceStudentList = ({ navigation, dateSelected }) => {
   const [isLoading, setIsLoading] = useState(true)
   const [attendance, setAttendance] = useState([])
   const [allAttendance, setAllAttendance] = useState([])
+
   useEffect(() => {
     setIsLoading(true)
     getStudentsByClass('63e066913e54d66c36ab24f0').then(
@@ -40,8 +43,9 @@ const AttendanceStudentList = ({ navigation, dateSelected }) => {
     const newAllAttendance = []
     checkboxVal.forEach(element => {
       const newAttendance = {
-        class_id: "63e066913e54d66c36ab24f0",
-        student_id: element,
+
+        classId: "63e066913e54d66c36ab24f0",
+        studentId: element,
         present: true,
         date: "2023-03-01T20:00:00.000Z"
       }
@@ -50,12 +54,12 @@ const AttendanceStudentList = ({ navigation, dateSelected }) => {
     setAllAttendance(newAllAttendance)
   }
 
-  const test = {
-      class_id: "63e066913e54d66c36ab24f0",
-      student_id: "63e066913e54d66c36ab24f0",
-      present: true,
-      date: "2023-03-01T20:00:00.000Z"
-    }
+  // const test = {
+  //     classId: "63e066913e54d66c36ab24f0",
+  //     studentId: "63e066913e54d66c36ab24f0",
+  //     present: true,
+  //     date: "2023-03-01T20:00:00.000Z"
+  //   }
 
   const addAllAttendance = () => {
     allAttendance.forEach(element => {
@@ -65,27 +69,29 @@ const AttendanceStudentList = ({ navigation, dateSelected }) => {
   }
 
   // Add Attendance
-const addAttendance = async () => {
+
+const addAttendance = async (newAttendance) => {
     await fetch(`${AWS_BACKEND_BASE_URL}/api/attendance`, {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',
     },
-    body: JSON.stringify(test),
+    body: JSON.stringify(newAttendance),
   });
 
 };
 
  // Update Attendance
-const updateAttendance = async () => {
-    await fetch(`${AWS_BACKEND_BASE_URL}/api/attendance/6402297a9fc5d5a0790ae9fc`, {
-    method: 'PATCH',
-    headers: {
-      'Content-type': 'application/json',
-    },
-    body: JSON.stringify(test),
-  });
-};
+// const updateAttendance = async () => {
+//     await fetch(`${AWS_BACKEND_BASE_URL}/api/attendance/6402297a9fc5d5a0790ae9fc`, {
+//     method: 'PATCH',
+//     headers: {
+//       'Content-type': 'application/json',
+//     },
+//     body: JSON.stringify(test),
+//   });
+// };
+
 
   return (
     <VStack width="100%" space={1} p={3} pb={20} bgColor="#ffffff" flex={1}>
