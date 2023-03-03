@@ -1,6 +1,6 @@
 import { BACKEND_BASE_URL, ANDROID_EMU_BASE_URL, AWS_BACKEND_BASE_URL } from "./static"
 
-// CLASSES
+// CLASSES =============================================
 export const getClassesOfCoach = async (coachid, userToken) => {
   if (coachid) {
     const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/class/${coachid}`, {
@@ -14,8 +14,7 @@ export const getClassesOfCoach = async (coachid, userToken) => {
   }
 }
 
-
-// STUDENTS
+// STUDENTS =============================================
 export const getStudentsByClass = async (classid) => {
   if (classid) {
     const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/student/${classid}`)
@@ -25,8 +24,7 @@ export const getStudentsByClass = async (classid) => {
   }
 }
 
-
-// EVALUATIONS
+// EVALUATIONS =============================================
 export const getEvaluationsByClass = async (classid) => {
   if (classid) {
     const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/evaluation/${classid}`)
@@ -39,6 +37,23 @@ export const getEvaluationsByClass = async (classid) => {
 export const getEvaluationsByStudentId = async (studentid) => {
   if (studentid) {
     const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/evaluation/student/${studentid}`)
+    const data = await res.json()
+
+    return data
+  }
+}
+
+// SKILLS =============================================
+export const getSkills = async () => {
+  const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/skill/`)
+  const data = await res.json()
+
+  return data
+}
+
+export const getSkillsById = async (skillid) => {
+  if (skillid) {
+    const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/skill/${skillid}`)
     const data = await res.json()
 
     return data
