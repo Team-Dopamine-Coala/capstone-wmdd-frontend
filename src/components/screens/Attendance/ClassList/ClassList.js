@@ -2,7 +2,7 @@ import Card from "../Card/Card"
 import {FlatList} from "native-base"
 
 
-const ClassList = ({ classes, navigation, dateSelected }) => {
+const ClassList = ({ classes, navigation }) => {
 
  
 
