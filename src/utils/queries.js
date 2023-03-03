@@ -9,7 +9,7 @@ export const getClassesOfCoach = async (coachid, userToken) => {
       },
     })
     const data = await res.json()
-
+    console.log("class of coach data", data)
     return data
   }
 }
