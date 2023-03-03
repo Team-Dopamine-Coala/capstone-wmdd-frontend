@@ -16,6 +16,10 @@ const clickStudent = () => {
     //Pass the student's data 
     //Biometrics OKが出たらIDをPassingすること！
 }
+
+const closeBio = () => {
+    setModalIsOpen(false)
+}
 return (
     <View >
         <TouchableOpacity onPress={clickStudent} trainee={student} style={styles.container}>
@@ -23,7 +27,7 @@ return (
             <Text>View profile and Contact Information</Text>
         </TouchableOpacity>
         <Modal visible={modalIsOpen} >
-            <StudentBiometrics student={student} navigation={navigation} setModalIsOpen={setModalIsOpen}/>
+            <StudentBiometrics student={student} navigation={navigation} closeBio={closeBio}/>
         </Modal>
     </View>
   )
