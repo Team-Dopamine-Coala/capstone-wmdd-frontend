@@ -11,7 +11,6 @@ import Loading from "../layout/Loading";
 const AppNav = () => {
 
     const {isLoading, userToken} = useContext(AuthContext)
-    console.log(userToken);
 
     if (isLoading){
         return(
@@ -24,7 +23,6 @@ const AppNav = () => {
     return(
         <NavigationContainer>
             { userToken !== null ? <AppTabs /> : <LoginSignUpStack /> }
-            {/* <LoginSignUpStack /> */}
         </NavigationContainer>
     )
 }

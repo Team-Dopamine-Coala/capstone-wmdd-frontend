@@ -6,18 +6,49 @@ export const AuthContext = createContext();
 export const AuthProvider = ({children}) => {
     const [isLoading, setIsLoading] = useState(true);
     const [userToken, setUserToken] = useState(null);
+    const [userInfo, setUserInfo] = useState(null);
 
-    const login = () => {
+    const getToken = async(email, password) => {
+
+        console.log(email, password)
+
+        const res = await fetch(`http://localhost:5002/api/users/login`, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email, 
+                password: password
+            })
+            
+        })
+        const data = await res.json()
+
+        if(data.token === undefined ){
+            setUserToken(null)
+        } else {
+            console.log(data.token)
+            let userInfo = data
+            setUserInfo(userInfo)
+            setUserToken(data.token)
+            AsyncStorage.setItem('userToken', data.token)
+            AsyncStorage.setItem('userInfo', JSON.stringify(userInfo))
+        }
+    }
+
+    const login = (email, password) => {
         setIsLoading(true);
-        setUserToken('testing');
-        AsyncStorage.setItem('userToken', userToken)
+        getToken(email, password);
         setIsLoading(false);
     }
 
     const logout = () => {
         setIsLoading(true);
         setUserToken(null);
-        AsyncStorage.removeItem('userToken', userToken)
+        AsyncStorage.removeItem('userToken')
+        AsyncStorage.removeItem('userInfo')
         setIsLoading(false);
     }
 
@@ -25,7 +56,12 @@ export const AuthProvider = ({children}) => {
         try {
             setIsLoading(true);
             let userToken = await AsyncStorage.getItem('userToken');
-            setUserToken(userToken);
+            let userInfo = await AsyncStorage.getItem('userInfo');
+            userInfo = JSON.parse(userInfo);
+            if (userInfo) {
+                setUserToken(userToken);
+                setUserInfo(userInfo);
+            }
             setIsLoading(false);
         } catch(e) {
             console.log(`isLogged in error ${e}`)
