@@ -1,80 +1,242 @@
+import { getDescription } from "graphql"
 import { View, Box, Text, VStack } from "native-base"
 import { useEffect, useState } from "react"
 import { TouchableOpacity, StyleSheet } from "react-native"
 import StudentsSearch from "./myStudents/StudentsSearch"
 
 const IndexScreen = ({ navigation }) => {
-  const [myClassIds, setMyclassIds] = useState([])
   const [myStudents, setMyStudents] = useState([])
-  const [allStudents, setAllstudents] = useState([])
   const [nameTitle, setNameTitle] = useState([])
   let list = []
+  let myClassIds = []
+  let allStudents = []
   
   //1.Fetch all classes which has this userID(All class can fetch by userID)
   useEffect(() => {
-    const getMyclass = async () => {
+    const getMyclassList = async () => {
       const res = await fetchMyclass()
-      setMyclassIds(res.map((item) => item._id))
+      const ress = await fetchAllStudents()
+      await getdata(res, ress)
+      // setMyclassIds(res.map((item) => item._id))
+
+      // const cls = res.map((item) => item._id)
+      // myClassIds.push(cls)
+      
+      
     }
-    getMyclass()
+
+
+    getMyclassList()
+
+    
   },[])
+
+  const getdata = (res, ress) => {
+    res.map((item) => myClassIds.push(item._id))
+    // setAllstudents(ress)
+    allStudents.push(ress)
+
+    console.log('I own these classes',myClassIds)
+    console.log('all students',allStudents)
+
+    myClassIds.forEach((eachId) => {allStudents.map((item) => {
+      item.class_id == eachId ? list = [...list, item] : null})
+    })
+
+    //Sorting alphabetically
+    list.sort((a,b) => {
+      if (a.firstname < b.firstname) {
+        return -1
+      } else if (a.firstname > b.firstname) {
+        return 1
+      }
+      return 0
+    })
+    setMyStudents(list)
+    console.log('matchしたもの',list) 
+
+    //Alphabetic Title display
+    const title = list.reduce((c,d) => {
+      let group = d.firstname[0]
+    
+      if(!c[group]) c[group] = {group, groupedConn: [d]}
+      else c[group].groupedConn.push(d);
+      return c      
+    },{})
+    setNameTitle(Object.values(title)) 
+    console.log('nameタイトル',nameTitle)   
+  }
+    // const getMyclass = async () => {
+    //   const res = await fetchMyclass()
+      
+    //   setMyclassIds(res.map((item) => item._id))
+      
+
+    //   console.log('I own these classes',myClassIds)
+      
+
+     
+
+    //   //Sorting alphabetically
+    //   list.sort((a,b) => {
+    //     if (a.firstname < b.firstname) {
+    //       return -1
+    //     } else if (a.firstname > b.firstname) {
+    //       return 1
+    //     }
+    //     return 0
+    //   })
+    //   setMyStudents(list)
+    //   console.log('matchしたもの',list) 
+
+    //   //Alphabetic Title display
+    //   const title = list.reduce((c,d) => {
+    //     let group = d.firstname[0]
+      
+    //     if(!c[group]) c[group] = {group, groupedConn: [d]}
+    //     else c[group].groupedConn.push(d);
+    //     return c      
+    //   },{})
+    //   setNameTitle(Object.values(title)) 
+    //   console.log('nameタイトル',nameTitle)   
+    // }
+    // const getAllStudents = async () => {
+    //   const res = await fetchAllStudents()
+    //   setAllstudents(res)
+    //   console.log('I own these classes',myClassIds)
+    //   console.log('all students',ress)
+      
+    //   myClassIds.forEach((eachId) => {res.map((item) => {
+    //       item.class_id == eachId ? list = [...list, item] : null})
+    //   })
+
+    //   //Sorting alphabetically
+    //   list.sort((a,b) => {
+    //     if (a.firstname < b.firstname) {
+    //       return -1
+    //     } else if (a.firstname > b.firstname) {
+    //       return 1
+    //     }
+    //     return 0
+    //   })
+    //   setMyStudents(list)
+    //   console.log('matchしたもの',list) 
+
+    //   //Alphabetic Title display
+    //   const title = list.reduce((c,d) => {
+    //     let group = d.firstname[0]
+    
+    //     if(!c[group]) c[group] = {group, groupedConn: [d]}
+    //     else c[group].groupedConn.push(d);
+    //     return c      
+    //   },{})
+    //   setNameTitle(Object.values(title)) 
+    //   console.log('nameタイトル',nameTitle)   
+    // }
+
+  //   getMyclass()
+  //   getAllStudents()
+  // },[])
+
+    // const getAllStudents = async () => {
+    //   const res = await fetchAllStudents()
+    //   setAllstudents(res)
+    //   console.log('I own these classes',myClassIds)
+    //   console.log('all students',ress)
+      
+    //   myClassIds.forEach((eachId) => {res.map((item) => {
+    //       item.class_id == eachId ? list = [...list, item] : null})
+    //   })
+
+    //   //Sorting alphabetically
+    //   list.sort((a,b) => {
+    //     if (a.firstname < b.firstname) {
+    //       return -1
+    //     } else if (a.firstname > b.firstname) {
+    //       return 1
+    //     }
+    //     return 0
+    //   })
+    //   setMyStudents(list)
+    //   console.log('matchしたもの',list) 
+
+    //   //Alphabetic Title display
+    //   const title = list.reduce((c,d) => {
+    //     let group = d.firstname[0]
+    
+    //     if(!c[group]) c[group] = {group, groupedConn: [d]}
+    //     else c[group].groupedConn.push(d);
+    //     return c      
+    //   },{})
+    //   setNameTitle(Object.values(title)) 
+    //   console.log('nameタイトル',nameTitle)   
+    // }
+
+  //   getMyclass()
+  //   getAllStudents()
+  // },[])
+
   //(api/class/userId)
   const fetchMyclass = async () => {
     const res = await fetch('http://3.84.131.140:3000/api/class/63fcf0bd354e8150f45dd4d2')
 
     const data = await res.json()
+    console.log('1',data)
     if(res.ok){
       return data
     }
   }
-  //2.Fetch All students from class ID(all students need to fetch by classID)
-  useEffect(() => {
-    const getAllStudents = async () => {
-      const res = await fetchAllStudents()
-      setAllstudents(res)
-      console.log('I own these classes',myClassIds)
-      console.log('all students',res)
-      
-      myClassIds.forEach((eachId) => {res.map((item) => {
-          item.class_id == eachId ? list = [...list, item] : null})
-      })
 
-      //Sorting alphabetically
-      list.sort((a,b) => {
-        if (a.firstname < b.firstname) {
-          return -1
-        } else if (a.firstname > b.firstname) {
-          return 1
-        }
-        return 0
-      })
-      setMyStudents(list)
-      console.log('matchしたもの',list) 
-
-      //Alphabetic Title display
-      const title = list.reduce((c,d) => {
-        let group = d.firstname[0]
-    
-        if(!c[group]) c[group] = {group, groupedConn: [d]}
-        else c[group].groupedConn.push(d);
-        return c      
-      },{})
-      setNameTitle(Object.values(title)) 
-      console.log('nameタイトル',nameTitle)   
-
-    }
-    
-    getAllStudents()
-  },[])
-
-  
   const fetchAllStudents = async () => {
     const res = await fetch(`http://3.84.131.140:3000/api/student/${myClassIds[0]}`)
     const data = await res.json()
+    console.log('3',data)
     if(res.ok) {
       return data
     }
   }
+  //2.Fetch All students from class ID(all students need to fetch by classID)
+  // useEffect(() => {
+  //   const getAllStudents = async () => {
+  //     const res = await fetchAllStudents()
+  //     setAllstudents(res)
+  //     console.log('I own these classes',myClassIds)
+  //     console.log('all students',res)
+      
+  //     myClassIds.forEach((eachId) => {res.map((item) => {
+  //         item.class_id == eachId ? list = [...list, item] : null})
+  //     })
+
+  //     //Sorting alphabetically
+  //     list.sort((a,b) => {
+  //       if (a.firstname < b.firstname) {
+  //         return -1
+  //       } else if (a.firstname > b.firstname) {
+  //         return 1
+  //       }
+  //       return 0
+  //     })
+  //     setMyStudents(list)
+  //     console.log('matchしたもの',list) 
+
+  //     //Alphabetic Title display
+  //     const title = list.reduce((c,d) => {
+  //       let group = d.firstname[0]
+    
+  //       if(!c[group]) c[group] = {group, groupedConn: [d]}
+  //       else c[group].groupedConn.push(d);
+  //       return c      
+  //     },{})
+  //     setNameTitle(Object.values(title)) 
+  //     console.log('nameタイトル',nameTitle)   
+
+  //   }
+    
+  //   getAllStudents()
+  // },[])
+
+  
+  
 
   return(
     <View style={styles.container}>
