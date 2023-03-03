@@ -1,14 +1,29 @@
 import IndexScreen from "../screens/Attendance/IndexScreen"
+import AttendanceStudentList from "../screens/Attendance/Screens/AttendanceStudentList"
 
-import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { createStackNavigator, TransitionPresets } from "@react-navigation/stack"
 
-const Stack = createNativeStackNavigator()
+const Stack = createStackNavigator()
+
+const TransitionScreenOptions = {
+  ...TransitionPresets.SlideFromRightIOS,
+};
 
 const AttendanceStack = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Attendance Index" component={IndexScreen} />
+    <Stack.Navigator screenOptions={TransitionScreenOptions}>
+      <Stack.Screen name="Attendance Index" component={IndexScreen} options={{ headerShown: false }} />
+      <Stack.Screen 
+        name="Attendance Student List"
+        component={AttendanceStudentList}
+        options={({ route }) => ({
+          title: 'Gymnastics',
+          // headerBackTitle: 'Attendance',
+          headerTitleAlign: 'center'
+        })}
+      />
     </Stack.Navigator>
+    
   )
 }
 

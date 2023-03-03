@@ -7,14 +7,12 @@ import StudentStack from '../stacks/StudentStack';
 import { Ionicons } from '@expo/vector-icons'
 import { Icon, View, Box, Text } from 'native-base'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
 import { BlurView } from 'expo-blur';
 
 const Tab = createBottomTabNavigator();
 
 const AppTabs = () => {
   return (
-    <NavigationContainer>
       <Tab.Navigator
             screenOptions={({ route }) => ({
                 headerShown: false,
@@ -44,13 +42,12 @@ const AppTabs = () => {
             <Icon size={5} color={color} as={<Ionicons name='ios-bookmarks' />} />
           )
         }} />
-        <Tab.Screen name="Students" component={StudentStack} options={{
+        <Tab.Screen name="Students" component={StudentsScreen} options={{
           tabBarIcon: ({ color }) => (
             <Icon size={5} color={color} as={<Ionicons name='ios-people' />} />
           )
         }} />
       </Tab.Navigator>
-    </NavigationContainer>
   )
 }
 
