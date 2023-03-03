@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { Alert, StatusBar } from 'react-native';
 import { View } from "native-base"
 import * as LocalAuthentication from 'expo-local-authentication'
-import { result } from 'lodash'
+// import { result } from 'lodash'
 
-const StudentBiometrics = ({student,navigation, setModalIsOpen}) => {
+const StudentBiometrics = ({student,navigation, closeBio}) => {
   // console.log('this student',student)
    // const bcrypt = require ('bcrypt')
   const userID = '63fcf0bd354e8150f45dd4d2'
-  // const Student = student.student
+  
   console.log('ナビBio student',student)
   console.log('ナビBio',navigation)
-  
+  const setModalIsOpen = useState
   console.log('もだl',setModalIsOpen())
 
   //get user's password
@@ -178,7 +178,7 @@ const StudentBiometrics = ({student,navigation, setModalIsOpen}) => {
   //navigation
   const movepage = (setModalIsOpen) => {
     console.log('move to personal page!'),
-    setModalIsOpen(false),
+    closeBio(),
     navigation.navigate('Student Profile', {student})
   }
 

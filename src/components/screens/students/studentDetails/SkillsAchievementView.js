@@ -2,8 +2,8 @@ import { Text, VStack, View } from "native-base"
 import { StyleSheet } from "react-native"
 
 
-const SkillsAchievementView = (trainee, navigation) => {
-console.log(trainee)
+const SkillsAchievementView = (trainee) => {
+console.log('skill',trainee.student)
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Skill Achievement</Text>
