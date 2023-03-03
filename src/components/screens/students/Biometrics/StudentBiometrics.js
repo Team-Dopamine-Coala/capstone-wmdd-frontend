@@ -4,11 +4,15 @@ import { View } from "native-base"
 import * as LocalAuthentication from 'expo-local-authentication'
 import { result } from 'lodash'
 
-const StudentBiometrics = ({student, navigation}) => {
+const StudentBiometrics = ({student,navigation, setModalIsOpen}) => {
   // console.log('this student',student)
    // const bcrypt = require ('bcrypt')
   const userID = '63fcf0bd354e8150f45dd4d2'
- 
+  // const Student = student.student
+  console.log('ナビBio student',student)
+  console.log('ナビBio',navigation)
+  
+  console.log('もだl',setModalIsOpen())
 
   //get user's password
   const [pwdOpen, setPwdOpen] = useState(false)
@@ -83,7 +87,6 @@ const StudentBiometrics = ({student, navigation}) => {
         console.log('持ってきたPWD',userPassword)
 
         // const checkPWD = bcrypt.compare(password, enteredPWD);
-        // console.log(checkPWD)
         if(enteredPWD == true ) {
           alertComponent(
             'Password Confirmed',
@@ -161,7 +164,6 @@ const StudentBiometrics = ({student, navigation}) => {
       });
         successProcess(result)
     }
-    // handleBiometricAuth()
 
 //==========Functions ===========================================================
   const alertComponent = (title, mess, btnTxt, btnFunc) => {
@@ -174,8 +176,10 @@ const StudentBiometrics = ({student, navigation}) => {
   };
 
   //navigation
-  const movepage = () => {
-    navigation.navigate('Student Profile', {student: student})
+  const movepage = (setModalIsOpen) => {
+    console.log('move to personal page!'),
+    setModalIsOpen(false),
+    navigation.navigate('Student Profile', {student})
   }
 
   //When BioAuth success

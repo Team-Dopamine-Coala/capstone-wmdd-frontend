@@ -87,10 +87,10 @@ const IndexScreen = ({ navigation }) => {
           {title.groupedConn.map((trainee, index) => (
             <VStack key={index} style={styles.nameContainer}>
               <TouchableOpacity onPress={() => {console.log('clickしたよ',trainee),
-                                    navigation.navigate('Student Detail',{trainee})
+                                    navigation.navigate('Student Detail',{trainee, navigation})
               }}>
                 <Text>{trainee.firstname} {trainee.lastname}</Text>
-              </TouchableOpacity>
+              </TouchableOpacity >
             </VStack>
           ))}
         </Box> 

@@ -5,12 +5,14 @@ import SkillsAchievementView from "./SkillsAchievementView"
 import AttendanceListView from "./AttendanceListView"
 import { StyleSheet } from "react-native"
 
-const StudentDetail = ({route, navigation}) => {
+const StudentDetail = ({route, navigation }) => {
 const { trainee } = route.params
 console.log('到着',trainee)
+console.log('スチューデントナビ',navigation)
   return (
     <View style={styles.container}>
-        <ReportView student={trainee}/>
+        <ReportView student={trainee} navigation={navigation}/>
+        {/* <ReportView student={trainee}/> */}
         <CurrentLevelView student={trainee} />
         <SkillsAchievementView student={trainee} />
         <AttendanceListView student={trainee} />
