@@ -49,8 +49,8 @@ const AttendanceStudentList = ({ navigation, route }) => {
     const newAllAttendance = []
     checkboxVal.forEach(element => {
       const newAttendance = {
-        classId: classId,
-        studentId: element,
+        class_id: "63e066913e54d66c36ab24f0",
+        student_id: element,
         present: true,
         date: "2023-03-01T20:00:00.000Z",
       }
@@ -63,8 +63,12 @@ const AttendanceStudentList = ({ navigation, route }) => {
     setAllAttendance(newAllAttendance)
   }
 
-
-  console.log("update class object", newClass)
+  const test = {
+      class_id: "63e066913e54d66c36ab24f0",
+      student_id: "63e066913e54d66c36ab24f0",
+      present: true,
+      date: "2023-03-01T20:00:00.000Z"
+    }
 
   const addAllAttendance = () => {
     console.log(allAttendance)
@@ -98,16 +102,15 @@ const addAttendance = async () => {
 
 };
 
- // Update Class
-const updateClassAttendance = async () => {
-    await fetch(`${AWS_BACKEND_BASE_URL}/api/class/${classId}`, {
+ // Update Attendance
+const updateAttendance = async () => {
+    await fetch(`${AWS_BACKEND_BASE_URL}/api/attendance/6402297a9fc5d5a0790ae9fc`, {
     method: 'PATCH',
     headers: {
       'Content-type': 'application/json',
     },
-    body: JSON.stringify(newClass),
+    body: JSON.stringify(test),
   });
-  console.log("update class object", newClass)
 };
 
 
