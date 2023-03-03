@@ -21,16 +21,7 @@ const StudentStack = () => {
           headerTitleAlign: 'center'
         })}
       />
-      <Stack.Screen 
-        name="Student Profile" 
-        component={ViewProfileScreen}
-        options={({ route }) => ({
-          title: 'Student Profile',
-          headerBackTitle: 'Student List',
-          headerTitleAlign: 'center'
-        })}
-      />
-
+      <Stack.Screen name="Student Profile" component={ViewProfileScreen}/>
     </Stack.Navigator>
   )
 }

@@ -4,9 +4,10 @@ import { StyleSheet, Modal, TouchableOpacity } from "react-native"
 import StudentBiometrics from "../Biometrics/StudentBiometrics"
 
 
-const ReportView = (trainee) => {
-console.log('レポートまで来たぞ',trainee.student)
-const student = trainee.student
+const ReportView = ({student, navigation}) => {
+console.log('レポートまで来たぞナビ',navigation)
+console.log('レポートまで来たぞstudent',student)
+// const student = student.student
 const [modalIsOpen, setModalIsOpen] = useState(false)
 
 
@@ -17,12 +18,12 @@ const clickStudent = () => {
 }
 return (
     <View >
-        <TouchableOpacity onPress={clickStudent} trainee={trainee} style={styles.container}>
+        <TouchableOpacity onPress={clickStudent} trainee={student} style={styles.container}>
             <Text style={styles.name}>{student.firstname} {student.lastname}</Text> 
             <Text>View profile and Contact Information</Text>
         </TouchableOpacity>
         <Modal visible={modalIsOpen} >
-            <StudentBiometrics student={student}/>
+            <StudentBiometrics student={student} navigation={navigation} setModalIsOpen={setModalIsOpen}/>
         </Modal>
     </View>
   )

@@ -1,15 +1,17 @@
 import { Text, VStack, View, Box } from "native-base"
 
 
-const ViewProfileScreen = ({student, navigation}) => {
-console.log('最後',student)
+const ViewProfileScreen = (student) => {
+console.log('最後',student.route.params.student)
+const Student = student.route.params.student
 
   return (
     <View>
+        <Text>kitayo</Text>
         <Box>
             <Text>Birthday</Text>
             <VStack>
-                <Text>{student.birthday}</Text>
+                <Text>{Student.birthday}</Text>
             </VStack>
         </Box>
         <Box>
@@ -21,7 +23,7 @@ console.log('最後',student)
                 </Box>
                 <Box>
                     <Text>Conditions</Text>
-                    <Text>{student.medicalInfo}</Text>
+                    <Text>{Student.medicalInfo}</Text>
                 </Box>
             </VStack>
         </Box>
@@ -30,15 +32,15 @@ console.log('最後',student)
             <VStack>
                 <Box>
                     <Text>Name</Text>
-                    <Text>{student.guardianName}</Text>
+                    <Text>{Student.guardianName}</Text>
                 </Box>
                 <Box>
                     <Text>Phone Number</Text>
-                    <Text>{student.guardianNumber}</Text>
+                    <Text>{Student.guardianNumber}</Text>
                 </Box>
                 <Box>
                     <Text>Email</Text>
-                    <Text>{student.guardianEmail}</Text>
+                    <Text>{Student.guardianEmail}</Text>
                 </Box>
                 
             </VStack>
