@@ -43,19 +43,11 @@ export const getEvaluationsByStudentId = async (studentid) => {
   }
 }
 
-// SKILLS =============================================
-export const getSkills = async () => {
-  const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/skill/`)
-  const data = await res.json()
+// ATTENDANCE
+export const getAllAttendance = async () => {
 
-  return data
-}
-
-export const getSkillsById = async (skillid) => {
-  if (skillid) {
-    const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/skill/${skillid}`)
+    const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/attendance`)
     const data = await res.json()
 
-    return data
-  }
 }
+

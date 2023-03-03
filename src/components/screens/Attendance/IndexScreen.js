@@ -1,20 +1,22 @@
 import { Text, VStack, Center } from 'native-base'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import ClassList from "./ClassList/ClassList"
 import Calendar from "./Calendar/Calendar"
 import WelcomeCard from "./Card/WelcomeCard"
 import Loading from '../../layout/Loading'
+import { AuthContext } from '../../context/AuthContext';
 
 import { getClassesOfCoach } from '../../../utils/queries';
 
 const IndexScreen = ({ navigation }) => {
+  const {userToken} = useContext(AuthContext)
   const [classes, setClasses] = useState([]);
   const [dateSelected, setSelectedDate] = useState(new Date())
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     setIsLoading(true)
-    getClassesOfCoach('63fcf0bd354e8150f45dd4d2').then(
+    getClassesOfCoach('63fcf0bd354e8150f45dd4d2', userToken).then(
       data => {
         setClasses(data)
         setIsLoading(false)
@@ -35,7 +37,7 @@ const IndexScreen = ({ navigation }) => {
       {/* <Text>This is index screen of Attendance</Text> */}
       <WelcomeCard/>
       <Calendar />
-      {isLoading ? <Loading /> : <ClassList classes={classes} navigation={navigation} />}
+      {isLoading ? <Loading /> : <ClassList classes={classes} navigation={navigation} dateSelected={dateSelected}/>}
     </VStack>
   )
 }
