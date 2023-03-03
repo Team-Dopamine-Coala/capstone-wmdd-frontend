@@ -44,3 +44,12 @@ export const getEvaluationsByStudentId = async (studentid) => {
     return data
   }
 }
+
+// ATTENDANCE
+export const getAllAttendance = async () => {
+
+    const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/attendance`)
+    const data = await res.json()
+
+}
+
