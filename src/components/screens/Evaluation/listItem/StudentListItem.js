@@ -1,10 +1,19 @@
 import { Box, HStack, VStack, Text, Button, Heading } from 'native-base'
 
-const StudentListItem = ({ item, navigation }) => {
+const StudentListItem = ({ item, navigation, className }) => {
   return (
-    <Box p={3} bgColor="#EEF1F4">
+    <Button
+      onPress={() => {
+        navigation.navigate('Evaluation Individual Student', {
+          studentsList: [item],
+          className: className
+        })
+      }}
+      p={4}
+      bgColor="#EEF1F4"
+    >
       <Text>{item.firstname} {item.lastname}</Text>
-    </Box>
+    </Button>
   )
 }
 
