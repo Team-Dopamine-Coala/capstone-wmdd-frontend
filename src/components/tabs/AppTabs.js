@@ -7,14 +7,12 @@ import StudentsScreen from '../screens/StudentsScreen';
 import { Ionicons } from '@expo/vector-icons'
 import { Icon, View, Box, Text } from 'native-base'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
 import { BlurView } from 'expo-blur';
 
 const Tab = createBottomTabNavigator();
 
 const AppTabs = () => {
   return (
-    <NavigationContainer>
       <Tab.Navigator
             screenOptions={({ route }) => ({
                 headerShown: false,
@@ -50,7 +48,6 @@ const AppTabs = () => {
           )
         }} />
       </Tab.Navigator>
-    </NavigationContainer>
   )
 }
 

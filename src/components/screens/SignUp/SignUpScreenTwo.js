@@ -1,6 +1,6 @@
 import { Box, Container, Text, View, VStack, Center } from 'native-base';
 import React from 'react';
-import SignUpForm from '../forms/SignUpForm';
+import SignUpForm from '../../forms/signup/SignUpForm';
 
 const SignUpScreenTwo = () => {
     return (
