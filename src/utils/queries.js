@@ -1,9 +1,13 @@
 import { BACKEND_BASE_URL, ANDROID_EMU_BASE_URL, AWS_BACKEND_BASE_URL } from "./static"
 
 // CLASSES
-export const getClassesOfCoach = async (coachid) => {
+export const getClassesOfCoach = async (coachid, userToken) => {
   if (coachid) {
-    const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/class/${coachid}`)
+    const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/class/${coachid}`, {
+      headers: {
+        "Authorization": `Bearer ${userToken}`
+      },
+    })
     const data = await res.json()
 
     return data

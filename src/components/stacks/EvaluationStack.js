@@ -13,13 +13,20 @@ const TransitionScreenOptions = {
 const EvaluationStack = () => {
   return (
     <Stack.Navigator screenOptions={TransitionScreenOptions}>
-      <Stack.Screen name="Evaluation Index" component={IndexScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="Evaluation Index" component={IndexScreen}
+        options={{
+          title: 'Evaluation',
+          headerTitleAlign: 'center',
+          headerTransparent: true,
+          headerTintColor: '#ffffff'
+        }}
+      />
       <Stack.Screen
         name="Evaluation Student List"
         component={EvaluationStudentListScreen}
         options={({ route }) => ({
           title: 'Gymnastics Evaluation',
-          headerBackTitle: 'Evaluation',
+          headerBackTitle: '',
           headerTitleAlign: 'center'
         })}
       />
