@@ -5,7 +5,7 @@ export const getClassesOfCoach = async (coachid) => {
   if (coachid) {
     const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/class/${coachid}`)
     const data = await res.json()
-
+    console.log("class of coach data", data)
     return data
   }
 }
