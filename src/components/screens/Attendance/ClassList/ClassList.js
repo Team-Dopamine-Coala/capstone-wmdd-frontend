@@ -2,7 +2,7 @@ import Card from "../Card/Card"
 import {FlatList} from "native-base"
 
 
-const ClassList = ({ classes }) => {
+const ClassList = ({ classes, navigation, dateSelected }) => {
 
  
 
@@ -12,10 +12,12 @@ const ClassList = ({ classes }) => {
         data={classes}
         renderItem={({ item }) => (
           <Card
+            dateSelected={dateSelected}
             title={item.title}
             startTime={item.startTime}
             endTime={item.endTime}
             id={item.id}
+            navigation={navigation}
           />
         )}
       />
