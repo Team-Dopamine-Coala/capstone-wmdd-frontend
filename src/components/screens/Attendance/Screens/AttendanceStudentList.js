@@ -5,6 +5,7 @@ import { getStudentsByClass } from '../../../../utils/queries'
 import { getAllAttendance } from '../../../../utils/queries'
 import { DrawerLayoutAndroidBase } from "react-native"
 import { AWS_BACKEND_BASE_URL } from "../../../../utils/static"
+
 // import StudentList from "../ClassList/StudentList"
 
 
@@ -14,7 +15,7 @@ const AttendanceStudentList = ({ navigation, dateSelected }) => {
   const [isLoading, setIsLoading] = useState(true)
   const [attendance, setAttendance] = useState([])
   const [allAttendance, setAllAttendance] = useState([])
-  
+
   useEffect(() => {
     setIsLoading(true)
     getStudentsByClass('63e066913e54d66c36ab24f0').then(
@@ -42,6 +43,7 @@ const AttendanceStudentList = ({ navigation, dateSelected }) => {
     const newAllAttendance = []
     checkboxVal.forEach(element => {
       const newAttendance = {
+
         classId: "63e066913e54d66c36ab24f0",
         studentId: element,
         present: true,
@@ -67,6 +69,7 @@ const AttendanceStudentList = ({ navigation, dateSelected }) => {
   }
 
   // Add Attendance
+
 const addAttendance = async (newAttendance) => {
     await fetch(`${AWS_BACKEND_BASE_URL}/api/attendance`, {
     method: 'POST',
@@ -88,6 +91,7 @@ const addAttendance = async (newAttendance) => {
 //     body: JSON.stringify(test),
 //   });
 // };
+
 
   return (
     <VStack width="100%" space={1} p={3} pb={20} bgColor="#ffffff" flex={1}>
