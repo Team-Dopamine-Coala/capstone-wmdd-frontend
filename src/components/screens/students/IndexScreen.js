@@ -1,35 +1,64 @@
-import { getDescription } from "graphql"
 import { View, Box, Text, VStack } from "native-base"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { TouchableOpacity, StyleSheet } from "react-native"
 import StudentsSearch from "./myStudents/StudentsSearch"
+
+import {getClassesOfCoach} from '../../../utils/queries'
+import {getStudentsByClass} from '../../../utils/queries'
+import { AuthContext } from '../../context/AuthContext';
+
 
 const IndexScreen = ({ navigation }) => {
   const [myStudents, setMyStudents] = useState([])
   const [nameTitle, setNameTitle] = useState([])
+  const [myClassIds, setMyClassIds] = useState([])
   let list = []
-  let myClassIds = []
+  // let myClassIds = []
   let allStudents = []
+  const {userToken} = useContext(AuthContext)
+  const {userInfo} = useContext(AuthContext)
+  const userId = '63fcf0bd354e8150f45dd4d2'
+  console.log('ID',userInfo.userId)
   
   //1.Fetch all classes which has this userID(All class can fetch by userID)
   useEffect(() => {
-    const getMyclassList = async () => {
-      const res = await fetchMyclass()
-      const ress = await fetchAllStudents()
-      await getdata(res, ress)
+      getClassesOfCoach(userId,userToken).then(
+        data => {
+          console.log('こで',data)
+          setMyClassIds(data.map((item) => item._id))
+          console.log('I own these classes',myClassIds)
+        },
+        error => {
+          throw error
+        }  
+      ).then(
+        myClassIds.map((eachclassid) => 
+          console.log('each',eachclassid)
+          // getStudentsByClass(class,userToken).then(
+          //   data => {
+    
+          //   }
+          // )
+        )
+      )
+  },[])      
+        
+      
+      // getStudentsByClass(classid)
+
+
+
+      // const res = await fetchMyclass()
+      // const ress = await fetchAllStudents()
+
+
       // setMyclassIds(res.map((item) => item._id))
 
       // const cls = res.map((item) => item._id)
       // myClassIds.push(cls)
-      
-      
-    }
-
-
-    getMyclassList()
 
     
-  },[])
+  
 
   const getdata = (res, ress) => {
     res.map((item) => myClassIds.push(item._id))
@@ -138,63 +167,67 @@ const IndexScreen = ({ navigation }) => {
   //   getAllStudents()
   // },[])
 
-    // const getAllStudents = async () => {
-    //   const res = await fetchAllStudents()
-    //   setAllstudents(res)
-    //   console.log('I own these classes',myClassIds)
-    //   console.log('all students',ress)
+    const getAllStudents = async () => {
+      // const res = await fetchAllStudents()
+      setAllstudents(res)
+      console.log('I own these classes',myClassIds)
+      console.log('all students',ress)
       
-    //   myClassIds.forEach((eachId) => {res.map((item) => {
-    //       item.class_id == eachId ? list = [...list, item] : null})
-    //   })
+      myClassIds.forEach((eachId) => {res.map((item) => {
+          item.class_id == eachId ? list = [...list, item] : null})
+      })
 
-    //   //Sorting alphabetically
-    //   list.sort((a,b) => {
-    //     if (a.firstname < b.firstname) {
-    //       return -1
-    //     } else if (a.firstname > b.firstname) {
-    //       return 1
-    //     }
-    //     return 0
-    //   })
-    //   setMyStudents(list)
-    //   console.log('matchしたもの',list) 
+      //Sorting alphabetically
+      list.sort((a,b) => {
+        if (a.firstname < b.firstname) {
+          return -1
+        } else if (a.firstname > b.firstname) {
+          return 1
+        }
+        return 0
+      })
+      setMyStudents(list)
+      console.log('matchしたもの',list) 
 
-    //   //Alphabetic Title display
-    //   const title = list.reduce((c,d) => {
-    //     let group = d.firstname[0]
+      //Alphabetic Title display
+      const title = list.reduce((c,d) => {
+        let group = d.firstname[0]
     
-    //     if(!c[group]) c[group] = {group, groupedConn: [d]}
-    //     else c[group].groupedConn.push(d);
-    //     return c      
-    //   },{})
-    //   setNameTitle(Object.values(title)) 
-    //   console.log('nameタイトル',nameTitle)   
-    // }
+        if(!c[group]) c[group] = {group, groupedConn: [d]}
+        else c[group].groupedConn.push(d);
+        return c      
+      },{})
+      setNameTitle(Object.values(title)) 
+      console.log('nameタイトル',nameTitle)   
+    }
 
-  //   getMyclass()
-  //   getAllStudents()
+    getAllStudents()
   // },[])
 
   //(api/class/userId)
-  const fetchMyclass = async () => {
-    const res = await fetch('http://3.84.131.140:3000/api/class/63fcf0bd354e8150f45dd4d2')
+  // const fetchMyclass = async () => {
+  //   const res = await fetch('http://3.84.131.140:3000/api/class/63fcf0bd354e8150f45dd4d2')
 
-    const data = await res.json()
-    console.log('1',data)
-    if(res.ok){
-      return data
-    }
-  }
+  //   const data = await res.json()
+  //   console.log('1',data)
+  //   if(res.ok){
+  //     return data
+  //   }
+  // }
 
-  const fetchAllStudents = async () => {
-    const res = await fetch(`http://3.84.131.140:3000/api/student/${myClassIds[0]}`)
-    const data = await res.json()
-    console.log('3',data)
-    if(res.ok) {
-      return data
-    }
-  }
+  // const fetchAllStudents = async () => {
+  //   const res = await fetch(`http://3.84.131.140:3000/api/student/${myClassIds[0]}`)
+  //   const data = await res.json()
+  //   console.log('3',data)
+  //   if(res.ok) {
+  //     return data
+  //   }
+  // }
+
+
+
+
+
   //2.Fetch All students from class ID(all students need to fetch by classID)
   // useEffect(() => {
   //   const getAllStudents = async () => {
@@ -283,5 +316,7 @@ export default IndexScreen
 
 
 //TO DO LIST
-  //  3. fetch codeを全部utilsに移してそこからimportすること！
+  //  １. fetcchに必要なものを揃える
+  //2. fetch してデータ確認
+  //3. その後の処理を入れる
  
