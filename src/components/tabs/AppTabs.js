@@ -42,7 +42,7 @@ const AppTabs = () => {
             <Icon size={5} color={color} as={<Ionicons name='ios-bookmarks' />} />
           )
         }} />
-        <Tab.Screen name="Students" component={StudentsScreen} options={{
+        <Tab.Screen name="Students" component={StudentStack} options={{
           tabBarIcon: ({ color }) => (
             <Icon size={5} color={color} as={<Ionicons name='ios-people' />} />
           )
