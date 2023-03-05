@@ -1,22 +1,21 @@
-import { FormControl, Input, Text, VStack, Icon, Pressable, Button, Box } from 'native-base';
+import { FormControl, Input, Text, VStack, Icon, Pressable, Button, Box, Link } from 'native-base';
 import { MaterialIcons } from "@expo/vector-icons";
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useRoute } from '@react-navigation/native';
+import { AuthContext } from '../../context/AuthContext';
 
 
-const SignUpForm = () => {
-    
+const SignUpForm = ({navigation}) => {
+
     const route = useRoute();
     const { firstName, lastName } = route.params;
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
-    const createAccount = () => {
-        console.log(firstName, lastName, email, password);
-    }
+    const {createAccount} = useContext(AuthContext)
 
-
+    
     return(
         <VStack justifyContent="center" space={2} py={30} px={15}>
             <FormControl>
@@ -40,7 +39,8 @@ const SignUpForm = () => {
                     value={password}
                 />
                 </Box>
-                <Button mt={5} onPress={createAccount}>Create New Account</Button>
+                <Button mt={5} onPress={() => {createAccount(firstName, lastName, email, password)}}>Create New Account</Button>
+                <Text mt={5}>Already have an account? <Link onPress={() => navigation.navigate('Login') }> Sign in</Link></Text>
             </FormControl>
         </VStack>
     )
