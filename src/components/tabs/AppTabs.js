@@ -1,7 +1,7 @@
 import AttendanceStack from '../stacks/AttendanceStack'
 import EvaluationStack from '../stacks/EvaluationStack';
 import ReportStack from '../stacks/ReportStack';
-import CurriculumStack from '../stacks/CurriculumStack';
+import CurriculumScreen from '../screens/Curriculum/CurriculumScreen';
 import StudentsScreen from '../screens/StudentsScreen';
 
 import { Ionicons } from '@expo/vector-icons'
