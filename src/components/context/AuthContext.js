@@ -8,6 +8,7 @@ export const AuthProvider = ({children}) => {
     const [userToken, setUserToken] = useState(null);
     const [userInfo, setUserInfo] = useState(null);
 
+    //get user token for login
     const getToken = async(email, password) => {
 
         console.log(email, password)
@@ -52,6 +53,33 @@ export const AuthProvider = ({children}) => {
         setIsLoading(false);
     }
 
+    const createAccount = async (firstName, lastName, email, password) => {
+        console.log(firstName, lastName, email, password);
+
+        const res = await fetch(`http://3.84.131.140:3000/api/users`, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password
+            })
+        })
+
+        const data = await res.json()
+
+        console.log(data.token)
+        let userInfo = data
+        setUserInfo(userInfo)
+        setUserToken(data.token)
+        AsyncStorage.setItem('userToken', data.token)
+        AsyncStorage.setItem('userInfo', JSON.stringify(userInfo))
+    }
+
     const isLoggedIn = async () => {
         try {
             setIsLoading(true);
@@ -73,7 +101,7 @@ export const AuthProvider = ({children}) => {
     }, [])
 
     return(
-    <AuthContext.Provider value={{login, logout, isLoading, userToken, userInfo}}>
+    <AuthContext.Provider value={{login, logout, createAccount, isLoading, userToken, userInfo}}>
         {children}
     </AuthContext.Provider>
     )

@@ -1,4 +1,4 @@
-import { FormControl, Input, Text, VStack, Icon, Pressable, Button, Box, Center } from 'native-base';
+import { FormControl, Input, Text, VStack, Icon, Pressable, Button, Box, Center, Link } from 'native-base';
 import { MaterialIcons } from "@expo/vector-icons";
 import React, { useState } from 'react';
 
@@ -39,6 +39,9 @@ const CreateAccountForm = ({navigation, route }) => {
                     mt={5}
                     onPress={nextPage}
                 >Next</Button>
+                <Text bold fontSize="sm" mt={7}>OR</Text>
+                <Button mt={7}>Google</Button>
+                <Text mt={5}>Already have an account? <Link onPress={() => navigation.navigate('Login')}> Sign in</Link></Text>
             </FormControl>
         </VStack>
     )
