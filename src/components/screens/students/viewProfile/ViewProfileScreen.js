@@ -1,9 +1,11 @@
-import { Text, VStack, View, Box, Heading } from "native-base"
+import { Text, VStack, View, Box, Heading, Button } from "native-base"
 import { StyleSheet } from "react-native"
 
-const ViewProfileScreen = (student) => {
+const ViewProfileScreen = (student, {navigation}) => {
 console.log('最後',student.route.params.student)
 const Student = student.route.params.student
+
+
 
   return (
     <View style={styles.container}>
@@ -42,9 +44,9 @@ const Student = student.route.params.student
                     <Text>Email</Text>
                     <Text>{Student.guardianEmail}</Text>
                 </Box>
-                
             </VStack>
         </Box>
+        <Button onPress={() => navigation.navigate('Student Profile')}>Back Button</Button>
     </View>
       )
 }
