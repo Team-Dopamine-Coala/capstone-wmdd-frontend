@@ -5,20 +5,24 @@ import { StyleSheet } from "react-native"
 const StudentsSearch = (mystudents) => {
 const [student, setStudent] = useState('')
   return (
-    <View style={styles.container}>
+    <>
       <Input  placeholder="Search"
-              variant="outline"
+              variant="rounded"
               style={styles.inputfield}
       />
-    </View>
+    </>
   )
 }
 const styles = StyleSheet.create ({
-  container: {
-    marginVertical: 20,
-  },
   inputfield: {
-    borderRadius: 50,
+    // fontFamily: 'Lexend',
+    fontStyle: 'normal',
+    borderRadius:35,
+    fontSize: 16,
+    paddingTop: 10,
+    paddingLeft: 16,
+    paddingRight: 8,
+    paddingBottom: 10,
   }
 })
 export default StudentsSearch
