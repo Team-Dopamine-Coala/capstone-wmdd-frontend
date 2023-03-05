@@ -24,8 +24,8 @@ const IndexScreen = ({ navigation, route }) => {
     setIsLoading(true) 
       getClassesOfCoach(userId,userToken)
         .then((data) => {
-      console.log('first')
-      setMyClassIds(data.map((item) => item._id))
+          console.log('first')
+          setMyClassIds(data.map((item) => item._id))
       })
     },[])     
     
@@ -35,9 +35,9 @@ const IndexScreen = ({ navigation, route }) => {
         console.log('空'),
         getStudentsByClass(eachclassid,userToken)
           .then((data) => {
-        console.log('子供',data)
-        setMyAllStudents(data)
-        setIsLoading(false)
+            console.log('子供',data)
+            setMyAllStudents(data)
+            setIsLoading(false)
         })
       })
       console.log('I own these classes',myClassIds)
@@ -45,9 +45,10 @@ const IndexScreen = ({ navigation, route }) => {
     
     //3. Sorting and Alphabetic title display
     useEffect(() => {
+      console.log('1回のみ')
       sorting()
       displaytitle()
-      console.log('all kids list',myAllStudents)
+      console.log('all kids list',myAllStudents,myAllStudents.length)
     },[myAllStudents])
   
   //Sorting alphabetically
@@ -60,8 +61,8 @@ const IndexScreen = ({ navigation, route }) => {
       }
       return 0
     })
-    console.log('並べた結果',myAllStudents)
     setSortedMyStudents(myAllStudents)
+    console.log('並べた結果',myAllStudents, myAllStudents.length)
   }
       
   // //Alphabetic Title display
