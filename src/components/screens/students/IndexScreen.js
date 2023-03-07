@@ -12,46 +12,48 @@ const IndexScreen = ({ navigation, route }) => {
   const [myAllStudents, setMyAllStudents] = useState([])
   const [nameTitle, setNameTitle] = useState([])
   const [myClassIds, setMyClassIds] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-  let list = []
-  // let myAllStudents = []
+  const [endFetch, setEndFetch ] = useState(false)
+ 
   const {userToken} = useContext(AuthContext)
   const userId = '63fcf0bd354e8150f45dd4d2'
-  // console.log('ID',userInfo.userId)
   
   //1.Fetch all classes which has this userID(All class can fetch by userID)
   useEffect(() => {
-    setIsLoading(true) 
+    // setIsLoading(true) 
+    console.log('start!')
       getClassesOfCoach(userId,userToken)
         .then((data) => {
-          console.log('first')
           setMyClassIds(data.map((item) => item._id))
       })
     },[])     
     
     //2.Fetch students this in this user's class
+    //ここで１回だけせtMyAllstudentが更新されるようにしたい！
     useEffect(() => {
-      myClassIds.map((eachclassid) => {
-        console.log('空'),
-        getStudentsByClass(eachclassid,userToken)
-          .then((data) => {
-            console.log('子供',data)
-            setMyAllStudents(data)
-            setIsLoading(false)
+        myClassIds.map((eachclassid, i) => {
+          getStudentsByClass(eachclassid,userToken)
+            .then((data) => {
+              data.map((person) =>setMyAllStudents(onlvalue => [...onlvalue, person]))
+              if(myClassIds.length === i+1) {
+                setEndFetch(true)
+              }else {
+                null
+              }
+            })
         })
-      })
-      console.log('I own these classes',myClassIds)
+        console.log('I own these classes',myClassIds)
     }, [myClassIds])
     
     //3. Sorting and Alphabetic title display
     useEffect(() => {
-      console.log('1回のみ')
+      console.log('all kids list',myAllStudents)
       sorting()
       displaytitle()
-      console.log('all kids list',myAllStudents,myAllStudents.length)
-    },[myAllStudents])
-  
-  //Sorting alphabetically
+    },[endFetch])
+
+
+  //=========================================================================
+  //Functions Sorting alphabetically
   const sorting = () => {
     myAllStudents.sort((a,b) => {
       if (a.firstname < b.firstname) {
@@ -62,12 +64,12 @@ const IndexScreen = ({ navigation, route }) => {
       return 0
     })
     setSortedMyStudents(myAllStudents)
-    console.log('並べた結果',myAllStudents, myAllStudents.length)
+    console.log('並べた結果',myAllStudents.length, myAllStudents)
   }
       
   // //Alphabetic Title display
   const displaytitle = () => {
-    const title = sortedMyStudents.reduce((c,d) => {
+    const title = myAllStudents.reduce((c,d) => {
       let group = d.firstname[0]
     
       if(!c[group]) c[group] = {group, groupedConn: [d]}
@@ -78,13 +80,10 @@ const IndexScreen = ({ navigation, route }) => {
     console.log('nameタイトル',nameTitle)
   }
 
-  // console.log('2全員',myAllStudents.length)
-  // console.log('3全員',myAllStudents)
-
   return(
     <SafeAreaView style={styles.container}>
       <Box>
-        <StudentsSearch mystudents={list}/>
+        <StudentsSearch />
       </Box>
       <ScrollView style={styles.scrollarea}>
         {nameTitle.map((title, i) => ( 
