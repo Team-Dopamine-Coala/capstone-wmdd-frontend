@@ -19,7 +19,7 @@ const IndexScreen = ({ navigation, route }) => {
   
   //1.Fetch all classes which has this userID(All class can fetch by userID)
   useEffect(() => {
-    console.log('start!')
+    // console.log('start!')
       getClassesOfCoach(userId,userToken)
         .then((data) => {
           setMyClassIds(data.map((item) => item._id))
@@ -39,12 +39,12 @@ const IndexScreen = ({ navigation, route }) => {
               }
             })
         })
-        console.log('I own these classes',myClassIds)
+        // console.log('I own these classes',myClassIds)
     }, [myClassIds])
     
     //3. Sorting and Alphabetic title display
     useEffect(() => {
-      console.log('all kids list',myAllStudents)
+      // console.log('all kids list',myAllStudents)
       sorting()
       displaytitle()
     },[endFetch])
@@ -62,7 +62,7 @@ const IndexScreen = ({ navigation, route }) => {
       return 0
     })
     setSortedMyStudents(myAllStudents)
-    console.log('並べた結果',myAllStudents.length, myAllStudents)
+    // console.log('並べた結果',myAllStudents.length, myAllStudents)
   }
       
   //Alphabetic Title display
@@ -74,8 +74,8 @@ const IndexScreen = ({ navigation, route }) => {
         else c[group].groupedConn.push(d);
         return c      
     },{})
-    setNameTitle(Object.values(title)), 
-    console.log('nameタイトル',nameTitle)
+    setNameTitle(Object.values(title))
+    // console.log('nameタイトル',nameTitle)
   }
 
   return(

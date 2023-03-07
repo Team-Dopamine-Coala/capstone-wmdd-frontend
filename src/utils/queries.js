@@ -10,8 +10,19 @@ export const getClassesOfCoach = async (coachid) => {
   }
 }
 
+export const getSingleClass = async (coachid, classid, userToken) => {
+  if (classid) {
+    const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/class/${coachid}/${classid}`, {
+      headers: {
+        "Authorization": `Bearer ${userToken}`
+      },
+    })
+    const data = await res.json()
 
-// STUDENTS
+    return data
+  }
+}
+// STUDENTS =============================================
 export const getStudentsByClass = async (classid) => {
   if (classid) {
     const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/student/${classid}`)
@@ -49,3 +60,4 @@ export const getAllAttendance = async (classid) => {
 
     return data
 }
+// SKILL =============================================
