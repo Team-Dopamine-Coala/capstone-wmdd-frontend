@@ -1,4 +1,4 @@
-import { View, Box, Text, VStack, ScrollView } from "native-base"
+import { Box, Text, VStack, ScrollView } from "native-base"
 import { useEffect, useState, useContext } from "react"
 import { TouchableOpacity, StyleSheet, SafeAreaView } from "react-native"
 import StudentsSearch from "./myStudents/StudentsSearch"
@@ -19,7 +19,6 @@ const IndexScreen = ({ navigation, route }) => {
   
   //1.Fetch all classes which has this userID(All class can fetch by userID)
   useEffect(() => {
-    // setIsLoading(true) 
     console.log('start!')
       getClassesOfCoach(userId,userToken)
         .then((data) => {
@@ -28,13 +27,12 @@ const IndexScreen = ({ navigation, route }) => {
     },[])     
     
     //2.Fetch students this in this user's class
-    //ここで１回だけせtMyAllstudentが更新されるようにしたい！
     useEffect(() => {
         myClassIds.map((eachclassid, i) => {
           getStudentsByClass(eachclassid,userToken)
             .then((data) => {
               data.map((person) =>setMyAllStudents(onlvalue => [...onlvalue, person]))
-              if(myClassIds.length === i+1) {
+              if (myClassIds.length === i+1) {
                 setEndFetch(true)
               }else {
                 null
@@ -52,8 +50,8 @@ const IndexScreen = ({ navigation, route }) => {
     },[endFetch])
 
 
-  //=========================================================================
-  //Functions Sorting alphabetically
+  //====FUNCTIONS=====================================================================
+  //Sorting alphabetically
   const sorting = () => {
     myAllStudents.sort((a,b) => {
       if (a.firstname < b.firstname) {
@@ -67,7 +65,7 @@ const IndexScreen = ({ navigation, route }) => {
     console.log('並べた結果',myAllStudents.length, myAllStudents)
   }
       
-  // //Alphabetic Title display
+  //Alphabetic Title display
   const displaytitle = () => {
     const title = myAllStudents.reduce((c,d) => {
       let group = d.firstname[0]

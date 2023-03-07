@@ -1,4 +1,4 @@
-import { Text, VStack, View, Box } from "native-base"
+import { Text, VStack, View, Box, HStack, Heading } from "native-base"
 import { useEffect, useState } from "react"
 import { StyleSheet } from "react-native"
 import * as Progress from 'react-native-progress';
@@ -68,22 +68,29 @@ const check = (res) => {
   setTotalSkillNumber(res.skills.length)
 }
 
-
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{className}</Text>
-      <VStack style={styles.levelbox}>
-        <Text style={styles.subtitle}>Current Level</Text>
-        <Text>{levelName}</Text>
-        <Box style={styles.percentBox}>
-          <Box>
-            <Progress.Bar progress={percent} width={216} height={10} />
-          </Box>
-          <Box style={styles.numberBox}>
-            <Text style={styles.current}>{completedSkillNumber}</Text>
-            <Text style={styles.total}> /{totalSkillNumber} skills</Text>
-          </Box>
-          
+      <VStack  mb={5} > 
+        <Box  mb={3} p={5} bg="#ffc0cb" width="100%" height="90%" borderRadius="md" shadow={9} position="absolute" top="5%"></Box>
+        <Box ml={4} p={3} bg="#ffffff" flex={1} height="100%" borderRadius="md" shadow={5} >
+        {/* <Box style={styles.whitebox}> */}
+          <HStack space={1} mb={2}>  
+            <VStack style={styles.contents}>
+              <Heading style={styles.title}>{className}Class Name</Heading>
+              <VStack style={styles.levelbox}>
+                <Text style={styles.levelname}>{levelName}</Text>
+                <Box style={styles.percentBox}>
+                  <Box >
+                    <Progress.Bar progress={percent} width={216} height={10} />
+                  </Box>
+                  <Box style={styles.numberBox}>
+                    <Text style={styles.current}>{completedSkillNumber}</Text>
+                    <Text style={styles.total}> / {totalSkillNumber} skills</Text>
+                  </Box>
+                </Box>
+              </VStack>
+            </VStack>  
+          </HStack>
         </Box>
       </VStack>
     </View>
@@ -93,34 +100,45 @@ const styles = StyleSheet.create ({
   container: {
     paddingVertical: 10,
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  levelbox: {
-    marginTop: 10,
-    backgroundColor: '#bbb',
-    paddingHorizontal: 10,
-    paddingVertical: 10,
+  whitebox: {
+    height: 60,
+    flex:1,
+    marginLeft: 20,
+    backgroundColor: '#ffffff',
+    height: '100%',
     borderRadius: 10,
+    shadow: 5,
   },
-  subtitle: {
-    fontSize: 15,
-    fontWeight: "bold",
+  contents: {
+    marginTop: 10,
+    marginHorizontal: 20,
+    marginBottom: 20,
+  },
+  title: {
+   textAlign: 'center',
+  },
+  // levelbox: {
+  //   marginTop: 10,
+  //   backgroundColor: '#bbb',
+  //   paddingHorizontal: 10,
+  //   paddingVertical: 10,
+  //   borderRadius: 10,
+  // },
+  levelname: {
+    fontSize: 16,
+    fontWeight: '500',
   },
   percentBox: {
     flexDirection: "row",
-    justifyContent:"space-around"
+    justifyContent:"space-around",
   },
   numberBox: {
     flexDirection: "row",
+    marginLeft: 16,
   },
   current: {
     fontSize: 23,
     fontWeight: "bold",
-  },
-  total: {
-
   }
 })
 export default CurrentLevelView

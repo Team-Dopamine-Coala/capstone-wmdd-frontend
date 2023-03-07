@@ -4,7 +4,7 @@ import { View } from "native-base"
 import * as LocalAuthentication from 'expo-local-authentication'
 // import { result } from 'lodash'
 
-const StudentBiometrics = ({student,navigation, closeBio}) => {
+const StudentBiometrics = ({student, navigation, closeBio}) => {
   // console.log('this student',student)
    // const bcrypt = require ('bcrypt')
   const userID = '63fcf0bd354e8150f45dd4d2'
