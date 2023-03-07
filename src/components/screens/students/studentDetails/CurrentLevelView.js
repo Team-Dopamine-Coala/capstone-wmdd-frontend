@@ -1,39 +1,108 @@
-import { Text, VStack, View, Box, Heading } from "native-base"
-import { useState } from "react"
+import { Text, VStack, View, Box, HStack, Heading } from "native-base"
+import { useEffect, useState, useContext } from "react"
 import { StyleSheet } from "react-native"
-import * as Progress from "react-native-progress"
+import * as Progress from 'react-native-progress'
+
+import { AuthContext } from '../../../context/AuthContext'
+
+const CurrentLevelView = ({student, navigation, classData, classTitle}) => {
+
+  console.log('タイトル',classTitle)
+  console.log('クラスでーた',classData)
+  console.log('子供データー',student)
+
+  const [levelName, setLevelName] = useState('')
+  const [totalSkillNumber, setTotalSkillNumber] = useState('')
+  const {userToken} = useContext(AuthContext)
+//Coach ID  
+const userid = '63fcf0bd354e8150f45dd4d2'
+//Students ID  
+// const studentid = trainee.student._id
+// //Student's Class ID
+// const classid = trainee.student.class_id
 
 
-const CurrentLevelView = ({classTitle, classCard}) => {
-  // const [title, setTitle] = useState(classTitle)
-  // const [level, setLevel] = useState(classCard.level)
-  // const [completedSkillNbr, setCompletedSkillNbr] = useState(classCard.completeSkillNumber)
-  // const [totalSkillNbr, setTotalSkillNbr] = useState(classCard.totalSkillNumber)
 
-  const completedSkillNbr = classCard.completeSkillNumber
-  const totalSkillNbr = classCard.totalSkillNumber
-  //Progress Bar
-  const percent = completedSkillNbr / totalSkillNbr
 
-  // console.log('doko',classCard.level)
-  
+
+//==================================================================
+// //MyLevel from student
+// const levelArray = trainee.student.level
+// const skillNumber = levelArray[ levelArray.length -1 ]
+// const mycurrentskillId = skillNumber.level_id
+
+// const completedSkillNumber = skillNumber.skills.length
+// const percent = completedSkillNumber / totalSkillNumber
+// // console.log('現在のレベル',percent)
+
+// //fetch Skills from current level id
+// useEffect(() => {
+//   const getSkill = async () => {
+//     const res = await fetchSkill()
+//     // console.log('実際のskill',res)
+//     setLevelName(res.title)
+//     check(res)
+//   }
+//   getSkill()
+// })
+
+// const fetchSkill = async () => {
+//   const res = await fetch(`http://3.84.131.140:3000/api/level/${mycurrentskillId}`)
+
+//   const data = await res.json()
+//   if(res.ok){
+//     return data
+//   }
+// }
+
+// //Fetch class Name
+// useEffect(() => {
+//   const getClassName = async () => {
+//     const res = await fetchClassName()
+//     setClassName(res.title)
+//   }
+//   getClassName()
+// })
+
+// const fetchClassName = async () => {
+//   const res = await fetch(`http://3.84.131.140:3000/api/class/63e9fcf20386d6f0fd9053b3/${classId}`)
+
+//   const data = await res.json()
+//   if(res.ok){
+//     return data
+//   }
+// }
+
+// //Actual skills number current level has
+// const check = (res) => {
+//   setTotalSkillNumber(res.skills.length)
+// }
+
   return (
     <View style={styles.container}>
-      <Box> 
-        <Heading style={styles.title}>{classTitle}</Heading>
-        <Box style={styles.levelbox}>
-          <Text style={styles.levelname}>{classCard.level}</Text>
-          <Box style={styles.percentBox}>
-            <Box>
-              {/* <Progress.Bar progress={percent} width={216} height={10} /> */}
-            </Box>
-            <Box style={styles.numberBox}>
-              <Text style={styles.current}>{completedSkillNbr}</Text>
-              <Text style={styles.total}> / {totalSkillNbr} skills</Text>
-            </Box>
-          </Box>
-        </Box>
-      </Box>
+      <VStack  mb={5} > 
+        {/* <Box  mb={3} p={5} bg="#ffc0cb" width="100%" height="90%" borderRadius="md" shadow={9} position="absolute" top="5%"></Box>
+        <Box ml={4} p={3} bg="#ffffff" flex={1} height="100%" borderRadius="md" shadow={5} > */}
+        {/* <Box style={styles.whitebox}> */}
+          {/* <HStack space={1} mb={2}>  
+            <VStack style={styles.contents}> */}
+              <Heading style={styles.title}>{classTitle}</Heading>
+              <VStack style={styles.levelbox}>
+                {/* <Text style={styles.levelname}>{levelName}</Text>
+                <Box style={styles.percentBox}>
+                  <Box >
+                    <Progress.Bar progress={percent} width={216} height={10} />
+                  </Box>
+                  <Box style={styles.numberBox}>
+                    <Text style={styles.current}>{completedSkillNumber}</Text>
+                    <Text style={styles.total}> / {totalSkillNumber} skills</Text>
+                  </Box>
+                </Box> */}
+              </VStack>
+            {/* </VStack>  
+          </HStack> */}
+        {/* </Box> */}
+      </VStack>
     </View>
       )
 }

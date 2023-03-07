@@ -2,6 +2,11 @@ import { Text, VStack, View, Box, Heading } from "native-base"
 import { StyleSheet } from "react-native"
 
 const ViewProfileScreen = ({route, navigation}) => {
+// console.log('最後',student.route.params.student)
+console.log('最後',route.params.student)
+console.log('最後navi', navigation)
+const student = route.params.student
+
 
     const student = route.params.student
 
@@ -44,6 +49,7 @@ const ViewProfileScreen = ({route, navigation}) => {
                 </Box>
             </VStack>
         </Box>
+        {/* <Button onPress={() => navigation.navigate('Student Profile')}>Back Button</Button> */}
     </View>
       )
 }
