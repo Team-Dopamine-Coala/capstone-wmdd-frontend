@@ -14,8 +14,6 @@ import {getSingleClass} from '../../../../utils/queries'
 const StudentDetail = ({route, navigation }) => {
 const { trainee } = route.params
 const {userToken} = useContext(AuthContext)
-console.log(trainee._id)
-console.log('真ん中',trainee)
 const [classTitle, setClassTitle] = useState('')
 const [classData, setClassData] = useState('')
 
