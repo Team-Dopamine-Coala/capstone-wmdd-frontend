@@ -2,18 +2,20 @@ import { Text, VStack, View, Box, Heading, Button } from "native-base"
 import { StyleSheet } from "react-native"
 
 const ViewProfileScreen = (student, {navigation}) => {
-console.log('最後',student.route.params.student)
-const Student = student.route.params.student
+// console.log('最後',student.route.params.student)
+console.log('最後',student)
+console.log('最後navi', navigation)
+// const Student = student.route.params.student
 
 
 
   return (
     <View style={styles.container}>
-        <Heading style={styles.heading}>{Student.firstname} {Student.lastname}</Heading>
+        <Heading style={styles.heading}>{student.firstname} {student.lastname}</Heading>
         <Box>
             <Text style={styles.subheading}>Birthday</Text>
             <VStack style={styles.box}>
-                <Text >{Student.birthday}</Text>
+                <Text >{student.birthday}</Text>
             </VStack>
         </Box>
         <Box>
@@ -25,7 +27,7 @@ const Student = student.route.params.student
                 </Box>
                 <Box>
                     <Text>Conditions</Text>
-                    <Text>{Student.medicalInfo}</Text>
+                    <Text>{student.medicalInfo}</Text>
                 </Box>
             </VStack>
         </Box>
@@ -34,15 +36,15 @@ const Student = student.route.params.student
             <VStack style={styles.box}>
                 <Box>
                     <Text>Name</Text>
-                    <Text>{Student.guardianName}</Text>
+                    <Text>{student.guardianName}</Text>
                 </Box>
                 <Box>
                     <Text>Phone Number</Text>
-                    <Text>{Student.guardianNumber}</Text>
+                    <Text>{student.guardianNumber}</Text>
                 </Box>
                 <Box>
                     <Text>Email</Text>
-                    <Text>{Student.guardianEmail}</Text>
+                    <Text>{student.guardianEmail}</Text>
                 </Box>
             </VStack>
         </Box>

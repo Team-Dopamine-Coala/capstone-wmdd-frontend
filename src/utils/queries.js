@@ -41,11 +41,11 @@ export const getEvaluationsByStudentId = async (studentid) => {
   }
 }
 
-// ATTENDANCE
-export const getAllAttendance = async () => {
+// ATTENDANCE =============================================
+export const getAllAttendance = async (classid) => {
 
-    const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/attendance`)
+    const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/attendance/${classid}`)
     const data = await res.json()
 
+    return data
 }
-

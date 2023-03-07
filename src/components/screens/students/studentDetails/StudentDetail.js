@@ -1,12 +1,14 @@
-import { View, Text, Box } from "native-base"
+import { View } from "native-base"
 import ReportView from "./ReportView"
 import CurrentLevelView from "./CurrentLevelView"
 import SkillsAchievementView from "./SkillsAchievementView"
 import AttendanceListView from "./AttendanceListView"
+import ViewReport from "./ViewReport"
 import { StyleSheet } from "react-native"
 
 const StudentDetail = ({route, navigation }) => {
 const { trainee } = route.params
+
 
   return (
     <View style={styles.container}>
@@ -14,6 +16,7 @@ const { trainee } = route.params
         <CurrentLevelView student={trainee} />
         <SkillsAchievementView student={trainee} />
         <AttendanceListView student={trainee} />
+        <ViewReport student={trainee}/>
     </View>
   )
 }
