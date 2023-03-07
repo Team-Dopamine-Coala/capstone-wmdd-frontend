@@ -71,8 +71,8 @@ const check = (res) => {
   return (
     <View style={styles.container}>
       <VStack  mb={5} > 
-        <Box  mb={3} p={5} bg="#ffc0cb" width="100%" height="90%" borderRadius="md" shadow={9} position="absolute" top="5%"></Box>
-        <Box ml={4} p={3} bg="#ffffff" flex={1} height="100%" borderRadius="md" shadow={5} >
+        {/* <Box  mb={3} p={5} bg="#ffc0cb" width="100%" height="90%" borderRadius="md" shadow={9} position="absolute" top="5%"></Box>
+        <Box ml={4} p={3} bg="#ffffff" flex={1} height="100%" borderRadius="md" shadow={5} > */}
         {/* <Box style={styles.whitebox}> */}
           <HStack space={1} mb={2}>  
             <VStack style={styles.contents}>
@@ -91,7 +91,7 @@ const check = (res) => {
               </VStack>
             </VStack>  
           </HStack>
-        </Box>
+        {/* </Box> */}
       </VStack>
     </View>
       )
