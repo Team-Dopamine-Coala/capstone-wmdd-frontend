@@ -9,18 +9,17 @@ console.log('新しい',allLevels)
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Skill Achievement</Text>
-      <VStack>
-        <Text>Hey</Text>
-        {allLevels.map((item, i) => {
-          <Box key={i}>
-            <Text >{item.title}</Text>
-            <Text>{item.skills.length}skills learned</Text>
-            <Text>でないよ</Text>
-          </Box>
-        })}
-      </VStack>
-      <Text>Hello</Text>
+        <Text style={styles.title}>Skill Achievement</Text>
+        <VStack>
+          {allLevels.map((item, i) => (
+            <Box key={i} style={styles.levelbox}>
+              <Text>{item.title}</Text>
+              <Text> / {item.skills.length}</Text>
+              <Text>skills learned</Text>
+            </Box>
+          ))}
+        </VStack>
+        <Text>Hello</Text>
     </View>
   )
 }
@@ -32,5 +31,16 @@ const styles = StyleSheet.create ({
     fontSize: 15,
     fontWeight: "bold",
   },
+  levelbox: {
+    backgroundColor: '#FDFDFD',
+    paddingHorizontal: 16,
+     paddingTop: 10,
+     paddingBottom: 10,
+     margin:10,
+  }
 })
 export default SkillsAchievementView
+
+//TODO LIST 
+//1.LEVELをLEVEL番号ごとにソーティングしてdisplayする！
+//2.CompletedしたLevel数を表示
