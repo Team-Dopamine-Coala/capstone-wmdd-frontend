@@ -27,7 +27,7 @@ const StudentDetail = ({route, navigation }) => {
   const [allLevelsId, setAllLevelId] = useState([])
   let skillArray = []
   let programArray = []
-  const levelSortArray = []
+  let levelSortArray = []
 
   //class ID
   const classid = trainee.class_id
