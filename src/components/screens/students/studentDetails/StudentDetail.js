@@ -13,9 +13,11 @@ import {getSingleClass} from '../../../../utils/queries'
 import {getEvaluationsByClass} from '../../../../utils/queries'
 import {getSkillById} from '../../../../utils/queries'
 import {getProgramById} from '../../../../utils/queries'
+import {getLevelById} from '../../../../utils/queries'
 
 
-const StudentDetail = ({route, navigation }) => {
+// const StudentDetail = ({route, navigation }) => {
+  const StudentDetail = ({route, navigation }) => {
   const { trainee } = route.params
   const {userToken} = useContext(AuthContext)
   const [classTitle, setClassTitle] = useState('')
@@ -24,10 +26,15 @@ const StudentDetail = ({route, navigation }) => {
   const [myCompletedEvaluations, setMyCompletedEvaluations] = useState([])
   const [allSkills, setAllSkills] = useState([])
   const [endFetch, setEndFetch ] = useState(false)
+  const [endProgram, setEndProgram ] = useState(false)
   const [allLevelsId, setAllLevelId] = useState([])
+  
+  const [IhavethisLevel, setIhavethisLevel] = useState([])
   let skillArray = []
   let programArray = []
   let levelSortArray = []
+  // let newProgramArray = []
+  let arrayForLevel = []
 
   //class ID
   const classid = trainee.class_id
@@ -70,11 +77,13 @@ const StudentDetail = ({route, navigation }) => {
       getSkillById(skillid,userToken)
       .then (data => {
         skillArray.push(data)
-        // console.log('ここで',i,skillArray)
+        console.log('ここで',i,skillArray)
       })
       if (myCompletedEvaluations.length === i+1) {
+        console.log('長さよ',myCompletedEvaluations.length)
+        console.log('長さよ',i+1)
         setAllSkills(skillArray)  
-        setEndFetch(true)
+        // setEndFetch(true)
         console.log('終わり')
       }else {
         null
@@ -84,38 +93,50 @@ const StudentDetail = ({route, navigation }) => {
   
   //Fetch Program & compate how many skills I completed in the level
   useEffect(() => {
-    // console.log('ここ',allSkills)
+    console.log('ここ',allSkills)
     allSkills.map((skls,i) => {
       let programid = skls.programId
-      // console.log('PROGRAM ID',programid)
+      console.log('PROGRAM ID',programid)
       getProgramById(programid,userToken)
         .then(data => {
-          // console.log('PROFETCHしたて',i, data,)
+          console.log('PROFETCHしたて',i, data,)
           data.levels.map((item) => programArray.push(item))
           console.log('DUPPE消す前',i,programArray)
-          dupeChecker(programArray)
+        
+          if (allSkills.length === i+1) {
+            console.log('着てる',programArray)
+            setAllLevelId(programArray.filter((element, index) => 
+              programArray.indexOf(element) == index
+            ))
+            console.log('ProgのFetch終了')
+          } else {
+            null
+          }
         })
     })
-    
-  }, [endFetch])
+  }, [allSkills])
 
+  //LEVELを全部Fetch　＆１つのLebelの長さを確認！Display!
+  useEffect(() => {
+    console.log('DUPE消えたよ', allLevelsId)
+    //LEVELを全部Fetch!
+    allLevelsId.map((levelid,i) => {
+      // console.log('中',levelid)
+      getLevelById(levelid,userToken)
+        .then(data => {
+          // console.log('LEVEL',i,data)
+          arrayForLevel.push(data) 
+          // setIhavethisLevel(data)q
 
-
-//=======FUNCTIONS=============
-//programの中のlevelのDupecheck nweProgramArray = これからFetchする全てのlevel IDが入っている！
-const dupeChecker = (programArray) => {
-  const newProgramArray = programArray.filter((element, index) => {
-    return programArray.indexOf(element) == index
-  })
-  console.log('DUPE消えたよ',newProgramArray)
-}
-
-
-
-      
-      
-
-
+          if (allLevelsId.length === i+1) {
+            setIhavethisLevel(arrayForLevel)
+            console.log('次のページいくよ！')
+          } else {
+            null
+          }
+        })
+    })
+  },[allLevelsId])
 
 
 
@@ -124,7 +145,7 @@ const dupeChecker = (programArray) => {
         {<Text>{classTitle}</Text>}
         <ReportView student={trainee} navigation={navigation}/>
         <CurrentLevelView student={trainee} classData={classData} classTitle={classTitle}/>
-        <SkillsAchievementView student={trainee} />
+        <SkillsAchievementView student={trainee} allLevels={IhavethisLevel}/>
         <AttendanceListView student={trainee} /> 
         <ViewReport student={trainee}/>
     </View>
