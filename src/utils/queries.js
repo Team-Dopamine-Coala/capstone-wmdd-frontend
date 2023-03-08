@@ -43,15 +43,6 @@ export const getEvaluationsByClass = async (classid) => {
   }
 }
 
-export const getEvaluationsByStudentId = async (studentid) => {
-  if (studentid) {
-    const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/evaluation/student/${studentid}`)
-    const data = await res.json()
-
-    return data
-  }
-}
-
 // ATTENDANCE =============================================
 export const getAllAttendance = async (classid) => {
 
@@ -61,3 +52,18 @@ export const getAllAttendance = async (classid) => {
     return data
 }
 // SKILL =============================================
+export const getSkillById = async (skillid) => {
+
+  const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/skill/${skillid}`)
+  const data = await res.json()
+
+  return data
+}
+// PROGRAM =============================================
+export const getProgramById = async (programid) => {
+
+  const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/program/${programid}`)
+  const data = await res.json()
+
+  return data
+}

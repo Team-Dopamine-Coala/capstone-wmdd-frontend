@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native"
 
 
 const SkillsAchievementView = (trainee) => {
-console.log('skill',trainee.student)
+// console.log('skill',trainee.student)
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Skill Achievement</Text>

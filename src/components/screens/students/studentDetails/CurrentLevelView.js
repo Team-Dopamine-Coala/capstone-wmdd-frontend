@@ -7,9 +7,9 @@ import { AuthContext } from '../../../context/AuthContext'
 
 const CurrentLevelView = ({student, navigation, classData, classTitle}) => {
 
-  console.log('タイトル',classTitle)
-  console.log('クラスでーた',classData)
-  console.log('子供データー',student)
+  // console.log('タイトル',classTitle)
+  // console.log('クラスでーた',classData)
+  // console.log('子供データー',student)
 
   const [levelName, setLevelName] = useState('')
   const [totalSkillNumber, setTotalSkillNumber] = useState('')

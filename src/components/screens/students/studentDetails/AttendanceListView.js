@@ -12,6 +12,9 @@ const AttendanceListView = ({student, navigation}) => {
   const MyStudentID = student._id
   const classid = student.class_id
   // console.log(student._id)
+  
+  //日付の通常表示 attend.date.toDateString()
+
 
   useEffect(() => {
     getAllAttendance(classid,userToken)
@@ -19,7 +22,7 @@ const AttendanceListView = ({student, navigation}) => {
         setMyAttendance(data.filter(one => one.studentId === MyStudentID))
       })
   },[])
-
+  
   return (
     <VStack style={styles.container}>
         <Text style={styles.title}>Attendance</Text>
