@@ -91,7 +91,7 @@ const IndexScreen = ({ navigation, route }) => {
               {title.groupedConn.map((trainee, index) => (             
                 <TouchableOpacity   key={index} 
                                     onPress={() => {console.log('clickしたよ',trainee),
-                                    navigation.navigate('Student Detail',{trainee, navigation})
+                                    navigation.navigate('Student Detail',{trainee})
                 }}>
                   <Text>{trainee.firstname} {trainee.lastname}</Text>
                 </TouchableOpacity >
