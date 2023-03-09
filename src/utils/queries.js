@@ -61,10 +61,10 @@ export const getSkillsById = async (skillid) => {
 }
 
 // ATTENDANCE
-export const getAllAttendance = async () => {
+export const getAllAttendance = async (classid) => {
 
-    const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/attendance`)
+    const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/attendance/${classid}`)
     const data = await res.json()
-
+    return data
 }
 

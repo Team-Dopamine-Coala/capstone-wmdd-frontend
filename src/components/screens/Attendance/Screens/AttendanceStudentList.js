@@ -9,19 +9,27 @@ import { AWS_BACKEND_BASE_URL } from "../../../../utils/static"
 // import StudentList from "../ClassList/StudentList"
 
 
-const AttendanceStudentList = ({ navigation, dateSelected }) => {
 
+const AttendanceStudentList = ({ navigation, route }) => {
+  const {classId} = route.params
   const [students, setStudents] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const [attendance, setAttendance] = useState([])
+  const [attendance, setAttendance] = useState({})
   const [allAttendance, setAllAttendance] = useState([])
 
   useEffect(() => {
+    // console.log("date", dateSelected)
     setIsLoading(true)
-    getStudentsByClass('63e066913e54d66c36ab24f0').then(
+    getStudentsByClass(classId).then(
       data => {
         setStudents(data)
-        // console.log(students)
+        for (let index = 0; index < data.length; index++) {
+          const element = data[index];
+          const curr = attendance
+          curr[element._id] = false;
+          setAttendance(curr)
+        }
+        console.log(attendance)
       },
       error => {
         throw error
@@ -39,18 +47,22 @@ const AttendanceStudentList = ({ navigation, dateSelected }) => {
     // )
   }, [])
 
+
   const checkboxHandler = (checkboxVal) => {
     const newAllAttendance = []
     checkboxVal.forEach(element => {
       const newAttendance = {
-
-        classId: "63e066913e54d66c36ab24f0",
+        classId: classId,
         studentId: element,
         present: true,
-        date: "2023-03-01T20:00:00.000Z"
+        date: "2023-03-01T20:00:00.000Z",
       }
+      const curr = attendance
+      curr[element] = true
+      setAttendance(curr)
       newAllAttendance.push(newAttendance)
     });
+    // const completedClass = 
     setAllAttendance(newAllAttendance)
   }
 
@@ -62,10 +74,23 @@ const AttendanceStudentList = ({ navigation, dateSelected }) => {
   //   }
 
   const addAllAttendance = () => {
+    console.log(allAttendance)
+    for (let index = 0; index < students.length; index++) {
+      const element = students[index];
+      if (!attendance[element._id]) {
+        const newAttendance = {
+          classId: classId,
+          studentId: element._id,
+          present: false,
+          date: "2023-03-01T20:00:00.000Z",
+        }
+        addAttendance(newAttendance)
+      }
+    }
     allAttendance.forEach(element => {
-      console.log(element)
       addAttendance(element)
     })
+    
   }
 
   // Add Attendance
@@ -81,16 +106,16 @@ const addAttendance = async (newAttendance) => {
 
 };
 
- // Update Attendance
-// const updateAttendance = async () => {
-//     await fetch(`${AWS_BACKEND_BASE_URL}/api/attendance/6402297a9fc5d5a0790ae9fc`, {
-//     method: 'PATCH',
-//     headers: {
-//       'Content-type': 'application/json',
-//     },
-//     body: JSON.stringify(test),
-//   });
-// };
+ // Update Class
+const updateClassAttendance = async () => {
+    await fetch(`${AWS_BACKEND_BASE_URL}/api/class/${classId}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(test),
+  });
+};
 
 
   return (
@@ -101,13 +126,12 @@ const addAttendance = async (newAttendance) => {
         {students.map((item) => {
             return <Checkbox  value={item._id} key= {item._id} colorScheme="orange" accessibilityLabel="This is a checkbox of a student" >{item.firstname+item.lastname}</Checkbox>
         })}
-    
-    </Checkbox.Group>
+        </Checkbox.Group>
         <Button
         bgColor="#404142"
         onPress={() => {
           // addAttendance()
-          addAllAttendance()
+          addAllAttendance(); navigation.navigate('Completed Attendance');
         }}
       ><Text fontWeight="700" color="#ffffff">Save Attendance</Text></Button>
 
