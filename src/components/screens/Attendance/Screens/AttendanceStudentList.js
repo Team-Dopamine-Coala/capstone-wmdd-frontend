@@ -103,6 +103,7 @@ const addAttendance = async (newAttendance) => {
 
 };
 
+
  // Update Class
 // const updateClassAttendance = async () => {
 //     await fetch(`${AWS_BACKEND_BASE_URL}/api/class/${classId}`, {
