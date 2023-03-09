@@ -1,10 +1,18 @@
-import { View, Button } from "native-base"
+import { View, Button, VStack, Box } from "native-base"
+import { useState } from 'react'
+
+import Loading from '../../layout/Loading'
+import SkillsList from '../Curriculum/lists/SkillsList'
 
 const CurriculumScreen = ({ navigation }) => {
+
   return (
-    <View>
-      <Button onPress={() => { navigation.navigate('Students') }}>Hello</Button>
-    </View>
+    <VStack pt="50px" pb={20} flex={1} bgColor="#F4903F">
+      <Box bgColor="#ffffff" borderTopLeftRadius={20} borderTopRightRadius={20}>
+        {/* { isLoading ? <Loading /> : <SkillsList />} */}
+        <SkillsList />
+      </Box>
+    </VStack>
   )
 }
 
