@@ -1,5 +1,5 @@
 import { View, Text,ScrollView } from "native-base"
-import { StyleSheet } from "react-native"
+import { StyleSheet, TouchableOpacity } from "react-native"
 import { useContext, useState, useEffect} from "react"
 
 import ReportView from "./ReportView"
@@ -9,11 +9,11 @@ import AttendanceListView from "./AttendanceListView"
 import ViewReport from "./ViewReport"
 
 import { AuthContext } from '../../../context/AuthContext'
-import {getSingleClass} from '../../../../utils/queries'
-import {getEvaluationsByClass} from '../../../../utils/queries'
-import {getSkillById} from '../../../../utils/queries'
-import {getProgramById} from '../../../../utils/queries'
-import {getLevelById} from '../../../../utils/queries'
+import { getSingleClass, 
+        getEvaluationsByClass,
+        getSkillById, 
+        getProgramById, 
+        getLevelById } from '../../../../utils/queries'
 
 
 // const StudentDetail = ({route, navigation }) => {
@@ -22,22 +22,15 @@ import {getLevelById} from '../../../../utils/queries'
   const {userToken} = useContext(AuthContext)
   const [classTitle, setClassTitle] = useState('')
   const [myClassData, setMyClassData] = useState('')
-  const [myEvaluations, setMyEvaluations] = useState([])
   const [myCompletedEvaluations, setMyCompletedEvaluations] = useState([])
   const [myAllSkills, setMyAllSkills] = useState([])
-  const [endFetch, setEndFetch ] = useState(false)
-  const [endProgram, setEndProgram ] = useState(false)
   const [myAllLevelsId, setMyAllLevelId] = useState([])
   const [allLevelsThisProgramHas, setAllLevelsThisProgramHas] = useState([])
-  
-  const [IhavethisLevel, setIhavethisLevel] = useState([])
+  const [achievementCard, setAchievementCard] = useState([])
   let myEvalArray = []
   let mySkillArray = []
   let programArray = []
-  let levelSortArray = []
-  // let newProgramArray = []
   let allLevelsThisProgramHasArray = []
-  // let howManySkillsIcompletedArray = []
   let achievementCardArray = []
   
   //class ID (1人１個)
@@ -91,7 +84,7 @@ import {getLevelById} from '../../../../utils/queries'
     })
   },[myCompletedEvaluations])
   
-  //Fetch Program & compate how many skills I completed in the level
+  //4.Fetch Program & compate how many skills I completed in the level
   useEffect(() => {
     // console.log('私の持つSkills',myAllSkills)
     myAllSkills.map((skl,i) => {
@@ -116,7 +109,7 @@ import {getLevelById} from '../../../../utils/queries'
     })
   }, [myAllSkills])
 
-  //属してるprogramが持っているLEVELを全部Fetch　＆１つのLebelの長さを確認！Display!
+  //5.属してるprogramが持っているLEVELを全部Fetch　＆１つのLebelの長さを確認！Display!
   useEffect(() => {
     // console.log('DUPE消えたよ', myAllLevelsId)
     // console.log('これが私の終了したスキル',myAllSkills)
@@ -137,47 +130,86 @@ import {getLevelById} from '../../../../utils/queries'
     })
   },[myAllLevelsId])
 
- //skill arrayにループでアクセスする！自分の持つスキルがどのLEVELに入っているかMatchさせる
+ //6.skill arrayにループでアクセスする！自分の持つスキルがどのLEVELに入っているかMatchさせる
   useEffect(() => {
+    let objectNBR = 0
     // console.log('ついにここまで',allLevelsThisProgramHas.length)
     allLevelsThisProgramHas.map((level) => {
       level.skills.map((iteminarray) => {
-        myAllSkills.map((one) => {
-            if(iteminarray === one._id){
-              
-              let oneskills = level.skills
-              let skilltotal = oneskills.length
-              // console.log('長さ',arraynonakanokosuu)
+        myAllSkills.map((one,i) => {
+           //Skill ID が同じだったら 
+          if(iteminarray === one._id){
+            let NBR = objectNBR++
 
-              let levelName = level.title
-              // console.log('タイトル',levelName)
-              
-              let howManySkillsIcompletedArray = []
-              howManySkillsIcompletedArray.push(one)
-              // console.log(howManySkillsIcompletedArray.length)
-              // console.log(`//title: ${level.title} / ${howManySkillsIcompletedArray.length} completed /in total ${skilltotal}skills`)
+            let oneskills = level.skills
+            let skilltotal = oneskills.length
 
-              let achievementCard = {
-                level : levelName,
-                completelevel : howManySkillsIcompletedArray.length,
-                totalSkillNumber : skilltotal 
-              }
-              achievementCardArray.push(achievementCard)
-              console.log('次に送るよ',achievementCardArray)
+            let levelName = level.title
+              
+            let howManySkillsIcompletedArray = []
+            howManySkillsIcompletedArray.push(one)
+
+            let completedNumber = howManySkillsIcompletedArray.length
+             
+            //もし新しいRrrayの中がEmptyだったらそのまま入れる。１つ以上あれば、levelを照らし合わせる。同じだったら数を合わせる。
+            if(achievementCardArray.length == 0 ){
+              // console.log(i,'からだよ', achievementCardArray)
+              createObject(NBR, levelName, completedNumber, skilltotal)
+            }else {
+              console.log(i, '入ってる',achievementCardArray)
+              //levelが同じだったらcompletedの数を合計する
+              achievementCardArray.map((item, e) => {
+                  if(item.level === levelName){
+                    // console.log('d',item)
+                    // console.log('レベル名同じ?',item.level, levelName)
+                    // console.log('数確認',item.completeSkillNumber, completedNumber)
+                    completedNumber = item.completeSkillNumber + completedNumber
+                    
+                    // console.log('DUPE消す前',e,achievementCardArray)
+                    //DUPEしているLEVEL Objectを削除してから新しいObject作る    
+                    achievementCardArray = achievementCardArray.filter((card) => (card.level !== levelName))
+
+                    // console.log('消した後',e,achievementCardArray)
+                    createObject(NBR, levelName, completedNumber, skilltotal)
+                  } else {
+                    // console.log('名前同じじゃない',item.level, levelName)
+                    createObject(NBR, levelName, completedNumber, skilltotal)
+                  }
+              })
             }
+            if (myAllSkills.length === i+1) {
+              //Send this to SkillAchievementView!
+              setAchievementCard(achievementCardArray)
+            } else {
+              null
+            }
+          }
         })
       })
     })  
   },[allLevelsThisProgramHas])
 
+//FUNCTION CREATE NEW OBJECT FOR LEVEL ACHIEVEMENT ============== 
+  const createObject = (NBR, levelName, compketedNumber, skilltotal) => {
+    let achievementCard = {
+      id: NBR,
+      level : levelName,
+      completeSkillNumber : compketedNumber,
+      totalSkillNumber : skilltotal 
+    }
+    achievementCardArray.push(achievementCard)
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView>
-        {<Text>{classTitle}</Text>}
+        <TouchableOpacity>
+          {<Text>{classTitle}</Text>}
+        </TouchableOpacity>
         {/* <ReportView student={trainee} navigation={navigation}/> */}
         <ReportView student={trainee} />
         <CurrentLevelView student={trainee} classData={myClassData} classTitle={classTitle}/>
-        <SkillsAchievementView student={trainee} />
+        <SkillsAchievementView levelCards={achievementCard}/>
         <AttendanceListView student={trainee} /> 
         <ViewReport student={trainee}/>
       </ScrollView>  
