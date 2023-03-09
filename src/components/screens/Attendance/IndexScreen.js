@@ -6,7 +6,8 @@ import WelcomeCard from "./Card/WelcomeCard"
 import Loading from '../../layout/Loading'
 import { AuthContext } from '../../context/AuthContext';
 
-import { getClassesOfCoach } from '../../../utils/queries';
+import { getClassesOfCoach, getAllAttendance } from '../../../utils/queries';
+
 
 const IndexScreen = ({ navigation }) => {
   const {userToken} = useContext(AuthContext)
@@ -25,6 +26,7 @@ const IndexScreen = ({ navigation }) => {
         throw error
       }
     )
+    
   }, [dateSelected])
 
   const onDateClick = (date) => {
