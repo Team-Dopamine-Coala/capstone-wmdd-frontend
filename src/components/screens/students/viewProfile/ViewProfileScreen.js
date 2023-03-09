@@ -1,13 +1,9 @@
-import { Text, VStack, View, Box, Heading, Button } from "native-base"
+import { Text, VStack, View, Box, Heading } from "native-base"
 import { StyleSheet } from "react-native"
 
 const ViewProfileScreen = ({route, navigation}) => {
-// console.log('最後',student.route.params.student)
-console.log('最後',route.params.student)
-console.log('最後navi', navigation)
-const student = route.params.student
 
-
+    const student = route.params.student
 
   return (
     <View style={styles.container}>
@@ -48,7 +44,6 @@ const student = route.params.student
                 </Box>
             </VStack>
         </Box>
-        {/* <Button onPress={() => navigation.navigate('Student Profile')}>Back Button</Button> */}
     </View>
       )
 }
@@ -75,6 +70,5 @@ export default ViewProfileScreen
 
 
 //task List
-//1.Display all personal information
 //2. Birthdayのdatabaseの入れ方確認
 //3.Allegiesはどの内容を表示するのか確認

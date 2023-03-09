@@ -1,5 +1,5 @@
-import { View, VStack, Text } from 'native-base'
 import React from 'react'
+import { View, VStack, Text } from 'native-base'
 import { TouchableOpacity, StyleSheet } from 'react-native'
 
 const ViewReport = ({student}) => {

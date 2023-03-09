@@ -1,10 +1,9 @@
-import { View, Text, VStack, Box } from "native-base"
 import { StyleSheet } from "react-native"
+import { Text, VStack, Box } from "native-base"
 import { useEffect, useContext, useState } from "react"
 
 import {getAllAttendance} from '../../../../utils/queries'
 import { AuthContext } from '../../../context/AuthContext';
-
 
 const AttendanceListView = ({student, navigation}) => {
   const [myAttendance, setMyAttendance] = useState([])
@@ -29,7 +28,6 @@ const AttendanceListView = ({student, navigation}) => {
         {myAttendance.map((attend, i) =>(
           <Box key={i}>
             <Text>{attend.date}</Text>
-            {/* <Text>{(attend.present == true ? 'Present' : 'Absent')}</Text> */}
             {(attend.present == true ? <Text>Present</Text> : <Text style={styles.absent}>Absent</Text>)}
           </Box>
           

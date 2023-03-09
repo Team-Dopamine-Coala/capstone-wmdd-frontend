@@ -1,15 +1,10 @@
 import { View, Text, VStack, ListItem, Box } from "native-base"
 import { useState } from "react"
 import { StyleSheet, Modal, TouchableOpacity } from "react-native"
-import StudentBiometrics from "../Biometrics/StudentBiometrics"
-
+import StudentBiometrics from "../biometrics/StudentBiometrics"
 
 const ReportView = ({student, navigation}) => {
-console.log('レポートまで来たぞナビ',navigation)
-// console.log('レポートまで来たぞstudent',student)
-// const student = student.student
 const [modalIsOpen, setModalIsOpen] = useState(false)
-
 
 const clickStudent = () => {
     setModalIsOpen(true)
@@ -17,9 +12,7 @@ const clickStudent = () => {
     //Biometrics OKが出たらIDをPassingすること！
 }
 
-const closeBio = () => {
-    setModalIsOpen(false)
-}
+const closeBio = () => {setModalIsOpen(false)}
 return (
     <View >
         <TouchableOpacity onPress={clickStudent} trainee={student} style={styles.container}>

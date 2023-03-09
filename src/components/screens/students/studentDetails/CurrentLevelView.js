@@ -1,36 +1,39 @@
-import { Text, VStack, View, Box, HStack, Heading } from "native-base"
-import { useEffect, useState, useContext } from "react"
+import { Text, VStack, View, Box, Heading } from "native-base"
+import { useState } from "react"
 import { StyleSheet } from "react-native"
-import * as Progress from 'react-native-progress'
+import * as Progress from "react-native-progress"
 
-import { AuthContext } from '../../../context/AuthContext'
 
 const CurrentLevelView = ({classTitle, classCard}) => {
-  // console.log('カードのとこ',classCard)
-  const [title, setTitle] = useState(classTitle)
-  const [level, setLevel] = useState(classCard.level)
-  const [completedSkillNbr, setCompletedSkillNbr] = useState(classCard.completeSkillNumber)
-  const [totalSkillNbr, setTotalSkillNbr] = useState(classCard.totalSkillNumber)
+  // const [title, setTitle] = useState(classTitle)
+  // const [level, setLevel] = useState(classCard.level)
+  // const [completedSkillNbr, setCompletedSkillNbr] = useState(classCard.completeSkillNumber)
+  // const [totalSkillNbr, setTotalSkillNbr] = useState(classCard.totalSkillNumber)
+
+  const completedSkillNbr = classCard.completeSkillNumber
+  const totalSkillNbr = classCard.totalSkillNumber
   //Progress Bar
   const percent = completedSkillNbr / totalSkillNbr
+
+  console.log('doko',classCard.level)
   
   return (
     <View style={styles.container}>
-      <VStack  mb={5} > 
-              <Heading style={styles.title}>{title}</Heading>
-              <VStack style={styles.levelbox}>
-                <Text style={styles.levelname}>{level}</Text>
-                <Box style={styles.percentBox}>
-                  <Box >
-                    <Progress.Bar progress={percent} width={216} height={10} />
-                  </Box>
-                  <Box style={styles.numberBox}>
-                    <Text style={styles.current}>{completedSkillNbr}</Text>
-                    <Text style={styles.total}> / {totalSkillNbr} skills</Text>
-                  </Box>
-                </Box>
-              </VStack>
-      </VStack>
+      <Box> 
+        <Heading style={styles.title}>{classTitle}</Heading>
+        <Box style={styles.levelbox}>
+          <Text style={styles.levelname}>{classCard.level}</Text>
+          <Box style={styles.percentBox}>
+            <Box>
+              {/* <Progress.Bar progress={percent} width={216} height={10} /> */}
+            </Box>
+            <Box style={styles.numberBox}>
+              <Text style={styles.current}>{completedSkillNbr}</Text>
+              <Text style={styles.total}> / {totalSkillNbr} skills</Text>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
     </View>
       )
 }
@@ -56,13 +59,6 @@ const styles = StyleSheet.create ({
   title: {
    textAlign: 'center',
   },
-  // levelbox: {
-  //   marginTop: 10,
-  //   backgroundColor: '#bbb',
-  //   paddingHorizontal: 10,
-  //   paddingVertical: 10,
-  //   borderRadius: 10,
-  // },
   levelname: {
     fontSize: 16,
     fontWeight: '500',
@@ -83,4 +79,5 @@ const styles = StyleSheet.create ({
 export default CurrentLevelView
 
 //Task
+//3.Need to fix render error when I use useState and progress.bar
 //4.ここでdisplayしたdataをそのままskill Achievementに送る。
