@@ -38,6 +38,7 @@ import {getLevelById} from '../../../../utils/queries'
   // let newProgramArray = []
   let allLevelsThisProgramHasArray = []
   // let howManySkillsIcompletedArray = []
+  let achievementCardArray = []
   
   //class ID (1人１個)
   const classid = trainee.class_id
@@ -96,18 +97,18 @@ import {getLevelById} from '../../../../utils/queries'
     myAllSkills.map((skl,i) => {
       // console.log('私の持つSkills',i,skl)
       let programid = skl.programId
-      console.log('PROGRAM ID',programid)
+      // console.log('PROGRAM ID',programid)
       getProgramById(programid,userToken)
         .then(data => {
-          console.log('PROFETCHしたて',i, data)
+          // console.log('PROFETCHしたて',i, data)
           data.levels.map((item) => programArray.push(item))
-          console.log('DUPPE消す前',i,programArray)
+          // console.log('DUPPE消す前',i,programArray)
           //DUPEを削除してArrayに入れる
           if (myAllSkills.length === i+1) {
             setMyAllLevelId(programArray.filter((element, index) => 
               programArray.indexOf(element) == index
             ))
-            console.log('ProgのFetch終了')
+            // console.log('ProgのFetch終了')
           } else {
             null
           }
@@ -117,8 +118,8 @@ import {getLevelById} from '../../../../utils/queries'
 
   //属してるprogramが持っているLEVELを全部Fetch　＆１つのLebelの長さを確認！Display!
   useEffect(() => {
-    console.log('DUPE消えたよ', myAllLevelsId)
-    console.log('これが私の終了したスキル',myAllSkills)
+    // console.log('DUPE消えたよ', myAllLevelsId)
+    // console.log('これが私の終了したスキル',myAllSkills)
     myAllLevelsId.map((levelid,i) => {
       //属してるprogramが持っているLEVELを全部Fetch
       getLevelById(levelid,userToken)
@@ -138,58 +139,48 @@ import {getLevelById} from '../../../../utils/queries'
 
  //skill arrayにループでアクセスする！自分の持つスキルがどのLEVELに入っているかMatchさせる
   useEffect(() => {
-    console.log('ついにここまで',allLevelsThisProgramHas.length)
-    allLevelsThisProgramHas.map((level, index) => {
-      // console.log('外',i,level.title)
-      level.skills.map((iteminarray, index) => {
-        // console.log('真ん中',j,iteminarray)
-        myAllSkills.map((one, index) => {
-          console.log('中',iteminarray[index])
-            // if(iteminarray[j] === one){
-
-            //   // console.log('同じかな',iteminarray[j], one)
-            //   // let arraynonakanokosuu = iteminarray.length
-            //   // console.log(arraynonakanokosuu)
-
-            //   // // let levelName = level.title
-            //   // console.log(k,level.title)
+    // console.log('ついにここまで',allLevelsThisProgramHas.length)
+    allLevelsThisProgramHas.map((level) => {
+      level.skills.map((iteminarray) => {
+        myAllSkills.map((one) => {
+            if(iteminarray === one._id){
               
-            //   // let howManySkillsIcompletedArray = []
-            //   // howManySkillsIcompletedArray.push(iteminarray)
-            //   // console.log(k,howManySkillsIcompletedArray)
-            // }
+              let oneskills = level.skills
+              let skilltotal = oneskills.length
+              // console.log('長さ',arraynonakanokosuu)
+
+              let levelName = level.title
+              // console.log('タイトル',levelName)
+              
+              let howManySkillsIcompletedArray = []
+              howManySkillsIcompletedArray.push(one)
+              // console.log(howManySkillsIcompletedArray.length)
+              // console.log(`//title: ${level.title} / ${howManySkillsIcompletedArray.length} completed /in total ${skilltotal}skills`)
+
+              let achievementCard = {
+                level : levelName,
+                completelevel : howManySkillsIcompletedArray.length,
+                totalSkillNumber : skilltotal 
+              }
+              achievementCardArray.push(achievementCard)
+              console.log('次に送るよ',achievementCardArray)
+            }
         })
       })
-      // console.log(`${i}//title: ${level.title} ${howManySkillsIcompletedArray.length} completed /in total ${arraynonakanokosuu}skills`)
     })  
   },[allLevelsThisProgramHas])
 
-
-
-
-
-  // //Levelの中のskill array全体の長さと、今自分が終わっているのを比べる
-  // const howManyCompleted = (arrayForLevel) => {
-  //   arrayForLevel.map((item, i) => {
-  //     //total長さ出す
-  //     let skillLength = item.skills.length
-  //     console.log('個々スキルのレングス',i,skillLength)
-  //     // 
-
-  //   })
-  // }
-
-
   return (
     <View style={styles.container}>
-      {/* <ScrollView>
+      <ScrollView>
         {<Text>{classTitle}</Text>}
-        <ReportView student={trainee} navigation={navigation}/>
-        <CurrentLevelView student={trainee} classData={classData} classTitle={classTitle}/>
-        <SkillsAchievementView student={trainee} allLevels={IhavethisLevel}/>
+        {/* <ReportView student={trainee} navigation={navigation}/> */}
+        <ReportView student={trainee} />
+        <CurrentLevelView student={trainee} classData={myClassData} classTitle={classTitle}/>
+        <SkillsAchievementView student={trainee} />
         <AttendanceListView student={trainee} /> 
         <ViewReport student={trainee}/>
-      </ScrollView>   */}
+      </ScrollView>  
     </View>
   )
 }
