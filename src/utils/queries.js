@@ -70,8 +70,13 @@ export const getProgramById = async (programid) => {
 // LEVEL ===============================================
 export const getLevelById = async (levelid) => {
 
-  const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/level/${levelid}`)
-  const data = await res.json()
+// ATTENDANCE
+export const getAllAttendance = async (classid) => {
+
+    const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/attendance/${classid}`)
+    const data = await res.json()
+    return data
+}
 
   return data
 }
