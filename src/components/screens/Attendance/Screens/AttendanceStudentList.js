@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { getStudentsByClass } from '../../../../utils/queries'
 import { getAllAttendance } from '../../../../utils/queries'
 import { DrawerLayoutAndroidBase } from "react-native"
+import { AWS_BACKEND_BASE_URL } from "../../../../utils/static"
 // import StudentList from "../ClassList/StudentList"
 
 
@@ -15,18 +16,19 @@ const AttendanceStudentList = ({ navigation, route }) => {
   const [attendance, setAttendance] = useState({})
   const [allAttendance, setAllAttendance] = useState([])
   useEffect(() => {
-    // console.log("date", dateSelected)
     setIsLoading(true)
     getStudentsByClass(classId).then(
       data => {
         setStudents(data)
         for (let index = 0; index < data.length; index++) {
           const element = data[index];
+          console.log(element)
           const curr = attendance
           curr[element._id] = false;
           setAttendance(curr)
+          console.log("attendance", attendance)
         }
-        console.log(attendance)
+        // console.log(attendance)
       },
       error => {
         throw error
@@ -59,16 +61,15 @@ const AttendanceStudentList = ({ navigation, route }) => {
       setAttendance(curr)
       newAllAttendance.push(newAttendance)
     });
-    // const completedClass = 
     setAllAttendance(newAllAttendance)
   }
 
-  const test = {
-      class_id: "63e066913e54d66c36ab24f0",
-      student_id: "63e066913e54d66c36ab24f0",
-      present: true,
-      date: "2023-03-01T20:00:00.000Z"
-    }
+  // const test = {
+  //     class_id: classId,
+  //     student_id: "63e066913e54d66c36ab24f0",
+  //     present: true,
+  //     date: "2023-03-01T20:00:00.000Z"
+  //   }
 
   const addAllAttendance = () => {
     console.log(allAttendance)
@@ -91,27 +92,27 @@ const AttendanceStudentList = ({ navigation, route }) => {
   }
 
   // Add Attendance
-const addAttendance = async () => {
+const addAttendance = async (newAttendance) => {
     await fetch(`${AWS_BACKEND_BASE_URL}/api/attendance`, {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',
     },
-    body: JSON.stringify(test),
+    body: JSON.stringify(newAttendance),
   });
 
 };
 
  // Update Class
-const updateClassAttendance = async () => {
-    await fetch(`${AWS_BACKEND_BASE_URL}/api/class/${classId}`, {
-    method: 'PATCH',
-    headers: {
-      'Content-type': 'application/json',
-    },
-    body: JSON.stringify(test),
-  });
-};
+// const updateClassAttendance = async () => {
+//     await fetch(`${AWS_BACKEND_BASE_URL}/api/class/${classId}`, {
+//     method: 'PATCH',
+//     headers: {
+//       'Content-type': 'application/json',
+//     },
+//     body: JSON.stringify(test),
+//   });
+// };
 
 
   return (
