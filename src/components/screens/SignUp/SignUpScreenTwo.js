@@ -1,14 +1,14 @@
 import { Box, Container, Text, View, VStack, Center } from 'native-base';
 import React from 'react';
-import SignUpForm from '../forms/SignUpForm';
+import SignUpForm from '../../forms/signup/SignUpForm';
 
-const SignUpScreenTwo = () => {
+const SignUpScreenTwo = ({ navigation, route }) => {
     return (
         <View>
             <Center>
                 <Text fontSize="2xl" mt={100} bold>Create a Coala Account</Text>
             </Center>
-            <SignUpForm />
+            <SignUpForm navigation={navigation} route={route}/>
         </View>
     )
 }

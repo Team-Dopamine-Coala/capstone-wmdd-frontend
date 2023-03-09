@@ -1,11 +1,12 @@
 import { Box, Container, Text, View, VStack } from 'native-base';
 import React from 'react';
-import LoginForm from '../forms/LoginForm';
+import LoginForm from '../../forms/login/LoginForm';
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
+
     return (
         <View>
-            <LoginForm />
+            <LoginForm navigation={navigation}/>
         </View>
     )
 }
