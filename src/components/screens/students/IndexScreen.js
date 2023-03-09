@@ -3,8 +3,7 @@ import { useEffect, useState, useContext } from "react"
 import { TouchableOpacity, StyleSheet, SafeAreaView } from "react-native"
 import StudentsSearch from "./myStudents/StudentsSearch"
 
-import {getClassesOfCoach} from '../../../utils/queries'
-import {getStudentsByClass} from '../../../utils/queries'
+import {getClassesOfCoach, getStudentsByClass} from '../../../utils/queries'
 import { AuthContext } from '../../context/AuthContext';
 
 const IndexScreen = ({ navigation, route }) => {
@@ -123,7 +122,6 @@ const styles = StyleSheet.create ({
   nameContainer: {
     marginTop: 8,
      backgroundColor: '#FDFDFD',
-    //  dropShadow: (0px 2px 8px rgba(0, 0, 0, 0.25))
      borderRadius: '12',
      paddingHorizontal: 16,
      paddingTop: 10,

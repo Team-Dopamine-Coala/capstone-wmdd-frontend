@@ -7,12 +7,11 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
   // console.log('this student',student)
    // const bcrypt = require ('bcrypt')
   const userID = '63fcf0bd354e8150f45dd4d2'
-  console.log('ナビ見てみる',navigation)
-  
-  console.log('ナビBio student',student)
-  console.log('ナビBio',navigation)
+  // console.log('ナビ見てみる',navigation)
+  // console.log('ナビBio student',student)
+  // console.log('ナビBio',navigation)
   const setModalIsOpen = useState
-  console.log('もだl',setModalIsOpen())
+  // console.log('もだl',setModalIsOpen())
 
   //get user's password
   const [pwdOpen, setPwdOpen] = useState(false)
@@ -194,7 +193,7 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
   }
   return (
     <View>
-     
+      
         <StatusBar style="auto" />
     </View>
   )
@@ -205,5 +204,4 @@ export default StudentBiometrics
 
 //TO DO LIST
 //1. bcryptされたものとどのように比べるか！？
-//2. navigation.nagigate を解消！
 //3. face idのLogoはどうなるのか？

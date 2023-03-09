@@ -1,11 +1,7 @@
 import { Text, VStack, View, Box } from "native-base"
 import { StyleSheet } from "react-native"
 
-
 const SkillsAchievementView = ({levelCards}) => {
-console.log('レベルカード',levelCards)
-
-
   return (
     <View style={styles.container}>
         <Text style={styles.title}>Skill Achievement</Text>
