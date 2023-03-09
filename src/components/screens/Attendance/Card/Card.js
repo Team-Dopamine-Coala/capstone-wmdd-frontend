@@ -3,11 +3,14 @@ import { Ionicons } from "@expo/vector-icons"
 import { useEffect, useState } from "react";
 
 const Card = ({ title, startTime, endTime, id, navigation, dateSelected, completed, attendances }) => {
-  const [present, setPresent] =  useState("-")
-  const [absent, setAbsent] =  useState("-")
+  const [present, setPresent] =  useState()
+  const [absent, setAbsent] =  useState()
+  // const {  title, startTime, endTime, id, navigation } = props;
   useEffect(() => {
     // TODO: fetch attendance by id
-
+    // console.log("card - completed:", completed)
+    // console.log("dateSelected",  dateSelected)
+    console.log("attendances:  ", attendances)
     let present = 0
     let absent = 0
     if (attendances) {
@@ -16,17 +19,12 @@ const Card = ({ title, startTime, endTime, id, navigation, dateSelected, complet
           present += 1
         } else {
           absent += 1
-        }      
+        }
       });
-    }
-
-    if(present==0){
-      setPresent("-")
-    } else {setPresent(present)}
-    if(absent==0){
-      setAbsent("-")
-    } else {
-    setAbsent(absent)
+      setPresent(present)
+      setAbsent(absent)
+      console.log("present/absent: ", present, absent)
+      
     }
 
   })
@@ -41,41 +39,25 @@ const Card = ({ title, startTime, endTime, id, navigation, dateSelected, complet
                   <Text>{startTime} -{'>'} {endTime}</Text>
                   <Text>Venue</Text>
               </VStack>
-                  <Icon ml="2" size="70" color={ completed ? "#ffc0cb" : "gray.200"} as={<Ionicons name="checkmark-circle-outline"/>} />         
+              <Icon ml="2" size="70" color="gray.200" as={<Ionicons name="checkmark-circle-outline"/>} />         
             </HStack>
-            <HStack space={1} justifyContent="space-between">
-               <VStack >
-                <Text>{present}</Text>
-                <Text>Present</Text>
-                </VStack >
-                <VStack >
-                <Text>{absent}</Text>
-                <Text>absent</Text>
-                </VStack >
-                <Button
-                  width={100}
-                  dateSelected = {dateSelected}
-                  borderRadius="61"
-                  variant="outline"
-                  bgColor= { completed ? "#eeeeee":"#404142"}
-                  id={id}
-                  onPress={() => {
-                    if(completed){
-                      navigation.navigate('Completed Attendance', {
-                        classId: id
-                    })}
-                    else{
-                    navigation.navigate('Attendance Student List', {
-                      classId: id,
-                      classTitle: title,
-                      classStartTime: startTime, 
-                      classEndTime: endTime
-                    })
-                  }}}
-                >
-                  { completed ? <Text fontWeight="700" color="#404142">View</Text> : <Text  fontWeight="700" color="#ffffff">Start</Text>}
-                </Button>
-              </HStack>
+            <HStack space={1}>
+            <Text>Present {present}</Text>
+            <Text>absent {absent}</Text>
+            <Button
+              borderRadius="4"
+              variant="solid"
+              bgColor="#404142"
+              id={id}
+              onPress={() => {
+                navigation.navigate('Attendance Student List', {
+                  classId: id
+                })
+              }}
+            >
+               <Text  fontWeight="700" color="#ffffff">{ completed ? "View" : "Start"}</Text>
+            </Button>
+            </HStack>
           </Box>
         </VStack>
     </>
