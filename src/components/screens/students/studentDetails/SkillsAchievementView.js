@@ -2,24 +2,22 @@ import { Text, VStack, View, Box } from "native-base"
 import { StyleSheet } from "react-native"
 
 
-const SkillsAchievementView = ({student, allLevels}) => {
-// console.log('skill',trainee.student)
-// console.log('新しい',student)
-console.log('新しい',allLevels)
+const SkillsAchievementView = ({levelCards}) => {
+console.log('レベルカード',levelCards)
+
 
   return (
     <View style={styles.container}>
         <Text style={styles.title}>Skill Achievement</Text>
         <VStack>
-          {allLevels.map((item, i) => (
+          {levelCards.map((item, i) => (
             <Box key={i} style={styles.levelbox}>
-              <Text>{item.title}</Text>
-              <Text> / {item.skills.length}</Text>
+              <Text>{item.level}</Text>
+              <Text>{item.completeSkillNumber} / {item.totalSkillNumber}</Text>
               <Text>skills learned</Text>
             </Box>
           ))}
         </VStack>
-        <Text>Hello</Text>
     </View>
   )
 }
