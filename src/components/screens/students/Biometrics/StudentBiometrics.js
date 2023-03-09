@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { Alert, StatusBar } from 'react-native';
 import { View } from "native-base"
 import * as LocalAuthentication from 'expo-local-authentication'
-// import { result } from 'lodash'
 
-const StudentBiometrics = ({student, navigation, closeBio}) => {
+const StudentBiometrics = ({student, closeBio, navigation}) => {
   // console.log('this student',student)
    // const bcrypt = require ('bcrypt')
   const userID = '63fcf0bd354e8150f45dd4d2'
+  console.log('ナビ見てみる',navigation)
   
   console.log('ナビBio student',student)
   console.log('ナビBio',navigation)

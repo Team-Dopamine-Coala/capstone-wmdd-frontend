@@ -9,15 +9,9 @@ import AttendanceListView from "./AttendanceListView"
 import ViewReport from "./ViewReport"
 
 import { AuthContext } from '../../../context/AuthContext'
-import { getSingleClass, 
-        getEvaluationsByClass,
-        getSkillById, 
-        getProgramById, 
-        getLevelById } from '../../../../utils/queries'
+import { getSingleClass, getEvaluationsByClass, getSkillById, getProgramById, getLevelById } from '../../../../utils/queries'
 
-
-// const StudentDetail = ({route, navigation }) => {
-  const StudentDetail = ({route}) => {
+const StudentDetail = ({route, navigation }) => {
   const { trainee } = route.params
   const {userToken} = useContext(AuthContext)
   const [classTitle, setClassTitle] = useState('')
@@ -27,11 +21,13 @@ import { getSingleClass,
   const [myAllLevelsId, setMyAllLevelId] = useState([])
   const [allLevelsThisProgramHas, setAllLevelsThisProgramHas] = useState([])
   const [achievementCard, setAchievementCard] = useState([])
+  const [classCard, setClassCard] = useState([])
   let myEvalArray = []
   let mySkillArray = []
   let programArray = []
   let allLevelsThisProgramHasArray = []
   let achievementCardArray = []
+
   
   //class ID (1人１個)
   const classid = trainee.class_id
@@ -180,6 +176,16 @@ import { getSingleClass,
             if (myAllSkills.length === i+1) {
               //Send this to SkillAchievementView!
               setAchievementCard(achievementCardArray)
+
+              //まだ終わっていないLEVELをP/UしてCurrentLevelViewに送る！
+              achievementCardArray.map((item)=> {
+                if(achievementCardArray.length == 1 || item.completeSkillNumber !== item.totalSkillNumber){
+                  setClassCard(item)
+                } else {
+                  null
+                }
+              })
+              
             } else {
               null
             }
@@ -188,6 +194,7 @@ import { getSingleClass,
       })
     })  
   },[allLevelsThisProgramHas])
+
 
 //FUNCTION CREATE NEW OBJECT FOR LEVEL ACHIEVEMENT ============== 
   const createObject = (NBR, levelName, compketedNumber, skilltotal) => {
@@ -206,9 +213,8 @@ import { getSingleClass,
         <TouchableOpacity>
           {<Text>{classTitle}</Text>}
         </TouchableOpacity>
-        {/* <ReportView student={trainee} navigation={navigation}/> */}
-        <ReportView student={trainee} />
-        <CurrentLevelView student={trainee} classData={myClassData} classTitle={classTitle}/>
+        <ReportView student={trainee} navigation={navigation}/>
+        <CurrentLevelView classTitle={classTitle} classCard={classCard}/>
         <SkillsAchievementView levelCards={achievementCard}/>
         <AttendanceListView student={trainee} /> 
         <ViewReport student={trainee}/>

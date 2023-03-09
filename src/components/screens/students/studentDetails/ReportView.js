@@ -5,7 +5,7 @@ import StudentBiometrics from "../Biometrics/StudentBiometrics"
 
 
 const ReportView = ({student, navigation}) => {
-// console.log('レポートまで来たぞナビ',navigation)
+console.log('レポートまで来たぞナビ',navigation)
 // console.log('レポートまで来たぞstudent',student)
 // const student = student.student
 const [modalIsOpen, setModalIsOpen] = useState(false)
