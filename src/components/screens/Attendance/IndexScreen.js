@@ -4,15 +4,26 @@ import ClassList from "./ClassList/ClassList"
 import Calendar from "./Calendar/Calendar"
 import WelcomeCard from "./Card/WelcomeCard"
 
-const IndexScreen = () => {
+import { getClassesOfCoach, getAllAttendance } from '../../../utils/queries';
+
+
+const IndexScreen = ({ navigation }) => {
+  const {userToken} = useContext(AuthContext)
   const [classes, setClasses] = useState([]);
 
   useEffect(() => {
-    const getClasses = async () => {
-      const res = await fetchClasses();
-      setClasses(res)
- 
-    };
+    setIsLoading(true)
+    getClassesOfCoach('63fcf0bd354e8150f45dd4d2', userToken).then(
+      data => {
+        setClasses(data)
+        setIsLoading(false)
+      },
+      error => {
+        throw error
+      }
+    )
+    
+  }, [dateSelected])
 
     getClasses() 
 

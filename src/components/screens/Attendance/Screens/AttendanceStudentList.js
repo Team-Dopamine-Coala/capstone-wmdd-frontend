@@ -9,7 +9,7 @@ import { DrawerLayoutAndroidBase } from "react-native"
 
 
 const AttendanceStudentList = ({ navigation, route }) => {
-  const {classId, classTitle, classStartTime, classEndTime} = route.params
+  const {classId} = route.params
   const [students, setStudents] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [attendance, setAttendance] = useState({})
@@ -49,8 +49,8 @@ const AttendanceStudentList = ({ navigation, route }) => {
     const newAllAttendance = []
     checkboxVal.forEach(element => {
       const newAttendance = {
-        class_id: "63e066913e54d66c36ab24f0",
-        student_id: element,
+        classId: classId,
+        studentId: element,
         present: true,
         date: "2023-03-01T20:00:00.000Z",
       }
@@ -102,9 +102,9 @@ const addAttendance = async () => {
 
 };
 
- // Update Attendance
-const updateAttendance = async () => {
-    await fetch(`${AWS_BACKEND_BASE_URL}/api/attendance/6402297a9fc5d5a0790ae9fc`, {
+ // Update Class
+const updateClassAttendance = async () => {
+    await fetch(`${AWS_BACKEND_BASE_URL}/api/class/${classId}`, {
     method: 'PATCH',
     headers: {
       'Content-type': 'application/json',
@@ -127,7 +127,7 @@ const updateAttendance = async () => {
         bgColor="#404142"
         onPress={() => {
           // addAttendance()
-          addAllAttendance(); updateClassAttendance(); navigation.navigate('Completed Attendance');
+          addAllAttendance(); navigation.navigate('Completed Attendance');
         }}
       ><Text fontWeight="700" color="#ffffff">Save Attendance</Text></Button>
 
