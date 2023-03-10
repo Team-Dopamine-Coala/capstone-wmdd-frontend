@@ -4,21 +4,31 @@ import { useState, useEffect } from 'react'
 import { getStudentsByClass } from '../../../../utils/queries'
 import { getAllAttendance } from '../../../../utils/queries'
 import { DrawerLayoutAndroidBase } from "react-native"
+import { AWS_BACKEND_BASE_URL } from "../../../../utils/static"
 // import StudentList from "../ClassList/StudentList"
 
 
-const AttendanceStudentList = ({ navigation, dateSelected }) => {
 
+const AttendanceStudentList = ({ navigation, route }) => {
+  const {classId, classTitle, classStartTime, classEndTime} = route.params
   const [students, setStudents] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const [attendance, setAttendance] = useState([])
+  const [attendance, setAttendance] = useState({})
   const [allAttendance, setAllAttendance] = useState([])
   useEffect(() => {
     setIsLoading(true)
-    getStudentsByClass('63e066913e54d66c36ab24f0').then(
+    getStudentsByClass(classId).then(
       data => {
         setStudents(data)
-        // console.log(students)
+        for (let index = 0; index < data.length; index++) {
+          const element = data[index];
+          console.log(element)
+          const curr = attendance
+          curr[element._id] = false;
+          setAttendance(curr)
+          console.log("attendance", attendance)
+        }
+        // console.log(attendance)
       },
       error => {
         throw error
@@ -36,55 +46,83 @@ const AttendanceStudentList = ({ navigation, dateSelected }) => {
     // )
   }, [])
 
+
   const checkboxHandler = (checkboxVal) => {
     const newAllAttendance = []
     checkboxVal.forEach(element => {
       const newAttendance = {
-        class_id: "63e066913e54d66c36ab24f0",
-        student_id: element,
+        classId: classId,
+        studentId: element,
         present: true,
-        date: "2023-03-01T20:00:00.000Z"
+        date: "2023-03-01T20:00:00.000Z",
       }
+      const curr = attendance
+      curr[element] = true
+      setAttendance(curr)
       newAllAttendance.push(newAttendance)
     });
     setAllAttendance(newAllAttendance)
   }
 
-  const test = {
-      class_id: "63e066913e54d66c36ab24f0",
-      student_id: "63e066913e54d66c36ab24f0",
-      present: true,
-      date: "2023-03-01T20:00:00.000Z"
-    }
+
+  console.log("update class object", newClass)
 
   const addAllAttendance = () => {
+    console.log(allAttendance)
+    for (let index = 0; index < students.length; index++) {
+      const element = students[index];
+      if (!attendance[element._id]) {
+        const newAttendance = {
+          classId: classId,
+          studentId: element._id,
+          present: false,
+          date: "2023-03-01T20:00:00.000Z",
+        }
+        addAttendance(newAttendance)
+      }
+    }
     allAttendance.forEach(element => {
-      console.log(element)
       addAttendance(element)
     })
+    
   }
 
   // Add Attendance
-const addAttendance = async () => {
+const addAttendance = async (newAttendance) => {
     await fetch(`${AWS_BACKEND_BASE_URL}/api/attendance`, {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',
     },
-    body: JSON.stringify(test),
+    body: JSON.stringify(newAttendance),
   });
 
 };
 
- // Update Attendance
-const updateAttendance = async () => {
-    await fetch(`${AWS_BACKEND_BASE_URL}/api/attendance/6402297a9fc5d5a0790ae9fc`, {
+
+const newClass = {
+  userId: "63fcf0bd354e8150f45dd4d2",
+  startTime: classStartTime,
+  endTime: classEndTime,
+  title: classTitle,
+  completed: true,
+  date: "2023-03-01T20:00:00.000Z"
+}
+
+console.log("new class", newClass)
+
+ // Update Class
+const updateClassAttendance = async () => {
+  console.log("classId", classId)
+ 
+    await fetch(`${AWS_BACKEND_BASE_URL}/api/class/${classId}`, {
     method: 'PATCH',
     headers: {
       'Content-type': 'application/json',
     },
-    body: JSON.stringify(test),
+    body: JSON.stringify(newClass),
   });
+  console.log("update class object", newClass)
 };
 
 
@@ -96,13 +134,12 @@ const updateAttendance = async () => {
         {students.map((item) => {
             return <Checkbox  value={item._id} key= {item._id} colorScheme="orange" accessibilityLabel="This is a checkbox of a student" >{item.firstname+item.lastname}</Checkbox>
         })}
-    
-    </Checkbox.Group>
+        </Checkbox.Group>
         <Button
         bgColor="#404142"
         onPress={() => {
           // addAttendance()
-          addAllAttendance()
+          addAllAttendance(); updateClassAttendance(); navigation.navigate('Completed Attendance');
         }}
       ><Text fontWeight="700" color="#ffffff">Save Attendance</Text></Button>
 
