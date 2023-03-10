@@ -3,6 +3,8 @@ import EvaluationStack from '../stacks/EvaluationStack';
 import ReportStack from '../stacks/ReportStack';
 import CurriculumScreen from '../screens/Curriculum/CurriculumScreen';
 import StudentStack from '../stacks/StudentStack';
+import CurriculumStack from '../stacks/CurriculumStack';
+import StudentsScreen from '../screens/StudentsScreen';
 
 import { Ionicons } from '@expo/vector-icons'
 import { Icon, View, Box, Text } from 'native-base'
@@ -37,7 +39,7 @@ const AppTabs = () => {
             <Icon size={5} color={color} as={<Ionicons name='ios-copy' />} />
           )
         }} />
-        <Tab.Screen name="Curriculum" component={CurriculumScreen} options={{
+        <Tab.Screen name="Curriculum" component={CurriculumStack} options={{
           tabBarIcon: ({ color }) => (
             <Icon size={5} color={color} as={<Ionicons name='ios-bookmarks' />} />
           )

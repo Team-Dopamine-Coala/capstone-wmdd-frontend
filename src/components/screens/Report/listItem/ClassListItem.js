@@ -1,6 +1,14 @@
 import { Box, HStack, VStack, Text, Button, Heading } from 'native-base'
 
-const ClassListItem = ({ item, navigation }) => {
+const ClassListItem = ({ item, navigation, openSheet, clickedClass }) => {
+
+  const clickedSeeReport = (classid) => {
+    clickedClass(classid)
+    setTimeout(() => {
+      openSheet()
+    }, 500)
+  }
+
   return (
     <Box mb={3} p={5} bgColor="#EEF1F4" borderRadius="lg">
       <VStack>
@@ -13,12 +21,7 @@ const ClassListItem = ({ item, navigation }) => {
 
         <Button
           bgColor="#667080"
-          onPress={() => {
-            navigation.navigate('Evaluation Student List', {
-              classId: item._id,
-              className: item.title
-            })
-          }}
+          onPress={() => clickedSeeReport(item._id)}
         ><Text fontWeight="700" color="#ffffff">See Report</Text></Button>
       </VStack>
     </Box>
