@@ -58,6 +58,39 @@ const Card = ({ title, startTime, endTime, id, navigation, dateSelected, complet
                <Text  fontWeight="700" color="#ffffff">{ completed ? "View" : "Start"}</Text>
             </Button>
             </HStack>
+            <HStack space={1} justifyContent="space-between">
+               <VStack >
+                <Text>{present}</Text>
+                <Text>Present</Text>
+                </VStack >
+                <VStack >
+                <Text>{absent}</Text>
+                <Text>absent</Text>
+                </VStack >
+                <Button
+                  width={100}
+                  dateSelected = {dateSelected}
+                  borderRadius="61"
+                  variant="outline"
+                  bgColor= { completed ? "#eeeeee":"#404142"}
+                  id={id}
+                  onPress={() => {
+                    if(completed){
+                      navigation.navigate('Completed Attendance', {
+                        classId: id
+                    })}
+                    else{
+                    navigation.navigate('Attendance Student List', {
+                      classId: id,
+                      classTitle: title,
+                      classStartTime: startTime, 
+                      classEndTime: endTime
+                    })
+                  }}}
+                >
+                  { completed ? <Text fontWeight="700" color="#404142">View</Text> : <Text  fontWeight="700" color="#ffffff">Start</Text>}
+                </Button>
+              </HStack>
           </Box>
         </VStack>
     </>
