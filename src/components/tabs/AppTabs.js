@@ -2,6 +2,8 @@ import AttendanceStack from '../stacks/AttendanceStack'
 import EvaluationStack from '../stacks/EvaluationStack';
 import ReportStack from '../stacks/ReportStack';
 import CurriculumScreen from '../screens/Curriculum/CurriculumScreen';
+import StudentStack from '../stacks/StudentStack';
+import CurriculumStack from '../stacks/CurriculumStack';
 import StudentsScreen from '../screens/StudentsScreen';
 
 import { Ionicons } from '@expo/vector-icons'
@@ -37,12 +39,12 @@ const AppTabs = () => {
             <Icon size={5} color={color} as={<Ionicons name='ios-copy' />} />
           )
         }} />
-        <Tab.Screen name="Curriculum" component={CurriculumScreen} options={{
+        <Tab.Screen name="Curriculum" component={CurriculumStack} options={{
           tabBarIcon: ({ color }) => (
             <Icon size={5} color={color} as={<Ionicons name='ios-bookmarks' />} />
           )
         }} />
-        <Tab.Screen name="Students" component={StudentsScreen} options={{
+        <Tab.Screen name="Students" component={StudentStack} options={{
           tabBarIcon: ({ color }) => (
             <Icon size={5} color={color} as={<Ionicons name='ios-people' />} />
           )
