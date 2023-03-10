@@ -51,3 +51,23 @@ export const getAllAttendance = async (classid) => {
     return data
 }
 
+//CURRICULUM
+  export const fetchSkills = async () => {
+
+    const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/skill`)
+    const data = await res.json()
+    return data
+
+  }
+
+  export const fetchSkill = async (id) => {
+    const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/skill/${id}`)
+
+    const data = await res.json()
+    return data
+  }
+
+  //PROGRAM
+  // export const getPrograms = async () => {
+  //   const res = await fetch(``)
+  // }
