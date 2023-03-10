@@ -1,24 +1,26 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext, useRef } from 'react'
+import { Dimensions } from 'react-native'
 import { View, Box, Center, Heading, VStack, Text } from 'native-base'
-import CalendarStrip from 'react-native-calendar-strip';
 import moment from 'moment';
 import BottomSheet from 'react-native-simple-bottom-sheet';
 
 import { AuthContext } from '../../context/AuthContext';
 import ClassList from './lists/ClassList';
 import Loading from '../../layout/Loading'
+import StudentList from './lists/StudentList';
 
 import { getClassesOfCoach } from '../../../utils/queries';
+import { getStudentsByClass } from "../../../utils/queries"
 
 const IndexScreen = ({ navigation }) => {
   const {userToken} = useContext(AuthContext)
   const [classes, setClasses] = useState([])
-  const [dateSelected, setSelectedDate] = useState(new Date())
   const [isLoading, setIsLoading] = useState(true)
+  const [selectedClass, setSelectedClass] = useState(null)
+  const [students, setStudents] = useState(null)
+  const panelRef = useRef(null)
 
   useEffect(() => {
-    console.log(dateSelected)
-
     setIsLoading(true)
     getClassesOfCoach('63fcf0bd354e8150f45dd4d2', userToken).then(
       data => {
@@ -29,11 +31,21 @@ const IndexScreen = ({ navigation }) => {
         throw error
       }
     )
-  }, [dateSelected])
-  
+  }, [])
 
-  const onDateClick = (date) => {
-    setSelectedDate(date)
+  useEffect(() => {
+    getStudentsByClass(selectedClass).then(
+      data => {
+        setStudents(data)
+      },
+      error => {
+        throw error
+      }
+    )
+  }, [selectedClass])
+
+  const clickedClass = (classid) => {
+    setSelectedClass(classid)
   }
 
   return (
@@ -41,56 +53,20 @@ const IndexScreen = ({ navigation }) => {
       <VStack pt="50px" pb={20} flex={1} bgColor="#F4903F" height="100%">
 
         <Box bgColor="#ffffff" borderTopLeftRadius={20} borderTopRightRadius={20} height="100%">
-          <CalendarStrip
-          scrollable
-          style={{height: 130, paddingTop: 20, paddingBottom: 10}}
-          calendarHeaderStyle={{
-            fontSize: 18,
-            alignSelf: 'flex-start',
-          }}
-          startingDate={moment().subtract(3, 'days')}
-          selectedDate={moment()}
-          onDateSelected={onDateClick}
-          minDate="2023-01-01"
-          maxDate="2023-12-31"
-          dayContainerStyle={{
-            paddingBottom: 4
-          }}
-          dateNameStyle={{
-            marginBottom: 6,
-            fontSize: 13,
-            textTransform: 'capitalize'
-          }}
-          dateNumberStyle={{
-            paddingBottom: 4,
-            fontSize: 16,
-            fontWeight: '300'
-          }}
-          highlightDateNameStyle={{
-            color: '#F4903F',
-            marginBottom: 6,
-            fontSize: 13,
-            textTransform: 'capitalize'
-          }}
-          highlightDateNumberStyle={{
-            color: '#F4903F',
-            fontSize: 16
-          }}
-          highlightDateNumberContainerStyle={{
-          }}
-        />
         
-        {isLoading ? <Loading /> : <ClassList classes={classes} navigation={navigation} />}
+        {isLoading ? <Loading /> : <ClassList classes={classes} navigation={navigation} openSheet={() => panelRef.current.togglePanel()} clickedClass={clickedClass} />}
       </Box>
 
       </VStack>
       
       <BottomSheet
-        isOpen
-        sliderMinHeight={120}
+        isOpen={false}
+        ref={ref => panelRef.current = ref}
+        animationDuration={300}
+        sliderMaxHeight={Dimensions.get('window').height * 0.9}
       >
-        <View>
-          <Text>Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world</Text>
+        <View mb={100}>
+          <StudentList students={students} selectedClass={selectedClass} />
         </View>
       </BottomSheet>
       </>
