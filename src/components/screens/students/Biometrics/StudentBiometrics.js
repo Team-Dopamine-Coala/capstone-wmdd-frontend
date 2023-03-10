@@ -48,10 +48,10 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
       
       console.log('bio support?',isBiometricSupported)
       if(isBiometricSupported === false){
-        // console.log('Your device is compatible with Biometrics')
+        console.log('Your device is compatible with Biometrics')
         fallBackToDefaultAuth()
       }if (isBiometricSupported === true) {
-        // console.log('Face or Fingerprint scanner is available on this device')
+        console.log('Face or Fingerprint scanner is available on this device')
         handleBiometricAuth()
       }
     })();
@@ -121,7 +121,7 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
   const handleBiometricAuth = async () => {
     //Check if Hardware support biometrics  
     const isBiometricAvailable = await LocalAuthentication.hasHardwareAsync()
-    // console.log('available bio?',isBiometricAvailable)
+    console.log('available bio?',isBiometricAvailable)
     
     //if not supported, ask to input password 
     if (!isBiometricAvailable)
@@ -136,7 +136,7 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
     let supportedBiometrics;
     if (isBiometricAvailable) {
       supportedBiometrics = await LocalAuthentication.supportedAuthenticationTypesAsync();
-      // console.log('finger or face?',supportedBiometrics)
+      console.log('finger or face?',supportedBiometrics)
     }
     
     
@@ -183,12 +183,12 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
 
   //When BioAuth success
   const successProcess = (result) => {
-    // console.log('bio success or fail?',result)
+    console.log('bio success or fail?',result)
     if (result.success == true){
-      // console.log('success!')
+      console.log('success!')
       movepage()
     } else if (result.success == false){
-      // console.log('failed bio')
+      console.log('failed bio')
     }
   }
   return (
