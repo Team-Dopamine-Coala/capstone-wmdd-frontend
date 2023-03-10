@@ -28,8 +28,8 @@ const SkillsList = ({ navigation }) => {
     return (
     <ScrollView>
       <VStack pt="50px" pb={20}>
-        <Box>
-            <Heading pl={5}>Level 1</Heading>
+        <Box pb={10}>
+            <Heading pl={5}>Gymnastics 1</Heading>
             <FlatList 
                 horizontal
                 data={skills.filter(skill => skill.level === 1)} renderItem={({ item }) => (
@@ -37,8 +37,8 @@ const SkillsList = ({ navigation }) => {
             )}    
             />
         </Box>
-        <Box>
-            <Heading pl={5}>Level 2</Heading>
+        <Box pb={10}>
+            <Heading pl={5}>Gymnastics 2</Heading>
             <FlatList 
                 horizontal
                 data={skills.filter(skill => skill.level === 2)} renderItem={({ item }) => (
@@ -46,8 +46,8 @@ const SkillsList = ({ navigation }) => {
             )}    
             />
         </Box>
-        <Box>
-            <Heading pl={5}>Level 3</Heading>
+        <Box pb={10}>
+            <Heading pl={5}>Gymnastics 3</Heading>
             <FlatList 
                 horizontal
                 data={skills.filter(skill => skill.level === 3)} renderItem={({ item }) => (
@@ -55,7 +55,7 @@ const SkillsList = ({ navigation }) => {
             )}    
             />
         </Box>
-        <Box>
+        <Box pb={10}>
             <Heading pl={5}>Level 4</Heading>
             <FlatList 
                 horizontal
