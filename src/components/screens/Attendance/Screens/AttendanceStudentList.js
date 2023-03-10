@@ -9,7 +9,7 @@ import { DrawerLayoutAndroidBase } from "react-native"
 
 
 const AttendanceStudentList = ({ navigation, route }) => {
-  const {classId} = route.params
+  const {classId, classTitle, classStartTime, classEndTime} = route.params
   const [students, setStudents] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [attendance, setAttendance] = useState({})
@@ -63,12 +63,8 @@ const AttendanceStudentList = ({ navigation, route }) => {
     setAllAttendance(newAllAttendance)
   }
 
-  const test = {
-      class_id: "63e066913e54d66c36ab24f0",
-      student_id: "63e066913e54d66c36ab24f0",
-      present: true,
-      date: "2023-03-01T20:00:00.000Z"
-    }
+
+  console.log("update class object", newClass)
 
   const addAllAttendance = () => {
     console.log(allAttendance)
@@ -102,15 +98,30 @@ const addAttendance = async () => {
 
 };
 
+
+const newClass = {
+  userId: "63fcf0bd354e8150f45dd4d2",
+  startTime: classStartTime,
+  endTime: classEndTime,
+  title: classTitle,
+  completed: true,
+  date: "2023-03-01T20:00:00.000Z"
+}
+
+console.log("new class", newClass)
+
  // Update Class
 const updateClassAttendance = async () => {
+  console.log("classId", classId)
+ 
     await fetch(`${AWS_BACKEND_BASE_URL}/api/class/${classId}`, {
     method: 'PATCH',
     headers: {
       'Content-type': 'application/json',
     },
-    body: JSON.stringify(test),
+    body: JSON.stringify(newClass),
   });
+  console.log("update class object", newClass)
 };
 
 
@@ -127,7 +138,7 @@ const updateClassAttendance = async () => {
         bgColor="#404142"
         onPress={() => {
           // addAttendance()
-          addAllAttendance(); navigation.navigate('Completed Attendance');
+          addAllAttendance(); updateClassAttendance(); navigation.navigate('Completed Attendance');
         }}
       ><Text fontWeight="700" color="#ffffff">Save Attendance</Text></Button>
 
