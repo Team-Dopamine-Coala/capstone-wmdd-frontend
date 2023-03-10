@@ -55,7 +55,13 @@ export const getAllAttendance = async (classid) => {
     return data
 }
 // SKILL =============================================
-// export const getSkillById = async (skillid) => {
+export const getSkillById = async (skillid) => {
+  
+  const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/skill/${skillid}`)
+  const data = await res.json()
+
+  return data
+}
 
 // PROGRAM =============================================
 export const getProgramById = async (programid) => {
