@@ -5,6 +5,7 @@ import Calendar from "./Calendar/Calendar"
 import WelcomeCard from "./Card/WelcomeCard"
 import Loading from '../../layout/Loading'
 import { AuthContext } from '../../context/AuthContext';
+import { useFocusEffect } from '@react-navigation/native';
 
 import { getClassesOfCoach, getAllAttendance } from '../../../utils/queries';
 
@@ -14,6 +15,7 @@ const IndexScreen = ({ navigation }) => {
   const [classes, setClasses] = useState([]);
   const [dateSelected, setSelectedDate] = useState(new Date())
   const [isLoading, setIsLoading] = useState(true)
+  const ready = Math.floor(Math.random() * 1000000)
 
   useEffect(() => {
     setIsLoading(true)
@@ -39,7 +41,7 @@ const IndexScreen = ({ navigation }) => {
       {/* <Text>This is index screen of Attendance</Text> */}
       <WelcomeCard/>
       <Calendar />
-      {isLoading ? <Loading /> : <ClassList classes={classes} navigation={navigation} dateSelected={dateSelected}/>}
+      {isLoading ? <Loading /> : <ClassList classes={classes} navigation={navigation} dateSelected={dateSelected} ready={ready}/>}
     </VStack>
   )
 }

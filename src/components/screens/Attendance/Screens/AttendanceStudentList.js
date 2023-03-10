@@ -65,7 +65,6 @@ const AttendanceStudentList = ({ navigation, route }) => {
   }
 
 
-  console.log("update class object", newClass)
 
   const addAllAttendance = () => {
     console.log(allAttendance)
@@ -96,9 +95,7 @@ const addAttendance = async (newAttendance) => {
     },
     body: JSON.stringify(newAttendance),
   });
-
 };
-
 
 const newClass = {
   userId: "63fcf0bd354e8150f45dd4d2",
@@ -109,7 +106,6 @@ const newClass = {
   date: "2023-03-01T20:00:00.000Z"
 }
 
-console.log("new class", newClass)
 
  // Update Class
 const updateClassAttendance = async () => {
@@ -122,7 +118,6 @@ const updateClassAttendance = async () => {
     },
     body: JSON.stringify(newClass),
   });
-  console.log("update class object", newClass)
 };
 
 
@@ -139,7 +134,9 @@ const updateClassAttendance = async () => {
         bgColor="#404142"
         onPress={() => {
           // addAttendance()
-          addAllAttendance(); updateClassAttendance(); navigation.navigate('Completed Attendance');
+          addAllAttendance(); updateClassAttendance(); navigation.navigate('Completed Attendance', {
+            allAttendance: allAttendance
+          });
         }}
       ><Text fontWeight="700" color="#ffffff">Save Attendance</Text></Button>
 

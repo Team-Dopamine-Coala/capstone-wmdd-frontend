@@ -3,11 +3,12 @@ import {FlatList} from "native-base"
 import { useEffect, useState } from "react"
 import { getAllAttendance } from "../../../../utils/queries"
 
-const ClassList = ({ classes, navigation, dateSelected }) => {
+const ClassList = ({ classes, navigation, dateSelected, ready }) => {
   const [classesWithCheck, setClassesWithCheck] = useState(classes)
   const [attendances, setAttendances] = useState([])
-  const [ready, setReady] = useState(false)
- 
+  const [fetchedAtdc, setFetchedAtdc] = useState(ready)
+  console.log("ready:  ", ready)
+  console.log("fetchedAtdc: ", fetchedAtdc)
     useEffect(() => {
       for (let index = 0; index < classesWithCheck.length; index++) {
         const element = classesWithCheck[index];
@@ -20,9 +21,9 @@ const ClassList = ({ classes, navigation, dateSelected }) => {
             newAtdc.push(curr)
             setAttendances(newAtdc)
             if (newAtdc.length == classes.length) {
-              setReady(true)
-              // console.log("attendances:  ", attendances)
-              console.log("ready:  ", ready)
+              setFetchedAtdc(Math.floor(Math.random() * 1000000))
+              console.log("fetchedAtdc: ", fetchedAtdc)
+              // console.log("ready:  ", ready)
             }
           }
         )
@@ -31,13 +32,13 @@ const ClassList = ({ classes, navigation, dateSelected }) => {
 
       
       
-    }, [])
+    })
 
     return(
 
         <FlatList
         data={classesWithCheck}
-        extraData={ready}
+        extraData={fetchedAtdc}
         renderItem={({ item }) => (
           <Card
             dateSelected={dateSelected}

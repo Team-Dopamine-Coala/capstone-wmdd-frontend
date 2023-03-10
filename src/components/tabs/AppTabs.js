@@ -11,6 +11,7 @@ import { BlurView } from 'expo-blur';
 
 const Tab = createBottomTabNavigator();
 
+
 const AppTabs = () => {
   return (
       <Tab.Navigator
