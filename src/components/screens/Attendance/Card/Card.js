@@ -66,11 +66,14 @@ const Card = ({ title, startTime, endTime, id, navigation, dateSelected, complet
                     })}
                     else{
                     navigation.navigate('Attendance Student List', {
-                      classId: id
+                      classId: id,
+                      classTitle: title,
+                      classStartTime: startTime, 
+                      classEndTime: endTime
                     })
                   }}}
                 >
-                  { completed ? <Text  fontWeight="700" color="#404142">View</Text> : <Text  fontWeight="700" color="#ffffff">Start</Text>}
+                  { completed ? <Text fontWeight="700" color="#404142">View</Text> : <Text  fontWeight="700" color="#ffffff">Start</Text>}
                 </Button>
               </HStack>
           </Box>
