@@ -152,7 +152,7 @@ const StudentDetail = ({route, navigation }) => {
               // console.log(i,'からだよ', achievementCardArray)
               createObject(NBR, levelName, completedNumber, skilltotal)
             }else {
-              console.log(i, '入ってる',achievementCardArray)
+              // console.log(i, '入ってる',achievementCardArray)
               //levelが同じだったらcompletedの数を合計する
               achievementCardArray.map((item, e) => {
                   if(item.level === levelName){

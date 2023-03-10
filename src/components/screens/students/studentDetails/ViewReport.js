@@ -4,7 +4,7 @@ import { TouchableOpacity, StyleSheet } from 'react-native'
 
 const ViewReport = ({student}) => {
     const clickReport = () => {
-        console.log('move to report page')
+        // console.log('move to report page')
     }
   return (
     <View>  

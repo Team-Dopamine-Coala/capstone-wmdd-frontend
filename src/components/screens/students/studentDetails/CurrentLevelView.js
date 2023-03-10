@@ -15,7 +15,7 @@ const CurrentLevelView = ({classTitle, classCard}) => {
   //Progress Bar
   const percent = completedSkillNbr / totalSkillNbr
 
-  console.log('doko',classCard.level)
+  // console.log('doko',classCard.level)
   
   return (
     <View style={styles.container}>
