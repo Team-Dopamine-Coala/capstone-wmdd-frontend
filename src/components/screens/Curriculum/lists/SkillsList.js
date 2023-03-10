@@ -1,10 +1,11 @@
-import { View, Button, VStack, Box, Text, FlatList } from "native-base"
+import { VStack, Box, Heading, FlatList, ScrollView } from "native-base"
 import { useEffect, useState } from "react"
 
 import { fetchSkills } from '../../../../utils/queries';
+import SkillItem from '../listItems/SkillItem'
 
 const SkillsList = ({ navigation }) => {
-    const [skills, setSkills] = useState(null)
+    const [skills, setSkills] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
@@ -20,14 +21,60 @@ const SkillsList = ({ navigation }) => {
         )
     }, [])
 
-    console.log(skills.map(skill => skill.name))
+    useEffect(() => {
+        console.log(skills)
+    }, [skills])
   
     return (
-      <VStack pt="50px" pb={20} >
-        {skills.map((skill) => {
-            return <Text key={skill.id}>{skill.name}</Text>
-        })}
+    <ScrollView>
+      <VStack pt="50px" pb={20}>
+        <Box>
+            <Heading pl={5}>Level 1</Heading>
+            <FlatList 
+                horizontal
+                data={skills.filter(skill => skill.level === 1)} renderItem={({ item }) => (
+                <SkillItem item={item}/>
+            )}    
+            />
+        </Box>
+        <Box>
+            <Heading pl={5}>Level 2</Heading>
+            <FlatList 
+                horizontal
+                data={skills.filter(skill => skill.level === 2)} renderItem={({ item }) => (
+                <SkillItem item={item}/>
+            )}    
+            />
+        </Box>
+        <Box>
+            <Heading pl={5}>Level 3</Heading>
+            <FlatList 
+                horizontal
+                data={skills.filter(skill => skill.level === 3)} renderItem={({ item }) => (
+                <SkillItem item={item}/>
+            )}    
+            />
+        </Box>
+        <Box>
+            <Heading pl={5}>Level 4</Heading>
+            <FlatList 
+                horizontal
+                data={skills.filter(skill => skill.level === 4)} renderItem={({ item }) => (
+                <SkillItem item={item}/>
+            )}    
+            />
+        </Box>
+        <Box>
+            <Heading pl={5}>Level 5</Heading>
+            <FlatList 
+                horizontal
+                data={skills.filter(skill => skill.level === 5)} renderItem={({ item }) => (
+                <SkillItem item={item}/>
+            )}    
+            />
+        </Box>
       </VStack>
+      </ScrollView>
     )
   }
   
