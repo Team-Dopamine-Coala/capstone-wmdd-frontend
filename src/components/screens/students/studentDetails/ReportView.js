@@ -1,7 +1,7 @@
 import { View, Text, VStack, ListItem, Box } from "native-base"
 import { useState } from "react"
 import { StyleSheet, Modal, TouchableOpacity } from "react-native"
-import StudentBiometrics from "../biometrics/StudentBiometrics"
+import StudentBiometrics from "../Biometrics/StudentBiometrics"
 
 const ReportView = ({student, navigation}) => {
 const [modalIsOpen, setModalIsOpen] = useState(false)
