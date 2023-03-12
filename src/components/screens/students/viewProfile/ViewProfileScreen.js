@@ -1,5 +1,5 @@
 import { Text, VStack, View, Box, Heading } from "native-base"
-import { StyleSheet } from "react-native"
+import { StyleSheet, TouchableOpacity, Linking } from "react-native"
 import moment from "moment"
 
 const ViewProfileScreen = ({route, navigation}) => {
@@ -12,7 +12,7 @@ const ViewProfileScreen = ({route, navigation}) => {
         <Box>
             <Text style={styles.subheading}>Birthday</Text>
             <VStack style={styles.box}>
-                <Text >{moment(student.birthday).format('ddd, D MMM YYYY')}</Text>
+                <Text>{moment(student.birthday).format('ddd, D MMM YYYY')}</Text>
                 
             </VStack>
         </Box>
@@ -37,12 +37,16 @@ const ViewProfileScreen = ({route, navigation}) => {
                     <Text>{student.guardianName}</Text>
                 </Box>
                 <Box>
-                    <Text>Phone Number</Text>
-                    <Text>{student.guardianNumber}</Text>
+                    <Linking tel={student.guardianNumber}>
+                        <Text>Phone Number</Text>
+                        <Text>{student.guardianNumber}</Text>
+                    </Linking >
                 </Box>
                 <Box>
-                    <Text>Email</Text>
-                    <Text>{student.guardianEmail}</Text>
+                    <Linking mailto={student.guardianEmail}>
+                        <Text>Email</Text>
+                        <Text>{student.guardianEmail}</Text>
+                    </Linking >
                 </Box>
             </VStack>
         </Box>
