@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native"
 import { Text, VStack, Box } from "native-base"
 import { useEffect, useContext, useState } from "react"
+import moment from "moment"
 
 import {getAllAttendance} from '../../../../utils/queries'
 import { AuthContext } from '../../../context/AuthContext';
@@ -13,7 +14,8 @@ const AttendanceListView = ({student, navigation}) => {
   // console.log(student._id)
   
   //日付の通常表示 attend.date.toDateString()
-
+  // moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+  // moment(attend.date).format('ddd, D MMM YYYY')
 
   useEffect(() => {
     getAllAttendance(classid,userToken)
@@ -27,7 +29,8 @@ const AttendanceListView = ({student, navigation}) => {
         <Text style={styles.title}>Attendance</Text>
         {myAttendance.map((attend, i) =>(
           <Box key={i}>
-            <Text>{attend.date}</Text>
+            {/* <Text>{attend.date}</Text> */}
+            <Text>{moment(attend.date).format('ddd, D MMM YYYY')}</Text>
             {(attend.present == true ? <Text>Present</Text> : <Text style={styles.absent}>Absent</Text>)}
           </Box>
           

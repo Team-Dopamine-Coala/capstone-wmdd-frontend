@@ -1,5 +1,6 @@
 import { Text, VStack, View, Box, Heading } from "native-base"
 import { StyleSheet } from "react-native"
+import moment from "moment"
 
 const ViewProfileScreen = ({route, navigation}) => {
 
@@ -11,7 +12,8 @@ const ViewProfileScreen = ({route, navigation}) => {
         <Box>
             <Text style={styles.subheading}>Birthday</Text>
             <VStack style={styles.box}>
-                <Text >{student.birthday}</Text>
+                <Text >{moment(student.birthday).format('ddd, D MMM YYYY')}</Text>
+                
             </VStack>
         </Box>
         <Box>
