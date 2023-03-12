@@ -14,28 +14,44 @@ const StudentStack = () => {
       <Stack.Screen 
         name="Student Index" 
         component={IndexScreen}
-        options={({ route }) => ({
-          title: 'Students',
-          headerTitleAlign: 'center'
-        })}
+        options={{
+          title: 'Student List',
+          headerStyle: {
+            backgroundColor: '#2c3e50'
+          },
+          headerTitleStyle: {
+            color: '#fff'
+          },
+          headerTitleAlign: 'center',
+        }}
       />
       <Stack.Screen 
         name="Student Detail" 
         component={StudentDetail}
-        options={({ route }) => ({
+        options={{
           title: 'Student Profile',
-          // headerBackTitle: 'Student List',
+          headerStyle: {
+            backgroundColor: '#2c3e50'
+          },
+          headerTitleStyle: {
+            color: '#fff'
+          },
           headerTitleAlign: 'center'
-        })}
+        }}
       />
       <Stack.Screen 
         name="Student Profile" 
         component={ViewProfileScreen}
-        options={({ route }) => ({
+        options={{
           title: 'Student Profile',
-          // headerBackTitle: 'Student List',
+          headerStyle: {
+            backgroundColor: '#2c3e50'
+          },
+          headerTitleStyle: {
+            color: '#fff'
+          },
           headerTitleAlign: 'center'
-        })}
+        }}
       />
     </Stack.Navigator>
   )
