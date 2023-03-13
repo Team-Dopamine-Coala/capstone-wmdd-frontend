@@ -80,7 +80,7 @@ const IndexScreen = ({ navigation, route }) => {
   return(
     <SafeAreaView style={styles.container}>
       <Box>
-        <StudentsSearch />
+        <StudentsSearch myAllStudents={myAllStudents}/>
       </Box>
       <ScrollView style={styles.scrollarea}>
         {nameTitle.map((title, i) => ( 
@@ -89,7 +89,7 @@ const IndexScreen = ({ navigation, route }) => {
             <VStack  style={styles.nameContainer}>
               {title.groupedConn.map((trainee, index) => (             
                 <TouchableOpacity   key={index} 
-                                    onPress={() => {console.log('clickしたよ',trainee),
+                                    onPress={() => {
                                     navigation.navigate('Student Detail',{trainee})
                 }}>
                   <Text>{trainee.firstname} {trainee.lastname}</Text>

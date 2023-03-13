@@ -36,7 +36,8 @@ const StudentStack = () => {
             color: '#fff'
           },
           headerTitleAlign: 'center',
-          headerBackTitle: '',
+          headerBackTitle: null,
+          headerBackTitleVisible: false,
         }}
       />
       <Stack.Screen 
@@ -47,7 +48,8 @@ const StudentStack = () => {
           headerStyle: {
             backgroundColor: 'orange'
           },
-          headerBackTitle: '',
+          headerBackTitle: null,
+          headerBackTitleVisible: false,
           headerTitleStyle: {
             color: '#fff'
           },

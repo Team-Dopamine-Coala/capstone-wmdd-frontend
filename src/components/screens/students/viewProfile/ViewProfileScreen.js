@@ -2,9 +2,14 @@ import { Text, VStack, View, Box, Heading } from "native-base"
 import { StyleSheet, TouchableOpacity, Linking } from "react-native"
 import moment from "moment"
 
-const ViewProfileScreen = ({route, navigation}) => {
+const ViewProfileScreen = ({route}) => {
 
     const student = route.params.student
+
+    const clickContactFunc = async (contactway, contact) => {
+            await Linking.openURL(`${contactway}:${contact}`).then(() => null).catch(() => null)
+            console.log('コンタクトクリック',contactway, contact)
+    }
 
   return (
     <View style={styles.container}>
@@ -20,12 +25,12 @@ const ViewProfileScreen = ({route, navigation}) => {
             <Text style={styles.subheading}>Medical Information</Text>
             <VStack style={styles.box}>
                 <Box>
-                    <Text>Allegies</Text>
-                    {/* <Text>{student.}</Text> */}
+                    <Text>Allergies</Text>
+                    <Text>{student.allergy}</Text>
                 </Box>
                 <Box>
                     <Text>Conditions</Text>
-                    <Text>{student.medicalInfo}</Text>
+                    <Text>{student.condition}</Text>
                 </Box>
             </VStack>
         </Box>
@@ -36,18 +41,17 @@ const ViewProfileScreen = ({route, navigation}) => {
                     <Text>Name</Text>
                     <Text>{student.guardianName}</Text>
                 </Box>
-                <Box>
-                    <Linking tel={student.guardianNumber}>
+                
+                    <TouchableOpacity onPress={() => clickContactFunc('tel',student.guardianNumber)}>
                         <Text>Phone Number</Text>
                         <Text>{student.guardianNumber}</Text>
-                    </Linking >
-                </Box>
-                <Box>
-                    <Linking mailto={student.guardianEmail}>
+                    </TouchableOpacity >
+               
+                    <TouchableOpacity onPress={() => clickContactFunc('mailto',student.guardianEmail)}>
                         <Text>Email</Text>
                         <Text>{student.guardianEmail}</Text>
-                    </Linking >
-                </Box>
+                    </TouchableOpacity >
+              
             </VStack>
         </Box>
     </View>

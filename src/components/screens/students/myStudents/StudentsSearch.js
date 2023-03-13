@@ -3,14 +3,15 @@ import { Input } from "native-base"
 import { StyleSheet } from "react-native"
 // import { SearchBar } from "react-native-elements";
 
-const StudentsSearch = (mystudents) => {
+const StudentsSearch = ({myAllStudents}) => {
 const [student, setStudent] = useState('')
+console.log('サーチ',myAllStudents)
   return (
     <>
       <Input  placeholder="Search"
                   variant="rounded"
                   style={styles.inputfield}
-                  value={mystudents}
+                  value={myAllStudents}
       />
     </>
   )
