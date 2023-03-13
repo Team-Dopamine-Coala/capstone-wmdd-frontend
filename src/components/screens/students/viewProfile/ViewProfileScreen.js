@@ -7,7 +7,9 @@ const ViewProfileScreen = ({route}) => {
     const student = route.params.student
 
     const clickContactFunc = async (contactway, contact) => {
-            await Linking.openURL(`${contactway}:${contact}`).then(() => null).catch(() => null)
+            await Linking.openURL(`${contactway}:${contact}`)
+                .then(() => null)
+                .catch(() => null)
             console.log('コンタクトクリック',contactway, contact)
     }
 
