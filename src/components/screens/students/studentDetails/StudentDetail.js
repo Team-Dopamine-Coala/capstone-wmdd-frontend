@@ -209,23 +209,44 @@ const StudentDetail = ({route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
-        <TouchableOpacity>
-          {<Text>{classTitle}</Text>}
-        </TouchableOpacity>
-        <ReportView student={trainee} navigation={navigation}/>
-        <CurrentLevelView classTitle={classTitle} classCard={classCard}/>
-        <SkillsAchievementView levelCards={achievementCard}/>
-        <AttendanceListView student={trainee} /> 
-        <ViewReport student={trainee}/>
-      </ScrollView>  
+      <ReportView student={trainee} navigation={navigation}/>
+      <View style={styles.background}>
+        <ScrollView>
+          <TouchableOpacity style={styles.classtab}>
+            {<Text style={styles.classtabtext}>{classTitle}</Text>}
+          </TouchableOpacity>
+          <CurrentLevelView classTitle={classTitle} classCard={classCard}/>
+          <SkillsAchievementView levelCards={achievementCard}/>
+          <AttendanceListView student={trainee} /> 
+          <ViewReport student={trainee}/>
+        </ScrollView>
+      </View>  
     </View>
   )
 }
 const styles = StyleSheet.create ({
   container: {
+    // paddingHorizontal: 20,
+    // paddingVertical: 20,
+    backgroundColor: 'orange',
+  },
+  classtab:{
+    borderRadius: 81,
+    paddingHorizontal: 14,
+    paddingVertical: 6,
+    backgroundColor: '#404142',
+  },
+  background:{
+    backgroundColor: '#FDFDFD',
     paddingHorizontal: 20,
-    paddingVertical: 20,
+    paddingVertical: 24,
+    borderRadius: 28,
+  },
+  classtabtext:{
+    color: '#FAF9F9',
+    fontWeight:'400',
+    fontSize: 14,
+    // letter-Spacing: -0.02em,
   }
 })
 export default StudentDetail

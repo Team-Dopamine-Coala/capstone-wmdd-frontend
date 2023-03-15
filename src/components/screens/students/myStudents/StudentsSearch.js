@@ -1,17 +1,26 @@
 import { useState } from "react"
 import { Input } from "native-base"
 import { StyleSheet } from "react-native"
-// import { SearchBar } from "react-native-elements";
+// import { SearchBar } from "react-native-elements"
 
 const StudentsSearch = ({myAllStudents}) => {
-const [student, setStudent] = useState('')
-console.log('サーチ',myAllStudents)
+console.log('search',myAllStudents)
+const [value, setValue] = useState('')
+
   return (
     <>
+      {/* <SearchBar laceholder="Search"
+                  value={myAllStudents}
+                  onChangeText={(search) => {
+                    setSearch(search)}}
+
+      /> */}
       <Input  placeholder="Search"
                   variant="rounded"
                   style={styles.inputfield}
                   value={myAllStudents}
+                  onPress={(e) => {
+                    setValue(e.target.myAllStudents)}}
       />
     </>
   )

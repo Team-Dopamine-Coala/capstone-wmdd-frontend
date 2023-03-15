@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Alert, StatusBar } from 'react-native';
+import { Alert, StatusBar, StyleSheet, Text } from 'react-native';
 import { View } from "native-base"
 import * as LocalAuthentication from 'expo-local-authentication'
 
@@ -46,12 +46,12 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
     (async () => {
       const isBiometricSupported = await LocalAuthentication.hasHardwareAsync();
       
-      console.log('bio support?',isBiometricSupported)
+      console.log('1.bio support on device?',isBiometricSupported)
       if(isBiometricSupported === false){
-        console.log('Your device is compatible with Biometrics')
+        console.log('1.Your device is compatible with Biometrics')
         fallBackToDefaultAuth()
       }if (isBiometricSupported === true) {
-        console.log('Face or Fingerprint scanner is available on this device')
+        console.log('1.Face or Fingerprint scanner is available on this device')
         handleBiometricAuth()
       }
     })();
@@ -64,7 +64,7 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
     //Password入力
     Alert.prompt(
       "Enter Password",
-      "Please enter login password to varify for access student's personal info.",
+      "Please enter login password to access student's personal info.",
       [
         {
           text: "Cancel",
@@ -121,7 +121,7 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
   const handleBiometricAuth = async () => {
     //Check if Hardware support biometrics  
     const isBiometricAvailable = await LocalAuthentication.hasHardwareAsync()
-    console.log('available bio?',isBiometricAvailable)
+    console.log('2. available bio?',isBiometricAvailable)
     
     //if not supported, ask to input password 
     if (!isBiometricAvailable)
@@ -136,7 +136,7 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
     let supportedBiometrics;
     if (isBiometricAvailable) {
       supportedBiometrics = await LocalAuthentication.supportedAuthenticationTypesAsync();
-      console.log('finger or face?',supportedBiometrics)
+      console.log('3.finger or face?',supportedBiometrics)
     }
     
     
@@ -156,10 +156,12 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
 
       //5. Authenticate use with Biometrics (Fingerprint, Facial recognition)
       const result = await LocalAuthentication.authenticateAsync
+      
       ({
-        promptMessage: 'Login with Biometrics',
-        cancelLabel: 'Cancel',
+        promptMessage: 'Varify with Biometrics',
         disableDeviceFallback: true,
+        cancelLabel: 'Cancel',
+        onPress: () => {navigation.navigate('Student Profile')},
       });
         successProcess(result)
     }
@@ -183,7 +185,7 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
 
   //When BioAuth success
   const successProcess = (result) => {
-    console.log('bio success or fail?',result)
+    console.log('4.bio success or fail?',result)
     if (result.success == true){
       console.log('success!')
       movepage()
@@ -191,14 +193,21 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
       console.log('failed bio')
     }
   }
-  return (
-    <View>
 
+
+
+  return (
+    <View style={styles.biobackground}>
+        <Text>Yahoo</Text>
         <StatusBar style="auto" />
     </View>
   )
 }
-
+const styles = StyleSheet.create ({
+  biobackground:{
+      backgroundColor:'yellow',
+  }
+})
 export default StudentBiometrics
 
 
