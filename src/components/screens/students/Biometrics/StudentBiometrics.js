@@ -172,7 +172,7 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
   return (
     <View style={styles.container}>
         <Text>Yahoo</Text>
-        {biosuccess == true ? <Text>SUCCESS!</Text> : null}
+        {/* {biosuccess == true ? <Text>SUCCESS!</Text> : null} */}
         <StatusBar style="auto" />
     </View>
   )
