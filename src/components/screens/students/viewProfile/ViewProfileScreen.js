@@ -1,4 +1,4 @@
-import { Text, VStack, View, Box, Heading } from "native-base"
+import { Text, VStack, View, Box, Heading, HStack } from "native-base"
 import { StyleSheet, TouchableOpacity, Linking } from "react-native"
 import moment from "moment"
 
@@ -15,54 +15,63 @@ const ViewProfileScreen = ({route}) => {
 
   return (
     <View style={styles.container}>
-        <Heading style={styles.heading}>{student.firstname} {student.lastname}</Heading>
-        <Box>
-            <Text style={styles.subheading}>Birthday</Text>
-            <VStack style={styles.box}>
-                <Text>{moment(student.birthday).format('ddd, D MMM YYYY')}</Text>
-                
-            </VStack>
-        </Box>
-        <Box>
-            <Text style={styles.subheading}>Medical Information</Text>
-            <VStack style={styles.box}>
-                <Box>
-                    <Text>Allergies</Text>
-                    <Text>{student.allergy}</Text>
-                </Box>
-                <Box>
-                    <Text>Conditions</Text>
-                    <Text>{student.condition}</Text>
-                </Box>
-            </VStack>
-        </Box>
-        <Box>
-            <Text style={styles.subheading}>Guardian Information</Text>
-            <VStack style={styles.box}>
-                <Box>
-                    <Text>Name</Text>
-                    <Text>{student.guardianName}</Text>
-                </Box>
-                
+        <Box style={styles.background}>
+            <Heading style={styles.heading}>{student.firstname} {student.lastname}</Heading>
+            <Box>
+                <Text style={styles.subheading}>Birthday</Text>
+                <VStack style={styles.box} bg="#ffffff" borderRadius="md" shadow={5}>
+                    <Text>{moment(student.birthday).format('ddd, D MMM YYYY')}</Text>
+
+                </VStack>
+            </Box>
+            <Box>
+                <Text style={styles.subheading}>Medical Information</Text>
+                <VStack style={styles.box} bg="#ffffff" borderRadius="md" shadow={5}>
+                    <Box>
+                        <Text style={styles.title}>Allergies</Text>
+                        <Text>{student.allergy}</Text>
+                    </Box>
+                    <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} justifyContent="space-between"/>
+                    <Box>
+                        <Text style={styles.title}>Conditions</Text>
+                        <Text>{student.condition}</Text>
+                    </Box>
+                </VStack>
+            </Box>
+            <Box>
+                <Text style={styles.subheading}>Guardian Information</Text>
+                <VStack style={styles.box} bg="#ffffff" borderRadius="md" shadow={5}>
+                    <Box>
+                        <Text style={styles.title}>Name</Text>
+                        <Text>{student.guardianName}</Text>
+                    </Box>
+                    <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} justifyContent="space-between"/>
                     <TouchableOpacity onPress={() => clickContactFunc('tel',student.guardianNumber)}>
-                        <Text>Phone Number</Text>
+                        <Text style={styles.title}>Phone Number</Text>
                         <Text>{student.guardianNumber}</Text>
                     </TouchableOpacity >
-               
+                    <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} justifyContent="space-between"/>
                     <TouchableOpacity onPress={() => clickContactFunc('mailto',student.guardianEmail)}>
-                        <Text>Email</Text>
+                        <Text style={styles.title}>Email</Text>
                         <Text>{student.guardianEmail}</Text>
                     </TouchableOpacity >
-              
-            </VStack>
+
+                </VStack>
+            </Box>
         </Box>
     </View>
       )
 }
 const styles = StyleSheet.create ({
     container: {
+        backgroundColor: 'orange',
+    },
+    background: {
         paddingHorizontal: 10,
         paddingVertical: 30,
+        backgroundColor: '#FDFDFD',
+        borderTopLeftRadius: 28,
+        borderTopRightRadius: 28,
     },
     heading: {
         textAlign: "center",
@@ -72,10 +81,14 @@ const styles = StyleSheet.create ({
         fontSize: 15,
     },
     box: {
-        backgroundColor: '#bbb',
+        // backgroundColor: '#bbb',
         borderRadius: 12,
         paddingHorizontal: 24,
         paddingVertical: 14,
+        marginBottom: 24,
+    },
+    title: {
+        marginBottom: 8,
     }
   })
 export default ViewProfileScreen

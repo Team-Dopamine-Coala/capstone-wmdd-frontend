@@ -45,7 +45,8 @@ const CurrentLevelView = ({classTitle, classCard}) => {
 const styles = StyleSheet.create ({
   container: {
     paddingVertical: 10,
-    backgroundColor: '#ffffff',
+    // backgroundColor: '#ffffff',
+    marginHorizontal: 5,
   },
   whitebox: {
     height: 60,

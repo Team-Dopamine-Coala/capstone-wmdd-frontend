@@ -5,9 +5,9 @@ const SkillsAchievementView = ({levelCards}) => {
   return (
     <View style={styles.container}>
         <Text style={styles.title}>Skills Achievement</Text>
-        <VStack>
+        <VStack style={styles.skillsbox}>
           {levelCards.map((item, i) => (
-            <Box key={i} style={styles.levelbox}>
+            <Box key={i} style={styles.levelbox} bg="#ffffff" borderRadius="md" shadow={5}>
               <Text style={styles.level}>{item.level}</Text>
               <Box style={styles.numbers}>
                 <Text style={styles.Bold}>{item.completeSkillNumber}</Text> 
@@ -23,15 +23,17 @@ const SkillsAchievementView = ({levelCards}) => {
 const styles = StyleSheet.create ({
   container: {
     paddingVertical: 10,
-    // paddingHorizontal: 24,
   },
   title: {
     fontSize: 16,
     fontWeight: "500",
     marginBottom: 16,
   },
+  skillsbox:{
+    flexDirection: 'row',
+    paddingLeft: 5,
+  },
   levelbox: {
-    backgroundColor: 'gray',
     borderRadius: 20,
     paddingVertical: 10,
     paddingHorizontal: 24, 
@@ -43,16 +45,18 @@ const styles = StyleSheet.create ({
     marginBottom: 4,
   },
   numbers:{
-    display:'flex',
+    flexDirection: 'row',
   },
   Bold:{
     fontWeight: '700',
     fontSize: 32,
-    height: 30,
+    // height: 30,
   },
   normal:{
     fontWeight: '300',
     fontSize: 16,
+    
+    // paddingTop:10,
   },
   learned:{
     fontWeight: '300',

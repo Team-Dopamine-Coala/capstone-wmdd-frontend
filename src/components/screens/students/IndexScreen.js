@@ -1,4 +1,4 @@
-import { Box, Text, VStack, ScrollView, Input, View } from "native-base"
+import { Box, Text, VStack, ScrollView, Input, View, HStack } from "native-base"
 import { useEffect, useState, useContext } from "react"
 import { TouchableOpacity, StyleSheet, SafeAreaView } from "react-native"
 import DropShadow from "react-native-drop-shadow";
@@ -113,14 +113,15 @@ const IndexScreen = ({ navigation, route }) => {
             .map((nmtitle, i) => ( 
               <Box key={i} style={styles.box}> 
                 <Text style={styles.abc}>{nmtitle.group}</Text>
-                <VStack  style={styles.nameContainer}>
-                  {nmtitle.groupedConn.map((trainee, index) => (             
-                    <TouchableOpacity   key={index} 
+                <VStack  style={styles.nameContainer} bg="#ffffff" borderRadius="md" shadow={5}>
+                  {nmtitle.groupedConn.map((trainee, j) => (        
+                    <TouchableOpacity   key={j} 
                                         onPress={() => {
                                         navigation.navigate('Student Detail',{trainee})
                     }}>
                       <Text>{trainee.firstname} {trainee.lastname}</Text>
                     </TouchableOpacity >
+                    // {j++ ? <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} justifyContent="space-between"/> : null}
                   ))}
                 </VStack> 
                </Box>    
@@ -156,7 +157,8 @@ const styles = StyleSheet.create ({
     backgroundColor: '#FDFDFD',
     paddingVertical:24,
     paddingHorizontal: 20,
-    borderRadius: 28,
+    borderTopRightRadius:28,
+    borderTopLeftRadius:28,
   },
   inputfield: {
     fontStyle: 'normal',
@@ -186,11 +188,14 @@ const styles = StyleSheet.create ({
      paddingHorizontal: 16,
      paddingTop: 10,
      paddingBottom: 10,
-    //  dropShadow(0px 2px 8px rgba(0, 0, 0, 0.25))
+     marginHorizontal: 5,
   }
 })
 export default IndexScreen
 
+//=TO DO LIST
+//1.j＋＋だったら下に棒を入れる！
+//2.sortingのコードを完成させる！Queryと　sortがどのようにすればいいか！
 
 // if(query === ''){
           //   return nmtitle

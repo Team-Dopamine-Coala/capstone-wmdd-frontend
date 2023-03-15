@@ -8,7 +8,7 @@ const ViewReport = ({student}) => {
     }
   return (
     <View>  
-      <VStack style={styles.box}>
+      <VStack style={styles.box} bg="#ffffff" borderRadius="md" shadow={5}>
         <TouchableOpacity onPress={clickReport} >
             <Text>View Report</Text>
         </TouchableOpacity>
@@ -19,9 +19,8 @@ const ViewReport = ({student}) => {
 const styles = StyleSheet.create ({
 box: {
     padding:10,
-    backgroundColor: '#ffffff',
-    borderRadius: 10,
-    shadow: 5,
+  marginBottom: 10,
+  marginHorizontal: 5,
 }
 })
 export default ViewReport
