@@ -72,13 +72,16 @@ const styles = StyleSheet.create ({
         backgroundColor: '#FDFDFD',
         borderTopLeftRadius: 28,
         borderTopRightRadius: 28,
+        marginTop: 10,
     },
     heading: {
         textAlign: "center",
+        fontSize: 32,
     },
     subheading: {
         fontWeight: 'bold',
         fontSize: 15,
+        marginBottom: 8,
     },
     box: {
         // backgroundColor: '#bbb',
