@@ -3,7 +3,6 @@ import { View, Text, Image, FlatList, Box, VStack, Heading, AspectRatio, HStack,
 import { useState, useRef } from "react"
 
 const SkillItem = ({item}) => {
-
     return(
         <View>
                 <Box width="185px" m={3} overflow="hidden" >
@@ -13,6 +12,7 @@ const SkillItem = ({item}) => {
                         </AspectRatio>
                         <Center>
                             <Text fontSize='md' bold pt={2}>{item.name}</Text>
+                            <Text>{item._id}</Text>
                         </Center>
                     </VStack>
                 </Box>

@@ -1,4 +1,4 @@
-import { View, Button, VStack, Box } from "native-base"
+import { VStack, Box } from "native-base"
 import { useState, useEffect } from 'react'
 import { fetchSkills } from '../../../utils/queries';
 
@@ -27,12 +27,16 @@ const CurriculumScreen = ({ navigation }) => {
   }, [skills])
 
   return (
-    <VStack pt="100px" pb={20} flex={1} bgColor="#F4903F">
-      <Box bgColor="#ffffff" borderTopLeftRadius={20} borderTopRightRadius={20}>
-        { isLoading ? <Loading /> : <SkillsList skills={skills} />}
-        {/* <SkillsList /> */}
-      </Box>
-    </VStack>
+    <>
+      <VStack pt="100px" pb={20} flex={1} bgColor="#F4903F">
+        <Box bgColor="#ffffff" borderTopLeftRadius={20} borderTopRightRadius={20}>
+          { isLoading ? <Loading /> : <SkillsList skills={skills} navigation={navigation}/>}
+        </Box>
+      </VStack>
+
+    </>
+
+
   )
 }
 
