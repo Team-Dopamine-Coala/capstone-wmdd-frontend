@@ -42,21 +42,37 @@ const SkillsList = ({ navigation, skills }) => {
                         />
                     </Box>
                      <Box pb={5}>
-                        <Heading pl={5}>Gymnastics 2</Heading>
+                        <Flex direction="row" justifyContent="space-between" alignItems="center">
+                            <Heading pl={5}>Gymnastics 2 </Heading>
+                            <Link 
+                                pr={5} 
+                                onPress={() => navigation.navigate('Skill List', {
+                                    skills: skills.filter(skill => skill.level === 3 || skill.level === 4),
+                                    name: 'Gymnastics 2'
+                            })}>View All</Link>
+                        </Flex>
                         <FlatList 
                             horizontal
                             data={skills.filter(skill => skill.level === 3 || skill.level === 4)} renderItem={({ item }) => (
-                            <Pressable onPress={openSheet}>
+                            <Pressable onPress={() => openSheet(item._id)}>
                             <SkillItem item={item} /></Pressable>
                             )}    
                         />
                     </Box>
                     <Box pb={10}>
-                        <Heading pl={5}>Gymnastics 3</Heading>
+                        <Flex direction="row" justifyContent="space-between" alignItems="center">
+                            <Heading pl={5}>Gymnastics 3 </Heading>
+                            <Link 
+                                pr={5} 
+                                onPress={() => navigation.navigate('Skill List', {
+                                    skills: skills.filter(skill => skill.level === 5),
+                                    name: 'Gymnastics 3'
+                            })}>View All</Link>
+                        </Flex>
                         <FlatList 
                             horizontal
                             data={skills.filter(skill => skill.level === 5)} renderItem={({ item }) => (
-                            <Pressable onPress={openSheet}>
+                            <Pressable onPress={() => openSheet(item._id)}>
                             <SkillItem item={item} /></Pressable>
                             )}    
                         />
