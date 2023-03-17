@@ -49,7 +49,8 @@ const styles = StyleSheet.create ({
   },
   Bold:{
     fontWeight: '700',
-    fontSize: 32,
+    // fontSize: 32,
+    fontSize: 22,
     // height: 30,
   },
   normal:{
