@@ -1,6 +1,7 @@
 import IndexScreen from "../screens/Evaluation/IndexScreen"
 import EvaluationStudentListScreen from "../screens/Evaluation/EvaluationStudentListScreen"
 import EvaluationIndividualStudent from "../screens/Evaluation/EvaluationIndividualStudent"
+import EvaluationIndividualStudentComment from "../screens/Evaluation/EvaluationIndividualStudentComment"
 
 import { createStackNavigator, TransitionPresets } from "@react-navigation/stack"
 
@@ -28,6 +29,8 @@ const EvaluationStack = () => {
           title: `${route.params.className} Evaluation`,
           headerBackTitle: '',
           headerTitleAlign: 'center',
+          headerTransparent: true,
+          headerTintColor: '#ffffff',
           classId: route.params.classId,
           className: route.params.className
         })}
@@ -39,6 +42,19 @@ const EvaluationStack = () => {
           title: '',
           headerBackTitle: '',
           studentsList: route.params.students,
+          className: route.params.className
+        })}
+      />
+      <Stack.Screen
+        name="Evaluation Individual Student Comment"
+        component={EvaluationIndividualStudentComment}
+        options={({ route }) => ({
+          title: 'Add Feedback',
+          headerTitleAlign: 'center',
+          headerBackTitle: '',
+          studentId: route.params.studentId,
+          studentName: route.params.studentName,
+          classId: route.params.classId,
           className: route.params.className
         })}
       />

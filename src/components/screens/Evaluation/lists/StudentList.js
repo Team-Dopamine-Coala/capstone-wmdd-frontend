@@ -1,17 +1,43 @@
-import { Box, FlatList, Text } from "native-base"
+import { Box, FlatList, Text, View, VStack } from "native-base"
 import StudentListItem from "../listItem/StudentListItem"
 
 const StudentList = ({ students, navigation, className }) => {
   return (
-    <FlatList
-      contentContainerStyle={{ paddingTop: 10 }}
-      data={students}
-      renderItem={({ item }) => (
-        <StudentListItem item={item} navigation={navigation} className={className} />
-      )}
-      keyExtractor={item => item._id}
-      showsHorizontalScrollIndicator={false}
-    />
+    <View flex={1} my={3}>
+      <VStack>
+        {students.filter(student => student.evaluated == 0).length >= 1 && (
+        <>
+          <Text mb={2} fontWeight="700">Pending</Text>
+          <Box mb={7} pl="16px" borderWidth="1" bgColor="#FFFFFF" borderColor="#cccccc" borderRadius="12px" shadow={5} overflow="hidden">
+          <FlatList
+            data={students.filter(student => student.evaluated == 0)}
+            renderItem={({ item }) => (
+              <StudentListItem item={item} navigation={navigation} className={className} />
+            )}
+            keyExtractor={item => item._id}
+            showsHorizontalScrollIndicator={false}
+          />
+          </Box>
+        </>
+        )}
+
+        {students.filter(student => student.evaluated == 1).length >= 1 && (
+        <>
+          <Text mb={2} fontWeight="700">Completed</Text>
+          <Box pl="16px" borderWidth="1" bgColor="#FFFFFF" borderColor="#cccccc" borderRadius="12px" shadow={5} overflow="hidden">
+          <FlatList
+            data={students.filter(student => student.evaluated != 0)}
+            renderItem={({ item }) => (
+              <StudentListItem item={item} navigation={navigation} className={className} />
+            )}
+            keyExtractor={item => item._id}
+            showsHorizontalScrollIndicator={false}
+          />
+          </Box>
+        </>
+        )}
+      </VStack>
+    </View>
   )
 }
 
