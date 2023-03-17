@@ -10,32 +10,51 @@ const Stack = createStackNavigator()
 
 const StudentStack = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator >
       <Stack.Screen 
         name="Student Index" 
         component={IndexScreen}
-        options={({ route }) => ({
+        options={{
           title: 'Students',
-          headerTitleAlign: 'center'
-        })}
+          headerTitleAlign: 'center',
+          // headerTransparent: true,
+          headerTintColor: '#ffffff',
+          headerStyle: {
+            backgroundColor: 'orange'
+          },
+        }}
       />
       <Stack.Screen 
         name="Student Detail" 
         component={StudentDetail}
-        options={({ route }) => ({
+        options={{
           title: 'Student Profile',
-          // headerBackTitle: 'Student List',
-          headerTitleAlign: 'center'
-        })}
+          headerStyle: {
+            backgroundColor: 'orange'
+          },
+          headerTitleStyle: {
+            color: '#fff'
+          },
+          headerTitleAlign: 'center',
+          headerBackTitle: null,
+          headerBackTitleVisible: false,
+        }}
       />
       <Stack.Screen 
         name="Student Profile" 
         component={ViewProfileScreen}
-        options={({ route }) => ({
+        options={{
           title: 'Student Profile',
-          // headerBackTitle: 'Student List',
+          headerStyle: {
+            backgroundColor: 'orange'
+          },
+          headerBackTitle: null,
+          headerBackTitleVisible: false,
+          headerTitleStyle: {
+            color: '#fff'
+          },
           headerTitleAlign: 'center'
-        })}
+        }}
       />
     </Stack.Navigator>
   )

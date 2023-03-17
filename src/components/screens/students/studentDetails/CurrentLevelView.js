@@ -1,4 +1,4 @@
-import { Text, VStack, View, Box, Heading } from "native-base"
+import { Text, VStack, View, Box, Heading, HStack } from "native-base"
 import { useState } from "react"
 import { StyleSheet } from "react-native"
 import * as Progress from "react-native-progress"
@@ -19,28 +19,34 @@ const CurrentLevelView = ({classTitle, classCard}) => {
   
   return (
     <View style={styles.container}>
-      <Box> 
-        <Heading style={styles.title}>{classTitle}</Heading>
-        <Box style={styles.levelbox}>
-          <Text style={styles.levelname}>{classCard.level}</Text>
-          <Box style={styles.percentBox}>
-            <Box>
-              {/* <Progress.Bar progress={percent} width={216} height={10} /> */}
-            </Box>
-            <Box style={styles.numberBox}>
-              <Text style={styles.current}>{completedSkillNbr}</Text>
-              <Text style={styles.total}> / {totalSkillNbr} skills</Text>
+      <VStack>
+        <Box mb={3} p={5} bg="#F5D26A" width="100%" height="90%" borderRadius="md" shadow={9} position="absolute" top="5%"></Box>  
+          <Box ml={4} p={3} bg="#ffffff" flex={1} height="100%" borderRadius="md" shadow={5}>
+        
+          <Heading style={styles.title}>{classTitle}</Heading>
+          <Box style={styles.levelbox}>
+            <Text style={styles.levelname}>{classCard.level}</Text>
+            <Box style={styles.percentBox}>
+              <Box>
+                {/* <Progress.Bar progress={percent} width={216} height={10} /> */}
+              </Box>
+              <Box style={styles.numberBox}>
+                <Text style={styles.current}>{completedSkillNbr}</Text>
+                <Text style={styles.total}> / {totalSkillNbr} skills</Text>
+              </Box>
             </Box>
           </Box>
+        
         </Box>
-      </Box>
+      </VStack>
     </View>
       )
 }
 const styles = StyleSheet.create ({
   container: {
     paddingVertical: 10,
-    backgroundColor: '#ffffff',
+    // backgroundColor: '#ffffff',
+    marginHorizontal: 5,
   },
   whitebox: {
     height: 60,
