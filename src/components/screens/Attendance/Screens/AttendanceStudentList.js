@@ -22,11 +22,11 @@ const AttendanceStudentList = ({ navigation, route }) => {
         setStudents(data)
         for (let index = 0; index < data.length; index++) {
           const element = data[index];
-          console.log(element)
+          // console.log(element)
           const curr = attendance
           curr[element._id] = false;
           setAttendance(curr)
-          console.log("attendance", attendance)
+          // console.log("attendance", attendance)
         }
         // console.log(attendance)
       },
@@ -67,7 +67,7 @@ const AttendanceStudentList = ({ navigation, route }) => {
 
 
   const addAllAttendance = () => {
-    console.log(allAttendance)
+    // console.log(allAttendance)
     for (let index = 0; index < students.length; index++) {
       const element = students[index];
       if (!attendance[element._id]) {

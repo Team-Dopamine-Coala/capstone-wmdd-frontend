@@ -13,7 +13,8 @@ const CompletedAttendance = ({ students, navigation, checkboxHandler, allAttenda
      bgColor="#404142"
      onPress={() => {
        navigation.navigate('Attendance Index', {
-        allAttendance: allAttendance
+        // allAttendance: allAttendance,
+        ready: Math.floor(Math.random() * 1000000)
       });
      }}
    ><Text fontWeight="700" color="#ffffff">Done</Text></Button>

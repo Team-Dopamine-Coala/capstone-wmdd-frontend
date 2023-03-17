@@ -2,7 +2,7 @@ import { Box, Icon, HStack, Text, VStack, Button, Heading, View } from "native-b
 import { Ionicons } from "@expo/vector-icons"
 import { useEffect, useState } from "react";
 
-const Card = ({ title, startTime, endTime, id, navigation, dateSelected, completed, attendances }) => {
+const Card = ({ title, startTime, endTime, location, id, navigation, dateSelected, completed, attendances }) => {
   const [present, setPresent] =  useState("-")
   const [absent, setAbsent] =  useState("-")
   useEffect(() => {
@@ -39,7 +39,7 @@ const Card = ({ title, startTime, endTime, id, navigation, dateSelected, complet
               <VStack >
                   <Heading fontSize={22}>{title}</Heading>
                   <Text>{startTime} -{'>'} {endTime}</Text>
-                  <Text>Venue</Text>
+                  <Text>{location}</Text>
               </VStack>
                   <Icon ml="2" size="70" color={ completed ? "#ffc0cb" : "gray.200"} as={<Ionicons name="checkmark-circle-outline"/>} />         
             </HStack>
