@@ -1,51 +1,96 @@
-import { VStack, Box, Heading, FlatList, ScrollView, Divider, View, Pressable } from "native-base"
-import { useRef, useState } from "react"
+import { VStack, Box, Heading, FlatList, ScrollView, Divider, View, Pressable, Text, Flex, Link, Button } from "native-base"
+import { useEffect, useRef, useState } from "react"
+import { Dimensions } from 'react-native'
+import BottomSheet from 'react-native-simple-bottom-sheet';
+import { fetchSkill } from '../../../../utils/queries';
 
 import SkillItem from '../listItems/SkillItem'
 import SkillDetails from "../listItems/SkillDetails";
-import BottomSheet from 'react-native-simple-bottom-sheet';
 
 const SkillsList = ({ navigation, skills }) => {
     const panelRef = useRef(null);
-    const [skillId, setSkillId] = useState(null)
+    const [selectedId, setSelectedId] = useState("")
+    const [skill, setSkill] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
-    const openBottomSheet = (skill) => {
+    // useEffect(() => {
+    //     console.log(skill)
+    // }, [skill])
+
+    const openSheet = (id) => {
         panelRef.current.togglePanel()
-        setSkillId(skill.id)
-        console.log(skillId);
-    }
+        setSelectedId(id)
+        console.log(id)
+        setIsLoading(true)
+        fetchSkill(id).then(
+            data => {
+                setSkill(data)
+                setIsLoading(false)
+            },
+            error => {
+                throw error
+            }
+        )
+      }
   
     return (
-        <View>
+        <View >
             <ScrollView>
                 <VStack pt="50px" pb={20}>
                     <Box pb={5}>
-                        <Heading pl={5}>Gymnastics 1</Heading>
+                        <Flex direction="row" justifyContent="space-between" alignItems="center">
+                            <Heading pl={5}>Gymnastics 1 </Heading>
+                            <Link 
+                                pr={5} 
+                                onPress={() => navigation.navigate('Skill List', {
+                                    skills: skills.filter(skill => skill.level === 1 || skill.level === 2),
+                                    name: 'Gymnastics 1'
+                            })}>View All</Link>
+                        </Flex>
                         <FlatList 
                             horizontal
                             data={skills.filter(skill => skill.level === 1 || skill.level === 2 )} renderItem={({ item }) => (
-                            <Pressable onPress={() => panelRef.current.togglePanel()}>
-                            <SkillItem item={item} func={panelRef}/></Pressable>
+                            <Pressable 
+                                onPress={() => openSheet(item._id)}
+                            >
+                                <SkillItem item={item}/>
+                            </Pressable>
                             )}    
                         />
                     </Box>
                      <Box pb={5}>
-                        <Heading pl={5}>Gymnastics 2</Heading>
+                        <Flex direction="row" justifyContent="space-between" alignItems="center">
+                            <Heading pl={5}>Gymnastics 2 </Heading>
+                            <Link 
+                                pr={5} 
+                                onPress={() => navigation.navigate('Skill List', {
+                                    skills: skills.filter(skill => skill.level === 3 || skill.level === 4),
+                                    name: 'Gymnastics 2'
+                            })}>View All</Link>
+                        </Flex>
                         <FlatList 
                             horizontal
                             data={skills.filter(skill => skill.level === 3 || skill.level === 4)} renderItem={({ item }) => (
-                            <Pressable onPress={() => panelRef.current.togglePanel()}>
-                            <SkillItem item={item} func={panelRef}/></Pressable>
+                            <Pressable onPress={() => openSheet(item._id)}>
+                            <SkillItem item={item} /></Pressable>
                             )}    
                         />
                     </Box>
                     <Box pb={10}>
-                        <Heading pl={5}>Gymnastics 3</Heading>
+                        <Flex direction="row" justifyContent="space-between" alignItems="center">
+                            <Heading pl={5}>Gymnastics 3 </Heading>
+                            <Link 
+                                pr={5} 
+                                onPress={() => navigation.navigate('Skill List', {
+                                    skills: skills.filter(skill => skill.level === 5),
+                                    name: 'Gymnastics 3'
+                            })}>View All</Link>
+                        </Flex>
                         <FlatList 
                             horizontal
                             data={skills.filter(skill => skill.level === 5)} renderItem={({ item }) => (
-                            <Pressable onPress={() => panelRef.current.togglePanel()}>
-                            <SkillItem item={item} func={panelRef}/></Pressable>
+                            <Pressable onPress={() => openSheet(item._id)}>
+                            <SkillItem item={item} /></Pressable>
                             )}    
                         />
                     </Box>
@@ -55,10 +100,18 @@ const SkillsList = ({ navigation, skills }) => {
                     </Box>
                 </VStack>
             </ScrollView>
-            <BottomSheet sliderMinHeight={0} ref={ref => panelRef.current = ref}>
-                <SkillDetails />
+            <BottomSheet 
+                isOpen={false}
+                sliderMinHeight={0}
+                ref={ref => panelRef.current = ref}
+                animationDuration={300}
+                sliderMaxHeight={Dimensions.get('window').height * 0.9}
+            >
+                <View style={{paddingVertical: 20}} pb={10}>
+                    <SkillDetails skill={skill}/>
+                </View>
             </BottomSheet>
-      </View>
+        </View>
     )
   }
   

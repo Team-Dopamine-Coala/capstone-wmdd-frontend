@@ -98,7 +98,7 @@ export const getLevelById = async (levelid) => {
 
   return data
 }
-//CURRICULUM
+//CURRICULUM ===============================================
   export const fetchSkills = async () => {
 
     const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/skill`)

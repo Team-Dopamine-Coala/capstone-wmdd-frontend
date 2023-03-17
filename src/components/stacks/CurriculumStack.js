@@ -1,5 +1,6 @@
 import { createStackNavigator, TransitionPresets } from "@react-navigation/stack"
 import CurriculumScreen from '../screens/Curriculum/CurriculumScreen'
+import SkillList from "../screens/Curriculum/lists/SkillList";
 
 const Stack = createStackNavigator()
 
@@ -7,7 +8,7 @@ const TransitionScreenOptions = {
   ...TransitionPresets.SlideFromRightIOS,
 };
 
-const CurriculumStack = () => {
+const CurriculumStack = ({route}) => {
     return (
       <Stack.Navigator screenOptions={TransitionScreenOptions}>
         <Stack.Screen name="Curriculum Index" component={CurriculumScreen}       
@@ -17,6 +18,14 @@ const CurriculumStack = () => {
           headerTransparent: true,
           headerTintColor: '#ffffff'
         }} />
+        <Stack.Screen name="Skill List" component={SkillList}
+          options={({ route }) => ({
+            title: `${route.params.name}`,
+            skills: route.params.skills,
+            headerTitleAlign: 'center',
+            headerTransparent: true,
+            headerTintColor: '#ffffff'
+          })} />
         {/* <Stack.Screen 
           name="Attendance Student List"
           component={AttendanceStudentList}
