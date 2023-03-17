@@ -15,7 +15,7 @@ const ClassListItem = ({ item, navigation }) => {
           </HStack>
 
           <Button
-            bgColor="#667080"
+            bgColor="#404142"
             onPress={() => {
               navigation.navigate('Evaluation Student List', {
                 classId: item._id,
