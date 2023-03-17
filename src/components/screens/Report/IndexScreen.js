@@ -1,8 +1,10 @@
 import { useState, useEffect, useContext, useRef } from 'react'
 import { Dimensions } from 'react-native'
+import { AWS_BACKEND_BASE_URL } from '../../../utils/static';
 import { View, Box, Center, Heading, VStack, Text } from 'native-base'
 import moment from 'moment';
 import BottomSheet from 'react-native-simple-bottom-sheet';
+import Dialog, { DialogFooter, DialogButton, DialogContent } from 'react-native-popup-dialog';
 
 import { AuthContext } from '../../context/AuthContext';
 import ClassList from './lists/ClassList';
@@ -17,7 +19,11 @@ const IndexScreen = ({ navigation }) => {
   const [classes, setClasses] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [selectedClass, setSelectedClass] = useState(null)
+  const [selectedStudent, setSelectedStudent] = useState(null)
   const [students, setStudents] = useState(null)
+  const [totalStudents, setTotalStudents] = useState(null)
+  const [isDialogVisible, setIsDialogVisible] = useState(false)
+
   const panelRef = useRef(null)
 
   useEffect(() => {
@@ -37,6 +43,7 @@ const IndexScreen = ({ navigation }) => {
     getStudentsByClass(selectedClass).then(
       data => {
         setStudents(data)
+        setTotalStudents(data.length)
       },
       error => {
         throw error
@@ -49,6 +56,22 @@ const IndexScreen = ({ navigation }) => {
     setTimeout(() => {
       panelRef.current.togglePanel()
     }, 1000)
+  }
+
+  const sendEmail = (studentId) => {
+    fetch(`${AWS_BACKEND_BASE_URL}/api/pdf/${selectedClass}/${studentId}`)
+  }
+
+  const openDialog = (studentId) => {
+    setIsDialogVisible(true)
+    setSelectedStudent(studentId)
+    sendEmail(studentId)
+
+    console.log(selectedClass, studentId)
+  }
+
+  const closeDialog = () => {
+    setIsDialogVisible(false)
   }
 
   return (
@@ -69,10 +92,30 @@ const IndexScreen = ({ navigation }) => {
         sliderMaxHeight={Dimensions.get('window').height * 0.9}
       >
         <View>
-          <StudentList students={students} selectedClass={selectedClass} />
+          <StudentList students={students} selectedClass={selectedClass} openDialog={openDialog} />
         </View>
       </BottomSheet>
-      </>
+
+      {/* <Dialog
+        visible={true}
+        footer={
+          <DialogFooter>
+            <DialogButton
+              text="CANCEL"
+              onPress={closeDialog}
+            />
+            <DialogButton
+              text="OK"
+              onPress={sendEmail}
+            />
+          </DialogFooter>
+        }
+      >
+        <DialogContent>
+          <Text>Hey</Text>
+        </DialogContent>
+      </Dialog> */}
+    </>
   )
 }
 
