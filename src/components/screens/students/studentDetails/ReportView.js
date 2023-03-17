@@ -19,22 +19,30 @@ return (
             <Text style={styles.name}>{student.firstname} {student.lastname}</Text> 
             <Text>View profile and Contact Information</Text>
         </TouchableOpacity>
-        <Modal visible={modalIsOpen} >
+        <Modal visible={modalIsOpen}>
+            <Box style={styles.biobackground}>
             <StudentBiometrics student={student} navigation={navigation} closeBio={closeBio}/>
+            </Box>
         </Modal>
     </View>
   )
 }
 const styles = StyleSheet.create ({
     container: {
-       backgroundColor: '#bbb',
-       paddingHorizontal: 10,
+        backgroundColor: '#FDFDFD',
+       paddingHorizontal: 16,
        paddingVertical: 10,
-       borderRadius: 10,
+       borderRadius: 12,
+       marginHorizontal: 20,
+       marginTop: 16,
+       marginBottom: 22,
     },
     name: {
         fontSize: 20,
         fontWeight: "bold",
+    },
+    biobackground:{
+        backgroundColor:'#bbb',
     }
   })
 export default ReportView
