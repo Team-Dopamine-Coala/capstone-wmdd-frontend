@@ -49,7 +49,7 @@ const IndexScreen = ({ navigation, route }) => {
   }
 
   return (
-    <VStack p={3} pb={20} bgColor="#ffffff" flex={1}>
+    <VStack p={3}  bgColor="#ffffff" flex={1}>
 
       {/* <Text>This is index screen of Attendance</Text> */}
       <WelcomeCard classNumber={classNumber}/>
