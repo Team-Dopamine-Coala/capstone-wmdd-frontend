@@ -20,7 +20,6 @@ const EvaluationIndividualStudent = ({ navigation, route, studentIndex }) => {
       data => {
         setEvaluations(data.filter(evaluation => evaluation.classId === classId))
         setIsLoading(false)
-        console.log(data.filter(evaluation => evaluation.classId === classId).length)
       },
       error => {
         throw error
@@ -40,7 +39,7 @@ const EvaluationIndividualStudent = ({ navigation, route, studentIndex }) => {
         </Center>
       </Box>
 
-      <SkillList evalskills={evaluations} />
+      <SkillList navigation={navigation} evalskills={evaluations} studentId={id} studentName={`${firstname} ${lastname}`} classId={classId} className={className} />
     </View>
   )
 }

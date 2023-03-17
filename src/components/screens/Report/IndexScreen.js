@@ -46,15 +46,17 @@ const IndexScreen = ({ navigation }) => {
 
   const clickedClass = (classid) => {
     setSelectedClass(classid)
+    setTimeout(() => {
+      panelRef.current.togglePanel()
+    }, 1000)
   }
 
   return (
     <>
-      <VStack pt="50px" flex={1} bgColor="#F4903F" height="100%">
-
-        <Box bgColor="#ffffff" borderTopLeftRadius={20} borderTopRightRadius={20} height="100%">
+      <VStack pt="50px" flex={1} bgColor="#F4903F">
+        <Box pt={2} height="100%" bgColor="#ffffff" borderTopLeftRadius={20} borderTopRightRadius={20}>
         
-        {isLoading ? <Loading /> : <ClassList classes={classes} navigation={navigation} openSheet={() => panelRef.current.togglePanel()} clickedClass={clickedClass} />}
+        {isLoading ? <Loading /> : <ClassList classes={classes} navigation={navigation} clickedClass={clickedClass} />}
       </Box>
 
       </VStack>

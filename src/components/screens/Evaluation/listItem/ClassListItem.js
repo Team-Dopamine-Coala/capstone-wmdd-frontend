@@ -1,4 +1,5 @@
 import { Box, HStack, VStack, Text, Button, Heading, View } from 'native-base'
+import moment from 'moment'
 
 const ClassListItem = ({ item, navigation }) => {
   return (
@@ -9,7 +10,7 @@ const ClassListItem = ({ item, navigation }) => {
           <HStack>
             <VStack space={1} mb={2}>
               <Heading fontSize={22}>{item.title}</Heading>
-              <Text>{item.startTime} - {item.endTime}</Text>
+              <Text>{moment(item.startTime).format('H:mm A')} - {moment(item.endTime).format('H:mm A')}</Text>
             </VStack>
           </HStack>
 

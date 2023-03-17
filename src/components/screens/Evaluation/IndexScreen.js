@@ -37,10 +37,10 @@ const IndexScreen = ({ navigation }) => {
 
   return (
     <VStack pt="50px" flex={1} bgColor="#F4903F">
-      <Box height="100%" bgColor="#ffffff" borderTopLeftRadius={20} borderTopRightRadius={20}>
+      <Box pt={2} height="100%" bgColor="#ffffff" borderTopLeftRadius={20} borderTopRightRadius={20}>
         <CalendarStrip
         scrollable
-        style={{height: 130, paddingTop: 20, paddingBottom: 10}}
+        style={{height: 130, paddingTop: 20, paddingBottom: 10, paddingHorizontal: 20}}
         calendarHeaderStyle={{
           fontSize: 18,
           alignSelf: 'flex-start',
