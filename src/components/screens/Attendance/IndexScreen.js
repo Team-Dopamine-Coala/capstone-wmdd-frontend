@@ -17,6 +17,7 @@ const IndexScreen = ({ navigation, route }) => {
   const {ready} = route.params ? route.params : {ready: 100000}
   const {userToken} = useContext(AuthContext)
   const [classes, setClasses] = useState([]);
+  const [classNumber, setClassNumber] = useState(0);
   const [dateSelected, setSelectedDate] = useState(new Date())
   const [isLoading, setIsLoading] = useState(true)
   // const ready = Math.floor(Math.random() * 1000000)
@@ -33,6 +34,7 @@ const IndexScreen = ({ navigation, route }) => {
           }
         }
         setClasses(currentClassArray)
+        setClassNumber(currentClassArray.length)
         setIsLoading(false)
       },
       error => {
@@ -50,7 +52,7 @@ const IndexScreen = ({ navigation, route }) => {
     <VStack p={3} pb={20} bgColor="#ffffff" flex={1}>
 
       {/* <Text>This is index screen of Attendance</Text> */}
-      <WelcomeCard/>
+      <WelcomeCard classNumber={classNumber}/>
       <CalendarStrip
         scrollable
         style={{height: 130, paddingTop: 20, paddingBottom: 10}}
