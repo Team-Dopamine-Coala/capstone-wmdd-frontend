@@ -135,7 +135,8 @@ const updateClassAttendance = async () => {
         onPress={() => {
           // addAttendance()
           addAllAttendance(); updateClassAttendance(); navigation.navigate('Completed Attendance', {
-            allAttendance: allAttendance
+            allAttendance: allAttendance,
+            classId: classId
           });
         }}
       ><Text fontWeight="700" color="#ffffff">Save Attendance</Text></Button>
