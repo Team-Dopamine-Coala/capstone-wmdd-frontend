@@ -1,21 +1,20 @@
-import { Text, VStack, Box, FlatList, Pressable, ScrollView, Heading } from "native-base"
+import { Text, VStack, Box, View, Pressable, ScrollView, Heading } from "native-base"
 import { useEffect, useRef, useState } from "react"
+import BottomSheet from 'react-native-simple-bottom-sheet';
+import { Dimensions } from 'react-native'
+import { fetchSkill } from '../../../../utils/queries';
 
 import SkillItemVertical from "../listItems/SkillItemVertical"
+import SkillDetails from "../listItems/SkillDetails";
 
 const SkillList = ({navigation, route}) => {
-
     const { skills, title } = route.params
     const [sortedSkills, setSortedSkills] = useState([])
     const [levelTitle, setLevelTitle] = useState([])
     const panelRef = useRef(null);
     const [selectedId, setSelectedId] = useState("")
-
-    const openSheet = (id) => {
-        panelRef.current.togglePanel()
-        setSelectedId(id)
-        console.log(id)
-      }
+    const [skill, setSkill] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         sorting()
@@ -45,8 +44,21 @@ const SkillList = ({navigation, route}) => {
         setLevelTitle(Object.values(level))
     }
 
-    console.log(skills.map((skill) => skill.level))
-    console.log(levelTitle)
+     const openSheet = (id) => {
+        panelRef.current.togglePanel()
+        setSelectedId(id)
+        console.log(id)
+        setIsLoading(true)
+        fetchSkill(id).then(
+            data => {
+                setSkill(data)
+                setIsLoading(false)
+            },
+            error => {
+                throw error
+            }
+        )
+      }
 
     return(
         <VStack pt="100px" pb={20} flex={1} bgColor="#F4903F">
@@ -57,7 +69,7 @@ const SkillList = ({navigation, route}) => {
                             <Heading>Level {title.group}</Heading>
                             <VStack>
                                 {title.groupedConn.map((skill, index) => (
-                                    <Pressable>
+                                    <Pressable onPress={() => openSheet(skill._id)} key={skill._id}>
                                         <SkillItemVertical skills={skill}/>
                                     </Pressable>
                                 ))}
@@ -65,13 +77,18 @@ const SkillList = ({navigation, route}) => {
                         </Box>
                     ))}
                 </ScrollView>
-
-                {/* <FlatList 
-                    data={skills.filter(skill => skill.level === 1 || skill.level === 2 )} renderItem={({ item }) => (
-
-                    )}    
-                /> */}
             </Box>
+            <BottomSheet 
+                isOpen={false}
+                sliderMinHeight={0}
+                ref={ref => panelRef.current = ref}
+                animationDuration={300}
+                sliderMaxHeight={Dimensions.get('window').height * 0.9}
+            >
+                <View style={{paddingVertical: 20}} pb={20} mb={10}>
+                    <SkillDetails skill={skill}/>    
+                </View>
+            </BottomSheet>
         </VStack>
     )
 }

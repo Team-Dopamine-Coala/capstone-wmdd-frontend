@@ -1,7 +1,8 @@
-import { VStack, Box, Heading, FlatList, ScrollView, Divider, View, Pressable, Text, Flex, Link } from "native-base"
+import { VStack, Box, Heading, FlatList, ScrollView, Divider, View, Pressable, Text, Flex, Link, Button } from "native-base"
 import { useEffect, useRef, useState } from "react"
 import { Dimensions } from 'react-native'
 import BottomSheet from 'react-native-simple-bottom-sheet';
+import { fetchSkill } from '../../../../utils/queries';
 
 import SkillItem from '../listItems/SkillItem'
 import SkillDetails from "../listItems/SkillDetails";
@@ -9,15 +10,31 @@ import SkillDetails from "../listItems/SkillDetails";
 const SkillsList = ({ navigation, skills }) => {
     const panelRef = useRef(null);
     const [selectedId, setSelectedId] = useState("")
+    const [skill, setSkill] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+
+    // useEffect(() => {
+    //     console.log(skill)
+    // }, [skill])
 
     const openSheet = (id) => {
         panelRef.current.togglePanel()
         setSelectedId(id)
         console.log(id)
+        setIsLoading(true)
+        fetchSkill(id).then(
+            data => {
+                setSkill(data)
+                setIsLoading(false)
+            },
+            error => {
+                throw error
+            }
+        )
       }
   
     return (
-        <View>
+        <View >
             <ScrollView>
                 <VStack pt="50px" pb={20}>
                     <Box pb={5}>
@@ -90,7 +107,9 @@ const SkillsList = ({ navigation, skills }) => {
                 animationDuration={300}
                 sliderMaxHeight={Dimensions.get('window').height * 0.9}
             >
-                <SkillDetails skills={skills}/>
+                <View style={{paddingVertical: 20}} pb={10}>
+                    <SkillDetails skill={skill}/>
+                </View>
             </BottomSheet>
         </View>
     )

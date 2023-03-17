@@ -22,9 +22,9 @@ const CurriculumScreen = ({ navigation }) => {
       )
   }, [])
 
-  useEffect(() => {
-      console.log(skills)
-  }, [skills])
+  // useEffect(() => {
+  //     console.log(skills)
+  // }, [skills])
 
   return (
     <>
