@@ -1,5 +1,5 @@
 import { Heading, Text, View, VStack, AspectRatio, Image, Box, Flex, HStack } from 'native-base'
-import { Video }from 'expo-av'
+// import { Video }from 'expo-av'
 import { useRef, useState } from 'react'
 
 

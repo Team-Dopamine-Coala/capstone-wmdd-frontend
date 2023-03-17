@@ -2,7 +2,7 @@ import { View, Text, Image, FlatList, Box, HStack, Heading, AspectRatio, Center,
 
 
 const SkillItemVertical = ({skills}) => {
-    console.log(skills)
+    // console.log(skills)
     return(
         <View>
             <Box width="150px" m={3}>

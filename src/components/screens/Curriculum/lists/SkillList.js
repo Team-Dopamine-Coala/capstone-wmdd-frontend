@@ -47,7 +47,7 @@ const SkillList = ({navigation, route}) => {
      const openSheet = (id) => {
         panelRef.current.togglePanel()
         setSelectedId(id)
-        console.log(id)
+        // console.log(id)
         setIsLoading(true)
         fetchSkill(id).then(
             data => {
