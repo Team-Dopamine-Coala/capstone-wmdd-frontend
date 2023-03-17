@@ -34,18 +34,8 @@ const SkillListItem = ({ evalskill, goToNextSlide }) => {
       },
     }).then((response) => {
       setSkillRating(rating)
-      console.log(response.json())
+      goToNextSlide()
     })
-  }
-
-  const ratingToText = (rating) => {
-    if (rating <= 1) {
-      return 'Not Started'
-    } else if (rating === 2) {
-      return 'Ongoing'
-    } else {
-      return 'Completed'
-    }
   }
 
   return (
@@ -59,8 +49,8 @@ const SkillListItem = ({ evalskill, goToNextSlide }) => {
       </Box>
       <VStack mt={7}>
         <Pressable onPress={() => updateEvalRating(1)}>
-          <HStack shadow={5} my={2} px="28px" py="14px" borderWidth="1px" borderColor="#cccccc" bgColor={skillRating <= 1 ? '#EC6C56' : '#FFFFFF'} borderRadius="12px">
-            <Text fontSize="25px" fontWeight="600" color={skillRating <= 1 ? '#FFFFFF' : '#EC6C56'}>Not Started</Text>
+          <HStack shadow={5} my={2} px="28px" py="14px" borderWidth="1px" borderColor="#cccccc" bgColor={skillRating == 1 ? '#EC6C56' : '#FFFFFF'} borderRadius="12px">
+            <Text fontSize="25px" fontWeight="600" color={skillRating == 1 ? '#FFFFFF' : '#EC6C56'}>Not Started</Text>
           </HStack>
         </Pressable>
         

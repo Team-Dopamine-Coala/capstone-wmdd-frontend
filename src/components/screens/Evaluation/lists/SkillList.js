@@ -4,8 +4,9 @@ import Carousel from 'react-native-snap-carousel'
 import SkillListItem from '../listItem/SkillListItem'
 import { Dimensions } from 'react-native';
 
-const SkillList = ({ evalskills }) => {
+const SkillList = ({ navigation, evalskills, studentId, studentName, classId, className }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const totalEvalsIndex = evalskills.length - 1
   const windowWidth = Dimensions.get('window').width;
   let carouselRef = useRef(null)
 
@@ -42,11 +43,26 @@ const SkillList = ({ evalskills }) => {
         itemWidth={400}
         onSnapToItem={(index) => handleCurrentIndex(index) }
       />
-      <Box px={4}>
+      
+      <HStack px={4} justifyContent="space-between">
+      {currentIndex > 0 && (
         <Pressable onPress={goToPrevSlide}>
           <Text>Previous</Text>
         </Pressable>
-      </Box>
+      )}
+      {currentIndex == totalEvalsIndex  && (
+        <Pressable onPress={() => {
+          navigation.navigate('Evaluation Individual Student Comment', {
+            studentId: studentId,
+            studentName: studentName,
+            classId: classId,
+            className: className
+          })
+        }}>
+          <Text>Add Feedback</Text>
+        </Pressable>
+      )}
+      </HStack>
     </VStack>
   )
 }

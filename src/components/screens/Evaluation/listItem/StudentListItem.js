@@ -10,9 +10,14 @@ const StudentListItem = ({ item, navigation, className }) => {
         })
       }}
       p={4}
-      bgColor="#EEF1F4"
+      pl={0}
+      bgColor="#FFFFFF"
+      borderRadius={0}
+      borderBottomWidth={1}
+      borderBottomColor="#cccccc"
+      justifyContent="flex-start"
     >
-      <Text>{item.firstname} {item.lastname}</Text>
+      <Text textAlign="left">{item.firstname} {item.lastname}</Text>
     </Button>
   )
 }
