@@ -27,8 +27,8 @@ const CurrentLevelView = ({classTitle, classCard}) => {
           <Box style={styles.levelbox}>
             <Text style={styles.levelname}>{classCard.level}</Text>
             <Box style={styles.percentBox}>
-              <Box>
-                {/* <Progress.Bar progress={percent} width={216} height={10} /> */}
+              <Box mt={1}>
+                {/* <Progress.Bar progress={percent} width={216} height={10} color="#F5D26A" borderColor="#EEEEEE" borderWidth={1}/> */}
               </Box>
               <Box style={styles.numberBox}>
                 <Text style={styles.current}>{completedSkillNbr}</Text>
