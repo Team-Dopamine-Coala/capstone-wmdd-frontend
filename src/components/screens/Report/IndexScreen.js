@@ -50,7 +50,7 @@ const IndexScreen = ({ navigation }) => {
 
   return (
     <>
-      <VStack pt="50px" pb={20} flex={1} bgColor="#F4903F" height="100%">
+      <VStack pt="50px" flex={1} bgColor="#F4903F" height="100%">
 
         <Box bgColor="#ffffff" borderTopLeftRadius={20} borderTopRightRadius={20} height="100%">
         
@@ -63,9 +63,10 @@ const IndexScreen = ({ navigation }) => {
         isOpen={false}
         ref={ref => panelRef.current = ref}
         animationDuration={300}
+        sliderMinHeight={0}
         sliderMaxHeight={Dimensions.get('window').height * 0.9}
       >
-        <View mb={100}>
+        <View>
           <StudentList students={students} selectedClass={selectedClass} />
         </View>
       </BottomSheet>

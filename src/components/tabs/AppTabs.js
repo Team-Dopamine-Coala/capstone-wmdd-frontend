@@ -18,7 +18,6 @@ const AppTabs = () => {
                 headerShown: false,
                 tabBarActiveTintColor: '#655AE9',
                 tabBarInactiveTintColor: '#667080',
-                tabBarStyle:{ position: 'absolute', height: 80 },
                 tabBarLabelStyle:{ paddingBottom: 6, fontSize: 12 }
             })}
       >
