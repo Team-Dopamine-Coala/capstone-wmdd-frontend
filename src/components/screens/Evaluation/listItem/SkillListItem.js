@@ -3,7 +3,6 @@ import { View, Text, Box, VStack, HStack, Pressable, Image } from 'native-base'
 import { getSkillById } from '../../../../utils/queries'
 import Loading from '../../../layout/Loading'
 import { AWS_BACKEND_BASE_URL } from '../../../../utils/static'
-AWS_BACKEND_BASE_URL
 
 const SkillListItem = ({ evalskill, goToNextSlide }) => {
   const [skillName, setSkillName] = useState('Loading')
