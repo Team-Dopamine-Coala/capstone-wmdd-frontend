@@ -81,9 +81,10 @@ const IndexScreen = ({ navigation}) => {
                     <TouchableOpacity   key={index} 
                                         onPress={() => {
                                         navigation.navigate('Student Detail',{trainee})
-                    }}>
+                                        }}>
                       <Text>{trainee.firstname} {trainee.lastname}</Text>
                     </TouchableOpacity >
+                    // {j++ ? <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} justifyContent="space-between"/> : null}
                   ))}
                 </VStack>
               </Box> 
