@@ -20,9 +20,11 @@ const [value, setValue] = useState('')
 }
 const styles = StyleSheet.create ({
   inputfield: {
-    fontStyle: 'normal',
+    // fontFamily: 'Lexend',
     borderRadius:35,
     fontSize: 16,
+    fontWeight:'400',
+    color: '#242424',
     paddingTop: 10,
     paddingLeft: 16,
     paddingRight: 8,

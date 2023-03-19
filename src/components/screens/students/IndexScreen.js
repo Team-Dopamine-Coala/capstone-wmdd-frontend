@@ -76,13 +76,13 @@ const IndexScreen = ({ navigation}) => {
             {nameTitle.map((title, i) => ( 
               <Box key={i} style={styles.box}> 
                 <Text style={styles.abc}>{title.group}</Text>
-                <VStack  style={styles.nameContainer} bg="#ffffff" borderRadius="md" shadow={5}>
+                <VStack  style={styles.nameContainer} shadow={5}>
                   {title.groupedConn.map((trainee, index) => (             
                     <TouchableOpacity   key={index} 
                                         onPress={() => {
                                         navigation.navigate('Student Detail',{trainee})
                                         }}>
-                      <Text>{trainee.firstname} {trainee.lastname}</Text>
+                      <Text style={styles.name}>{trainee.firstname} {trainee.lastname}</Text>
                     </TouchableOpacity >
                     // {j++ ? <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} justifyContent="space-between"/> : null}
                   ))}
@@ -106,35 +106,32 @@ const styles = StyleSheet.create ({
     borderTopRightRadius:28,
     borderTopLeftRadius:28,
   },
-  inputfield: {
-    fontStyle: 'normal',
-    borderRadius:35,
-    fontSize: 16,
-    paddingTop: 10,
-    paddingLeft: 16,
-    paddingRight: 8,
-    paddingBottom: 10,
-  },
   scrollarea: {
     marginTop: 24,
   },
   box: {
-    marginTop: 20,
+    marginBottom: 20,
   },
   abc: {
+    // fontFamily: 'Lexend',
+    color: '#242424',
     fontWeight: '600',
     fontSize: 24,
-    marginBottom: 5,
-    marginTop: 15,
+    lineHeight:30,
   },
   nameContainer: {
     marginTop: 8,
      backgroundColor: '#FDFDFD',
      borderRadius: '12',
-     paddingHorizontal: 16,
-     paddingTop: 10,
-     paddingBottom: 10,
-     marginHorizontal: 5,
+     marginHorizontal: 2,
+  },
+  name: {
+    // fontFamily: 'Lexend',
+    color: '#242424',
+    paddingHorizontal: 15,
+    paddingVertical: 12,
+    fontWeight: '400',
+    fontSize: 16,
   }
 })
 export default IndexScreen
