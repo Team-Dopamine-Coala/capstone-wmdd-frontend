@@ -22,7 +22,6 @@ const SkillsAchievementView = ({levelCards}) => {
 }
 const styles = StyleSheet.create ({
   container: {
-    paddingVertical: 10,
   },
   title: {
     // fontFamily: 'Lexend',

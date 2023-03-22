@@ -7,20 +7,27 @@ const ViewReport = ({student}) => {
         console.log('move to report page')
     }
   return (
-    <View>  
-      <VStack style={styles.box} bg="#ffffff" borderRadius="md" shadow={5}>
+      <View style={styles.container} bg="#fDFDFD" shadow={5}>
         <TouchableOpacity onPress={clickReport} >
-            <Text>View Report</Text>
+            <Text style={styles.title}>View Report</Text>
         </TouchableOpacity>
-      </VStack>
-    </View>
+      </View>
   )
 }
 const styles = StyleSheet.create ({
-box: {
-    padding:10,
-  marginBottom: 10,
-  marginHorizontal: 5,
-}
+  container: {
+    paddingHorizontal: 24,
+    paddingVertical: 14,
+    marginTop: 16,
+    marginHorizontal: 5,
+    borderRadius: 12,
+  },
+  title: {
+    // fontFamily: 'Lexend',
+    color: "#000000",
+    flexWeight: '500',
+    fontSize: 18,
+    lineHeight: 30,
+  }
 })
 export default ViewReport

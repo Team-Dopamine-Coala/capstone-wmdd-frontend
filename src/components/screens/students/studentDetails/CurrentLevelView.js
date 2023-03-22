@@ -1,61 +1,76 @@
 import { Text, VStack, View, Box, Heading, HStack } from "native-base"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { StyleSheet } from "react-native"
-import * as Progress from "react-native-progress"
+import Loading from "../../../layout/Loading"
 
+const CurrentLevelView = ({classTitle, classColor, classCard}) => {
+    // const [totalSkillNbr, setTotalSkillNbr] = useState(classCard.totalSkillNumber)
+    // const [completedSkillNbr, setCompletedSkillNbr] = useState(classCard.completeSkillNumber)
+  
+    const completedSkillNbr = classCard.completeSkillNumber
+    const totalSkillNbr = classCard.totalSkillNumber
+    // const b = parseFloat(216 / totalSkillNbr * completedSkillNbr)
+    // const barprogress = `"${b}px"`
+    // console.log(barprogress)
 
-const CurrentLevelView = ({classTitle, classCard}) => {
-  // const [title, setTitle] = useState(classTitle)
-  // const [level, setLevel] = useState(classCard.level)
-  // const [completedSkillNbr, setCompletedSkillNbr] = useState(classCard.completeSkillNumber)
-  // const [totalSkillNbr, setTotalSkillNbr] = useState(classCard.totalSkillNumber)
+  // useEffect(() => {
+  //   async function bar (){
+  //     console.log('start')
+  //   setIsLoading(true)
+  //   const completedSkillNbr = await classCard.completeSkillNumber
+  //   const totalSkillNbr = await classCard.totalSkillNumber
 
-  const completedSkillNbr = classCard.completeSkillNumber
-  const totalSkillNbr = classCard.totalSkillNumber
-  //Progress Bar
-  const percent = completedSkillNbr / totalSkillNbr
-
-  // console.log('doko',classCard.level)
+  //   const b = parseFloat(216 / totalSkillNbr * completedSkillNbr)
+  //   const barprogress = `"${b}px"`
+  //   setIsLoading(false)
+  //   } 
+  //   bar()
+  // },[])
   
   return (
     <View style={styles.container}>
-      <VStack>
-        <Box mb={3} p={5} bg="#F5D26A" width="100%" height="90%" borderRadius="md" shadow={9} position="absolute" top="5%"></Box>  
-          <Box ml={4} p={3} bg="#ffffff" flex={1} height="100%" borderRadius="md" shadow={5}>
-        
-          <Heading style={styles.title}>{classTitle}</Heading>
-          <Box style={styles.levelbox}>
-            <Text style={styles.levelname}>{classCard.level}</Text>
-            <Box style={styles.percentBox}>
-              <Box>
-                {/* <Progress.Bar progress={percent} width={216} height={10} /> */}
-              </Box>
-              <Box style={styles.numberBox}>
-                <Text style={styles.current}>{completedSkillNbr}</Text>
-                <Text style={styles.total}> / {totalSkillNbr} skills</Text>
+      {/* { isLoading ? <Loading/> :  */}
+        <VStack >
+          <Box  mb={3} p={5}  width="100%" bg={classColor} height="90%" shadow={9} borderRadius="md" position="absolute" top="5%" ></Box>
+          <Box  ml={4} p={3} bg="rgba(255, 255, 255, .9)" flex={1} shadow={5} borderRadius="md" style={styles.classbox}>
+
+            <Heading style={styles.title}>{classTitle}</Heading>
+            <Box style={styles.levelbox}>
+              <Text style={styles.levelname}>{classCard.level}</Text>
+              <Box style={styles.percentBox}>
+                <Box width="216px" bg="#FDFDFD" borderRadius={18.75} h="10px">
+                  {/* <Box  width={b} bg={classColor} h="10px" borderRadius={18.75}></Box> */}
+                  <Box bg={classColor} h="10px" borderRadius={18.75}></Box>
+                </Box>
+                <Box style={styles.numberBox}>
+                  <Text style={styles.current}>{completedSkillNbr}</Text>
+                  <Text style={styles.total}> / {totalSkillNbr} skills</Text>
+                </Box>
               </Box>
             </Box>
+
           </Box>
-        
-        </Box>
-      </VStack>
+        </VStack>
+      {/* } */}
     </View>
       )
 }
 const styles = StyleSheet.create ({
   container: {
-    paddingVertical: 10,
+    // paddingVertical: 24,
     // backgroundColor: '#ffffff',
     marginHorizontal: 5,
+    marginVertical: 24,
   },
-  whitebox: {
-    height: 60,
-    flex:1,
-    marginLeft: 20,
-    backgroundColor: '#ffffff',
-    height: '100%',
-    borderRadius: 10,
-    shadow: 5,
+  boxcolortag: {
+    // borderTopLeftRadius: 12,
+    // borderBottomLeftRadius: 12,
+    // height: 100,
+    // marginVertical: 19,
+  },
+  classbox: {
+    // height: 136,
+    // borderRadius: 16,
   },
   contents: {
     marginTop: 10,
@@ -72,6 +87,8 @@ const styles = StyleSheet.create ({
   percentBox: {
     flexDirection: "row",
     justifyContent:"space-around",
+    alignItems:"center"
+    
   },
   numberBox: {
     flexDirection: "row",

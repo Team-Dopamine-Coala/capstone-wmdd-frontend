@@ -20,7 +20,7 @@
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
-        "NSFaceIDUsageDescription": "Coala uses Face ID and Touch ID to access sensitive student information."
+        "NSFaceIDUsageDescription": "Allow Coala to use Face ID."
       }
     },
     "android": {
