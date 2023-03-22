@@ -1,47 +1,76 @@
 import { Text, VStack, View, Box, Heading, HStack } from "native-base"
+import { useEffect, useState } from "react"
 import { StyleSheet } from "react-native"
+import Loading from "../../../layout/Loading"
 
-const CurrentLevelView = ({classTitle, classColor, cardBgColor, classCard}) => {
+const CurrentLevelView = ({classTitle, classColor, classCard}) => {
+    // const [totalSkillNbr, setTotalSkillNbr] = useState(classCard.totalSkillNumber)
+    // const [completedSkillNbr, setCompletedSkillNbr] = useState(classCard.completeSkillNumber)
   
-    const completedSkillNbr = classCard[0].compNbr
-    const totalSkillNbr = classCard[0].totalNbr
-    console.log(completedSkillNbr,totalSkillNbr)
+    const completedSkillNbr = classCard.completeSkillNumber
+    const totalSkillNbr = classCard.totalSkillNumber
+    // const b = parseFloat(216 / totalSkillNbr * completedSkillNbr)
+    // const barprogress = `"${b}px"`
+    // console.log(barprogress)
+
+  // useEffect(() => {
+  //   async function bar (){
+  //     console.log('start')
+  //   setIsLoading(true)
+  //   const completedSkillNbr = await classCard.completeSkillNumber
+  //   const totalSkillNbr = await classCard.totalSkillNumber
+
+  //   const b = parseFloat(216 / totalSkillNbr * completedSkillNbr)
+  //   const barprogress = `"${b}px"`
+  //   setIsLoading(false)
+  //   } 
+  //   bar()
+  // },[])
   
   return (
     <View style={styles.container}>
       {/* { isLoading ? <Loading/> :  */}
         <VStack >
-          <Box  width="100%" bg={classColor} height="80%" shadow={5} borderRadius={12} position="absolute" top="10%" ></Box>
-          <Box  bg={cardBgColor} flex={1} shadow={5} borderRadius={12} style={styles.classbox}>
-            <Heading style={styles.title} fontFamily="Lexend_600">{classTitle}</Heading>
+          <Box  mb={3} p={5}  width="100%" bg={classColor} height="90%" shadow={9} borderRadius="md" position="absolute" top="5%" ></Box>
+          <Box  ml={4} p={3} bg="rgba(255, 255, 255, .9)" flex={1} shadow={5} borderRadius="md" style={styles.classbox}>
+
+            <Heading style={styles.title}>{classTitle}</Heading>
             <Box style={styles.levelbox}>
-              <Text style={styles.levelname} fontFamily="Lexend_500">Level {classCard[0].levelName}</Text>
-              <HStack style={styles.percentBox}>
-                <Box width="178px" bg="#FDFDFD" borderRadius={18.75} h="10px" style={styles.progressbar}>
-                  <Box width={parseFloat(178 / totalSkillNbr * completedSkillNbr)} bg={classColor} h="10px" borderRadius={18.75}></Box>
+              <Text style={styles.levelname}>{classCard.level}</Text>
+              <Box style={styles.percentBox}>
+                <Box width="216px" bg="#FDFDFD" borderRadius={18.75} h="10px">
+                  {/* <Box  width={b} bg={classColor} h="10px" borderRadius={18.75}></Box> */}
+                  <Box bg={classColor} h="10px" borderRadius={18.75}></Box>
                 </Box>
-                <HStack style={styles.numberBox}>
-                  <Text style={styles.current} fontFamily="Lexend_700">{completedSkillNbr}</Text>
-                  <Text style={styles.total} fontFamily="Lexend_400"> / {totalSkillNbr} skills</Text>
-                </HStack>
-              </HStack>
+                <Box style={styles.numberBox}>
+                  <Text style={styles.current}>{completedSkillNbr}</Text>
+                  <Text style={styles.total}> / {totalSkillNbr} skills</Text>
+                </Box>
+              </Box>
             </Box>
+
           </Box>
         </VStack>
-      {/* }  */}
+      {/* } */}
     </View>
       )
 }
 const styles = StyleSheet.create ({
   container: {
+    // paddingVertical: 24,
+    // backgroundColor: '#ffffff',
     marginHorizontal: 5,
     marginVertical: 24,
   },
+  boxcolortag: {
+    // borderTopLeftRadius: 12,
+    // borderBottomLeftRadius: 12,
+    // height: 100,
+    // marginVertical: 19,
+  },
   classbox: {
-    paddingHorizontal: 20,
-    paddingTop: 10,
-    paddingBottom: 20,
-    marginLeft: 20,
+    // height: 136,
+    // borderRadius: 16,
   },
   contents: {
     marginTop: 10,
@@ -60,11 +89,10 @@ const styles = StyleSheet.create ({
     lineHeight: 30,
   },
   percentBox: {
-    alignItems:"center",
-    width: 260,
-  },
-  progressbar:{
-    marginVertical: 10,
+    flexDirection: "row",
+    justifyContent:"space-around",
+    alignItems:"center"
+    
   },
   numberBox: {
     marginLeft: 16,

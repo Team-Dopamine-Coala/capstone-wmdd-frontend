@@ -9,23 +9,25 @@ const ViewReport = ({student}) => {
   return (
       <View style={styles.container} bg="#fDFDFD" shadow={5}>
         <TouchableOpacity onPress={clickReport} >
-            <Text style={styles.title} fontFamily="Lexend_400">View Report</Text>
+            <Text style={styles.title}>View Report</Text>
         </TouchableOpacity>
       </View>
   )
 }
 const styles = StyleSheet.create ({
   container: {
-    paddingHorizontal: 32,
-    paddingVertical: 12,
-    marginTop: 24,
+    paddingHorizontal: 24,
+    paddingVertical: 14,
+    marginTop: 16,
     marginHorizontal: 5,
     borderRadius: 12,
   },
   title: {
+    // fontFamily: 'Lexend',
     color: "#000000",
-    fontSize: 16,
-    lineHeight: 22,
+    flexWeight: '500',
+    fontSize: 18,
+    lineHeight: 30,
   }
 })
 export default ViewReport

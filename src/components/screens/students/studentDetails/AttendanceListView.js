@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native"
-import { Text, VStack, Box, HStack, Icon } from "native-base"
+import { Text, VStack, Box, HStack } from "native-base"
 import { useEffect, useContext, useState } from "react"
 import { Ionicons } from '@expo/vector-icons'
 import moment from "moment"
@@ -22,18 +22,12 @@ const AttendanceListView = ({ student }) => {
   
   return (
     <VStack style={styles.container} bg="#FDFDFD" shadow={5}>
-      <HStack style={styles.titleiconbox}>
-        <HStack style={styles.titlebox}>
-          <Icon as={<Ionicons name='calendar-outline' />} style={styles.iconcalender}/>
-          <Text style={styles.title} fontFamily="Lexend_500">Attendance</Text>
-        </HStack>
-        <Icon as={<Ionicons name='chevron-down-outline' />} style={styles.iconarrow}/>
-      </HStack>
-      <HStack space={1} borderBottomWidth=".2" justifyContent="space-between" color="#BBBBBB" />
+        <Text style={styles.title}>Attendance</Text>
+        <HStack space={1} borderBottomWidth=".2" justifyContent="space-between" color="#BBBBBB" />
         {myAttendance.map((attend, i) => (
           <Box key={i} style={styles.datebox}>
-            <Text style={styles.date} fontFamily="Lexend_400">{moment(attend.date).format('ddd, D MMM YYYY')}</Text>
-            {(attend.present == true ? <Text style={styles.present} fontFamily="Lexend_400">Present</Text> : <Text style={styles.absent} fontFamily="Lexend_400">Absent</Text>)}
+            <Text style={styles.date}>{moment(attend.date).format('ddd, D MMM YYYY')}</Text>
+            {(attend.present == true ? <Text style={styles.present}>Present</Text> : <Text style={styles.absent}>Absent</Text>)}
           </Box>
             // {(attend !== myAttendance.length -1)  ? <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} justifyContent="space-between" /> : null }  
         ))}
@@ -42,39 +36,18 @@ const AttendanceListView = ({ student }) => {
 }
 const styles = StyleSheet.create ({
   container: {
-    paddingVertical: 12,
+    paddingTop: 20,
     paddingHorizontal: 10,
     borderRadius: 12,
     marginTop: 20,
     marginHorizontal: 5,
   },
-  titleiconbox:{
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  titlebox:{
-    alignItems: 'center',
-  },
   title: {
+    // fontFamily: 'Lexend',
     fontSize: 18,
+    fontWeight: "500",
     lineHeight: 30,
-    marginVertical: 8,
-  },
-  iconcalender: {
-    color: '#000000',
-    width: 28,
-    height: 30,
-    lineHeight: 30,
-    fontSize: 24,
-    marginRight: 8,
-  },  
-  iconarrow:{
-    color: '#1A1A1A',
-    width:24,
-    height: 24,
-    lineHeight: 30,
-    fontSize: 24,
-    marginRight: 10,
+    marginBottom: 8,
   },
   datebox:{
     flexDirection: 'row',
@@ -83,16 +56,17 @@ const styles = StyleSheet.create ({
     paddingBottom: 12,
     paddingRight: 10,
   },
-  date:{
-    fontSize: 16,
-  },  
   absent: {
+    // fontFamily: 'Lexend',
     fontSize: 16,
+    fontWeight: "400",
     lineHeight: 22,
     color: 'red'
   },
   present: {
+    // fontFamily: 'Lexend',
     fontSize: 16,
+    fontWeight: "400",
     lineHeight: 22,
     color: '#000000'
   }

@@ -32,25 +32,13 @@ return (
 const styles = StyleSheet.create ({
     container: {
         backgroundColor: 'rgba(255, 255, 255, 0.5)',
-        borderWidth: 1,
         borderColor: 'rgba(238, 238, 238, 0.5)',
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 4,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5,    
         paddingHorizontal: 16,
         paddingVertical: 10,
         borderRadius: 12,
         marginHorizontal: 20,
         marginTop: 16,
         marginBottom: 22,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
     },
     name: {
         color: '#212427',
