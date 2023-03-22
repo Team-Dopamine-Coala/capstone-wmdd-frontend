@@ -29,13 +29,14 @@ return (
 }
 const styles = StyleSheet.create ({
     container: {
-        backgroundColor: '#FDFDFD',
-       paddingHorizontal: 16,
-       paddingVertical: 10,
-       borderRadius: 12,
-       marginHorizontal: 20,
-       marginTop: 16,
-       marginBottom: 22,
+        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        borderColor: 'rgba(238, 238, 238, 0.5)',
+        paddingHorizontal: 16,
+        paddingVertical: 10,
+        borderRadius: 12,
+        marginHorizontal: 20,
+        marginTop: 16,
+        marginBottom: 22,
     },
     name: {
         // fontFamily: 'Lexend',
