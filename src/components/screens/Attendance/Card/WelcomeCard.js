@@ -11,7 +11,7 @@ const WelcomeCard = ({classNumber}) => {
       <Box mt="20" mb="4">
 
               <Text>Hello</Text>
-              <Heading>Giancarlo</Heading>
+              <Heading>Coach Coala</Heading>
               <Text>You have {classNumber} classes today!</Text>
               <Button onPress={() => {logout()}}>Logout</Button>
 

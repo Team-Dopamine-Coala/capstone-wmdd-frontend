@@ -226,38 +226,29 @@ const StudentDetail = ({route, navigation }) => {
 }
 const styles = StyleSheet.create ({
   container: {
-    // paddingHorizontal: 20,
-    // paddingVertical: 20,
     backgroundColor: 'orange',
   },
   background:{
     backgroundColor: '#FDFDFD',
     paddingHorizontal: 20,
     paddingVertical: 24,
-    borderTopRightRadius:28,
-    borderTopLeftRadius:28,
-    // flex: 1,
+    borderTopRightRadius: 28,
+    borderTopLeftRadius: 28,
   },
   classtab:{
     borderRadius: 81,
     paddingHorizontal: 14,
     paddingVertical: 6,
     backgroundColor: '#404142',
-    flexBasis:0,
+    flexBasis: 0,
     width: 120,
-    // flexGrow:0,
-    // flexShrink:0,
-    // flex:0,
   },
   classtabtext:{
+    // fontFamily: 'Lexend',
     color: '#FAF9F9',
     fontWeight:'400',
     fontSize: 14,
-    // flexBasis:0,
-    // flexShrink:0,
-    // flexGrow:0,
-   
-    // letter-Spacing: -0.02em,
+    lineHeight: 21,
   }
 })
 export default StudentDetail
