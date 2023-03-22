@@ -61,7 +61,7 @@ const SkillList = ({navigation, route}) => {
       }
 
     return(
-        <VStack pt="100px" pb={20} flex={1} bgColor="#F4903F">
+        <VStack pt="50px" flex={1} bgColor="#F4903F">
             <Box bgColor="#ffffff" borderTopLeftRadius={20} borderTopRightRadius={20}>
                 <ScrollView pl={5} pr={5} pt={2}>
                     {levelTitle.map((title, i) => (
@@ -69,8 +69,8 @@ const SkillList = ({navigation, route}) => {
                             <Heading>Level {title.group}</Heading>
                             <VStack>
                                 {title.groupedConn.map((skill, index) => (
-                                    <Pressable onPress={() => openSheet(skill._id)} key={skill._id}>
-                                        <SkillItemVertical skills={skill}/>
+                                    <Pressable key={skill._id} onPress={() => openSheet(skill._id)}>
+                                        <SkillItemVertical skills={skill} />
                                     </Pressable>
                                 ))}
                             </VStack>
@@ -85,7 +85,7 @@ const SkillList = ({navigation, route}) => {
                 animationDuration={300}
                 sliderMaxHeight={Dimensions.get('window').height * 0.9}
             >
-                <View style={{paddingVertical: 20}} pb={20} mb={10}>
+                <View style={{paddingVertical: 20}} mb={10}>
                     <SkillDetails skill={skill}/>    
                 </View>
             </BottomSheet>

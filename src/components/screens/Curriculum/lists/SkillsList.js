@@ -107,7 +107,7 @@ const SkillsList = ({ navigation, skills }) => {
                 animationDuration={300}
                 sliderMaxHeight={Dimensions.get('window').height * 0.9}
             >
-                <View style={{paddingVertical: 20}} pb={10}>
+                <View pb={10}>
                     <SkillDetails skill={skill}/>
                 </View>
             </BottomSheet>
