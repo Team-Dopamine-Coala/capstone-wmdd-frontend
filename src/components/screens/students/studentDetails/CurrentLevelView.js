@@ -4,15 +4,16 @@ import { StyleSheet } from "react-native"
 import Loading from "../../../layout/Loading"
 
 const CurrentLevelView = ({classTitle, classColor, classCard}) => {
-    // const [totalSkillNbr, setTotalSkillNbr] = useState(classCard.totalSkillNumber)
-    // const [completedSkillNbr, setCompletedSkillNbr] = useState(classCard.completeSkillNumber)
+    
   
     const completedSkillNbr = classCard.completeSkillNumber
     const totalSkillNbr = classCard.totalSkillNumber
-    // const b = parseFloat(216 / totalSkillNbr * completedSkillNbr)
-    // const barprogress = `"${b}px"`
+    const b = parseFloat(216 / totalSkillNbr * completedSkillNbr)
+    const barprogress = `"${b}px"`
     // console.log(barprogress)
 
+
+//============================
   // useEffect(() => {
   //   async function bar (){
   //     console.log('start')
@@ -26,7 +27,7 @@ const CurrentLevelView = ({classTitle, classColor, classCard}) => {
   //   } 
   //   bar()
   // },[])
-  
+  //=========================
   return (
     <View style={styles.container}>
       {/* { isLoading ? <Loading/> :  */}
@@ -40,7 +41,7 @@ const CurrentLevelView = ({classTitle, classColor, classCard}) => {
               <Box style={styles.percentBox}>
                 <Box width="216px" bg="#FDFDFD" borderRadius={18.75} h="10px">
                   {/* <Box  width={b} bg={classColor} h="10px" borderRadius={18.75}></Box> */}
-                  <Box bg={classColor} h="10px" borderRadius={18.75}></Box>
+                  <Box bg={barprogress} h="10px" borderRadius={18.75}></Box>
                 </Box>
                 <Box style={styles.numberBox}>
                   <Text style={styles.current}>{completedSkillNbr}</Text>
