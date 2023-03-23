@@ -1,4 +1,4 @@
-import { View, Text, VStack, ListItem, Box } from "native-base"
+import { View, Text, Box } from "native-base"
 import { useState } from "react"
 import { StyleSheet, Modal, TouchableOpacity } from "react-native"
 import StudentBiometrics from "../Biometrics/StudentBiometrics"
@@ -17,24 +17,43 @@ return (
     <View >
         <TouchableOpacity onPress={clickStudent} trainee={student} style={styles.container}>
             <Text style={styles.name}>{student.firstname} {student.lastname}</Text> 
-            <Text>View profile and Contact Information</Text>
+            <Text style={styles.text}>View profile and Contact Information</Text>
         </TouchableOpacity>
-        <Modal visible={modalIsOpen} >
+        <Modal visible={modalIsOpen}>
+            <Box style={styles.biobackground}>
             <StudentBiometrics student={student} navigation={navigation} closeBio={closeBio}/>
+            </Box>
         </Modal>
     </View>
   )
 }
 const styles = StyleSheet.create ({
     container: {
-       backgroundColor: '#bbb',
-       paddingHorizontal: 10,
+        backgroundColor: '#FDFDFD',
+       paddingHorizontal: 16,
        paddingVertical: 10,
-       borderRadius: 10,
+       borderRadius: 12,
+       marginHorizontal: 20,
+       marginTop: 16,
+       marginBottom: 22,
     },
     name: {
-        fontSize: 20,
-        fontWeight: "bold",
+        // fontFamily: 'Lexend',
+        color: '#212427',
+        fontSize: 28,
+        fontWeight: "700",
+        lineHeight: 30,
+    },
+    text: {
+        // fontFamily: 'Lexend',
+        marginTop: 6,
+        color: '#212427',
+        fontSize: 16,
+        fontWeight: "400",
+        lineHeight: 20,
+    },
+    biobackground:{
+        backgroundColor:'#bbb',
     }
   })
 export default ReportView

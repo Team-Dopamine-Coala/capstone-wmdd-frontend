@@ -1,13 +1,11 @@
 import AttendanceStack from '../stacks/AttendanceStack'
 import EvaluationStack from '../stacks/EvaluationStack';
 import ReportStack from '../stacks/ReportStack';
-import CurriculumScreen from '../screens/Curriculum/CurriculumScreen';
 import StudentStack from '../stacks/StudentStack';
 import CurriculumStack from '../stacks/CurriculumStack';
-import StudentsScreen from '../screens/StudentsScreen';
 
-import { Ionicons } from '@expo/vector-icons'
-import { Icon, View, Box, Text } from 'native-base'
+import { Ionicons, createIconSetFromFontello } from '@expo/vector-icons'
+import { Image, Icon, View, Box, Text } from 'native-base'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BlurView } from 'expo-blur';
 
@@ -20,13 +18,12 @@ const AppTabs = () => {
                 headerShown: false,
                 tabBarActiveTintColor: '#655AE9',
                 tabBarInactiveTintColor: '#667080',
-                tabBarStyle:{ position: 'absolute', height: 80 },
                 tabBarLabelStyle:{ paddingBottom: 6, fontSize: 12 }
             })}
       >
         <Tab.Screen name="Attendance" component={AttendanceStack} options={{
           tabBarIcon: ({ color }) => (
-            <Icon size={5} color={color} as={<Ionicons name='ios-calendar' />} />
+            <Icon size={5} color={color} as={<Icon size={5} color={color} as={<Ionicons name='ios-list' />} />} />
           )
         }} />
         <Tab.Screen name="Evaluation" component={EvaluationStack} options={{

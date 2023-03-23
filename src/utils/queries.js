@@ -46,6 +46,25 @@ export const getEvaluationsByClass = async (classid) => {
   }
 }
 
+export const getEvaluationsByStudentId = async (studentid) => {
+  if (studentid) {
+    const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/evaluation/student/${studentid}`)
+    const data = await res.json()
+
+    return data
+  }
+}
+
+// EVALUATION COMMENT =====================================
+export const getEvaluationComment = async (classid, studentid) => {
+  if (studentid && classid) {
+    const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/evaluationcomment/${classid}/${studentid}`)
+    const data = await res.json()
+
+    return data
+  }
+}
+
 // ATTENDANCE =============================================
 export const getAllAttendance = async (classid) => {
 
@@ -79,7 +98,7 @@ export const getLevelById = async (levelid) => {
 
   return data
 }
-//CURRICULUM
+//CURRICULUM ===============================================
   export const fetchSkills = async () => {
 
     const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/skill`)

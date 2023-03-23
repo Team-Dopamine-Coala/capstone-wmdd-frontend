@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native"
 import { Text, VStack, Box } from "native-base"
 import { useEffect, useContext, useState } from "react"
+import moment from "moment"
 
 import {getAllAttendance} from '../../../../utils/queries'
 import { AuthContext } from '../../../context/AuthContext';
@@ -13,7 +14,8 @@ const AttendanceListView = ({student, navigation}) => {
   // console.log(student._id)
   
   //日付の通常表示 attend.date.toDateString()
-
+  // moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+  // moment(attend.date).format('ddd, D MMM YYYY')
 
   useEffect(() => {
     getAllAttendance(classid,userToken)
@@ -23,11 +25,11 @@ const AttendanceListView = ({student, navigation}) => {
   },[])
   
   return (
-    <VStack style={styles.container}>
+    <VStack style={styles.container} bg="#ffffff" borderRadius="md" shadow={5}>
         <Text style={styles.title}>Attendance</Text>
         {myAttendance.map((attend, i) =>(
-          <Box key={i}>
-            <Text>{attend.date}</Text>
+          <Box key={i} style={styles.date}>
+            <Text>{moment(attend.date).format('ddd, D MMM YYYY')}</Text>
             {(attend.present == true ? <Text>Present</Text> : <Text style={styles.absent}>Absent</Text>)}
           </Box>
           
@@ -38,10 +40,11 @@ const AttendanceListView = ({student, navigation}) => {
 const styles = StyleSheet.create ({
   container: {
     paddingVertical: 10,
-    backgroundColor: '#bbb',
     paddingHorizontal: 10,
     paddingVertical: 10,
     borderRadius: 10,
+    marginVertical:24,
+    marginHorizontal: 5,
   },
   title: {
     fontSize: 15,
@@ -49,6 +52,10 @@ const styles = StyleSheet.create ({
   },
   absent: {
     color: 'red',
+  },
+  date:{
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
 })
 export default AttendanceListView

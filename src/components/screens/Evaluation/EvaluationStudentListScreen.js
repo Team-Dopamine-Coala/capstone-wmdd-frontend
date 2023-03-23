@@ -27,21 +27,22 @@ const EvaluationStudentListScreen = ({ navigation, route }) => {
   }, [dateSelected])
 
   return (
-    <VStack width="100%" space={1} p={3} pb={20} bgColor="#ffffff" flex={1}>
-      <Input placeholder="Search" variant="filled" width="100%" borderRadius="10" py="1" px="2" InputLeftElement={<Icon ml="2" size="4" color="gray.400" as={<Ionicons name="ios-search" />} />} />
+    <View h="100%" space={1} pt="50px" bgColor="#F4903F" flex={1}>
+      <VStack height="100%" p={3} bgColor="#ffffff" borderTopLeftRadius={20} borderTopRightRadius={20}>
 
-      {isLoading ? <Loading /> : <StudentList students={students} navigation={navigation} className={route.params.className} />}
+        {isLoading ? <Loading /> : <StudentList students={students} navigation={navigation} className={route.params.className} />}
 
-      <Button
-        bgColor="#667080"
-        onPress={() => {
-          navigation.navigate('Evaluation Individual Student', {
-            studentsList: students,
-            className: route.params.className
-          })
-        }}
-      ><Text fontWeight="700" color="#ffffff">Start Evaluation</Text></Button>
-    </VStack>
+        <Button
+          bgColor="#404142"
+          onPress={() => {
+            navigation.navigate('Evaluation Individual Student', {
+              studentsList: students,
+              className: route.params.className
+            })
+          }}
+        ><Text fontWeight="700" color="#ffffff">Start Evaluation</Text></Button>
+      </VStack>
+    </View>
   )
 }
 

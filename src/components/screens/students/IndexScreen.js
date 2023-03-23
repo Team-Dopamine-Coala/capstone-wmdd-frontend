@@ -1,53 +1,43 @@
-import { Box, Text, VStack, ScrollView } from "native-base"
+import { Box, Text, VStack, ScrollView, Input, View, HStack } from "native-base"
 import { useEffect, useState, useContext } from "react"
 import { TouchableOpacity, StyleSheet, SafeAreaView } from "react-native"
+import DropShadow from "react-native-drop-shadow";
 import StudentsSearch from "./myStudents/StudentsSearch"
 
 import {getClassesOfCoach, getStudentsByClass} from '../../../utils/queries'
 import { AuthContext } from '../../context/AuthContext';
 
-const IndexScreen = ({ navigation, route }) => {
-  const [sortedMyStudents, setSortedMyStudents] = useState([])
-  const [myAllStudents, setMyAllStudents] = useState([])
+const IndexScreen = ({ navigation}) => {
+  
   const [nameTitle, setNameTitle] = useState([])
-  const [myClassIds, setMyClassIds] = useState([])
-  const [endFetch, setEndFetch ] = useState(false)
- 
   const {userToken} = useContext(AuthContext)
   const userId = '63fcf0bd354e8150f45dd4d2'
-  
-  //1.Fetch all classes which has this userID(All class can fetch by userID)
+  const myClassIds = []
+  const myAllStudents = []
+
   useEffect(() => {
-    // console.log('start!')
-      getClassesOfCoach(userId,userToken)
-        .then((data) => {
-          setMyClassIds(data.map((item) => item._id))
-      })
-    },[])     
-    
-    //2.Fetch students this in this user's class
-    useEffect(() => {
+    getClassesOfCoach(userId,userToken)
+      .then((data) => {
+        data.map((item) => {
+          myClassIds.push(item._id)
+        })
+        // console.log('My Class ID', myClassIds)
+        //GET KIDS for each classes this user has
         myClassIds.map((eachclassid, i) => {
           getStudentsByClass(eachclassid,userToken)
-            .then((data) => {
-              data.map((person) =>setMyAllStudents(onlvalue => [...onlvalue, person]))
-              if (myClassIds.length === i+1) {
-                setEndFetch(true)
-              }else {
-                null
-              }
-            })
+          .then((data) => {
+              data.map((person) => {
+                myAllStudents.push(person)
+              })
+              // console.log('THIS IS MY KIDDOS!', i, myAllStudents.length)
+              //CHECK if student has multiple classes
+              myAllStudents.filter((item, index) => myAllStudents.indexOf(item) === index)
+              sorting()
+              displaytitle()
+          })
         })
-        // console.log('I own these classes',myClassIds)
-    }, [myClassIds])
-    
-    //3. Sorting and Alphabetic title display
-    useEffect(() => {
-      // console.log('all kids list',myAllStudents)
-      sorting()
-      displaytitle()
-    },[endFetch])
-
+      }) 
+  },[])  
 
   //====FUNCTIONS=====================================================================
   //Sorting alphabetically
@@ -60,7 +50,6 @@ const IndexScreen = ({ navigation, route }) => {
       }
       return 0
     })
-    setSortedMyStudents(myAllStudents)
     // console.log('並べた結果',myAllStudents.length, myAllStudents)
   }
       
@@ -76,56 +65,73 @@ const IndexScreen = ({ navigation, route }) => {
     setNameTitle(Object.values(title))
     // console.log('nameタイトル',nameTitle)
   }
-
-  return(
-    <SafeAreaView style={styles.container}>
-      <Box>
-        <StudentsSearch />
-      </Box>
-      <ScrollView style={styles.scrollarea}>
-        {nameTitle.map((title, i) => ( 
-          <Box key={i} style={styles.box}> 
-            <Text style={styles.abc}>{title.group}</Text>
-            <VStack  style={styles.nameContainer}>
-              {title.groupedConn.map((trainee, index) => (             
-                <TouchableOpacity   key={index} 
-                                    onPress={() => {console.log('clickしたよ',trainee),
-                                    navigation.navigate('Student Detail',{trainee})
-                }}>
-                  <Text>{trainee.firstname} {trainee.lastname}</Text>
-                </TouchableOpacity >
-              ))}
-            </VStack>
-          </Box> 
-        ))}
-      </ScrollView>    
-    </SafeAreaView>
-  )
+  
+    return(
+      <View style={styles.container}>
+        <View style={styles.background}>
+          <Box>
+            <StudentsSearch myAllStudents={myAllStudents}/>
+          </Box>
+          <ScrollView style={styles.scrollarea}>
+            {nameTitle.map((title, i) => ( 
+              <Box key={i} style={styles.box}> 
+                <Text style={styles.abc}>{title.group}</Text>
+                <VStack  style={styles.nameContainer} shadow={5}>
+                  {title.groupedConn.map((trainee, index) => (             
+                    <TouchableOpacity   key={index} 
+                                        onPress={() => {
+                                        navigation.navigate('Student Detail',{trainee})
+                                        }}>
+                      <Text style={styles.name}>{trainee.firstname} {trainee.lastname}</Text>
+                    </TouchableOpacity >
+                    // {j++ ? <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} justifyContent="space-between"/> : null}
+                  ))}
+                </VStack>
+              </Box> 
+            ))} 
+          </ScrollView>
+        </View>    
+      </View>
+    )
 }
+ 
 const styles = StyleSheet.create ({
   container: {
+    backgroundColor: 'orange',
+  },
+  background: {
+    backgroundColor: '#FDFDFD',
     paddingVertical:24,
     paddingHorizontal: 20,
+    borderTopRightRadius:28,
+    borderTopLeftRadius:28,
   },
   scrollarea: {
     marginTop: 24,
   },
   box: {
-    marginTop: 20,
+    marginBottom: 20,
   },
   abc: {
+    // fontFamily: 'Lexend',
+    color: '#242424',
     fontWeight: '600',
     fontSize: 24,
-    marginBottom: 5,
-    marginTop: 15,
+    lineHeight:30,
   },
   nameContainer: {
     marginTop: 8,
      backgroundColor: '#FDFDFD',
      borderRadius: '12',
-     paddingHorizontal: 16,
-     paddingTop: 10,
-     paddingBottom: 10,
+     marginHorizontal: 2,
+  },
+  name: {
+    // fontFamily: 'Lexend',
+    color: '#242424',
+    paddingHorizontal: 15,
+    paddingVertical: 12,
+    fontWeight: '400',
+    fontSize: 16,
   }
 })
 export default IndexScreen

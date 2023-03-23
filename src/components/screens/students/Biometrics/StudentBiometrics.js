@@ -1,70 +1,42 @@
 import React, { useEffect, useState } from 'react'
-import { Alert, StatusBar } from 'react-native';
+import { Alert, StatusBar, StyleSheet, Text } from 'react-native';
 import { View } from "native-base"
 import * as LocalAuthentication from 'expo-local-authentication'
 
 const StudentBiometrics = ({student, closeBio, navigation}) => {
-  // console.log('this student',student)
-   // const bcrypt = require ('bcrypt')
+ 
   const userID = '63fcf0bd354e8150f45dd4d2'
-  // console.log('ナビ見てみる',navigation)
-  // console.log('ナビBio student',student)
-  // console.log('ナビBio',navigation)
   const setModalIsOpen = useState
-  // console.log('もだl',setModalIsOpen())
-
-  //get user's password
   const [pwdOpen, setPwdOpen] = useState(false)
-  const [userPassword, setUserPassword] = useState('')
   const [isBiometricSupported, setIsBiometricSupported] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [biosuccess, setBiosuccess] = useState(false)
   
-  
-  //Get user Password
-  // useEffect(() => {
-  //   const getUserId = async () => {
-  //     const res = await fetchUser()
-  //     setUserPassword(res.password)
-  //     console.log('PWD',password)
-  //   }
-  //   getUserId()
-  // },[])
-  
-  // const fetchUser = async () => {
-  //   const res = await fetch(`http://3.84.131.140:3000/api/users/${userID}`)
-  //   const data = await res.json()
-   
-  //   if(res.ok){
-  //     return data
-  //   }
-    
-  // }
-
-  //1.check if device suppert biometrics (ture || false)
+  //1.Device suppert biometrics? (ture || false)
   //ここFalseだった場合password入力に進むようにする
   useEffect(() => {
     (async () => {
       const isBiometricSupported = await LocalAuthentication.hasHardwareAsync();
       
-      console.log('bio support?',isBiometricSupported)
+      console.log('1.bio support on device?',isBiometricSupported)
       if(isBiometricSupported === false){
-        console.log('Your device is compatible with Biometrics')
+        console.log('1.Your device is compatible with Biometrics')
         fallBackToDefaultAuth()
       }if (isBiometricSupported === true) {
-        console.log('Face or Fingerprint scanner is available on this device')
+        console.log('1.Face or Fingerprint scanner is available on this device')
         handleBiometricAuth()
       }
     })();
   });
       
     //===========================================================  
-  //Function if devide does not support biometrics (Enter password!)　パスワード入力コードを作成
+  //Function if device does not support biometrics (Enter password!)　パスワード入力コードを作成
   const fallBackPassword = () => {
     //check useID and input id is equal!
     //Password入力
     Alert.prompt(
       "Enter Password",
-      "Please enter login password to varify for access student's personal info.",
+      "Please enter login password to access student's personal info.",
       [
         {
           text: "Cancel",
@@ -117,11 +89,11 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
 
  //============================================== 
 
-  //2.Check if Hardware support biometrics 
+  //2.Hardware support biometrics? 
   const handleBiometricAuth = async () => {
     //Check if Hardware support biometrics  
     const isBiometricAvailable = await LocalAuthentication.hasHardwareAsync()
-    console.log('available bio?',isBiometricAvailable)
+    console.log('2. available bio?',isBiometricAvailable)
     
     //if not supported, ask to input password 
     if (!isBiometricAvailable)
@@ -132,11 +104,11 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
       () => {fallBackPassword(), console.log('PW行くよ')}
     );
 
-    // 3.Check what Biometrics types available ([1] - Fingerprint, [2] - Facial recognition)
+    // 3.What Biometrics types available? ([1] - Fingerprint, [2] - Facial recognition)
     let supportedBiometrics;
     if (isBiometricAvailable) {
       supportedBiometrics = await LocalAuthentication.supportedAuthenticationTypesAsync();
-      console.log('finger or face?',supportedBiometrics)
+      console.log('3.finger or face?',supportedBiometrics)
     }
     
     
@@ -154,12 +126,14 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
     //     )}
       
 
-      //5. Authenticate use with Biometrics (Fingerprint, Facial recognition)
+      //5.Finally Authenticate use with Biometrics (Fingerprint, Facial recognition)
       const result = await LocalAuthentication.authenticateAsync
+      
       ({
-        promptMessage: 'Login with Biometrics',
-        cancelLabel: 'Cancel',
+        promptMessage: 'Varify with Biometrics',
         disableDeviceFallback: true,
+        cancelLabel: 'Cancel',
+        onPress: () => {navigation.navigate('Student Profile')},
       });
         successProcess(result)
     }
@@ -183,25 +157,60 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
 
   //When BioAuth success
   const successProcess = (result) => {
-    console.log('bio success or fail?',result)
+    console.log('4.bio success or fail?',result)
     if (result.success == true){
+      // setBiosuccess(true)
       console.log('success!')
       movepage()
     } else if (result.success == false){
       console.log('failed bio')
     }
   }
-  return (
-    <View>
 
+
+
+  return (
+    <View style={styles.container}>
+        <Text>Yahoo</Text>
+        {/* {biosuccess == true ? <Text>SUCCESS!</Text> : null} */}
         <StatusBar style="auto" />
     </View>
   )
 }
-
+const styles = StyleSheet.create ({
+  container:{
+      backgroundColor:'yellow',
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+  }
+})
 export default StudentBiometrics
 
 
 //TO DO LIST
-//1. bcryptされたものとどのように比べるか！？
 //3. face idのLogoはどうなるのか？
+
+
+
+
+//Get user Password
+  // useEffect(() => {
+  //   const getUserId = async () => {
+  //     const res = await fetchUser()
+  //     setUserPassword(res.password)
+  //     console.log('PWD',password)
+  //   }
+  //   getUserId()
+  // },[])
+  
+  // const fetchUser = async () => {
+  //   const res = await fetch(`http://3.84.131.140:3000/api/users/${userID}`)
+  //   const data = await res.json()
+   
+  //   if(res.ok){
+  //     return data
+  //   }
+    
+  // }

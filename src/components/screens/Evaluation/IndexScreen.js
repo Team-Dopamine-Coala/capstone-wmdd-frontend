@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
-import { Box, Center, Heading, VStack } from 'native-base'
+import { Box, Center, Heading, VStack, View } from 'native-base'
 import CalendarStrip from 'react-native-calendar-strip';
 import moment from 'moment';
 
@@ -36,11 +36,11 @@ const IndexScreen = ({ navigation }) => {
   }
 
   return (
-    <VStack pt="50px" pb={20} flex={1} bgColor="#F4903F">
-      <Box bgColor="#ffffff" borderTopLeftRadius={20} borderTopRightRadius={20}>
+    <VStack pt="50px" flex={1} bgColor="#F4903F">
+      <Box pt={2} height="100%" bgColor="#ffffff" borderTopLeftRadius={20} borderTopRightRadius={20}>
         <CalendarStrip
         scrollable
-        style={{height: 130, paddingTop: 20, paddingBottom: 10}}
+        style={{height: 130, paddingTop: 20, paddingBottom: 10, paddingHorizontal: 20}}
         calendarHeaderStyle={{
           fontSize: 18,
           alignSelf: 'flex-start',
