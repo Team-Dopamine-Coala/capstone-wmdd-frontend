@@ -9,10 +9,6 @@ import { Image, Icon, View, Box, Text } from 'native-base'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BlurView } from 'expo-blur';
 
-import fontelloConfig from '../../../assets/fonts/fontello/config.json';
-
-const CoalaIcon = createIconSetFromFontello(fontelloConfig, 'coala', '../../../assets/fonts/fontello/font/coala.ttf');
-
 const Tab = createBottomTabNavigator();
 
 const AppTabs = () => {
@@ -27,7 +23,7 @@ const AppTabs = () => {
       >
         <Tab.Screen name="Attendance" component={AttendanceStack} options={{
           tabBarIcon: ({ color }) => (
-            <Icon size={5} color={color} as={<Image source={require('./assets/images/coalaOngoing.png')} />} />
+            <Icon size={5} color={color} as={<Icon size={5} color={color} as={<Ionicons name='ios-list' />} />} />
           )
         }} />
         <Tab.Screen name="Evaluation" component={EvaluationStack} options={{

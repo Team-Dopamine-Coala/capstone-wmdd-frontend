@@ -1,13 +1,29 @@
+import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider } from 'native-base';
-// import AppTabs from './src/components/tabs/AppTabs'
-// import LoginSignUpStack from './src/components/stacks/LoginSignUpStack';
+import AppLoading from 'expo-app-loading';
 
 import { AuthProvider } from './src/components/context/AuthContext';
 import AppNav from './src/components/navigation/AppNav';
 
+import { useFonts } from './hooks/useFonts';
 
 export default function App() {
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  const LoadFonts = async () => {
+    await useFonts();
+  };
+
+  if (!fontsLoaded) {
+    return (
+      <AppLoading
+        startAsync={LoadFonts}
+        onFinish={() => setFontsLoaded(true)}
+        onError={(error) => console.log(error)}
+      />
+    );
+  }
 
   return (
     <NativeBaseProvider>

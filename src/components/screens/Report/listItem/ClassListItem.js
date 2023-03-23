@@ -14,15 +14,15 @@ const ClassListItem = ({ item, navigation, clickedClass }) => {
         <VStack>
           <HStack>
             <VStack space={1} mb={2}>
-              <Heading fontSize={22}>{item.title}</Heading>
-              <Text>{moment(item.startTime).format('H:mm A')} - {moment(item.endTime).format('H:mm A')}</Text>
+              <Heading fontFamily="Lexend_400" fontSize={22}>{item.title}</Heading>
+              <Text fontFamily="Lexend_400">{moment(item.startTime).format('H:mm A')} - {moment(item.endTime).format('H:mm A')}</Text>
             </VStack>
           </HStack>
 
           <Button
             bgColor="#404142"
             onPress={() => clickedSeeReport(item._id)}
-          ><Text fontWeight="700" color="#ffffff">See Report</Text></Button>
+          ><Text fontFamily="Lexend_700" color="#ffffff">See Report</Text></Button>
         </VStack>
       </Box>
     </View>
