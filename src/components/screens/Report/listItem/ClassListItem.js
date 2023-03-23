@@ -9,7 +9,7 @@ const ClassListItem = ({ item, navigation, clickedClass }) => {
 
   return (
     <View mx={3} my={3}>
-      <Box  mb={3} p={5} bg="#ffc0cb" width="100%" height="90%" borderRadius="md" shadow={9} position="absolute" top="5%"></Box>
+      <Box  mb={3} p={5} bg={item.color} width="100%" height="90%" borderRadius="md" shadow={9} position="absolute" top="5%"></Box>
       <Box ml={4} p={3} bg="#ffffff" flex={1} height="100%" borderRadius="md" shadow={5}>
         <VStack>
           <HStack>

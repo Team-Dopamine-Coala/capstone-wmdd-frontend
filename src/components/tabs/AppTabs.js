@@ -23,7 +23,7 @@ const AppTabs = () => {
       >
         <Tab.Screen name="Attendance" component={AttendanceStack} options={{
           tabBarIcon: ({ color }) => (
-            <Icon size={5} color={color} as={<Icon size={5} color={color} as={<Ionicons name='ios-list' />} />} />
+            <Icon size={5} color={color} as={<Icon size={5} color={color} as={<Ionicons name='ios-calendar' />} />} />
           )
         }} />
         <Tab.Screen name="Evaluation" component={EvaluationStack} options={{
