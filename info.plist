@@ -1,0 +1,2 @@
+<key>NSFaceIDUsageDescription</key>
+<string>Allow $(PRODUCT_NAME) Authentication with TouchId or FaceID</string>

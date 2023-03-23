@@ -1,16 +1,36 @@
-import { Box, FlatList, Text, Checkbox } from "native-base"
+// not in use
+
+import { Box, FlatList, Text, VStack } from "native-base"
 import StudentCard from "../Card/StudentCard"
 
-const StudentList = ({ students, navigation, checkboxHandler }) => {
-
-  
+const StudentList = ({ present, absent, presentList, absentList }) => {
+ 
   return (
-    <Checkbox.Group onChange={checkboxHandler}>
-        {students.map((item) => {
-            return <Checkbox value={item._id} key= {item._id} colorScheme="orange" accessibilityLabel="This is a checkbox of a student" >{item.firstname+item.lastname}</Checkbox>
-        })}
-    
-    </Checkbox.Group>
+    <VStack p={3}>
+        <Box borderBottomWidth="1" _dark={{
+                borderColor: "muted.50"
+              }} borderColor="muted.800" pl={["0", "4"]} pr={["0", "5"]} py="2"><Text>Present({present})</Text></Box>
+        <FlatList 
+         data={presentList}
+         renderItem={({ item }) => (
+            <StudentCard 
+              item={item}
+              />
+              )}
+            />
+        <Box borderBottomWidth="1" _dark={{
+            borderColor: "muted.50"
+            }} borderColor="muted.800" pl={["0", "4"]} pr={["0", "5"]} py="2"> <Text>Absent({absent})</Text></Box>
+       
+        <FlatList 
+         data={absentList}
+         renderItem={({ item }) => (
+            <StudentCard
+              item={item}
+              />
+              )}
+            />
+    </VStack>
         
 
 
