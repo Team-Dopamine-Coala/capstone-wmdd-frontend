@@ -9,7 +9,7 @@ export const getClassesOfCoach = async (coachid, userToken) => {
       },
     })
     const data = await res.json()
-    console.log("class of coach data", data)
+    // console.log("class of coach data", data)
     return data
   }
 }
@@ -30,6 +30,15 @@ export const getSingleClass = async (coachid, classid, userToken) => {
 export const getStudentsByClass = async (classid) => {
   if (classid) {
     const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/student/${classid}`)
+    const data = await res.json()
+
+    return data
+  }
+}
+
+export const getStudentById = async (classid, id) => {
+  if (id) {
+    const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/student/${classid}/${id}`)
     const data = await res.json()
 
     return data
