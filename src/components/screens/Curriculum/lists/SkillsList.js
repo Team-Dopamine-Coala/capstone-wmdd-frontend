@@ -13,14 +13,10 @@ const SkillsList = ({ navigation, skills }) => {
     const [skill, setSkill] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
-    // useEffect(() => {
-    //     console.log(skill)
-    // }, [skill])
 
     const openSheet = (id) => {
         panelRef.current.togglePanel()
         setSelectedId(id)
-        // console.log(id)
         setIsLoading(true)
         fetchSkill(id).then(
             data => {

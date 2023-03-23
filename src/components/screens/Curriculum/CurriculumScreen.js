@@ -22,10 +22,6 @@ const CurriculumScreen = ({ navigation }) => {
       )
   }, [])
 
-  // useEffect(() => {
-  //     console.log(skills)
-  // }, [skills])
-
   return (
     <>
       <VStack pt="50px" flex={1} bgColor="#F4903F">

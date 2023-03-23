@@ -70,7 +70,7 @@ const SkillList = ({navigation, route}) => {
                             <VStack>
                                 {title.groupedConn.map((skill, index) => (
                                     <Pressable key={skill._id} onPress={() => openSheet(skill._id)}>
-                                        <SkillItemVertical skills={skill} />
+                                        <SkillItemVertical skill={skill} />
                                     </Pressable>
                                 ))}
                             </VStack>

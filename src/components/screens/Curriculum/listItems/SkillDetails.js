@@ -8,16 +8,6 @@ const SkillDetails = ({skill}) => {
 
   const video = useRef(null);
   const [status, setStatus] = useState({});
-  const url = "https://res.cloudinary.com/dp53wf7gb/video/upload/v1679014132/bum-bounce_rwvymh.mp4"
-  
-  // console.log(skill.videoUrl)
-  console.log(url)
-
-  // useEffect(() => {
-  //   video.current.loadAsync({
-  //     uri: url
-  //   })
-  // }, [])
 
     return (
       <View>
@@ -27,11 +17,10 @@ const SkillDetails = ({skill}) => {
             ref={video}
             style={styles.video}
             source={{
-              uri: url,
+              uri: skill.videoUrl,
             }}
             useNativeControls
             resizeMode="contain"
-            isLooping
             onPlaybackStatusUpdate={status => setStatus(() => status)}
           />
         </View>
