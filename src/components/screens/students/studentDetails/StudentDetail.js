@@ -11,7 +11,7 @@ import ViewReport from "./ViewReport"
 import Loading from "../../../layout/Loading"
 
 import { AuthContext } from '../../../context/AuthContext'
-import { getSingleClass, getEvaluationsByClass, getSkillById, getProgramById, getLevelById, fetchSkills } from '../../../../utils/queries'
+import { getSingleClass, getEvaluationsByClass, getSkillById, fetchSkills } from '../../../../utils/queries'
 
 const StudentDetail = ({route, navigation }) => {
   const { trainee } = route.params
@@ -87,6 +87,7 @@ const StudentDetail = ({route, navigation }) => {
   
   //4.program に行かずにSkillから直接そのスキルがいくつもともと持っているか確認する。
   useEffect(() => {
+    setEndLoading(true)
     console.log('私の持つSkills',myAllSkills.length, myAllSkills)
 
     //自分の持ってるスキルのレベルがtotalで何個持っているのか確認する
@@ -119,10 +120,10 @@ const StudentDetail = ({route, navigation }) => {
             //もしLEVELが１だったらそのままCurrentLevelViewに送る｜１つ以上ならその中で全部位終わっていないlevelをP/Uして送る
             if(myLevelDetail.length == 1){
               setClassCard(myLevelDetail)
-              setEndLoading(true)
+              setEndLoading(false)
             }else {
               setClassCard(myLevelDetail.filter((each) => {each.totalNbr !== each.compNbr}))
-              setEndLoading(true)
+              setEndLoading(false)
             }
           }else {
             null
@@ -143,7 +144,7 @@ const StudentDetail = ({route, navigation }) => {
             <TouchableOpacity style={styles.classtab}>
               {<Text style={styles.classtabtext} fontFamily="Lexend_400">{classTitle}</Text>}
             </TouchableOpacity>
-            <CurrentLevelView classTitle={classTitle} classColor={classColor} cardBgColor={cardBgColor} classCard={classCard} />
+            {/* <CurrentLevelView classTitle={classTitle} classColor={classColor} cardBgColor={cardBgColor} classCard={classCard} /> */}
             <SkillsAchievementView myLevelDetail={myLevelDetail}/>
             <AttendanceListView student={trainee} /> 
             <ViewReport student={trainee}/>
