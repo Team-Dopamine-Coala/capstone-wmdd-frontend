@@ -64,8 +64,10 @@ const Card = ({ title, startTime, endTime, location, id, navigation, dateSelecte
                   id={id}
                   onPress={() => {
                     if(completed){
-                      navigation.navigate('Completed Attendance', {
-                        classId: id
+                      navigation.navigate('View Attendance', {
+                        viewclassId: id,
+                        present: present,
+                        absent: absent
                     })}
                     else{
                     navigation.navigate('Attendance Student List', {

@@ -1,0 +1,90 @@
+@font-face {
+  font-family: 'coala';
+  src: url('../font/coala.eot?14018366');
+  src: url('../font/coala.eot?14018366#iefix') format('embedded-opentype'),
+       url('../font/coala.woff2?14018366') format('woff2'),
+       url('../font/coala.woff?14018366') format('woff'),
+       url('../font/coala.ttf?14018366') format('truetype'),
+       url('../font/coala.svg?14018366#coala') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'coala';
+    src: url('../font/coala.svg?14018366#coala') format('svg');
+  }
+}
+*/
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "coala";
+  font-style: normal;
+  font-weight: normal;
+  speak: never;
+
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.icon-info:before { content: '\e800'; } /* '' */
+.icon-card:before { content: '\e801'; } /* '' */
+.icon-help:before { content: '\e802'; } /* '' */
+.icon-notifications:before { content: '\e803'; } /* '' */
+.icon-search:before { content: '\e804'; } /* '' */
+.icon-arrow_noline_up:before { content: '\e805'; } /* '' */
+.icon-arrow_noline_down:before { content: '\e806'; } /* '' */
+.icon-arrow_noline_left:before { content: '\e807'; } /* '' */
+.icon-arrow_noline_right:before { content: '\e808'; } /* '' */
+.icon-arrow_up:before { content: '\e809'; } /* '' */
+.icon-arrow_down:before { content: '\e80a'; } /* '' */
+.icon-arrow_left:before { content: '\e80b'; } /* '' */
+.icon-arrow_right:before { content: '\e80c'; } /* '' */
+.icon-square_x:before { content: '\e80d'; } /* '' */
+.icon-signout:before { content: '\e80e'; } /* '' */
+.icon-class:before { content: '\e80f'; } /* '' */
+.icon-cancel:before { content: '\e810'; } /* '' */
+.icon-eye:before { content: '\e811'; } /* '' */
+.icon-send:before { content: '\e812'; } /* '' */
+.icon-alert:before { content: '\e813'; } /* '' */
+.icon-map:before { content: '\e814'; } /* '' */
+.icon-edit:before { content: '\e815'; } /* '' */
+.icon-clock:before { content: '\e816'; } /* '' */
+.icon-calendar:before { content: '\e817'; } /* '' */
+.icon-curriculum_filled:before { content: '\e818'; } /* '' */
+.icon-evaluation_filled:before { content: '\e819'; } /* '' */
+.icon-attendance_filled:before { content: '\e81a'; } /* '' */
+.icon-students_filled:before { content: '\e81b'; } /* '' */
+.icon-report_filled:before { content: '\e81c'; } /* '' */
+.icon-students:before { content: '\e81d'; } /* '' */
+.icon-curriculum:before { content: '\e81e'; } /* '' */
+.icon-report:before { content: '\e81f'; } /* '' */
+.icon-evaluation:before { content: '\e820'; } /* '' */
+.icon-attendance:before { content: '\e821'; } /* '' */

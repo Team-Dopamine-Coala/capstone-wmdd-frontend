@@ -4,23 +4,23 @@ import { useState, useEffect, useContext } from 'react'
 import { AuthContext } from '../../../context/AuthContext';
 import { getAllAttendance, getStudentById } from '../../../../utils/queries';
 
-const CompletedAttendance = ({ route, students, navigation, checkboxHandler, allAttendance  }) => {
-  const { classId } = route.params
+const ViewAttendance = ({ route, students, navigation, checkboxHandler, allAttendance  }) => {
+  const { viewclassId, present, absent } = route.params
   const { userToken } = useContext(AuthContext)
   const [presentList, setPresentList] = useState([]);
   const [absentList, setAbsentList] = useState([]);
-
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
-    getAllAttendance(classId, userToken).then(
+    getAllAttendance(viewclassId, userToken).then(
       data => {
         let presentListArray = [];
         let absentListArray = [];
         for (let index = 0; index < data.length; index++) {
           const element = data[index];
-          getStudentById( classId, element.studentId).then(
+          getStudentById(viewclassId, element.studentId).then(
             studentData => {
+              // console.log("studentData", viewclassId, element.studentId)
               element.firstname = studentData.firstname
               element.lastname = studentData.lastname
               if(element.present==true){
@@ -49,27 +49,18 @@ const CompletedAttendance = ({ route, students, navigation, checkboxHandler, all
     
   }, [])
 
-
   
   
   return (
     <VStack>
     <Box>
        <StudentList
-        present={presentList.length}
-        absent={absentList.length}
-        presentList={presentList}
-        absentList={absentList}
+       present={present}
+       absent={absent}
+       presentList={presentList}
+       absentList={absentList}
        />
     </Box>
-     <Button
-     bgColor="#404142"
-     onPress={() => {
-       navigation.navigate('Attendance Index', {
-        ready: Math.floor(Math.random() * 1000000)
-      });
-     }}
-   ><Text fontWeight="700" color="#ffffff">Done</Text></Button>
    </VStack>
         
 
@@ -77,4 +68,4 @@ const CompletedAttendance = ({ route, students, navigation, checkboxHandler, all
   )
 }
 
-export default CompletedAttendance
+export default ViewAttendance

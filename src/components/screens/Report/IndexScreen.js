@@ -66,8 +66,6 @@ const IndexScreen = ({ navigation }) => {
     setIsDialogVisible(true)
     setSelectedStudent(studentId)
     sendEmail(studentId)
-
-    console.log(selectedClass, studentId)
   }
 
   const closeDialog = () => {
@@ -79,10 +77,13 @@ const IndexScreen = ({ navigation }) => {
       <VStack pt="50px" flex={1} bgColor="#F4903F">
         <Box pt={2} height="100%" bgColor="#ffffff" borderTopLeftRadius={20} borderTopRightRadius={20}>
         
-        {isLoading ? <Loading /> : <ClassList classes={classes} navigation={navigation} clickedClass={clickedClass} />}
-      </Box>
-
+          {isLoading ? <Loading /> : <ClassList classes={classes} navigation={navigation} clickedClass={clickedClass} />}
+        </Box>
       </VStack>
+
+      <Box style={{ backgroundColor: '#000000', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+        <Text>Hello</Text>
+      </Box>
       
       <BottomSheet
         isOpen={false}

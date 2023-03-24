@@ -109,7 +109,6 @@ const newClass = {
 
  // Update Class
 const updateClassAttendance = async () => {
-  console.log("classId", classId)
  
     await fetch(`${AWS_BACKEND_BASE_URL}/api/class/${classId}`, {
     method: 'PATCH',
@@ -135,7 +134,8 @@ const updateClassAttendance = async () => {
         onPress={() => {
           // addAttendance()
           addAllAttendance(); updateClassAttendance(); navigation.navigate('Completed Attendance', {
-            allAttendance: allAttendance
+            allAttendance: allAttendance,
+            classId: classId
           });
         }}
       ><Text fontWeight="700" color="#ffffff">Save Attendance</Text></Button>

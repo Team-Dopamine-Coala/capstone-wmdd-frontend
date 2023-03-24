@@ -7,9 +7,9 @@ const SkillsAchievementView = ({levelCards}) => {
         <Text style={styles.title}>Skills Achievement</Text>
         <VStack style={styles.skillsbox}>
           {levelCards.map((item, i) => (
-            <Box key={i} style={styles.levelbox} bg="#ffffff" borderRadius="md" shadow={5}>
+            <Box key={i} style={styles.levelbox} bg="#ffffff" shadow={5}>
               <Text style={styles.level}>{item.level}</Text>
-              <Box style={styles.numbers}>
+              <Box style={styles.numbersbox}>
                 <Text style={styles.Bold}>{item.completeSkillNumber}</Text> 
                 <Text style={styles.normal}> / {item.totalSkillNumber}</Text>
               </Box>
@@ -25,43 +25,55 @@ const styles = StyleSheet.create ({
     paddingVertical: 10,
   },
   title: {
+    // fontFamily: 'Lexend',
     fontSize: 16,
     fontWeight: "500",
-    marginBottom: 16,
+    lineHeight: 24,
+    marginHorizontal: 10,
   },
   skillsbox:{
     flexDirection: 'row',
     paddingLeft: 5,
+    marginTop: 16,
   },
   levelbox: {
     borderRadius: 20,
     paddingVertical: 10,
-    paddingHorizontal: 24, 
+    paddingLeft: 34,
+    paddingRight: 61,
+    gap: 14,
   },
   level:{
+    // fontFamily: 'Lexend',
     fontWeight: '500',
     fontSize: 14,
-    height: 30,
+    lineHeight: 30,
     marginBottom: 4,
   },
-  numbers:{
+  numbersbox:{
     flexDirection: 'row',
   },
   Bold:{
+    // fontFamily: 'Lexend',
+    color: '#000000',
     fontWeight: '700',
-    // fontSize: 32,
-    fontSize: 22,
-    // height: 30,
+    fontSize: 32,
+    lineHeight: 31,
   },
   normal:{
-    fontWeight: '300',
+    // fontFamily: 'Lexend',
+    color: '#000000',
+    fontWeight: '400',
     fontSize: 16,
-    
-    // paddingTop:10,
+    lineHeight: 30,
+    marginLeft: 5,
   },
   learned:{
+    // fontFamily: 'Lexend',
+    color: '#000000',
     fontWeight: '300',
     fontSize: 16,
+    marginTop: 10,
   }
 })
 export default SkillsAchievementView
