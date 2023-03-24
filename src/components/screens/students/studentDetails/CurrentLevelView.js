@@ -5,29 +5,28 @@ import Loading from "../../../layout/Loading"
 
 const CurrentLevelView = ({classTitle, classColor, cardBgColor, classCard}) => {
     
-  
-    const completedSkillNbr = classCard.completeSkillNumber
-    const totalSkillNbr = classCard.totalSkillNumber
-    const b = parseFloat(216 / totalSkillNbr * completedSkillNbr)
-    const barprogress = `"${b}px"`
-    // console.log(barprogress)
+    console.log('これ',classCard)
+    const completedSkillNbr = classCard[0].compNbr
+    const totalSkillNbr = classCard[0].totalNbr
+    const barprog = parseFloat(216 / totalSkillNbr * completedSkillNbr)
+    console.log(barprog)
 
 
-//============================
-  // useEffect(() => {
-  //   async function bar (){
-  //     console.log('start')
-  //   setIsLoading(true)
-  //   const completedSkillNbr = await classCard.completeSkillNumber
-  //   const totalSkillNbr = await classCard.totalSkillNumber
+// //============================
+//   // useEffect(() => {
+//   //   async function bar (){
+//   //     console.log('start')
+//   //   setIsLoading(true)
+//   //   const completedSkillNbr = await classCard.completeSkillNumber
+//   //   const totalSkillNbr = await classCard.totalSkillNumber
 
-  //   const b = parseFloat(216 / totalSkillNbr * completedSkillNbr)
-  //   const barprogress = `"${b}px"`
-  //   setIsLoading(false)
-  //   } 
-  //   bar()
-  // },[])
-  //=========================
+//   //   const b = parseFloat(216 / totalSkillNbr * completedSkillNbr)
+//   //   const barprogress = `"${b}px"`
+//   //   setIsLoading(false)
+//   //   } 
+//   //   bar()
+//   // },[])
+//   //=========================
   return (
     <View style={styles.container}>
       {/* { isLoading ? <Loading/> :  */}
@@ -37,11 +36,10 @@ const CurrentLevelView = ({classTitle, classColor, cardBgColor, classCard}) => {
 
             <Heading style={styles.title} fontFamily="Lexend_600">{classTitle}</Heading>
             <Box style={styles.levelbox}>
-              <Text style={styles.levelname} fontFamily="Lexend_500">{classCard.level}</Text>
+              <Text style={styles.levelname} fontFamily="Lexend_500">Level {classCard[0].levelName}</Text>
               <Box style={styles.percentBox}>
                 <Box width="216px" bg="#FDFDFD" borderRadius={18.75} h="10px">
-                  {/* <Box  width={b} bg={classColor} h="10px" borderRadius={18.75}></Box> */}
-                  <Box bg={barprogress} h="10px" borderRadius={18.75}></Box>
+                  <Box width={barprog} bg={classColor} h="10px" borderRadius={18.75}></Box>
                 </Box>
                 <Box style={styles.numberBox}>
                   <Text style={styles.current} fontFamily="Lexend_400">{completedSkillNbr}</Text>
