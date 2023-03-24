@@ -5,6 +5,8 @@ import StudentCard from "../Card/StudentCard"
 
 const StudentList = ({ present, absent, presentList, absentList }) => {
  
+  // console.log("presentListArray", presentList)
+  // console.log("absentListArray", absentList)
   return (
     <VStack p={3}>
         <Box borderBottomWidth="1" _dark={{

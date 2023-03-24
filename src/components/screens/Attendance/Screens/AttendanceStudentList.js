@@ -109,7 +109,6 @@ const newClass = {
 
  // Update Class
 const updateClassAttendance = async () => {
-  console.log("classId", classId)
  
     await fetch(`${AWS_BACKEND_BASE_URL}/api/class/${classId}`, {
     method: 'PATCH',
