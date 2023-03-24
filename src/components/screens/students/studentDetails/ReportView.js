@@ -14,12 +14,9 @@ const clickStudent = () => {
 const closeBio = () => {setModalIsOpen(false)}
 return (
     <View >
-        <TouchableOpacity onPress={clickStudent} trainee={student} style={styles.container} shadow={5}>
-            <VStack>
-                <Text style={styles.name} fontFamily="Lexend_700">{student.firstname} {student.lastname}</Text> 
-                <Text style={styles.text} fontFamily="Lexend_400">View profile and Contact Information</Text>
-            </VStack>
-            <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.icon}/>
+        <TouchableOpacity onPress={clickStudent} trainee={student} style={styles.container}>
+            <Text style={styles.name} fontFamily="Lexend_700">{student.firstname} {student.lastname}</Text> 
+            <Text style={styles.text} fontFamily="Lexend_400">View profile and Contact Information</Text>
         </TouchableOpacity>
         <Modal visible={modalIsOpen}>
             <View style={styles.biobackground}>
@@ -43,12 +40,14 @@ const styles = StyleSheet.create ({
     name: {
         color: '#212427',
         fontSize: 28,
+        // fontWeight: "700",
         lineHeight: 30,
     },
     text: {
         marginTop: 6,
         color: '#212427',
         fontSize: 16,
+        // fontWeight: "400",
         lineHeight: 20,
     },
     icon:{

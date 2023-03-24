@@ -12,6 +12,10 @@ const AttendanceListView = ({ student }) => {
   const {userToken} = useContext(AuthContext)
   const MyStudentID = student._id
   const classid = student.class_id
+  
+  //日付の通常表示 attend.date.toDateString()
+  // moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+  // moment(attend.date).format('ddd, D MMM YYYY')
 
   useEffect(() => {
     getAllAttendance(classid,userToken)
@@ -22,12 +26,12 @@ const AttendanceListView = ({ student }) => {
   
   return (
     <VStack style={styles.container} bg="#FDFDFD" shadow={5}>
-        <Text style={styles.title}>Attendance</Text>
+        <Text style={styles.title} fontFamily="Lexend_500">Attendance</Text>
         <HStack space={1} borderBottomWidth=".2" justifyContent="space-between" color="#BBBBBB" />
         {myAttendance.map((attend, i) => (
           <Box key={i} style={styles.datebox}>
-            <Text style={styles.date}>{moment(attend.date).format('ddd, D MMM YYYY')}</Text>
-            {(attend.present == true ? <Text style={styles.present}>Present</Text> : <Text style={styles.absent}>Absent</Text>)}
+            <Text style={styles.date} fontFamily="Lexend_400">{moment(attend.date).format('ddd, D MMM YYYY')}</Text>
+            {(attend.present == true ? <Text style={styles.present} fontFamily="Lexend_400">Present</Text> : <Text style={styles.absent} fontFamily="Lexend_400">Absent</Text>)}
           </Box>
             // {(attend !== myAttendance.length -1)  ? <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} justifyContent="space-between" /> : null }  
         ))}
@@ -36,18 +40,16 @@ const AttendanceListView = ({ student }) => {
 }
 const styles = StyleSheet.create ({
   container: {
-    paddingTop: 20,
+    paddingVertical: 12,
     paddingHorizontal: 10,
     borderRadius: 12,
     marginTop: 20,
     marginHorizontal: 5,
   },
   title: {
-    // fontFamily: 'Lexend',
     fontSize: 18,
-    fontWeight: "500",
     lineHeight: 30,
-    marginBottom: 8,
+    marginVertical: 8,
   },
   datebox:{
     flexDirection: 'row',
@@ -56,17 +58,16 @@ const styles = StyleSheet.create ({
     paddingBottom: 12,
     paddingRight: 10,
   },
-  absent: {
-    // fontFamily: 'Lexend',
+  date:{
     fontSize: 16,
-    fontWeight: "400",
+  },  
+  absent: {
+    fontSize: 16,
     lineHeight: 22,
     color: 'red'
   },
   present: {
-    // fontFamily: 'Lexend',
     fontSize: 16,
-    fontWeight: "400",
     lineHeight: 22,
     color: '#000000'
   }

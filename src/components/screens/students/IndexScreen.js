@@ -73,38 +73,31 @@ const IndexScreen = ({ navigation}) => {
   }
   
     return(
-      <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}>
-        <View style={styles.container}>
-          <View style={styles.background}>
-            <Box>
-              <StudentsSearch myAllStudents={myAllStudents}/>
-            </Box>
-            {!isLoading ? <Loading /> : 
-              <ScrollView style={styles.scrollarea}>
-                {nameTitle.map((title, i) => ( 
-                  <Box key={i} style={styles.box}> 
-                    <Text style={styles.abc} fontFamily="Lexend_600">{title.group}</Text>
-                    <VStack  style={styles.nameContainer} shadow={5}>
-                      {title.groupedConn.map((trainee, index) => (             
-                        <TouchableOpacity   key={index} 
-                                            onPress={() => {
-                                            navigation.navigate('Student Detail',{trainee})
-                                            }}
-                                            style={styles.nameiconbox}
-                        >
-                          <Text style={styles.name} fontFamily="Lexend_400">{trainee.firstname} {trainee.lastname}</Text>
-                          <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.icon}/>
-                        </TouchableOpacity >
-                        // { index < title.groupedConn.length -1 && <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} borderColor='#BBBBBB' justifyContent="space-between"/>}
-                      ))}
-                    </VStack>
-                  </Box> 
-                ))}
-              </ScrollView>
-            }
-          </View>    
-        </View>
-      </LinearGradient>
+      <View style={styles.container}>
+        <View style={styles.background}>
+          <Box>
+            <StudentsSearch myAllStudents={myAllStudents}/>
+          </Box>
+          <ScrollView style={styles.scrollarea}>
+            {nameTitle.map((title, i) => ( 
+              <Box key={i} style={styles.box}> 
+                <Text style={styles.abc} fontFamily="Lexend_600">{title.group}</Text>
+                <VStack  style={styles.nameContainer} shadow={5}>
+                  {title.groupedConn.map((trainee, index) => (             
+                    <TouchableOpacity   key={index} 
+                                        onPress={() => {
+                                        navigation.navigate('Student Detail',{trainee})
+                                        }}>
+                      <Text style={styles.name} fontFamily="Lexend_400">{trainee.firstname} {trainee.lastname}</Text>
+                    </TouchableOpacity >
+                    // {j++ ? <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} justifyContent="space-between"/> : null}
+                  ))}
+                </VStack>
+              </Box> 
+            ))} 
+          </ScrollView>
+        </View>    
+      </View>
     )
 }
  
@@ -126,6 +119,7 @@ const styles = StyleSheet.create ({
   },
   abc: {
     color: '#242424',
+    // fontWeight: '600',
     fontSize: 24,
     lineHeight:30,
   },
@@ -150,6 +144,7 @@ const styles = StyleSheet.create ({
     color: '#242424',
     paddingHorizontal: 15,
     paddingVertical: 12,
+    // fontWeight: '400',
     fontSize: 16,
   }
 })

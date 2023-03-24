@@ -20,6 +20,7 @@ const StudentDetail = ({route, navigation }) => {
   const {userInfo} = useContext(AuthContext)
   const [classTitle, setClassTitle] = useState('')
   const [classColor, setClassColor] = useState('')
+  const [cardBgColor, setCardBgColor] = useState('')
   const [myClassData, setMyClassData] = useState('')
   const [myCompletedEvaluations, setMyCompletedEvaluations] = useState([])
   const [myAllSkills, setMyAllSkills] = useState([])
@@ -52,6 +53,7 @@ const StudentDetail = ({route, navigation }) => {
         //Class name store now!(single class for each student)
         setClassTitle(data.title)
         setClassColor(data.color)
+        setCardBgColor(data.cardColor)
         setMyClassData(data)
       })
   },[])
@@ -291,9 +293,9 @@ const StudentDetail = ({route, navigation }) => {
       <View style={styles.background}>
         <ScrollView>
           <TouchableOpacity style={styles.classtab}>
-            {<Text style={styles.classtabtext}>{classTitle}</Text>}
+            {<Text style={styles.classtabtext} fontFamily="Lexend_400">{classTitle}</Text>}
           </TouchableOpacity>
-          <CurrentLevelView classTitle={classTitle} classColor={classColor} classCard={classCard}/>
+          <CurrentLevelView classTitle={classTitle} classColor={classColor} cardBgColor={cardBgColor} classCard={classCard} />
           <SkillsAchievementView levelCards={achievementCard}/>
           <AttendanceListView student={trainee} /> 
           <ViewReport student={trainee}/>
@@ -325,6 +327,7 @@ const styles = StyleSheet.create ({
   },
   classtabtext:{
     color: '#FAF9F9',
+    // fontWeight:'400',
     fontSize: 14,
     lineHeight: 21,
   },
