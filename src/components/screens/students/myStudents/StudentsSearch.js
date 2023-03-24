@@ -11,6 +11,7 @@ const [value, setValue] = useState('')
       <Input  placeholder="Search"
                   variant="rounded"
                   style={styles.inputfield}
+                  fontFamily="Lexend_400"
                   // value={myAllStudents}
                   // onPress={(e) => {
                   //   setValue(e.target.myAllStudents)}}
@@ -20,10 +21,9 @@ const [value, setValue] = useState('')
 }
 const styles = StyleSheet.create ({
   inputfield: {
-    // fontFamily: 'Lexend',
     borderRadius:35,
     fontSize: 16,
-    fontWeight:'400',
+    // fontWeight:'400',
     color: '#242424',
     paddingTop: 10,
     paddingLeft: 16,

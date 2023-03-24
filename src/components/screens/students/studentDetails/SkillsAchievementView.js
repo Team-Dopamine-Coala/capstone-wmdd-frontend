@@ -4,16 +4,16 @@ import { StyleSheet } from "react-native"
 const SkillsAchievementView = ({levelCards}) => {
   return (
     <View style={styles.container}>
-        <Text style={styles.title}>Skills Achievement</Text>
+        <Text style={styles.title} fontFamily="Lexend_500">Skills Achievement</Text>
         <VStack style={styles.skillsbox}>
           {levelCards.map((item, i) => (
             <Box key={i} style={styles.levelbox} bg="#ffffff" shadow={5}>
-              <Text style={styles.level}>{item.level}</Text>
+              <Text style={styles.level} fontFamily="Lexend_500">{item.level}</Text>
               <Box style={styles.numbersbox}>
-                <Text style={styles.Bold}>{item.completeSkillNumber}</Text> 
-                <Text style={styles.normal}> / {item.totalSkillNumber}</Text>
+                <Text style={styles.Bold} fontFamily="Lexend_700">{item.completeSkillNumber}</Text> 
+                <Text style={styles.normal} fontFamily="Lexend_400"> / {item.totalSkillNumber}</Text>
               </Box>
-              <Text style={styles.learned}>skills learned</Text>
+              <Text style={styles.learned} fontFamily="Lexend_300">skills learned</Text>
             </Box>
           ))}
         </VStack>
@@ -24,9 +24,8 @@ const styles = StyleSheet.create ({
   container: {
   },
   title: {
-    // fontFamily: 'Lexend',
     fontSize: 16,
-    fontWeight: "500",
+    // fontWeight: "500",
     lineHeight: 24,
     marginHorizontal: 10,
   },
@@ -43,8 +42,7 @@ const styles = StyleSheet.create ({
     gap: 14,
   },
   level:{
-    // fontFamily: 'Lexend',
-    fontWeight: '500',
+    // fontWeight: '500',
     fontSize: 14,
     lineHeight: 30,
     marginBottom: 4,
@@ -53,24 +51,21 @@ const styles = StyleSheet.create ({
     flexDirection: 'row',
   },
   Bold:{
-    // fontFamily: 'Lexend',
     color: '#000000',
-    fontWeight: '700',
+    // fontWeight: '700',
     fontSize: 32,
     lineHeight: 31,
   },
   normal:{
-    // fontFamily: 'Lexend',
     color: '#000000',
-    fontWeight: '400',
+    // fontWeight: '400',
     fontSize: 16,
     lineHeight: 30,
     marginLeft: 5,
   },
   learned:{
-    // fontFamily: 'Lexend',
     color: '#000000',
-    fontWeight: '300',
+    // fontWeight: '300',
     fontSize: 16,
     marginTop: 10,
   }

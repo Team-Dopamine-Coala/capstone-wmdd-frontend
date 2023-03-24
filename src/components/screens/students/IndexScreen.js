@@ -75,14 +75,14 @@ const IndexScreen = ({ navigation}) => {
           <ScrollView style={styles.scrollarea}>
             {nameTitle.map((title, i) => ( 
               <Box key={i} style={styles.box}> 
-                <Text style={styles.abc}>{title.group}</Text>
+                <Text style={styles.abc} fontFamily="Lexend_600">{title.group}</Text>
                 <VStack  style={styles.nameContainer} shadow={5}>
                   {title.groupedConn.map((trainee, index) => (             
                     <TouchableOpacity   key={index} 
                                         onPress={() => {
                                         navigation.navigate('Student Detail',{trainee})
                                         }}>
-                      <Text style={styles.name}>{trainee.firstname} {trainee.lastname}</Text>
+                      <Text style={styles.name} fontFamily="Lexend_400">{trainee.firstname} {trainee.lastname}</Text>
                     </TouchableOpacity >
                     // {j++ ? <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} justifyContent="space-between"/> : null}
                   ))}
@@ -113,9 +113,8 @@ const styles = StyleSheet.create ({
     marginBottom: 20,
   },
   abc: {
-    // fontFamily: 'Lexend',
     color: '#242424',
-    fontWeight: '600',
+    // fontWeight: '600',
     fontSize: 24,
     lineHeight:30,
   },
@@ -126,11 +125,10 @@ const styles = StyleSheet.create ({
      marginHorizontal: 2,
   },
   name: {
-    // fontFamily: 'Lexend',
     color: '#242424',
     paddingHorizontal: 15,
     paddingVertical: 12,
-    fontWeight: '400',
+    // fontWeight: '400',
     fontSize: 16,
   }
 })

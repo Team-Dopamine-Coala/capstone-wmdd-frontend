@@ -16,8 +16,8 @@ const closeBio = () => {setModalIsOpen(false)}
 return (
     <View >
         <TouchableOpacity onPress={clickStudent} trainee={student} style={styles.container}>
-            <Text style={styles.name}>{student.firstname} {student.lastname}</Text> 
-            <Text style={styles.text}>View profile and Contact Information</Text>
+            <Text style={styles.name} fontFamily="Lexend_700">{student.firstname} {student.lastname}</Text> 
+            <Text style={styles.text} fontFamily="Lexend_400">View profile and Contact Information</Text>
         </TouchableOpacity>
         <Modal visible={modalIsOpen}>
             <Box style={styles.biobackground}>
@@ -39,18 +39,16 @@ const styles = StyleSheet.create ({
         marginBottom: 22,
     },
     name: {
-        // fontFamily: 'Lexend',
         color: '#212427',
         fontSize: 28,
-        fontWeight: "700",
+        // fontWeight: "700",
         lineHeight: 30,
     },
     text: {
-        // fontFamily: 'Lexend',
         marginTop: 6,
         color: '#212427',
         fontSize: 16,
-        fontWeight: "400",
+        // fontWeight: "400",
         lineHeight: 20,
     },
     biobackground:{
