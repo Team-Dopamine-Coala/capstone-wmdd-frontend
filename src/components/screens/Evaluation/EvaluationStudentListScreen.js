@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Text, View, VStack, Input, Icon, Button } from "native-base"
-import { Ionicons } from "@expo/vector-icons"
+import { Text, View, VStack, Input, Icon, Button, Box } from "native-base"
+import { LinearGradient } from 'expo-linear-gradient'
 
 import StudentList from './lists/StudentList'
 import Loading from "../../layout/Loading"
@@ -27,11 +27,12 @@ const EvaluationStudentListScreen = ({ navigation, route }) => {
   }, [dateSelected])
 
   return (
-    <View h="100%" space={1} pt="50px" bgColor="#F4903F" flex={1}>
-      <VStack height="100%" p={3} bgColor="#ffffff" borderTopLeftRadius={20} borderTopRightRadius={20}>
+    <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}>
+      <VStack flex={1} mt="60px" p={4} pb={2} bgColor="#fdfdfd" borderTopLeftRadius={20} borderTopRightRadius={20}>
 
         {isLoading ? <Loading /> : <StudentList students={students} navigation={navigation} className={route.params.className} />}
 
+        <Box px={4} py={3}>
         <Button
           bgColor="#404142"
           onPress={() => {
@@ -40,9 +41,10 @@ const EvaluationStudentListScreen = ({ navigation, route }) => {
               className: route.params.className
             })
           }}
-        ><Text fontWeight="700" color="#ffffff">Start Evaluation</Text></Button>
+        ><Text fontFamily="Lexend_600" color="#ffffff">Start Evaluation</Text></Button>
+        </Box>
       </VStack>
-    </View>
+    </LinearGradient>
   )
 }
 

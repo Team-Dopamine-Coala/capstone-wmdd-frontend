@@ -28,14 +28,14 @@ const EvaluationIndividualStudent = ({ navigation, route, studentIndex }) => {
   }, [])
 
   return (
-    <View py={2} bgColor="#FFFFFF" height="100%">
+    <View py={2} bgColor="#FDFDFD" height="100%">
       <Box>
         <Center>
           {studentsList.length > 1 && (
           <Text fontWeight="bold">Student {currentStudentIndex + 1} of {studentsList.length}</Text>
           )}
-          <Text fontWeight="bold" fontSize={20}>{firstname} {lastname}</Text>
-          <Text fontWeight="bold">{className}</Text>
+          <Text fontFamily="Lexend_600" fontSize={24}>{firstname} {lastname}</Text>
+          <Text fontFamily="Lexend_500" fontSize={14}>{className}</Text>
         </Center>
       </Box>
 
