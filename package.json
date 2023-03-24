@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
+    "postinstall": "patch-package",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -28,6 +29,7 @@
     "expo-status-bar": "~1.4.2",
     "moment": "^2.29.4",
     "native-base": "^3.4.25",
+    "patch-package": "^6.5.1",
     "react": "18.1.0",
     "react-native": "0.70.5",
     "react-native-biometrics": "^3.0.1",
