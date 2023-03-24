@@ -15,11 +15,14 @@ const StudentStack = () => {
         component={IndexScreen}
         options={({ navigation }) => ({
           headerTitleAlign: 'center',
-          fontFamily:"Lexend_700",
           // headerTransparent: true,
-          headerTintColor: '#ffffff',
           headerStyle: {
-            backgroundColor: 'orange'
+            backgroundColor: 'orange',
+          },
+          headerTitleStyle: {
+            color: '#FDFDFD',
+            fontFamily:"Lexend_700",
+            fontSize: 20,
           },
           headerTitle: 'Students',
           headerRight: () => ( 
@@ -32,6 +35,14 @@ const StudentStack = () => {
         component={StudentDetail}
         options={{
           title: 'Student Profile',
+          headerStyle: {
+            backgroundColor: 'orange'
+          },
+          headerTitleStyle: {
+            color: '#FDFDFD',
+            fontFamily:"Lexend_700",
+            fontSize: 20,
+          },
           headerTitleAlign: 'center',
           headerBackTitle: null,
           headerBackTitleVisible: false,
@@ -49,7 +60,9 @@ const StudentStack = () => {
         component={ViewProfileScreen}
         options={{
           title: 'Student Profile',
-          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: 'orange',
+          },
           headerBackTitle: null,
           headerBackTitleVisible: false,
           headerTransparent: true,
@@ -59,6 +72,7 @@ const StudentStack = () => {
             fontFamily:"Lexend_700",
             fontSize: 20,
           },
+          headerTitleAlign: 'center',
         }}
       />
     </Stack.Navigator>

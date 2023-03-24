@@ -21,7 +21,6 @@ const styles = StyleSheet.create ({
   inputfield: {
     borderRadius:35,
     fontSize: 16,
-    // fontWeight:'400',
     color: '#242424',
     paddingTop: 10,
     paddingLeft: 16,
