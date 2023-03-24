@@ -95,12 +95,13 @@ const StudentDetail = ({route, navigation }) => {
   //  //========CHANGING NOW ＝＝＝＝＝＝=========================
   //[4].program に行かずにSkillから直接そのスキルがいくつもともと持っているか確認する。
   useEffect(() => {
-    console.log('私の持つSkills',myAllSkills.length, myAllSkills)
+    // console.log('私の持つSkills',myAllSkills.length, myAllSkills)
     //自分の持ってるスキルのレベルがtotalで何個持っているのか確認する
       //1.全部のスキルをFetchしてLevelが同じものを集める
       fetchSkills(userToken)
       .then(data => {
-        data.map(() => { allSkillsArray.push(data), console.log('データ',data.level)})
+        // console.log('これ',data)
+        data.map((item, i) => { allSkillsArray.push(data)})
         console.log('skills全部',allSkillsArray.length)
 
         //2.自分の持っているskillの中でlevelだけP/U してDUPEを消す
@@ -112,14 +113,18 @@ const StudentDetail = ({route, navigation }) => {
         console.log('dUPE消したよ',totallevelIhave)
 
         //3.自分のスキル（totallevelIhaveがそれぞれ全体で何個levelを持っているかCHECK
-        // totallevelIhave.map((level, i) => {
-        //   console.log(typeof level)
-        //   let b = allSkillsArray.filter((item) => level == item.level)
-        //   allSkillsArray.map((item) => console.log(item.level))
-        //   })
-          
-          // console.log('LENGTH', b)
-        })
+        totallevelIhave.map((level, i) => {
+          console.log(level)
+          let b = allSkillsArray.filter(findskillLength(level))
+          console.log('これみたい',b)
+
+          // allSkillsArray.map((item, i) => {
+          //   if (item.level === level){
+
+          //   }
+          // })
+        })  
+      })
       
     
       // //2.自分の持っているskillの中でlevelだけP/U してDUPEを消す
@@ -144,7 +149,9 @@ const StudentDetail = ({route, navigation }) => {
       // })
   },[myAllSkills])
   // setMyCompletedEvaluations(myEvalArray.filter((item) =>item.rating === 3))
-
+const findskillLength = (level) => {
+  return item.level == level
+}
 //=======ORIGINAL ======================================
 
   // //4.Fetch Program & compare how many skills I completed in the level
