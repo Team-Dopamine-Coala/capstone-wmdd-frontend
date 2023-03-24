@@ -19,7 +19,7 @@ const AppTabs = () => {
                 tabBarActiveTintColor: '#FE7F2D',
                 tabBarInactiveTintColor: '#404142',
                 tabBarLabelStyle:{ paddingBottom: 6, fontFamily: 'Lexend_400', fontSize: 12, marginBottom: 15 },
-                tabBarStyle:{ height: 80, backgroundColor: '#EFF8F8' }
+                tabBarStyle:{ height: 110, backgroundColor: '#EFF8F8' }
             })}
       >
         <Tab.Screen name="Attendance" component={AttendanceStack} options={{
