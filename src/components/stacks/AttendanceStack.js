@@ -22,7 +22,7 @@ const AttendanceStack = () => {
         component={AttendanceStudentList}
         options={({ route }) => ({
           title: 'Jump',
-          // headerBackTitle: 'Attendance',
+          headerBackTitle: '',
           headerTitleAlign: 'center'
         })}
       />
@@ -31,7 +31,7 @@ const AttendanceStack = () => {
         component={CompletedAttendance}
         options={({ route }) => ({
           title: 'Jump',
-          // headerBackTitle: 'Attendance',
+          headerBackTitle: '',
           headerTitleAlign: 'center'
         })}
       />
@@ -40,7 +40,7 @@ const AttendanceStack = () => {
       component={ViewAttendance}
       options={({ route }) => ({
         title: 'Jump',
-        // headerBackTitle: 'Attendance',
+        headerBackTitle: '',
         headerTitleAlign: 'center'
       })}
       />

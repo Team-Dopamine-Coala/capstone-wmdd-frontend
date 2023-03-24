@@ -52,7 +52,7 @@ const ViewAttendance = ({ route, students, navigation, checkboxHandler, allAtten
   
   
   return (
-    <VStack>
+    <VStack bgColor="#FFFFFF" height="100%"  >
     <Box>
        <StudentList
        present={present}

@@ -9,9 +9,9 @@ const StudentList = ({ present, absent, presentList, absentList }) => {
   // console.log("absentListArray", absentList)
   return (
     <VStack p={3}>
-        <Box borderBottomWidth="1" _dark={{
-                borderColor: "muted.50"
-              }} borderColor="muted.800" pl={["0", "4"]} pr={["0", "5"]} py="2"><Text>Present({present})</Text></Box>
+       <Text mb="3" fontFamily="Lexend_700" fontSize="16">{`Present (${present})`}</Text>
+        <Box mb={7} pl="16px" borderWidth="1"  bgColor="#FFFFFF" borderColor="#bbbbbb" borderRadius="12px" shadow={5} overflow="hidden">
+               
         <FlatList 
          data={presentList}
          renderItem={({ item }) => (
@@ -20,9 +20,9 @@ const StudentList = ({ present, absent, presentList, absentList }) => {
               />
               )}
             />
-        <Box borderBottomWidth="1" _dark={{
-            borderColor: "muted.50"
-            }} borderColor="muted.800" pl={["0", "4"]} pr={["0", "5"]} py="2"> <Text>Absent({absent})</Text></Box>
+        </Box>
+        <Text  mb="3" fontFamily="Lexend_700" fontSize="16">{`Absent (${absent})`}</Text>
+        <Box mb={7} pl="16px" borderWidth="1" bgColor="#FFFFFF" borderColor="#bbbbbb" borderRadius="12px" shadow={5} overflow="hidden">
        
         <FlatList 
          data={absentList}
@@ -32,7 +32,10 @@ const StudentList = ({ present, absent, presentList, absentList }) => {
               />
               )}
             />
+           </Box>
     </VStack>
+
+
         
 
 
