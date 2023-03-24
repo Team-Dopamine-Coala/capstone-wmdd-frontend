@@ -22,13 +22,9 @@ const CurriculumScreen = ({ navigation }) => {
       )
   }, [])
 
-  // useEffect(() => {
-  //     console.log(skills)
-  // }, [skills])
-
   return (
     <>
-      <VStack pt="100px" pb={20} flex={1} bgColor="#F4903F">
+      <VStack pt="50px" flex={1} bgColor="#F4903F">
         <Box bgColor="#ffffff" borderTopLeftRadius={20} borderTopRightRadius={20}>
           { isLoading ? <Loading /> : <SkillsList skills={skills} navigation={navigation}/>}
         </Box>
