@@ -2,7 +2,6 @@ import { View, Text, Image, FlatList, Box, HStack, Heading, AspectRatio, Center,
 
 
 const SkillItemVertical = ({skill}) => {
-    console.log(skill.photoUrl)
     return(
         <View>
             <Box width="150px" m={3}>

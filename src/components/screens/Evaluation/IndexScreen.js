@@ -45,7 +45,7 @@ const IndexScreen = ({ navigation }) => {
       <Box pt={2} height="100%" bgColor="#FDFDFD" borderTopLeftRadius={20} borderTopRightRadius={20}>
         <CalendarStrip
         scrollable
-        style={{height: 130, paddingTop: 20, paddingHorizontal: 20, fontFamily: 'Lexend_400'}}
+        style={{height: 130, paddingTop: 20, paddingHorizontal: 15, fontFamily: 'Lexend_400'}}
         calendarHeaderStyle={{
           fontSize: 20,
           fontFamily: 'Lexend_700',
