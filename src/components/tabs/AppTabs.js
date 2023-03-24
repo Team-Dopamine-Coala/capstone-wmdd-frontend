@@ -16,14 +16,15 @@ const AppTabs = () => {
       <Tab.Navigator
             screenOptions={({ route }) => ({
                 headerShown: false,
-                tabBarActiveTintColor: '#655AE9',
-                tabBarInactiveTintColor: '#667080',
-                tabBarLabelStyle:{ paddingBottom: 6, fontSize: 12 }
+                tabBarActiveTintColor: '#FE7F2D',
+                tabBarInactiveTintColor: '#404142',
+                tabBarLabelStyle:{ paddingBottom: 6, fontFamily: 'Lexend_400', fontSize: 12, marginBottom: 5 },
+                tabBarStyle:{ height: 100, backgroundColor: '#EFF8F8' }
             })}
       >
         <Tab.Screen name="Attendance" component={AttendanceStack} options={{
           tabBarIcon: ({ color }) => (
-            <Icon size={5} color={color} as={<Icon size={5} color={color} as={<Ionicons name='ios-list' />} />} />
+            <Icon size={5} color={color} as={<Ionicons name='ios-calendar' />} />
           )
         }} />
         <Tab.Screen name="Evaluation" component={EvaluationStack} options={{

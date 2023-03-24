@@ -1,3 +1,4 @@
+import { Pressable, Image } from 'native-base'
 import IndexScreen from "../screens/Evaluation/IndexScreen"
 import EvaluationStudentListScreen from "../screens/Evaluation/EvaluationStudentListScreen"
 import EvaluationIndividualStudent from "../screens/Evaluation/EvaluationIndividualStudent"
@@ -19,7 +20,14 @@ const EvaluationStack = () => {
           title: 'Evaluation',
           headerTitleAlign: 'center',
           headerTransparent: true,
-          headerTintColor: '#ffffff'
+          headerTintColor: '#FDFDFD',
+          headerTitleStyle: {
+            fontFamily: 'Lexend_700',
+            fontSize: 20
+          },
+          // headerRight: () => (
+          //   <Image />
+          // )
         }}
       />
       <Stack.Screen
@@ -30,7 +38,11 @@ const EvaluationStack = () => {
           headerBackTitle: '',
           headerTitleAlign: 'center',
           headerTransparent: true,
-          headerTintColor: '#ffffff',
+          headerTintColor: '#FDFDFD',
+          headerTitleStyle: {
+            fontFamily: 'Lexend_700',
+            fontSize: 20
+          },
           classId: route.params.classId,
           className: route.params.className
         })}
@@ -52,6 +64,10 @@ const EvaluationStack = () => {
           title: 'Add Feedback',
           headerTitleAlign: 'center',
           headerBackTitle: '',
+          headerTitleStyle: {
+            fontFamily: 'Lexend_500',
+            fontSize: 20
+          },
           studentId: route.params.studentId,
           studentName: route.params.studentName,
           classId: route.params.classId,

@@ -13,14 +13,10 @@ const SkillsList = ({ navigation, skills }) => {
     const [skill, setSkill] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
-    // useEffect(() => {
-    //     console.log(skill)
-    // }, [skill])
 
     const openSheet = (id) => {
         panelRef.current.togglePanel()
         setSelectedId(id)
-        console.log(id)
         setIsLoading(true)
         fetchSkill(id).then(
             data => {
@@ -107,7 +103,7 @@ const SkillsList = ({ navigation, skills }) => {
                 animationDuration={300}
                 sliderMaxHeight={Dimensions.get('window').height * 0.9}
             >
-                <View style={{paddingVertical: 20}} pb={10}>
+                <View pb={10}>
                     <SkillDetails skill={skill}/>
                 </View>
             </BottomSheet>

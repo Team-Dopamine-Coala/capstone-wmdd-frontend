@@ -16,7 +16,11 @@ const ReportStack = () => {
           title: 'Reports',
           headerTitleAlign: 'center',
           headerTransparent: true,
-          headerTintColor: '#ffffff'
+          headerTintColor: '#ffffff',
+          headerTitleStyle: {
+            fontFamily: 'Lexend_700',
+            fontSize: 20
+          }
         }}
       />
     </Stack.Navigator>

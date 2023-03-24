@@ -73,12 +73,12 @@ const EvaluationIndividualStudentComment = ({ navigation, route }) => {
   }
 
   return (
-    <VStack bgColor="#FFFFFF" height="100%">
-      <View p={2}>
+    <VStack bgColor="#FDFDFD" height="100%">
+      <View px={5} py={2}>
         <Box mb={5}>
           <Center>
-            <Text fontWeight="bold" fontSize={20}>{studentName}</Text>
-            <Text fontWeight="bold">{className}</Text>
+            <Text fontFamily="Lexend_600" fontSize={24}>{studentName}</Text>
+            <Text fontFamily="Lexend_500" fontSize={14}>{className}</Text>
           </Center>
         </Box>
 
@@ -92,7 +92,7 @@ const EvaluationIndividualStudentComment = ({ navigation, route }) => {
           bgColor="#404142"
           onPress={updateComment}
         >
-          <Text fontWeight="700" color="#ffffff">Next Student</Text>
+          <Text fontFamily="Lexend_600" fontSize={16} color="#ffffff">Next Student</Text>
         </Button>
       </View>
     </VStack>
