@@ -1,4 +1,5 @@
-import { Box, HStack, VStack, Text, Button, Heading, View } from 'native-base'
+import { Ionicons } from '@expo/vector-icons'
+import { Icon, Box, HStack, VStack, Text, Button, Heading, View, Pressable } from 'native-base'
 import moment from 'moment'
 
 const ClassListItem = ({ item, navigation, clickedClass }) => {
@@ -8,22 +9,27 @@ const ClassListItem = ({ item, navigation, clickedClass }) => {
   }
 
   return (
-    <View mx={3} my={3}>
+    <View mx={4} my={3}>
       <Box  mb={3} p={5} bg={item.color} width="100%" height="90%" borderRadius="md" shadow={9} position="absolute" top="5%"></Box>
-      <Box ml={4} p={3} bg="#ffffff" flex={1} height="100%" borderRadius="md" shadow={5}>
-        <VStack>
-          <HStack>
-            <VStack space={1} mb={2}>
-              <Heading fontFamily="Lexend_400" fontSize={22}>{item.title}</Heading>
-              <Text fontFamily="Lexend_400">{moment(item.startTime).format('H:mm A')} - {moment(item.endTime).format('H:mm A')}</Text>
+      <Box ml={4} p={3} bg={item.cardColor} flex={1} height="100%" borderRadius="md" shadow={5}>
+        <Pressable onPress={() => clickedSeeReport(item._id)}>
+          <HStack alignItems="center" justifyContent="space-between">
+            <VStack space={1} mb={2} ml={1} pt={1}>
+              <Heading fontSize={24} fontFamily="Lexend_600" fontWeight="400">{item.title}</Heading>
+              <HStack alignItems="center" space={1}>
+                <Icon size={4} as={<Ionicons name='time' />} />
+                <Text fontSize={16} fontFamily="Lexend_400" color="#737373">{moment(item.startTime).format('H:mm A')}</Text>
+                <Icon size={4} as={<Ionicons name='arrow-forward' />} />
+                <Text fontSize={16} fontFamily="Lexend_400" color="#737373">{moment(item.endTime).format('H:mm A')}</Text>
+              </HStack>
+              <HStack alignItems="center" space={1}>
+                <Icon size={4} as={<Ionicons name='pin' />} />
+                <Text fontSize={16} fontFamily="Lexend_400" color="#737373">{item.location}</Text>
+              </HStack>
             </VStack>
+            <Icon size={7} as={<Ionicons name='arrow-forward' />} />
           </HStack>
-
-          <Button
-            bgColor="#404142"
-            onPress={() => clickedSeeReport(item._id)}
-          ><Text fontFamily="Lexend_700" color="#ffffff">See Report</Text></Button>
-        </VStack>
+        </Pressable>
       </Box>
     </View>
   )
