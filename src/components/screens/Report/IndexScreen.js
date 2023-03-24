@@ -1,7 +1,8 @@
 import { useState, useEffect, useContext, useRef } from 'react'
 import { Dimensions } from 'react-native'
 import { AWS_BACKEND_BASE_URL } from '../../../utils/static';
-import { View, Box, Center, Heading, VStack, Text } from 'native-base'
+import { Ionicons } from '@expo/vector-icons';
+import { View, Box, Center, Heading, VStack, Text, Icon } from 'native-base'
 import BottomSheet from 'react-native-simple-bottom-sheet';
 import { LinearGradient } from 'expo-linear-gradient';
 import Dialog from 'react-native-dialog'
@@ -71,7 +72,14 @@ const IndexScreen = ({ navigation }) => {
 
   const handleSend = () => {
     fetch(`${AWS_BACKEND_BASE_URL}/api/pdf/${selectedClass}/${selectedStudent}`)
-    setIsDialogVisible(false)
+    .then(() => {
+      setIsDialogVisible(false)
+      setIsSentVisible(true)
+
+      setTimeout(() => {
+        setIsSentVisible(false)
+      }, 2000)
+    })
   }
 
   const handleCancel = () => {
@@ -106,13 +114,26 @@ const IndexScreen = ({ navigation }) => {
       </BottomSheet>
 
       <Dialog.Container visible={isDialogVisible}>
-      <Dialog.Title>Send Report?</Dialog.Title>
-      <Dialog.Description>
-        You cannot undo this action.
-      </Dialog.Description>
-      <Dialog.Button label="Cancel" onPress={handleCancel} />
-      <Dialog.Button label="Send"  onPress={handleSend} />
-    </Dialog.Container>
+        <Dialog.Title>
+          <Text fontFamily="Lexend_600" fontSize={17}>Send Report?</Text>
+        </Dialog.Title>
+        <Dialog.Description>
+          <Text fontFamily="Lexend_400" fontSize={14}>You cannot undo this action.</Text>
+        </Dialog.Description>
+        <Dialog.Button label="Cancel" onPress={handleCancel} />
+        <Dialog.Button label="Send"  onPress={handleSend} />
+      </Dialog.Container>
+
+      <Dialog.Container visible={isSentVisible} contentStyle={{ minWidth: 120, height: 'auto', padding: 0, alignItems: 'center', boxShadow: 0 }}>
+        <Dialog.Description>
+          <View w="100%" justifyContent="center" alignItems="center">
+          <VStack alignItems="center">
+            <Icon mb={1} size={75} as={<Ionicons name="checkmark-circle-outline"/>} color="#404142" />
+            <Text pb={1} fontFamily="Lexend_600" fontSize={17}>Sent</Text>
+          </VStack>
+          </View>
+        </Dialog.Description>
+      </Dialog.Container>
     </LinearGradient>
       
       /* <Dialog.Container visible={isDialogVisible}>
