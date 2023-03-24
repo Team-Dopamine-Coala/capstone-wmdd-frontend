@@ -115,7 +115,7 @@ const StudentDetail = ({route, navigation }) => {
         //3.自分のスキル（totallevelIhaveがそれぞれ全体で何個levelを持っているかCHECK
         totallevelIhave.map((level, i) => {
           console.log(level)
-          let b = allSkillsArray.filter(findskillLength(level))
+          let b = allSkillsArray.filter()
           console.log('これみたい',b)
 
           // allSkillsArray.map((item, i) => {
@@ -149,9 +149,7 @@ const StudentDetail = ({route, navigation }) => {
       // })
   },[myAllSkills])
   // setMyCompletedEvaluations(myEvalArray.filter((item) =>item.rating === 3))
-const findskillLength = (level) => {
-  return item.level == level
-}
+
 //=======ORIGINAL ======================================
 
   // //4.Fetch Program & compare how many skills I completed in the level
