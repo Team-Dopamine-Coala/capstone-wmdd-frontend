@@ -1,5 +1,5 @@
 import { Text, VStack, View, Box, Heading, HStack, ScrollView } from "native-base"
-import { StyleSheet, TouchableOpacity, Linking } from "react-native"
+import { StyleSheet } from "react-native"
 import moment from "moment"
 
 const ViewProfileScreen = ({route}) => {
