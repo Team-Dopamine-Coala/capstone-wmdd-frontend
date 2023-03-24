@@ -1,8 +1,9 @@
-import { Box, HStack, VStack, Text, Button, Heading } from 'native-base'
+import { Ionicons } from '@expo/vector-icons'
+import {Text, Icon, HStack, Pressable } from 'native-base'
 
 const StudentListItem = ({ item, navigation, className }) => {
   return (
-    <Button
+    <Pressable
       onPress={() => {
         navigation.navigate('Evaluation Individual Student', {
           studentsList: [item],
@@ -15,10 +16,13 @@ const StudentListItem = ({ item, navigation, className }) => {
       borderRadius={0}
       borderBottomWidth={1}
       borderBottomColor="#cccccc"
-      justifyContent="flex-start"
     >
-      <Text textAlign="left">{item.firstname} {item.lastname}</Text>
-    </Button>
+      <HStack justifyContent="space-between" alignItems="center">
+        <Text textAlign="left">{item.firstname} {item.lastname}</Text>
+
+        <Icon size={5} as={<Ionicons name='arrow-forward' />} />
+      </HStack>
+    </Pressable>
   )
 }
 

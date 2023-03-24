@@ -109,7 +109,6 @@ const newClass = {
 
  // Update Class
 const updateClassAttendance = async () => {
-  console.log("classId", classId)
  
     await fetch(`${AWS_BACKEND_BASE_URL}/api/class/${classId}`, {
     method: 'PATCH',
@@ -123,14 +122,14 @@ const updateClassAttendance = async () => {
 
   return (
     <VStack width="100%" space={1} p={3} pb={20} bgColor="#ffffff" flex={1}>
-          <Input placeholder="Search" variant="filled" width="100%" borderRadius="10" py="1" px="2" InputLeftElement={<Icon ml="2" size="4" color="gray.400" as={<Ionicons name="ios-search" />} />} />
+          <Input m="1" placeholder="Search" fontSize="16" fontFamily="Lexend_400" variant="filled" width="100%" borderRadius="35" py="2" px="3" InputLeftElement={<Icon ml="2" size="4" color="gray.400" as={<Ionicons name="ios-search" />} />} />
         {/* <StudentList students={students} navigation={navigation} checkboxHandler={checkboxHandler}/> */}
-        <Checkbox.Group onChange={checkboxHandler}>
+        <Checkbox.Group fontFamily="Lexend_400" fontSize="16" onChange={checkboxHandler}>
         {students.map((item) => {
-            return <Checkbox  value={item._id} key= {item._id} colorScheme="orange" accessibilityLabel="This is a checkbox of a student" >{item.firstname+item.lastname}</Checkbox>
+            return <Checkbox fontFamily="Lexend_400" fontSize="16" m="2" value={item._id} key= {item._id} colorScheme="orange" accessibilityLabel="This is a checkbox of a student" >{`${item.firstname} ${item.lastname}`}</Checkbox>
         })}
         </Checkbox.Group>
-        <Button
+        <Button m="5"
         bgColor="#404142"
         onPress={() => {
           // addAttendance()
@@ -139,7 +138,7 @@ const updateClassAttendance = async () => {
             classId: classId
           });
         }}
-      ><Text fontWeight="700" color="#ffffff">Save Attendance</Text></Button>
+      ><Text fontFamily="Lexend_600" fontSize="16" color="#ffffff">Save Attendance</Text></Button>
 
       </VStack>
   )

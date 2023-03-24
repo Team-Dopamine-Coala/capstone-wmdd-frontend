@@ -1,4 +1,4 @@
-import { Text, VStack, Center } from 'native-base'
+import { Text, VStack, Box } from 'native-base'
 import CalendarStrip from 'react-native-calendar-strip';
 
 import { useState, useEffect, useContext } from 'react'
@@ -49,15 +49,17 @@ const IndexScreen = ({ navigation, route }) => {
   }
 
   return (
-    <VStack p={3}  bgColor="#ffffff" flex={1}>
-
-      {/* <Text>This is index screen of Attendance</Text> */}
-      <WelcomeCard classNumber={classNumber}/>
-      <CalendarStrip
+    <VStack  flex={1}  bgColor="#F4903F">
+       <VStack p={3} >
+       <WelcomeCard classNumber={classNumber}/>
+      </VStack>
+       <Box pt="2" height="100%" bgColor="#FDFDFD" borderTopLeftRadius={28} borderTopRightRadius={28}>
+      <CalendarStrip   
         scrollable
-        style={{height: 130, paddingTop: 20, paddingBottom: 10}}
+        style={{height: 130, paddingTop: 20, paddingBottom: 0, paddingHorizontal: 15}}
         calendarHeaderStyle={{
-          fontSize: 18,
+          fontSize: 20,
+          fontFamily: "Lexend_700",
           alignSelf: 'flex-start',
         }}
         selectedDate={dateSelected}
@@ -69,25 +71,27 @@ const IndexScreen = ({ navigation, route }) => {
         }}
         dateNameStyle={{
           marginBottom: 6,
-          fontSize: 13,
-          textTransform: 'capitalize'
+          fontSize: 14,
+          textTransform: 'capitalize',
+          fontFamily: "Lexend_400",
         }}
         dateNumberStyle={{
           paddingBottom: 4,
           fontSize: 16,
-          fontWeight: '300'
+          fontFamily: "Lexend_600"
         }}
         highlightDateNameStyle={{
+          color: '#F4903F',
           marginBottom: 6,
-          fontSize: 13,
+          fontSize: 14,
           textTransform: 'capitalize'
         }}
         highlightDateNumberStyle={{
-          color: '#ffffff',
+          color: '#F4903F',
           fontSize: 16
         }}
         highlightDateNumberContainerStyle={{
-          backgroundColor: '#40506A',
+          // backgroundColor: '#40506A',
           borderRadius: 40,
           justifyContent: 'center',
           alignItems: 'center',
@@ -97,6 +101,7 @@ const IndexScreen = ({ navigation, route }) => {
         }}
       />
       {isLoading ? <Loading /> : <ClassList classes={classes} navigation={navigation} dateSelected={dateSelected} ready={ready}/>}
+       </Box>
     </VStack>
   )
 }

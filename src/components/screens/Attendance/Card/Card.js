@@ -3,11 +3,9 @@ import { Ionicons } from "@expo/vector-icons"
 import { useEffect, useState } from "react";
 import moment from 'moment';
 
-const Card = ({ title, startTime, endTime, location, id, navigation, dateSelected, completed, attendances }) => {
+const Card = ({ title, startTime, endTime, location, id, navigation, dateSelected, completed, attendances, color }) => {
   const [present, setPresent] =  useState("-")
   const [absent, setAbsent] =  useState("-")
-  const backgroundColor = ['#ffc0cb', '#9ADDDA', '#F98C8C', '#BBA0EC', '#B5E593', '#F5D26A'];  
-  const chosenColor = Math.floor(Math.random() * backgroundColor.length);
   useEffect(() => {
     // TODO: fetch attendance by id
 
@@ -34,26 +32,26 @@ const Card = ({ title, startTime, endTime, location, id, navigation, dateSelecte
 
   })
   return (
-    <>
-        <VStack  mb={5} >  
-          <Box  mb={3} p={5} bg={backgroundColor[chosenColor]} width="100%" height="90%" borderRadius="md" shadow={9} position="absolute" top="5%"></Box>
-          <Box  ml={4} p={3} bg="rgba(255, 255, 255, .9)" flex={1} height="100%" borderRadius="md" shadow={5}>
-            <HStack space={1} mb={2} borderBottomWidth="1" pb={2} justifyContent="space-between">      
+   <View m={4} >
+          <Box  mb={3}  bg={color} width="100%" height="90%" borderRadius="md" shadow={9} position="absolute" top="5%"></Box>
+          <Box  ml={4} pt={6} pb={4} pl={6} pr={6} bg={color} flex={1}  height="100%" borderRadius="md"  position="absolute"></Box>
+          <Box  ml={4} pt={6} pb={4} pl={6} pr={6} bg="rgba(255, 255, 255, .9)" flex={1} height="100%" borderRadius="md" shadow={5}>
+            <HStack space={1} mb={2} borderBottomWidth="1" borderBottomColor="#737373" pb={2} justifyContent="space-between">      
               <VStack >
-                  <Heading fontSize={22}>{title}</Heading>
-                  <Text>{moment(startTime).format('hh:mm')} -{'>'} {moment(endTime).format('h:mm')}</Text>
-                  <Text>{location}</Text>
+                  <Heading fontSize="24" fontFamily="Lexend_600">{title}</Heading>
+                  <Text  fontSize="16" color="#737373" fontFamily="Lexend_400">{moment(startTime).format('H:mm A')} -{'>'} {moment(endTime).format('H:mm A')}</Text>
+                  <Text fontSize="16" color="#737373" fontFamily="Lexend_400">{location}</Text>
               </VStack>
-                  <Icon ml="2" size="70" color={ completed ? backgroundColor[chosenColor] : "gray.200"} as={<Ionicons name="checkmark-circle-outline"/>} />         
+                  <Icon ml="2" size="70" color={ completed ? color : "gray.200"} as={<Ionicons name="checkmark-circle-outline"/>} />         
             </HStack>
-            <HStack space={1} justifyContent="space-between">
+            <HStack space={1} pt={2} justifyContent="space-between">
                <VStack >
-                <Text>{present}</Text>
-                <Text>Present</Text>
+                <Text fontSize="20" color="#212427" fontFamily="Lexend_700">{present}</Text>
+                <Text fontSize="14" color="#737373" fontFamily="Lexend_400">Present</Text>
                 </VStack >
                 <VStack >
-                <Text>{absent}</Text>
-                <Text>absent</Text>
+                <Text fontSize="20" color="#212427" fontFamily="Lexend_700">{absent}</Text>
+                <Text fontSize="14" color="#737373" fontFamily="Lexend_400">Absent</Text>
                 </VStack >
                 <Button
                   width={100}
@@ -78,12 +76,11 @@ const Card = ({ title, startTime, endTime, location, id, navigation, dateSelecte
                     })
                   }}}
                 >
-                  { completed ? <Text fontWeight="700" color="#404142">View</Text> : <Text  fontWeight="700" color="#ffffff">Start</Text>}
+                  { completed ? <Text fontSize="16" fontFamily="Lexend_600" color="#404142">View</Text> : <Text fontSize="16" fontFamily="Lexend_600" color="#FAF9F9">Start</Text>}
                 </Button>
               </HStack>
           </Box>
-        </VStack>
-    </>
+    </View>
   );
 }
 
