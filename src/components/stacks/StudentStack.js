@@ -16,6 +16,8 @@ const StudentStack = ({navigation}) => {
         component={IndexScreen}
         options={({ navigation }) => ({
           headerTitleAlign: 'center',
+          fontFamily:"Lexend_700",
+          // headerTransparent: true,
           headerTintColor: '#ffffff',
           headerStyle: {
             backgroundColor: 'orange'
