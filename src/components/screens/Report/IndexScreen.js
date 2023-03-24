@@ -3,15 +3,14 @@ import { Dimensions } from 'react-native'
 import { AWS_BACKEND_BASE_URL } from '../../../utils/static';
 import { View, Box, Center, Heading, VStack, Text } from 'native-base'
 import BottomSheet from 'react-native-simple-bottom-sheet';
-import Dialog, { DialogFooter, DialogButton, DialogContent } from 'react-native-popup-dialog';
+// import Dialog from 'react-native-dialog'
 
 import { AuthContext } from '../../context/AuthContext';
 import ClassList from './lists/ClassList';
 import Loading from '../../layout/Loading'
 import StudentList from './lists/StudentList';
 
-import { getClassesOfCoach } from '../../../utils/queries';
-import { getStudentsByClass } from "../../../utils/queries"
+import { getClassesOfCoach, getStudentsByClass } from '../../../utils/queries';
 
 const IndexScreen = ({ navigation }) => {
   const {userToken} = useContext(AuthContext)
@@ -36,19 +35,25 @@ const IndexScreen = ({ navigation }) => {
       error => {
         throw error
       }
-    )
+    ).catch((error) => {
+      throw error
+    })
   }, [])
 
   useEffect(() => {
     getStudentsByClass(selectedClass).then(
       data => {
         setStudents(data)
-        setTotalStudents(data.length)
+        if (data) {
+          setTotalStudents(data.length)
+        }
       },
       error => {
         throw error
       }
-    )
+    ).catch((error) => {
+      throw error
+    })
   }, [selectedClass])
 
   const clickedClass = (classid) => {
@@ -65,6 +70,12 @@ const IndexScreen = ({ navigation }) => {
 
   const handleSend = () => {
     fetch(`${AWS_BACKEND_BASE_URL}/api/pdf/${selectedClass}/${selectedStudent}`)
+    .then(
+      console.log('hey')
+    )
+    .catch((error) => {
+      throw error
+    })
     setIsDialogVisible(false)
   }
 
@@ -81,7 +92,7 @@ const IndexScreen = ({ navigation }) => {
         </Box>
       </VStack>
 
-      <Box style={{ backgroundColor: '#000000', position: 'absolute', bottom: `${isDialogVisible ? 0 : '-100%'}`, opacity: .7, left: 0, width: '100%', height: '100%' }}>
+      <Box style={{ backgroundColor: '#000000', position: 'absolute', bottom: `${isDialogVisible ? 0 : '-100%'}`, opacity: 1, left: 0, width: '100%', height: '100%' }}>
         <Text>Hello</Text>
       </Box>
       
@@ -97,7 +108,7 @@ const IndexScreen = ({ navigation }) => {
         </View>
       </BottomSheet>
       
-      <Dialog.Container visible={isDialogVisible}>
+      {/* <Dialog.Container visible={isDialogVisible}>
         <Dialog.Title>Send Report?</Dialog.Title>
         <Dialog.Description>
           <Center>
@@ -114,7 +125,7 @@ const IndexScreen = ({ navigation }) => {
             <Text>Sent</Text>
           </Center>
         </Dialog.Description>
-      </Dialog.Container>
+      </Dialog.Container> */}
     </>
   )
 }

@@ -4439,6 +4439,11 @@
   "resolved" "https://registry.npmjs.org/expo-keep-awake/-/expo-keep-awake-11.0.1.tgz"
   "version" "11.0.1"
 
+"expo-linear-gradient@~12.0.1":
+  "integrity" "sha512-TMl/wBTVQOliL4S3DS5Aa3UFfVySr0mdJEHLG6kfBdMCLkr+tfLI2rGyJ+scS7xgMsvhTIaurhf1+Z0sL3aLCg=="
+  "resolved" "https://registry.npmjs.org/expo-linear-gradient/-/expo-linear-gradient-12.0.1.tgz"
+  "version" "12.0.1"
+
 "expo-local-authentication@^13.2.1":
   "integrity" "sha512-DugTdymppsXyW0EDuYwUO6l2I9YK+FkDOUmuPQRGXPkYvmETSGEoGI7JQf0i/unihhS1uzyYvqNBAT3mPM4Tpg=="
   "resolved" "https://registry.npmjs.org/expo-local-authentication/-/expo-local-authentication-13.2.1.tgz"

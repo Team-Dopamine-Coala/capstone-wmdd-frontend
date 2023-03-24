@@ -7,8 +7,8 @@ const StudentList = ({ students, navigation, className }) => {
       <VStack>
         {students.filter(student => student.evaluated == 0).length >= 1 && (
         <>
-          <Text mb={2} fontWeight="700">Pending</Text>
-          <Box mb={7} pl="16px" borderWidth="1" bgColor="#FFFFFF" borderColor="#cccccc" borderRadius="12px" shadow={5} overflow="hidden">
+          <Text mb={2} fontFamily="Lexend_500" fontSize={16}>Pending</Text>
+          <Box mb={7} pl="16px" borderWidth="1" bgColor="#FDFDFD" borderColor="#cccccc" borderRadius="12px" shadow={5} overflow="hidden">
           <FlatList
             data={students.filter(student => student.evaluated == 0)}
             renderItem={({ item }) => (
@@ -23,7 +23,7 @@ const StudentList = ({ students, navigation, className }) => {
 
         {students.filter(student => student.evaluated == 1).length >= 1 && (
         <>
-          <Text mb={2} fontWeight="700">Completed</Text>
+          <Text mb={2} fontFamily="Lexend_500" fontSize={16}>Completed</Text>
           <Box pl="16px" borderWidth="1" bgColor="#FFFFFF" borderColor="#cccccc" borderRadius="12px" shadow={5} overflow="hidden">
           <FlatList
             data={students.filter(student => student.evaluated != 0)}
