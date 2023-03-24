@@ -1,5 +1,5 @@
 import Card from "../Card/Card"
-import {FlatList} from "native-base"
+import {FlatList, View} from "native-base"
 import { useEffect, useState } from "react"
 import { getAllAttendance } from "../../../../utils/queries"
 import moment from 'moment';
@@ -37,7 +37,7 @@ const ClassList = ({ classes, navigation, dateSelected, ready }) => {
     })
 
     return(
-
+  
         <FlatList
         data={classesWithCheck}
         extraData={fetchedAtdc}
@@ -45,6 +45,7 @@ const ClassList = ({ classes, navigation, dateSelected, ready }) => {
           <Card
             dateSelected={dateSelected}
             title={item.title}
+            color={item.color}
             startTime={item.startTime}
             endTime={item.endTime}
             location={item.location}

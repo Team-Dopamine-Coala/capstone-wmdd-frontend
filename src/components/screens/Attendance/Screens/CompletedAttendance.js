@@ -53,7 +53,7 @@ const CompletedAttendance = ({ route, students, navigation, checkboxHandler, all
   
   
   return (
-    <VStack>
+    <VStack  height="100%" bgColor="#FFFFFF">
     <Box>
        <StudentList
         present={presentList.length}
@@ -63,13 +63,14 @@ const CompletedAttendance = ({ route, students, navigation, checkboxHandler, all
        />
     </Box>
      <Button
+     m="5"
      bgColor="#404142"
      onPress={() => {
        navigation.navigate('Attendance Index', {
         ready: Math.floor(Math.random() * 1000000)
       });
      }}
-   ><Text fontWeight="700" color="#ffffff">Done</Text></Button>
+   ><Text fontFamily="Lexend_600" fontSize="16" color="#ffffff">Done</Text></Button>
    </VStack>
         
 
