@@ -135,25 +135,6 @@ const IndexScreen = ({ navigation }) => {
         </Dialog.Description>
       </Dialog.Container>
     </LinearGradient>
-      
-      /* <Dialog.Container visible={isDialogVisible}>
-        <Dialog.Title>Send Report?</Dialog.Title>
-        <Dialog.Description>
-          <Center>
-            <Text>You cannot undo this action.</Text>
-          </Center>
-        </Dialog.Description>
-        <Dialog.Button label="Cancel" onPress={handleCancel} />
-        <Dialog.Button label="Send" onPress={handleSend} />
-      </Dialog.Container>
-
-      <Dialog.Container visible={isSentVisible}>
-        <Dialog.Description>
-          <Center>
-            <Text>Sent</Text>
-          </Center>
-        </Dialog.Description>
-      </Dialog.Container> */
   )
 }
 
