@@ -8,10 +8,10 @@ const SkillsAchievementView = ({myLevelDetail}) => {
         <VStack style={styles.skillsbox}>
           {myLevelDetail.map((item, i) => (
             <Box key={i} style={styles.levelbox} bg="#ffffff" shadow={5}>
-              <Text style={styles.level} fontFamily="Lexend_500">{item.level}</Text>
+              <Text style={styles.level} fontFamily="Lexend_500">Level {item.levelName}</Text>
               <Box style={styles.numbersbox}>
-                <Text style={styles.Bold} fontFamily="Lexend_700">{item.completeSkillNumber}</Text> 
-                <Text style={styles.normal} fontFamily="Lexend_400"> / {item.totalSkillNumber}</Text>
+                <Text style={styles.Bold} fontFamily="Lexend_700">{item.compNbr}</Text> 
+                <Text style={styles.normal} fontFamily="Lexend_400"> / {item.totalNbr}</Text>
               </Box>
               <Text style={styles.learned} fontFamily="Lexend_300">skills learned</Text>
             </Box>
