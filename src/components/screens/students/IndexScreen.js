@@ -84,7 +84,7 @@ const IndexScreen = ({ navigation}) => {
                                         }}>
                       <Text style={styles.name} fontFamily="Lexend_400">{trainee.firstname} {trainee.lastname}</Text>
                     </TouchableOpacity >
-                    // {j++ ? <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} justifyContent="space-between"/> : null}
+                    // { index < title.groupedConn.length -1 ? ( <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} justifyContent="space-between"/> ) : null}
                   ))}
                 </VStack>
               </Box> 
