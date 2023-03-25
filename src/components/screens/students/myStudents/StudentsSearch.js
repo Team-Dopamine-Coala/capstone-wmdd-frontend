@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Input } from "native-base"
 import { StyleSheet } from "react-native"
 
-const StudentsSearch = ({myAllStudents}) => {
+const StudentsSearch = () => {
 
 const [value, setValue] = useState('')
 
