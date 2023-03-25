@@ -4,6 +4,8 @@ import { Ionicons } from '@expo/vector-icons'
 
 const StudentsSearch = () => {
 
+const [value, setValue] = useState('')
+
   return (
     <>
       <Input  placeholder="Search"
