@@ -1,18 +1,17 @@
-import IndexScreen from "../screens/Setting/IndexScreen"
+import SettingIndexScreen from "../screens/Setting/SettingIndexScreen"
 import ClassPage from "../screens/Setting/Class/ClassPage"
 import ClassDetail from "../screens/Setting/Class/ClassDetail"
-import { createStackNavigator } from "@react-navigation/stack"
 
+import { createStackNavigator } from "@react-navigation/stack"
 
 const Stack = createStackNavigator()
 
-
-const StudentStack = () => {
+const SettingStack = () => {
   return (
     <Stack.Navigator >
       <Stack.Screen 
         name="Setting Index" 
-        component={IndexScreen}
+        component={SettingIndexScreen}
         options={{
           title: 'Settings',
           headerTitleAlign: 'center',
@@ -44,7 +43,7 @@ const StudentStack = () => {
         component={ClassDetail}
         options={{
           headerStyle: {
-            backgroundColor: 'pulple'
+            backgroundColor: 'purple'
           },
           headerBackTitle: null,
           headerBackTitleVisible: false,
@@ -54,4 +53,4 @@ const StudentStack = () => {
   )
 }
 
-export default StudentStack
+export default SettingStack

@@ -13,6 +13,7 @@ const Tab = createBottomTabNavigator();
 
 const AppTabs = () => {
   return (
+    <>
       <Tab.Navigator
             screenOptions={({ route }) => ({
                 headerShown: false,
@@ -48,6 +49,7 @@ const AppTabs = () => {
           )
         }} />
       </Tab.Navigator>
+    </>
   )
 }
 
