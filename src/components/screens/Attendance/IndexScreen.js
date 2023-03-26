@@ -1,6 +1,6 @@
 import { Text, VStack, Box } from 'native-base'
 import CalendarStrip from 'react-native-calendar-strip';
-
+import { LinearGradient } from 'expo-linear-gradient';
 import { useState, useEffect, useContext } from 'react'
 import ClassList from "./ClassList/ClassList"
 import Calendar from "./Calendar/Calendar"
@@ -49,7 +49,8 @@ const IndexScreen = ({ navigation, route }) => {
   }
 
   return (
-    <VStack  flex={1}  bgColor="#F4903F">
+    <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}>
+    <VStack  flex={1}  >
        <VStack p={3} >
        <WelcomeCard classNumber={classNumber}/>
       </VStack>
@@ -103,6 +104,7 @@ const IndexScreen = ({ navigation, route }) => {
       {isLoading ? <Loading /> : <ClassList classes={classes} navigation={navigation} dateSelected={dateSelected} ready={ready}/>}
        </Box>
     </VStack>
+    </LinearGradient>
   )
 }
 
