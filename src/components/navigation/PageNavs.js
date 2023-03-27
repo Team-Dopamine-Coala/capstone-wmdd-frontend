@@ -1,18 +1,21 @@
-import SettingIndexScreen from "../screens/Setting/SettingIndexScreen"
-import ClassPage from "../screens/Setting/Class/ClassPage"
-import ClassDetail from "../screens/Setting/Class/ClassDetail"
+import React from 'react'
+import AppTabs from '../tabs/AppTabs'
 
-import { createStackNavigator, TransitionPresets } from "@react-navigation/stack"
-
+import { createStackNavigator } from "@react-navigation/stack"
+import SettingIndexScreen from '../screens/Setting/SettingIndexScreen'
+import ClassDetail from '../screens/Setting/Class/ClassDetail'
+import ClassPage from '../screens/Setting/Class/ClassPage'
 const Stack = createStackNavigator()
 
-const TransitionScreenOptions = {
-  ...TransitionPresets.SlideFromRightIOS,
-};
-
-const SettingStack = () => {
+const PageNavs = () => {
   return (
-    <Stack.Navigator screenOptions={TransitionScreenOptions}>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="AppTab"
+        component={AppTabs}
+        options={{ headerShown: false }}
+      />
+
       <Stack.Screen 
         name="Setting Index" 
         component={SettingIndexScreen}
@@ -57,4 +60,4 @@ const SettingStack = () => {
   )
 }
 
-export default SettingStack
+export default PageNavs

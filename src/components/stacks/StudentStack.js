@@ -5,27 +5,26 @@ import HeaderImage from "../layout/HeaderImage"
 
 import { createStackNavigator } from "@react-navigation/stack"
 
-
 const Stack = createStackNavigator()
 
 
-const StudentStack = () => {
+const StudentStack = ({navigation}) => {
   return (
     <Stack.Navigator >
       <Stack.Screen 
         name="Student Index" 
         component={IndexScreen}
-        options={{
-          // title: 'Students',
+        options={({ navigation }) => ({
           headerTitleAlign: 'center',
           headerTintColor: '#ffffff',
           headerStyle: {
             backgroundColor: 'orange'
           },
-          headerTitle: () => ( 
-            <HeaderImage/>
+          headerTitle: 'Students',
+          headerRight: () => ( 
+            <HeaderImage navigations={navigation} />
           ),
-        }}
+        })}
       />
       <Stack.Screen 
         name="Student Detail" 

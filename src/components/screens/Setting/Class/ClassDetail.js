@@ -21,4 +21,4 @@ export default ClassDetail
 //カレンダー入れる
 //入ってきた情報を出す
 //カレンダー
-//studentList出す
+//studentList出す(このclassを持っている全員のstudent list)

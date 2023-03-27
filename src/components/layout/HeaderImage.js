@@ -1,46 +1,45 @@
-import { TouchableOpacity, Text, View } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import { useContext, useState, useEffect } from 'react';
-import {Image, Box} from 'native-base'
+import {Image } from 'native-base'
 import { AuthContext } from '../context/AuthContext';
-
 import { fetchUserById } from '../../utils/queries';
-const HeaderImage = ({navigation}) => {
+
+const HeaderImage = ({navigations}) => {
     const {userInfo} = useContext(AuthContext)
-    // const userToken = userInfo.token
-    console.log('ユーザー情報',userInfo)
+    const userToken = userInfo.token
     const [userID] = useState(userInfo._id)
     const [userFirstname] = useState(userInfo.firstName)    
     const [userLastname] = useState(userInfo.lastName)    
     const [userEmail] = useState(userInfo.email)
     const [userPhoto, setUserPhoto] = useState('')
-    console.log(userID,userFirstname,userLastname,userEmail, userPhoto)
-    const userToken = userInfo.token
-    //これ二つ確認
-    console.log('ナビ',navigation)
-    // console.log('写真',userPhoto)
+    const [isLoading, setIsLoading] = useState(false)
     
+    console.log('HerderImage NAV',navigations)
+
     useEffect(() => {
         fetchUserById(userID, userToken)
         .then((data) => {
+            // console.log('これ',data.photoUrl)
             setUserPhoto(data.photoUrl)
-            console.log('データ',data.photoUrl)
+            setIsLoading(true)
         })
     },[])  
-    const url = 'https://res.cloudinary.com/dp53wf7gb/image/upload/v1679639471/johncoala_owqiyr.jpg'
-//userPhotoがgetできたらそれもPropsで一緒に送る
+
   return (
+    isLoading && (
     <View mb={9} mt={9}>
-        <TouchableOpacity onPress={() => {navigation.navigate('Setting Index',{userID, userFirstname, userLastname, userEmail, userPhoto})}}>
+        <TouchableOpacity onPress={() => {navigations.navigate('Setting Index',{userID, userFirstname, userLastname, userEmail, userPhoto})}}>
+        {/* <TouchableOpacity > */}
             <Image
-              style={{ width: 40, height: 40, borderRadius: 149, marginRight: 20, borderColor: "#FDFDFD", borderWidth: 1.5}}
-            source={{ uri: url}}
-              resizeMode='contain'
-              alt='user image'
+                style={{ width: 40, height: 40, borderRadius: 149, marginRight: 20, borderColor: "#FDFDFD", borderWidth: 1.5}}
+                source={{ uri: `${userPhoto}`}}
+                resizeMode='contain'
+                alt='user img'
             /> 
         </TouchableOpacity>
     </View>
+    )
   )
 }
 
 export default HeaderImage
-//   source={{ uri: ${data.photoUrl}'https://res.cloudinary.com/dp53wf7gb/image/upload/v1679639471/johncoala_owqiyr.jpg'}}
