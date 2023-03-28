@@ -1,27 +1,34 @@
 import {useContext} from 'react'
-import {Box, Title, Text, VStack, View} from 'native-base'
+import { useRoute } from '@react-navigation/native';
+import {Box, Title, Text, VStack, View, Image} from 'native-base'
 import { SafeAreaView, TouchableOpacity, StyleSheet  } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient';
 import { AuthContext } from '../../context/AuthContext'
 
-// const SettingIndexScreen = ({navigation,userFirstname,userLastname,userEmail,userPhoto,userID}) => {
-const SettingIndexScreen = ({navigation}) => {
+const SettingIndexScreen = ({navigation,route}) => {
+
+  const { userID, userFirstname, userLastname, userEmail, userPhoto, userToken } = route.params;
+  const {logout} = useContext(AuthContext)
     // console.log('インデックスのデータ',userFirstname,userLastname,userEmail,userPhoto,userID)
-    const {logout} = useContext(AuthContext)
+    // console.log('これ',userToken, userPhoto)
 
   return (
     <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}>  
       <SafeAreaView>
-          <View style={styles.background}>  
-          {/* <Image style={{ width: 200, height: 50 }}
-                source={require(`${userPhoto}`)}
-                resizeMode='contain'/>  */}
-          {/* <Box>
-            <Title>{userFirstname}{userLastname}</Title>
-            <Text>{userEmail}</Text>
-          </Box> */}
+          <View style={styles.background}>
+            <Box style={styles.imgbox}>
+              <Image  style={{ width: 82, height: 82, borderRadius: 149, borderColor: "#FDFDFD", borderWidth: 3 }}
+                      source={{ uri: `${userPhoto}`}}
+                      resizeMode='contain'
+                      alt='user img'
+                      />
+            </Box>      
+          <Box style={styles.userbox}>
+            <Text style={styles.username} fontFamily="Lexend_600">{userFirstname}{userLastname}</Text>
+            <Text style={styles.useremail} fontFamily="Lexend_400">{userEmail}</Text>
+          </Box>
               <VStack style={styles.sectionbox} shadow={5}>
-                  <TouchableOpacity onPress={() => { navigation.navigate('Class Page')
+                  <TouchableOpacity onPress={() => { navigation.navigate('Class Page',{userID:userID, userToken:userToken})
                                       }}
                   > 
                   <Box>
@@ -67,9 +74,29 @@ const styles = StyleSheet.create ({
       borderTopLeftRadius:28,
       marginTop: 63,
       height: '100%',
+      position: 'relative',
     },
-    scrollarea: {
-      marginTop: 24,
+    imgbox:{
+      // width:88,
+      // height: 88,
+      alignItems: 'center',
+    justifyContent: 'center',
+      position:'absolute',
+      top: -40,
+    },
+    userbox: {
+      alignItems: 'center',
+      marginBottom: 36,
+    },
+    username:{
+      color: '#212427',
+      fontSize: 24,
+      lineHeight: 30,
+    },
+    useremail:{
+      color: '#212427',
+      fontSize: 16,
+      lineHeight: 20,
     },
     sectionbox: {
        backgroundColor: '#FDFDFD',
@@ -82,3 +109,6 @@ const styles = StyleSheet.create ({
     }
   })
 export default SettingIndexScreen
+
+// justifyContent: 'center',
+//       alignItems: 'center',
