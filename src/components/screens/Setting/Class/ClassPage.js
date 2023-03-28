@@ -12,7 +12,6 @@ import StudentsSearch from "../../Students/myStudents/StudentsSearch"
 import { getClassesOfCoach } from '../../../../utils/queries'
 
 const ClassPage = ({navigation, route}) => {
-
   const {userID, userToken} = route.params;
   const [isLoading, setIsLoading] = useState(false)
   const [weeklyLists, setWeeklyLists] = useState([])
@@ -85,6 +84,9 @@ const ClassPage = ({navigation, route}) => {
       ])
   }
 
+  const clickClass = (item) => {
+      navigation.navigate('Class Detail',{item})
+  }
   
   return (
     <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}>
@@ -92,12 +94,11 @@ const ClassPage = ({navigation, route}) => {
           <StudentsSearch/>
           { !weeklyLists ? <Loading/> : 
             <View mx={4} my={3}>
-              {weeklyLists.map((week) => (
+              {weeklyLists.map((week,j) => (
                <>
-               <Text fontSize={16} fontFamily="Lexend_500" color="#212427">{week.title}</Text>
-                {week.class.map((item) => (
-                // <Pressable onPress={() => }>  
-              <Pressable>
+               <Text key={j} fontSize={16} fontFamily="Lexend_500" color="#212427">{week.title}</Text>
+                {week.class.map((item, i) => (
+              <TouchableOpacity key={i} onPress={() => { navigation.navigate('Detailers',{item:item, weektitle:week.title})}}>  
                 <HStack alignItems="center" justifyContent="space-between">
                 <Box mb={3} p={5} bg={item.color} width="100%" height="90%" borderRadius={12} shadow={9} position="absolute" top="5%"></Box>
                 <Box ml={4} p={3} bg={item.cardColor} flex={1} height="100%" borderRadius={12} shadow={5}>
@@ -119,7 +120,7 @@ const ClassPage = ({navigation, route}) => {
                   </HStack>  
                 </Box>
                 </HStack>
-              </Pressable>  
+              </TouchableOpacity>  
                   
                 ))} 
               </>
@@ -154,9 +155,3 @@ const styles = StyleSheet.create ({
   
 })
 export default ClassPage
-
-//この人の全てのクラスを曜日ごとにdisplayする
-//クラスのinfoをPassする。
-//settingから情報をpropsしてもらう
-//それからFetch後のソーティングしてDisplay!
-//Clickしたらclassname, 時間, location, 

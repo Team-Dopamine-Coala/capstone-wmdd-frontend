@@ -49,6 +49,7 @@ const SettingStack = () => {
           headerStyle: {
             backgroundColor: 'purple'
           },
+          // header: null,
           headerBackTitle: null,
           headerBackTitleVisible: false,
         }}

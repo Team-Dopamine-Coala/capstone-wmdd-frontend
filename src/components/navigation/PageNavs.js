@@ -47,12 +47,13 @@ const PageNavs = () => {
         }}
       />
       <Stack.Screen 
-        name="Class Detail" 
+        name="Detailers" 
         component={ClassDetail}
         options={{
           headerStyle: {
-            backgroundColor: 'purple'
+            backgroundColor: '#BBA0EC'
           },
+          headerTitleVisible: false,
           headerBackTitle: null,
           headerBackTitleVisible: false,
         }}
