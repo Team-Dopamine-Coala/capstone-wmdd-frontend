@@ -1,6 +1,6 @@
 import {useContext} from 'react'
 import { useRoute } from '@react-navigation/native';
-import {Box, Title, Text, VStack, View, Image} from 'native-base'
+import {Box,Text, VStack, View, Image} from 'native-base'
 import { SafeAreaView, TouchableOpacity, StyleSheet  } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient';
 import { AuthContext } from '../../context/AuthContext'

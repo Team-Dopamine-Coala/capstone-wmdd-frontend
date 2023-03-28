@@ -24,7 +24,6 @@ const PageNavs = () => {
           headerTitleAlign: 'center',
           headerBackTitle: null,
           headerBackTitleVisible: false,
-          // headerTransparent: true,
           headerTintColor: '#ffffff',
           headerStyle: {
             backgroundColor: 'orange'
