@@ -22,6 +22,8 @@ const PageNavs = () => {
         options={{
           title: 'Settings',
           headerTitleAlign: 'center',
+          headerBackTitle: null,
+          headerBackTitleVisible: false,
           // headerTransparent: true,
           headerTintColor: '#ffffff',
           headerStyle: {
