@@ -1,7 +1,7 @@
 import { createStackNavigator, TransitionPresets } from "@react-navigation/stack"
 import CurriculumScreen from '../screens/Curriculum/CurriculumScreen'
 import SkillList from "../screens/Curriculum/lists/SkillList";
-
+  
 const Stack = createStackNavigator()
 
 const TransitionScreenOptions = {
