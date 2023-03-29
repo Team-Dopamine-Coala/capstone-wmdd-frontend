@@ -4,12 +4,12 @@ import { View, Text, Image, FlatList, Box, HStack, Heading, AspectRatio, Center,
 const SkillItemVertical = ({skill}) => {
     return(
         <View>
-            <Box width="150px" m={3}>
+            <Box width="150px" mt={3}>
                 <HStack>
-                    <AspectRatio w="100%" ratio={4/3}>
+                    <AspectRatio w="100%" ratio={16/9}>
                         <Image source={{ uri: skill.photoUrl }} alt="place-holder image" borderRadius="15"/>
                     </AspectRatio>
-                    <Text fontSize='sm' bold pt={2} ml={5} >{skill.name}</Text>
+                    <Text fontFamily="Lexend_500" fontSize={14} pt={2} ml={4} >{skill.name}</Text>
                 </HStack>
             </Box>
         </View>

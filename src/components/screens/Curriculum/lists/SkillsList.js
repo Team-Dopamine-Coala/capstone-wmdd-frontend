@@ -35,13 +35,21 @@ const SkillsList = ({ navigation, skills }) => {
                 <VStack pt="50px" pb={20}>
                     <Box pb={5}>
                         <Flex direction="row" justifyContent="space-between" alignItems="center">
-                            <Heading pl={5}>Gymnastics 1 </Heading>
+                            <Heading pl={5} style={{
+                                fontSize: 20,
+                                fontFamily: 'Lexend_700'
+                            }}>Gymnastics 1 </Heading>
                             <Link 
+                                _text={{
+                                    fontFamily:'Lexend_600',
+                                    color: "#737373",
+                                    fontSize:15
+                                }}
                                 pr={5} 
                                 onPress={() => navigation.navigate('Skill List', {
                                     skills: skills.filter(skill => skill.level === 1 || skill.level === 2),
                                     name: 'Gymnastics 1'
-                            })}>View All</Link>
+                            })}>See All</Link>
                         </Flex>
                         <FlatList 
                             horizontal
@@ -56,13 +64,21 @@ const SkillsList = ({ navigation, skills }) => {
                     </Box>
                      <Box pb={5}>
                         <Flex direction="row" justifyContent="space-between" alignItems="center">
-                            <Heading pl={5}>Gymnastics 2 </Heading>
+                            <Heading pl={5} style={{
+                                fontSize: 20,
+                                fontFamily: 'Lexend_700'
+                            }}>Gymnastics 2 </Heading>
                             <Link 
+                                _text={{
+                                    fontFamily:'Lexend_600',
+                                    color: "#737373",
+                                    fontSize:15
+                                }}
                                 pr={5} 
                                 onPress={() => navigation.navigate('Skill List', {
                                     skills: skills.filter(skill => skill.level === 3 || skill.level === 4),
                                     name: 'Gymnastics 2'
-                            })}>View All</Link>
+                            })}>See All</Link>
                         </Flex>
                         <FlatList 
                             horizontal
@@ -74,13 +90,21 @@ const SkillsList = ({ navigation, skills }) => {
                     </Box>
                     <Box pb={10}>
                         <Flex direction="row" justifyContent="space-between" alignItems="center">
-                            <Heading pl={5}>Gymnastics 3 </Heading>
-                            <Link 
+                            <Heading pl={5} style={{
+                                fontSize: 20,
+                                fontFamily: 'Lexend_700'
+                            }} >Gymnastics 3 </Heading>
+                            <Link
+                                _text={{
+                                    fontFamily:'Lexend_600',
+                                    color: "#737373",
+                                    fontSize:15
+                                }}
                                 pr={5} 
                                 onPress={() => navigation.navigate('Skill List', {
                                     skills: skills.filter(skill => skill.level === 5),
                                     name: 'Gymnastics 3'
-                            })}>View All</Link>
+                            })}>See All</Link>
                         </Flex>
                         <FlatList 
                             horizontal
@@ -92,7 +116,10 @@ const SkillsList = ({ navigation, skills }) => {
                     </Box>
                     <Divider thickness="4"/>
                     <Box p={5}>
-                        <Heading>All Curriculums</Heading>
+                        <Heading style={{
+                                fontSize: 20,
+                                fontFamily: 'Lexend_700'
+                            }} >All Curriculums</Heading>
                     </Box>
                 </VStack>
             </ScrollView>
