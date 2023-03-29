@@ -7,8 +7,12 @@ import { createStackNavigator } from "@react-navigation/stack"
 
 const Stack = createStackNavigator()
 
+<<<<<<< HEAD
 
 const StudentStack = ({navigation}) => {
+=======
+const StudentStack = () => {
+>>>>>>> c15cfed (gradient and header fixed)
   return (
     <Stack.Navigator >
       <Stack.Screen 
@@ -50,21 +54,19 @@ const StudentStack = ({navigation}) => {
         component={ViewProfileScreen}
         options={{
           title: 'Student Profile',
-          headerStyle: {
-            backgroundColor: 'orange',
-          },
+          headerTitleAlign: 'center',
           headerBackTitle: null,
           headerBackTitleVisible: false,
+          headerTransparent: true,
+          headerTintColor: '#FDFDFD',
           headerTitleStyle: {
             color: '#FDFDFD',
             fontFamily:"Lexend_700",
             fontSize: 20,
           },
-          headerTitleAlign: 'center',
         }}
       />
     </Stack.Navigator>
   )
 }
-
 export default StudentStack
