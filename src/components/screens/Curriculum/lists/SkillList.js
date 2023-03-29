@@ -66,7 +66,7 @@ const SkillList = ({navigation, route}) => {
                 <ScrollView pl={5} pr={5} pt={2}>
                     {levelTitle.map((title, i) => (
                         <Box mt={5}>
-                            <Heading>Level {title.group}</Heading>
+                            <Heading fontFamily="Lexend_700" fontSize={20} >Level {title.group}</Heading>
                             <VStack>
                                 {title.groupedConn.map((skill, index) => (
                                     <Pressable key={skill._id} onPress={() => openSheet(skill._id)}>

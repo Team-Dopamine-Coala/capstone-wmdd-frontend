@@ -24,12 +24,12 @@ const SkillDetails = ({skill}) => {
             onPlaybackStatusUpdate={status => setStatus(() => status)}
           />
         </View>
-          <Heading size="sm" mt={5} >{skill.name}</Heading>
+          <Heading fontFamily="Lexend_700" size="sm" mt={4} >{skill.name}</Heading>
           <HStack>
-            <Text pr={10}>{skill.class}</Text>
-            <Text>Level {skill.level}</Text>
+            <Text fontFamily="Lexend_400" pr={10}>{skill.class}</Text>
+            <Text fontFamily="Lexend_400" >Level {skill.level}</Text>
           </HStack>
-          <Text mt={15}>{skill.description}</Text>
+          <Text fontFamily="Lexend_400" mt={15}>{skill.description}</Text>
         </VStack>
         </View>
     )
@@ -44,8 +44,9 @@ const styles = StyleSheet.create({
   },
   video: {
     alignSelf: "center",
-    width: 350,
-    height: 200
+    width: 375,
+    height: 220,
+    borderRadius: 15 
   }
 })
 

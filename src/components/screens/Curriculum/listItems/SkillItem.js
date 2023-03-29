@@ -9,7 +9,7 @@ const SkillItem = ({item}) => {
                     <AspectRatio w="100%" ratio={2/2}>
                         <Image source={{uri: item.photoUrl}} alt="place-holder image" borderRadius="15"/>
                     </AspectRatio>
-                    <Text fontSize='md' bold pt={2}>{item.name}</Text>
+                    <Text fontFamily="Lexend_400" fontSize={15} bold pt={2}>{item.name}</Text>
                 </VStack>
             </Box>
         </View>
