@@ -1,51 +1,48 @@
 import { View, Text, HStack, Box } from 'native-base'
 import React from 'react'
-import { TouchableOpacity, StyleSheet, SafeAreaView } from "react-native"
-import { useState, useEffect } from 'react'
+import { StyleSheet } from "react-native"
 
 const WeekCalender = ({weektitle}) => {
-    const [whitebg, setWhitebg] = useState('hide')
-    console.log(weektitle)
+    console.log('this WEEK',weektitle)
 
-
-    const whitecircleHandler = () => {
-        // if(weektitle == )
-    }
-  return (
-    <HStack style={styles.container}>
-        <Box style={styles.circle}>
-            <Text className={`Monday ${whitebg}`} fontFamily="Lexend_400" fontSize={14} lineHeight={21} alignSelf={'center'} justifyItems={'center'}>M</Text>
-        </Box>
-        <Box style={styles.circle}>
-            <Text className={`Tuesday ${whitebg}`} fontFamily="Lexend_400" fontSize={14} lineHeight={21} alignSelf={'center'}>T</Text>
-        </Box>
-        <Box style={styles.circle}>
-            <Text className={`Wednesday ${whitebg}`} fontFamily="Lexend_400" fontSize={14} lineHeight={21} alignSelf={'center'}>W</Text>
-        </Box>
-        <Box style={styles.circle}>
-            <Text className={`Thursday ${whitebg}`} fontFamily="Lexend_400" fontSize={14} lineHeight={21} alignSelf={'center'}>T</Text>
-        </Box>
-        <Box style={styles.circle}>
-            <Text className={`Friday ${whitebg}`} fontFamily="Lexend_400" fontSize={14} lineHeight={21} alignSelf={'center'}>F</Text>
-        </Box>
-        <Box style={styles.circle}>
-            <Text className={`Saturday ${whitebg}`} fontFamily="Lexend_400" fontSize={14} lineHeight={21} alignSelf={'center'}>S</Text>
-        </Box>
-        <Box style={styles.circle}>
-            <Text className={`Sunday ${whitebg}`} fontFamily="Lexend_400" fontSize={14} lineHeight={21} alignSelf={'center'}>S</Text>
-        </Box>
-    </HStack>
-  )
+    const calender = [
+        {week: "Monday", title: "M"},
+        {week: "Tuesday", title: "T"},
+        {week: "Wednesday", title: "W"},
+        {week: "Thursday", title: "T"},
+        {week: "Friday", title: "F"},
+        {week: "Saturday", title: "S"},
+        {week: "Sunday", title: "S"}
+    ]
+    console.log(calender)
+    return (
+        <>
+            <HStack style={styles.container}>
+                {calender.map((item,i) => {
+                    <Box key={i} style={styles.circle} bg={weektitle == item.week ? "#FFFFFF" : "#BBA0EC"} > 
+                        <Text fontFamily="Lexend_400" 
+                                fontSize={14} 
+                                lineHeight={21} 
+                                alignSelf={'center'} 
+                                justifyItems={'center'} 
+                                color="#000000"
+                        >
+                            {item.title}
+                        </Text>    
+                    </Box>
+                })}
+            </HStack>
+        </> 
+    )
 }
 const styles = StyleSheet.create ({
     container: {
         alignSelf:'center',
     },
-    circle:{
-        backgroundColor: '#FFFFFF',
+    circle:{  
         width:30,
         height: 30,
         borderRadius:'50%',
-    }
+    },
   })
 export default WeekCalender
