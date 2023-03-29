@@ -15,10 +15,7 @@ const StudentStack = () => {
         component={IndexScreen}
         options={({ navigation }) => ({
           headerTitleAlign: 'center',
-          // headerTransparent: true,
-          headerStyle: {
-            backgroundColor: 'orange',
-          },
+          headerTransparent: true,
           headerTitleStyle: {
             color: '#FDFDFD',
             fontFamily:"Lexend_700",
@@ -35,14 +32,6 @@ const StudentStack = () => {
         component={StudentDetail}
         options={{
           title: 'Student Profile',
-          headerStyle: {
-            backgroundColor: 'orange'
-          },
-          headerTitleStyle: {
-            color: '#FDFDFD',
-            fontFamily:"Lexend_700",
-            fontSize: 20,
-          },
           headerTitleAlign: 'center',
           headerBackTitle: null,
           headerBackTitleVisible: false,
