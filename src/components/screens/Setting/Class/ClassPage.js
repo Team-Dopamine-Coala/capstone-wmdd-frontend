@@ -143,7 +143,7 @@ const styles = StyleSheet.create ({
     paddingHorizontal: 20,
     borderTopRightRadius:28,
     borderTopLeftRadius:28,
-    marginTop: 13,
+    marginTop: 50,
     height: '100%',
   },
   week:{

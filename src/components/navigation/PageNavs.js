@@ -24,9 +24,11 @@ const PageNavs = () => {
           headerTitleAlign: 'center',
           headerBackTitle: null,
           headerBackTitleVisible: false,
-          headerTintColor: '#ffffff',
-          headerStyle: {
-            backgroundColor: 'orange'
+          headerTransparent: true,
+          headerTintColor: '#FDFDFD',
+          headerTitleStyle: {
+            fontFamily: 'Lexend_700',
+            fontSize: 20
           },
         }}
       />
@@ -35,25 +37,26 @@ const PageNavs = () => {
         component={ClassPage}
         options={{
           title: 'My Classes',
-          headerStyle: {
-            backgroundColor: 'orange'
-          },
-          headerTitleStyle: {
-            color: '#fff'
-          },
           headerTitleAlign: 'center',
           headerBackTitle: null,
           headerBackTitleVisible: false,
+          headerTransparent: true,
+          headerTintColor: '#FDFDFD',
+          headerTitleStyle: {
+            fontFamily: 'Lexend_700',
+            fontSize: 20
+          },
         }}
       />
       <Stack.Screen 
         name="Detailers" 
         component={ClassDetail}
         options={{
+          title:null,
           headerStyle: {
             backgroundColor: '#BBA0EC'
           },
-          headerTitleVisible: false,
+          headerTintColor: '#000000',
           headerBackTitle: null,
           headerBackTitleVisible: false,
         }}

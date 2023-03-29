@@ -50,7 +50,6 @@ const AppTabs = () => {
             <Icon size={5} color={color} as={<Ionicons name='ios-people' />} />
           )
         }} />
-        <Tab.Screen name="Setting" component={SettingStack} />
       </Tab.Navigator>
     </>
   )

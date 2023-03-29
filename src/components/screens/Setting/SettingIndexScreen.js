@@ -24,7 +24,7 @@ const SettingIndexScreen = ({navigation,route}) => {
                       />
             </Box>      
           <Box style={styles.userbox}>
-            <Text style={styles.username} fontFamily="Lexend_600">{userFirstname}{userLastname}</Text>
+            <Text style={styles.username} fontFamily="Lexend_600">{userFirstname} {userLastname}</Text>
             <Text style={styles.useremail} fontFamily="Lexend_400">{userEmail}</Text>
           </Box>
               <VStack style={styles.sectionbox} shadow={5}>
@@ -61,7 +61,7 @@ const SettingIndexScreen = ({navigation,route}) => {
                   </TouchableOpacity >                 
               </VStack>
           </View> 
-      </SafeAreaView>
+          </SafeAreaView>
     </LinearGradient>
   )
 }
@@ -72,7 +72,7 @@ const styles = StyleSheet.create ({
       paddingHorizontal: 20,
       borderTopRightRadius:28,
       borderTopLeftRadius:28,
-      marginTop: 63,
+      marginTop: 100,
       height: '100%',
       position: 'relative',
     },
@@ -107,6 +107,3 @@ const styles = StyleSheet.create ({
     }
   })
 export default SettingIndexScreen
-
-// justifyContent: 'center',
-//       alignItems: 'center',
