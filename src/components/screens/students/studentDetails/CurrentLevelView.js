@@ -4,7 +4,8 @@ import { StyleSheet } from "react-native"
 import Loading from "../../../layout/Loading"
 
 const CurrentLevelView = ({classTitle, classColor, cardBgColor, classCard}) => {
-    
+  console.log(classTitle, classColor, cardBgColor, classCard)  
+  const [isLoading, setIsLoading] = useState(false)
     console.log('これ',classCard)
     const completedSkillNbr = classCard[0].compNbr
     const totalSkillNbr = classCard[0].totalNbr
@@ -12,24 +13,24 @@ const CurrentLevelView = ({classTitle, classColor, cardBgColor, classCard}) => {
     console.log(barprog)
 
 
-// //============================
-//   // useEffect(() => {
-//   //   async function bar (){
-//   //     console.log('start')
-//   //   setIsLoading(true)
-//   //   const completedSkillNbr = await classCard.completeSkillNumber
-//   //   const totalSkillNbr = await classCard.totalSkillNumber
+//============================
+  useEffect(() => {
+    // async function bar (){
+    //   console.log('start')
+    // setIsLoading(true)
+    const completedSkillNbr = classCard.completeSkillNumber
+    const totalSkillNbr = classCard.totalSkillNumber
 
-//   //   const b = parseFloat(216 / totalSkillNbr * completedSkillNbr)
-//   //   const barprogress = `"${b}px"`
-//   //   setIsLoading(false)
-//   //   } 
-//   //   bar()
-//   // },[])
-//   //=========================
+    const b = parseFloat(216 / totalSkillNbr * completedSkillNbr)
+    // const barprogress = `"${b}px"`
+    setIsLoading(true)
+    // } 
+    // bar()
+  },[])
+  //=========================
   return (
     <View style={styles.container}>
-      {/* { isLoading ? <Loading/> :  */}
+      { isLoading ? <Loading/> : 
         <VStack >
           <Box  mb={3} p={5}  width="100%" bg={classColor} height="90%" shadow={9} borderRadius="md" position="absolute" top="5%" ></Box>
           <Box  ml={4} p={3} bg={cardBgColor} flex={1} shadow={5} borderRadius="md" style={styles.classbox}>
@@ -50,7 +51,7 @@ const CurrentLevelView = ({classTitle, classColor, cardBgColor, classCard}) => {
 
           </Box>
         </VStack>
-      {/* } */}
+      } 
     </View>
       )
 }

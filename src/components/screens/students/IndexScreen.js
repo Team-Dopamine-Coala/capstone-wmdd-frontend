@@ -120,21 +120,19 @@ const styles = StyleSheet.create ({
   },
   abc: {
     color: '#242424',
-    // fontWeight: '600',
     fontSize: 24,
     lineHeight:30,
   },
   nameContainer: {
     marginTop: 8,
-     backgroundColor: '#FDFDFD',
-     borderRadius: '12',
-     marginHorizontal: 2,
+    backgroundColor: '#FDFDFD',
+    borderRadius: '12',
+    marginHorizontal: 2,
   },
   name: {
     color: '#242424',
     paddingHorizontal: 15,
     paddingVertical: 12,
-    // fontWeight: '400',
     fontSize: 16,
   }
 })
