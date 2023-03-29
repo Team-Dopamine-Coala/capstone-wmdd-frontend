@@ -1,4 +1,5 @@
 import { Text, VStack, View, Box, Heading, HStack, ScrollView } from "native-base"
+import { LinearGradient } from 'expo-linear-gradient'
 import { StyleSheet } from "react-native"
 import moment from "moment"
 
@@ -6,14 +7,8 @@ const ViewProfileScreen = ({route}) => {
 
     const student = route.params.student
 
-    // const clickContactFunc = async (contactway, contact) => {
-    //         await Linking.openURL(`${contactway}:${contact}`)
-    //             .then(() => null)
-    //             .catch(() => null)
-    //         console.log('click contact!',contactway, contact)
-    // }
-
   return (
+    <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}>
     <View style={styles.container}>
         <Box style={styles.background}>
             <Heading style={styles.heading} fontFamily="Lexend_700">{student.firstname} {student.lastname}</Heading>
@@ -32,7 +27,7 @@ const ViewProfileScreen = ({route}) => {
                             <Text style={styles.title} fontFamily="Lexend_400">Allergies</Text>
                             <Text style={styles.data} fontFamily="Lexend_400">{student.allergy}</Text>
                         </Box>
-                        <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} justifyContent="space-between"/>
+                        <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} borderColor="#BBBBBB" justifyContent="space-between"/>
                         <Box>
                             <Text style={styles.title} fontFamily="Lexend_400">Conditions</Text>
                             <Text style={styles.data} fontFamily="Lexend_400">{student.condition}</Text>
@@ -46,21 +41,18 @@ const ViewProfileScreen = ({route}) => {
                             <Text style={styles.title} fontFamily="Lexend_400">Name</Text>
                             <Text style={styles.data} fontFamily="Lexend_400">{student.guardianName}</Text>
                         </Box>
-                        <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} justifyContent="space-between"/>
-                        {/* <TouchableOpacity onPress={() => clickContactFunc('tel',student.guardianNumber)}> */}
+                        <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} borderColor="#BBBBBB" justifyContent="space-between"/>
                             <Text style={styles.title} fontFamily="Lexend_400">Phone Number</Text>
                             <Text style={styles.data} fontFamily="Lexend_400">{student.guardianNumber}</Text>
-                        {/* </TouchableOpacity > */}
-                        <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} justifyContent="space-between"/>
-                        {/* <TouchableOpacity onPress={() => clickContactFunc('mailto',student.guardianEmail)}> */}
+                        <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} borderColor="#BBBBBB" justifyContent="space-between"/>
                             <Text style={styles.title} fontFamily="Lexend_400">Email</Text>
                             <Text style={styles.data} fontFamily="Lexend_400">{student.guardianEmail}</Text>
-                        {/* </TouchableOpacity > */}
                     </VStack>
                 </Box>
             </ScrollView>
         </Box>
     </View>
+    </LinearGradient>
       )
 }
 const styles = StyleSheet.create ({
@@ -71,7 +63,7 @@ const styles = StyleSheet.create ({
         backgroundColor: '#FDFDFD',
         borderTopLeftRadius: 28,
         borderTopRightRadius: 28,
-        marginTop: 12,
+        marginTop: 62,
     },
     heading: {
         textAlign: "center",
