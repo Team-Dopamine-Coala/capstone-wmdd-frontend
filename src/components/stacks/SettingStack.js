@@ -21,9 +21,9 @@ const SettingStack = () => {
           headerTitleAlign: 'center',
           // headerTransparent: true,
           headerTintColor: '#ffffff',
-          headerStyle: {
-            backgroundColor: 'orange'
-          },
+          // headerStyle: {
+          //   backgroundColor: 'orange'
+          // },
         }}
       />
       <Stack.Screen 
@@ -31,11 +31,14 @@ const SettingStack = () => {
         component={ClassPage}
         options={{
           title: 'My Classes',
-          headerStyle: {
-            backgroundColor: 'orange'
-          },
+          headerShown: false,
+          // headerStyle: {
+          //   backgroundColor: 'orange'
+          // },
           headerTitleStyle: {
-            color: '#fff'
+            color: '#fff',
+            fontFamily: 'Lexend_700',
+            fontSize: 20
           },
           headerTitleAlign: 'center',
           headerBackTitle: null,
@@ -49,7 +52,10 @@ const SettingStack = () => {
           headerStyle: {
             backgroundColor: 'purple'
           },
-          // header: null,
+          headerTitleStyle:{
+            fontFamily: 'Lexend_700',
+            fontSize: 20
+          },
           headerBackTitle: null,
           headerBackTitleVisible: false,
         }}

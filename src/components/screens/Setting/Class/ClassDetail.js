@@ -12,8 +12,8 @@ const ClassDetail = ({navigation, route}) => {
   const {item, weektitle} = route.params
   const [kids, setKids] = useState([])
   const classID = item._id
-  console.log('Detailきた', classID)
-  console.log('Detail', item)
+  // console.log('Detailきた', classID)
+  // console.log('Detail', item)
   
   //Student List Fetch
   useEffect(() => {
@@ -44,13 +44,15 @@ const ClassDetail = ({navigation, route}) => {
 
       <Box style={styles.studentbg}>
         <Text fontFamily="Lexend_700" style={styles.studenttitle}>Student List</Text>
-        <HStack space={1} borderBottomWidth=".2" pb={2} justifyContent="space-between"/>
+        <HStack space={1} borderBottomWidth=".5"  borderColor="#BBBBBB" justifyContent="space-between"/>
         <ScrollView>
           {kids.map((trainee,i) => (
-            <TouchableOpacity key={i} onPress={() => {navigation.navigate('Student Detail',{trainee})}} style={styles.namebox}>
-              <Text style={styles.name} fontFamily="Lexend_400">{trainee.firstname} {trainee.lastname}</Text>
-              <HStack space={1}  borderBottomWidth=".2" pb={2} justifyContent="space-between"/>
-            </TouchableOpacity>
+            <Box key={i}>
+              <TouchableOpacity onPress={() => {navigation.navigate('Student Detail',{trainee})}} style={styles.namebox}>
+                <Text style={styles.name} fontFamily="Lexend_400">{trainee.firstname} {trainee.lastname}</Text>
+              </TouchableOpacity>
+              <HStack space={1}  borderBottomWidth=".5" borderColor="#BBBBBB" justifyContent="space-between"/>
+            </Box>
           ))}
         </ScrollView>   
       </Box>
@@ -102,7 +104,7 @@ const styles = StyleSheet.create ({
     marginBottom:14,
   },
   namebox:{
-    marginVertical: 17,
+    marginVertical: 16,
   },
   name:{
     fontSize:16,

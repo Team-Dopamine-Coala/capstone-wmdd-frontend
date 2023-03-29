@@ -77,16 +77,14 @@ const styles = StyleSheet.create ({
       position: 'relative',
     },
     imgbox:{
-      // width:88,
-      // height: 88,
-      alignItems: 'center',
-    justifyContent: 'center',
+      alignSelf: 'center',
       position:'absolute',
       top: -40,
     },
     userbox: {
       alignItems: 'center',
       marginBottom: 36,
+      marginTop: 18,
     },
     username:{
       color: '#212427',

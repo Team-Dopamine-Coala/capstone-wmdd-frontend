@@ -1,5 +1,5 @@
 import { View, Box, Text, ScrollView, VStack, Heading, Icon, HStack } from 'native-base'
-import { TouchableOpacity, SafeAreaView, StyleSheet} from "react-native"
+import { TouchableOpacity, StyleSheet} from "react-native"
 import { useEffect, useState } from 'react'
 import { useRoute } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -143,6 +143,7 @@ const styles = StyleSheet.create ({
     paddingHorizontal: 20,
     borderTopRightRadius:28,
     borderTopLeftRadius:28,
+    marginTop: 13,
     height: '100%',
   },
   week:{
