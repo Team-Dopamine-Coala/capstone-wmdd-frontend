@@ -1,8 +1,9 @@
 import { Box, Text, VStack, ScrollView, Input, View, HStack } from "native-base"
 import { useEffect, useState, useContext } from "react"
 import { TouchableOpacity, StyleSheet, SafeAreaView } from "react-native"
-import DropShadow from "react-native-drop-shadow";
 import StudentsSearch from "./myStudents/StudentsSearch"
+import { LinearGradient } from 'expo-linear-gradient';
+import Loading from "../../layout/Loading";
 
 import {getClassesOfCoach, getStudentsByClass} from '../../../utils/queries'
 import { AuthContext } from '../../context/AuthContext';
@@ -10,6 +11,7 @@ import { AuthContext } from '../../context/AuthContext';
 const IndexScreen = ({ navigation}) => {
   
   const [nameTitle, setNameTitle] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
   const {userToken} = useContext(AuthContext)
   const userId = '63fcf0bd354e8150f45dd4d2'
   const myClassIds = []
@@ -34,6 +36,7 @@ const IndexScreen = ({ navigation}) => {
               myAllStudents.filter((item, index) => myAllStudents.indexOf(item) === index)
               sorting()
               displaytitle()
+              setIsLoading(true)
           })
         })
       }) 
@@ -67,45 +70,47 @@ const IndexScreen = ({ navigation}) => {
   }
   
     return(
-      <View style={styles.container}>
-        <View style={styles.background}>
-          <Box>
-            <StudentsSearch myAllStudents={myAllStudents}/>
-          </Box>
-          <ScrollView style={styles.scrollarea}>
-            {nameTitle.map((title, i) => ( 
-              <Box key={i} style={styles.box}> 
-                <Text style={styles.abc} fontFamily="Lexend_600">{title.group}</Text>
-                <VStack  style={styles.nameContainer} shadow={5}>
-                  {title.groupedConn.map((trainee, index) => (             
-                    <TouchableOpacity   key={index} 
-                                        onPress={() => {
-                                        navigation.navigate('Student Detail',{trainee})
-                                        }}>
-                      <Text style={styles.name} fontFamily="Lexend_400">{trainee.firstname} {trainee.lastname}</Text>
-                    </TouchableOpacity >
-                    // { index < title.groupedConn.length -1 ? ( <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} justifyContent="space-between"/> ) : null}
-                  ))}
-                </VStack>
-              </Box> 
-            ))} 
-          </ScrollView>
-        </View>    
-      </View>
+      <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}>
+        <View style={styles.container}>
+          <View style={styles.background}>
+            <Box>
+              <StudentsSearch myAllStudents={myAllStudents}/>
+            </Box>
+            {!isLoading ? <Loading /> : 
+              <ScrollView style={styles.scrollarea}>
+                {nameTitle.map((title, i) => ( 
+                  <Box key={i} style={styles.box}> 
+                    <Text style={styles.abc} fontFamily="Lexend_600">{title.group}</Text>
+                    <VStack  style={styles.nameContainer} shadow={5}>
+                      {title.groupedConn.map((trainee, index) => (             
+                        <TouchableOpacity   key={index} 
+                                            onPress={() => {
+                                            navigation.navigate('Student Detail',{trainee})
+                                            }}>
+                          <Text style={styles.name} fontFamily="Lexend_400">{trainee.firstname} {trainee.lastname}</Text>
+                        </TouchableOpacity >
+                        // { (!title.groupedConn.length == index+1) ? ( <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} borderColor='#BBBBBB' justifyContent="space-between"/> ) : null}
+                      ))}
+                    </VStack>
+                  </Box> 
+                ))}
+              </ScrollView>
+            }
+          </View>    
+        </View>
+      </LinearGradient>
     )
 }
  
 const styles = StyleSheet.create ({
-  container: {
-    backgroundColor: 'orange',
-  },
   background: {
     backgroundColor: '#FDFDFD',
     paddingVertical:24,
     paddingHorizontal: 20,
     borderTopRightRadius:28,
     borderTopLeftRadius:28,
-    marginTop: 16,
+    marginTop: 53,
+    height: '100%',
   },
   scrollarea: {
     marginTop: 24,
