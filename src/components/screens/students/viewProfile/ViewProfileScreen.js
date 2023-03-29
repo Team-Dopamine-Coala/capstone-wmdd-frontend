@@ -9,49 +9,48 @@ const ViewProfileScreen = ({route}) => {
 
   return (
     <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}>
-    <View style={styles.container}>
-        <Box style={styles.background}>
-            <Heading style={styles.heading} fontFamily="Lexend_700">{student.firstname} {student.lastname}</Heading>
-            <ScrollView>
-                <Box>
-                    <Text style={styles.subheading} fontFamily="Lexend_500">Birthday</Text>
-                    <VStack style={styles.box} bg="#FDFDFD" borderRadius="md" shadow={5}>
-                        <Text style={styles.data} fontFamily="Lexend_400">{moment(student.birthday).format('ddd, D MMM YYYY')}</Text>
-
-                    </VStack>
-                </Box>
-                <Box>
-                    <Text style={styles.subheading} fontFamily="Lexend_500">Medical Information</Text>
-                    <VStack style={styles.box} bg="#FDFDFD" borderRadius="md" shadow={5}>
-                        <Box>
-                            <Text style={styles.title} fontFamily="Lexend_400">Allergies</Text>
-                            <Text style={styles.data} fontFamily="Lexend_400">{student.allergy}</Text>
-                        </Box>
-                        <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} borderColor="#BBBBBB" justifyContent="space-between"/>
-                        <Box>
-                            <Text style={styles.title} fontFamily="Lexend_400">Conditions</Text>
-                            <Text style={styles.data} fontFamily="Lexend_400">{student.condition}</Text>
-                        </Box>
-                    </VStack>
-                </Box>
-                <Box>
-                    <Text style={styles.subheading} fontFamily="Lexend_500">Guardian Information</Text>
-                    <VStack style={styles.box} bg="#FDFDFD" borderRadius="md" shadow={5}>
-                        <Box>
-                            <Text style={styles.title} fontFamily="Lexend_400">Name</Text>
-                            <Text style={styles.data} fontFamily="Lexend_400">{student.guardianName}</Text>
-                        </Box>
-                        <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} borderColor="#BBBBBB" justifyContent="space-between"/>
-                            <Text style={styles.title} fontFamily="Lexend_400">Phone Number</Text>
-                            <Text style={styles.data} fontFamily="Lexend_400">{student.guardianNumber}</Text>
-                        <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} borderColor="#BBBBBB" justifyContent="space-between"/>
-                            <Text style={styles.title} fontFamily="Lexend_400">Email</Text>
-                            <Text style={styles.data} fontFamily="Lexend_400">{student.guardianEmail}</Text>
-                    </VStack>
-                </Box>
-            </ScrollView>
-        </Box>
-    </View>
+        <View style={styles.container}>
+            <Box style={styles.background}>
+                <Heading style={styles.heading} fontFamily="Lexend_700">{student.firstname} {student.lastname}</Heading>
+                <ScrollView>
+                    <Box>
+                        <Text style={styles.subheading} fontFamily="Lexend_500">Birthday</Text>
+                        <VStack style={styles.box} bg="#FDFDFD" borderRadius="md" shadow={5}>
+                            <Text style={styles.data} fontFamily="Lexend_400">{moment(student.birthday).format('ddd, D MMM YYYY')}</Text>
+                        </VStack>
+                    </Box>
+                    <Box>
+                        <Text style={styles.subheading} fontFamily="Lexend_500">Medical Information</Text>
+                        <VStack style={styles.box} bg="#FDFDFD" borderRadius="md" shadow={5}>
+                            <Box>
+                                <Text style={styles.title} fontFamily="Lexend_400">Allergies</Text>
+                                <Text style={styles.data} fontFamily="Lexend_400">{student.allergy}</Text>
+                            </Box>
+                            <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} borderColor="#BBBBBB" justifyContent="space-between"/>
+                            <Box>
+                                <Text style={styles.title} fontFamily="Lexend_400">Conditions</Text>
+                                <Text style={styles.data} fontFamily="Lexend_400">{student.condition}</Text>
+                            </Box>
+                        </VStack>
+                    </Box>
+                    <Box>
+                        <Text style={styles.subheading} fontFamily="Lexend_500">Guardian Information</Text>
+                        <VStack style={styles.box} bg="#FDFDFD" borderRadius="md" shadow={5}>
+                            <Box>
+                                <Text style={styles.title} fontFamily="Lexend_400">Name</Text>
+                                <Text style={styles.data} fontFamily="Lexend_400">{student.guardianName}</Text>
+                            </Box>
+                            <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} borderColor="#BBBBBB" justifyContent="space-between"/>
+                                <Text style={styles.title} fontFamily="Lexend_400">Phone Number</Text>
+                                <Text style={styles.data} fontFamily="Lexend_400">{student.guardianNumber}</Text>
+                            <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} borderColor="#BBBBBB" justifyContent="space-between"/>
+                                <Text style={styles.title} fontFamily="Lexend_400">Email</Text>
+                                <Text style={styles.data} fontFamily="Lexend_400">{student.guardianEmail}</Text>
+                        </VStack>
+                    </Box>
+                </ScrollView>
+            </Box>
+        </View>
     </LinearGradient>
       )
 }
