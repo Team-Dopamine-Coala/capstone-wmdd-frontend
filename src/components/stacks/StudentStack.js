@@ -1,28 +1,30 @@
 import IndexScreen from "../screens/Students/IndexScreen"
 import StudentDetail from "../screens/Students/studentDetails/StudentDetail"
 import ViewProfileScreen from "../screens/Students/viewProfile/ViewProfileScreen"
+import HeaderImage from "../layout/HeaderImage"
 
 import { createStackNavigator } from "@react-navigation/stack"
-
 
 const Stack = createStackNavigator()
 
 
-const StudentStack = () => {
+const StudentStack = ({navigation}) => {
   return (
     <Stack.Navigator >
       <Stack.Screen 
         name="Student Index" 
         component={IndexScreen}
-        options={{
-          title: 'Students',
+        options={({ navigation }) => ({
           headerTitleAlign: 'center',
-          // headerTransparent: true,
           headerTintColor: '#ffffff',
           headerStyle: {
             backgroundColor: 'orange'
           },
-        }}
+          headerTitle: 'Students',
+          headerRight: () => ( 
+            <HeaderImage navigations={navigation} />
+          ),
+        })}
       />
       <Stack.Screen 
         name="Student Detail" 
