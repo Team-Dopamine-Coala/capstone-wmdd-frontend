@@ -32,15 +32,7 @@ const CurriculumStack = ({route}) => {
             skills: route.params.skills,
             headerTitleAlign: 'center',
             headerTransparent: true,
-            headerTintColor: '#FDFDFD',
-            headerTitleStyle: {
-              fontFamily: 'Lexend_700',
-              fontSize: 20
-            },
-            headerRight: () => (
-              <HeaderImage navigations={navigation}/>
-            ),
-            headerBackTitleVisible: false
+            headerTintColor: '#ffffff'
           })} />
       </Stack.Navigator>
       
