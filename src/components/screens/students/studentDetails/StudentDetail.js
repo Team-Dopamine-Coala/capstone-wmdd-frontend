@@ -1,6 +1,7 @@
 import { View, Text,ScrollView } from "native-base"
 import { StyleSheet, TouchableOpacity } from "react-native"
 import { useContext, useState, useEffect} from "react"
+import { LinearGradient } from 'expo-linear-gradient';
 
 import ReportView from "./ReportView"
 import CurrentLevelView from "./CurrentLevelView"
@@ -15,6 +16,7 @@ import { getSingleClass, getEvaluationsByClass, getSkillById, fetchSkills } from
 const StudentDetail = ({route, navigation }) => {
   const { trainee } = route.params
   const {userToken} = useContext(AuthContext)
+  const {userInfo} = useContext(AuthContext)
   const [classTitle, setClassTitle] = useState('')
   const [classColor, setClassColor] = useState('')
   const [cardBgColor, setCardBgColor] = useState('')
@@ -28,11 +30,11 @@ const StudentDetail = ({route, navigation }) => {
   let mySkillArray = []
   let levellistArray = []
   let myLevelDetailArray = []
-  
+ 
   //class ID (1人１個)
   const classid = trainee.class_id
   //user ID
-  const userid = '63fcf0bd354e8150f45dd4d2'
+  const userid = userInfo._id
   //student ID 
   const studentid = trainee._id
 
@@ -133,7 +135,7 @@ const StudentDetail = ({route, navigation }) => {
     //Skill Achievementにはmy LevelDetailをそのまま送る！
     //Loading変わったら表示を直す！！！
   return (
-    <>
+    <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}>
       {!endLoading ? <Loading/> : 
       <View style={styles.container}>
         <ReportView student={trainee} navigation={navigation}/>
@@ -150,13 +152,13 @@ const StudentDetail = ({route, navigation }) => {
         </View>
       </View>
       }   
-    </>
+    </LinearGradient>
   )
 }
 
 const styles = StyleSheet.create ({
-  container: {
-    backgroundColor: 'orange',
+  container:{
+    marginTop: 50,
   },
   background:{
     backgroundColor: '#FDFDFD',
@@ -164,6 +166,7 @@ const styles = StyleSheet.create ({
     paddingVertical: 24,
     borderTopRightRadius: 28,
     borderTopLeftRadius: 28,
+    
     height: '100%',
   },
   classtab:{
