@@ -1,7 +1,10 @@
 import { createStackNavigator, TransitionPresets } from "@react-navigation/stack"
 import CurriculumScreen from '../screens/Curriculum/CurriculumScreen'
 import SkillList from "../screens/Curriculum/lists/SkillList";
+<<<<<<< HEAD
 import HeaderImage from "../layout/HeaderImage";
+=======
+>>>>>>> 79c27b5 (updated styles)
   
 const Stack = createStackNavigator()
 
