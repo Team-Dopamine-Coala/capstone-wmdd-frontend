@@ -131,6 +131,15 @@ const StudentDetail = ({route, navigation }) => {
       })
     },[myAllSkills])  
 
+
+    //送るものが何も入っていない！これを確認すること！
+    useEffect(() => {
+      console.log('1',classTitle)
+      console.log('2',classColor)
+      console.log('3',cardBgColor)
+      console.log('4',classCard)
+    },[endLoading])
+
     //Skill Achievementにはmy LevelDetailをそのまま送る！
     //Loading変わったら表示を直す！！！
   return (

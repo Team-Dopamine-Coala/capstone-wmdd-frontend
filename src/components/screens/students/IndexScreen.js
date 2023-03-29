@@ -121,7 +121,6 @@ const styles = StyleSheet.create ({
   },
   abc: {
     color: '#242424',
-    // fontWeight: '600',
     fontSize: 24,
     lineHeight:30,
   },
@@ -131,22 +130,10 @@ const styles = StyleSheet.create ({
     borderRadius: '12',
     marginHorizontal: 2,
   },
-  nameiconbox:{
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  icon: {
-    width: 24,
-    height: 24,
-    lineHeight: 24,
-    color: '#1A1A1A',
-  },
   name: {
     color: '#242424',
     paddingHorizontal: 15,
     paddingVertical: 12,
-    // fontWeight: '400',
     fontSize: 16,
   }
 })
