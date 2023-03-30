@@ -3,6 +3,7 @@ import IndexScreen from "../screens/Evaluation/IndexScreen"
 import EvaluationStudentListScreen from "../screens/Evaluation/EvaluationStudentListScreen"
 import EvaluationIndividualStudent from "../screens/Evaluation/EvaluationIndividualStudent"
 import EvaluationIndividualStudentComment from "../screens/Evaluation/EvaluationIndividualStudentComment"
+import HeaderImage from '../layout/HeaderImage'
 
 import { createStackNavigator, TransitionPresets } from "@react-navigation/stack"
 
@@ -16,7 +17,7 @@ const EvaluationStack = () => {
   return (
     <Stack.Navigator screenOptions={TransitionScreenOptions}>
       <Stack.Screen name="Evaluation Index" component={IndexScreen}
-        options={{
+        options={({ navigation }) => ({
           title: 'Evaluation',
           headerTitleAlign: 'center',
           headerTransparent: true,
@@ -25,10 +26,10 @@ const EvaluationStack = () => {
             fontFamily: 'Lexend_700',
             fontSize: 20
           },
-          // headerRight: () => (
-          //   <Image />
-          // )
-        }}
+          headerRight: () => (
+            <HeaderImage navigations={navigation}/>
+          )
+        })}
       />
       <Stack.Screen
         name="Evaluation Student List"
