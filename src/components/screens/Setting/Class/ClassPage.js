@@ -169,12 +169,6 @@ const styles = StyleSheet.create ({
     height: 24,
     fontSize: 24,
     lineHeight: 24,
-  },
-  icon:{
-    width: 24,
-    height: 24,
-    fontSize: 24,
-    lineHeight: 24,
   }
 })
 export default ClassPage
