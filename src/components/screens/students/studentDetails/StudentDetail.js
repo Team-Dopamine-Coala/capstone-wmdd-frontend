@@ -132,7 +132,7 @@ const StudentDetail = ({route, navigation }) => {
       })
     },[myAllSkills])  
 
-
+    //==== FROM　HERER!＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
     //送るものが何も入っていない！これを確認すること！
     useEffect(() => {
       console.log('1',classTitle)
