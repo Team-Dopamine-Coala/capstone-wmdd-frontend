@@ -1,5 +1,8 @@
 import React from 'react'
+import {StyleSheet} from 'react-native'
+import {Icon} from 'native-base'
 import AppTabs from '../tabs/AppTabs'
+import { Ionicons } from '@expo/vector-icons'
 
 import { createStackNavigator } from "@react-navigation/stack"
 import SettingIndexScreen from '../screens/Setting/SettingIndexScreen'
@@ -30,6 +33,9 @@ const PageNavs = () => {
             fontFamily: 'Lexend_700',
             fontSize: 20
           },
+          headerRight: () => (
+            <Icon size={4} as={<Ionicons name='create-outline' />} style={styles.icon}/>
+          )
         }}
       />
       <Stack.Screen 
@@ -62,5 +68,15 @@ const PageNavs = () => {
     </Stack.Navigator>
   )
 }
+const styles = StyleSheet.create ({
+  icon:{
+    color: '#FDFDFD',
+    marginRight: 21.68,
+    width: 19.32,
+    height: 20.64,
+    fontSize:20,
+    lineHeight: 20,
+  },
 
+})
 export default PageNavs
