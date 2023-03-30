@@ -6,6 +6,7 @@ import { fetchSkill } from '../../../../utils/queries';
 
 import SkillItem from '../listItems/SkillItem'
 import SkillDetails from "../listItems/SkillDetails";
+import StudentsSearch from "../../Students/myStudents/StudentsSearch";
 
 const SkillsList = ({ navigation, skills }) => {
     const panelRef = useRef(null);
@@ -32,7 +33,10 @@ const SkillsList = ({ navigation, skills }) => {
     return (
         <View >
             <ScrollView>
-                <VStack pt="50px" pb={20}>
+                <VStack pb={20}>
+                    <Box pt="20px" pl={5} pr={5} pb={5}>
+                        <StudentsSearch />
+                    </Box>
                     <Box pb={5}>
                         <Flex direction="row" justifyContent="space-between" alignItems="center">
                             <Heading pl={5} style={{
