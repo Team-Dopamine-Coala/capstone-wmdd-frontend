@@ -1,4 +1,4 @@
-import { View, Img, Box, Text, Title, ScrollView, VStack, Heading, Icon, HStack, Pressable } from 'native-base'
+import { View, Img, Box, Text, Title, ScrollView, VStack, Heading, Icon, HStack } from 'native-base'
 import React, {useEffect, useState} from 'react'
 import {TouchableOpacity, StyleSheet} from 'react-native'
 import { useRoute } from '@react-navigation/native';
@@ -34,11 +34,11 @@ const ClassDetail = ({navigation, route}) => {
 
       <HStack style={styles.timebox} alignItems="center" space={1}>
         <Text style={styles.time} fontFamily="Lexend_400">{moment(item.startTime).format('H:mm A')}</Text>
-        <Icon size={4} as={<Ionicons name='arrow-forward' />} />
+        <Icon size={4} as={<Ionicons name='arrow-forward' />} style={styles.icontime}/>
         <Text style={styles.time} fontFamily="Lexend_400">{moment(item.endTime).format('H:mm A')}</Text>
       </HStack>
       <HStack style={styles.locationbox}>
-        <Icon size={4} as={<Ionicons name='pin' />} />
+        <Icon size={4} as={<Ionicons name='location-outline' />} style={styles.iconlocation}/>
         <Text style={styles.location} fontFamily="Lexend_500">{item.location}</Text>
       </HStack>
 
@@ -49,7 +49,8 @@ const ClassDetail = ({navigation, route}) => {
           {kids.map((trainee,i) => (
             <Box key={i}>
               <TouchableOpacity onPress={() => {navigation.navigate('Student Detail',{trainee})}} style={styles.namebox}>
-                <Text style={styles.name} fontFamily="Lexend_400">{trainee.firstname} {trainee.lastname}</Text>
+                  <Text style={styles.name} fontFamily="Lexend_400">{trainee.firstname} {trainee.lastname}</Text>
+                  <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.iconarrow}/>
               </TouchableOpacity>
               <HStack space={1}  borderBottomWidth=".5" borderColor="#BBBBBB" justifyContent="space-between"/>
             </Box>
@@ -62,6 +63,7 @@ const ClassDetail = ({navigation, route}) => {
 const styles = StyleSheet.create ({
   container: {
     backgroundColor: '#BBA0EC',
+    paddingTop: 33,
   },
   title:{
     fontSize: 32,
@@ -75,6 +77,12 @@ const styles = StyleSheet.create ({
     marginVertical:12,
     alignSelf:'center',
   },
+  icontime:{
+    marginHorizontal: 18,
+    color: '#212427',
+    fontSize: 20,
+    lineHeight: 20,
+  },
   time:{
     lineHeight:25,
     fontSize: 20,
@@ -84,11 +92,18 @@ const styles = StyleSheet.create ({
     marginBottom: 24,
     alignSelf:'center',
   },
+  iconlocation:{
+    width:24,
+    height: 24,
+    fontSize:22,
+    color: '#212427',
+    lineHeight: 24,
+    marginRight: 8,
+  },
   location:{
     fontSize: 16,
     lineHeight:24,
     color:'#212427',
-    
   },
   studentbg: {
     backgroundColor: '#FDFDFD',
@@ -105,12 +120,20 @@ const styles = StyleSheet.create ({
   },
   namebox:{
     marginVertical: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   name:{
     fontSize:16,
     lineHeight:22,
     color:'#000000',
+  },
+  iconarrow:{
+    width: 24,
+    height: 24,
+    fontSize: 24,
+    lineHeight: 24,
+    marginRight: 20,
   }
-  
 })
 export default ClassDetail

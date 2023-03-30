@@ -1,16 +1,15 @@
 import {useContext} from 'react'
 import { useRoute } from '@react-navigation/native';
-import {Box,Text, VStack, View, Image} from 'native-base'
+import {Box,Text, VStack, View, Image, Icon, HStack} from 'native-base'
 import { SafeAreaView, TouchableOpacity, StyleSheet  } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient';
 import { AuthContext } from '../../context/AuthContext'
+import { Ionicons } from '@expo/vector-icons'
 
 const SettingIndexScreen = ({navigation,route}) => {
 
   const { userID, userFirstname, userLastname, userEmail, userPhoto, userToken } = route.params;
   const {logout} = useContext(AuthContext)
-    // console.log('インデックスのデータ',userFirstname,userLastname,userEmail,userPhoto,userID)
-    // console.log('これ',userToken, userPhoto)
 
   return (
     <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}>  
@@ -27,41 +26,64 @@ const SettingIndexScreen = ({navigation,route}) => {
             <Text style={styles.username} fontFamily="Lexend_600">{userFirstname} {userLastname}</Text>
             <Text style={styles.useremail} fontFamily="Lexend_400">{userEmail}</Text>
           </Box>
-              <VStack style={styles.sectionbox} shadow={5}>
-                  <TouchableOpacity onPress={() => { navigation.navigate('Class Page',{userID:userID, userToken:userToken})
-                                      }}
-                  > 
-                  <Box>
-                      <Text fontFamily="Lexend_600">My Classes</Text>
-                      <Text fontFamily="Lexend_300">Find your classes' details here</Text>
-                  </Box>                                    
-                  </TouchableOpacity > 
-              </VStack>
-              <VStack style={styles.sectionbox} shadow={5}>
-                  <Box>
-                      <Text fontFamily="Lexend_600">Notification</Text>
-                      <Text fontFamily="Lexend_300">Make sure you don't miss anything!</Text>                
-                  </Box>
-              </VStack>
-              <VStack style={styles.sectionbox} shadow={5}>
-                  <Box>
-                      <Text fontFamily="Lexend_600">Help</Text>
-                      <Text fontFamily="Lexend_300">Contact our help centre</Text>                
-                  </Box>
-              </VStack>
-              <VStack style={styles.sectionbox} shadow={5}>
-                  <Box>
-                      <Text fontFamily="Lexend_600">About Us</Text>
-                      <Text fontFamily="Lexend_300">More about Coala and our team</Text>
-                  </Box>
-              </VStack>
-              <VStack style={styles.sectionbox} shadow={5}>
-                  <TouchableOpacity onPress={logout}>
-                      <Text style={styles.content} fontFamily="Lexend_600">Log out</Text>
-                  </TouchableOpacity >                 
-              </VStack>
-          </View> 
-          </SafeAreaView>
+              
+          <TouchableOpacity onPress={() => { navigation.navigate('Class Page',{userID:userID, userToken:userToken})
+                              }}
+          >
+            <HStack style={styles.sectionbox} shadow={5}>
+              <HStack style={styles.lefticontitle}>
+                <Icon size={4} as={<Ionicons name='arrow-forward' />} style={styles.iconleft}/>
+                <VStack style={styles.title}>
+                  <Text fontFamily="Lexend_600">My Classes</Text>
+                  <Text fontFamily="Lexend_300">Find your classes' details here</Text>   
+                </VStack>                                    
+              </HStack>
+              <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.iconarrow}/>
+            </HStack>
+          </TouchableOpacity > 
+              
+          <HStack style={styles.sectionbox} shadow={5}>
+              <HStack style={styles.lefticontitle}>
+                <Icon size={4} as={<Ionicons name='notifications-outline' />} style={styles.iconleft}/>
+                <VStack style={styles.title}>
+                  <Text fontFamily="Lexend_600">Notification</Text>
+                  <Text fontFamily="Lexend_300">Make sure you don't miss anything!</Text>              
+                </VStack>
+              </HStack>
+              <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.iconarrow}/>  
+          </HStack>
+          <HStack style={styles.sectionbox} shadow={5}>
+              <HStack style={styles.lefticontitle}>
+                <Icon size={4} as={<Ionicons name='help-circle-outline' />} style={styles.iconleft}/>
+                <VStack style={styles.title}>
+                  <Text fontFamily="Lexend_600">Help</Text>
+                  <Text fontFamily="Lexend_300">Contact our help centre</Text> 
+                </VStack>
+              </HStack>
+              <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.iconarrow}/>               
+          </HStack>
+          <VStack style={styles.sectionbox} shadow={5}>
+              <HStack style={styles.lefticontitle}>
+                <Icon size={4} as={<Ionicons name='information-circle-outline' />} style={styles.iconleft}/>
+                <VStack style={styles.title}>
+                  <Text fontFamily="Lexend_600">About Us</Text>
+                  <Text fontFamily="Lexend_300">More about Coala and our team</Text>
+                </VStack>
+              </HStack>
+              <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.iconarrow}/>
+          </VStack>
+          
+            <TouchableOpacity onPress={logout}>
+              <HStack style={styles.sectionbox} shadow={5}>
+                <HStack style={styles.lefticontitle}>
+                  <Icon size={4} as={<Ionicons name='log-out-outline' />} style={styles.iconleft}/>
+                  <Text style={styles.title} fontFamily="Lexend_600">Log out</Text>            
+                </HStack>
+                <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.iconarrow}/>
+              </HStack>                
+            </TouchableOpacity >                           
+        </View> 
+      </SafeAreaView>
     </LinearGradient>
   )
 }
@@ -98,12 +120,35 @@ const styles = StyleSheet.create ({
     },
     sectionbox: {
        backgroundColor: '#FDFDFD',
-       borderRadius: '12',
+       borderRadius: 12,
        marginHorizontal: 2,
        marginBottom: 20,
-       paddingRight: 24,
-       paddingLeft: 16,
+       paddingHorizontal: 16,
       paddingVertical: 14,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems:'center',
+    },
+    lefticontitle:{
+      flexDirection: 'row',
+      alignItems:'center',
+    },
+    iconleft:{
+      width: 32,
+      height: 32,
+      fontSize: 27,
+      color: '#667080',
+      lineHeight: 32,
+    },
+    title:{
+      marginLeft: 16,
+    },
+    iconarrow:{
+      width: 24,
+      height: 24,
+      fontSize: 24,
+      color: '#667080',
+      lineHeight: 24,
     }
   })
 export default SettingIndexScreen

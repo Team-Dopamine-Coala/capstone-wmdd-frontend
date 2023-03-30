@@ -44,6 +44,7 @@ const styles = StyleSheet.create ({
         width:30,
         height: 30,
         borderRadius:'50%',
+        marginHorizontal: 10,
     },
   })
 export default WeekCalender
