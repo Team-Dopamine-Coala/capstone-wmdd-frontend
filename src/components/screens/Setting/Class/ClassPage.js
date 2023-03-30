@@ -113,7 +113,7 @@ const ClassPage = ({navigation, route}) => {
                           <Text fontSize={16} fontFamily="Lexend_400" lineHeight={24} color="#737373" >{moment(item.endTime).format('H:mm A')}</Text>
                         </HStack>
                         <HStack alignItems="center" space={1}>
-                          <Icon size={4} as={<Ionicons name='location-outline' />} />
+                          <Icon size={4} as={<Ionicons name='location-outline' />} style={styles.icon}/>
                           <Text fontSize={16} fontFamily="Lexend_400" color="#737373">{item.location}</Text>
                         </HStack>
                       </VStack>

@@ -1,6 +1,6 @@
 import React from 'react'
 import {StyleSheet} from 'react-native'
-import {Image, Icon} from 'native-base'
+import {Icon} from 'native-base'
 import AppTabs from '../tabs/AppTabs'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -34,8 +34,7 @@ const PageNavs = () => {
             fontSize: 20
           },
           headerRight: () => (
-            <Icon as={<Ionicons name='create-outline' />} style={styles.icon}/>
-            // <Icon size={4} as={<Image source={{uri: ''}}/>} style={styles.icon}/>
+            <Icon size={4} as={<Ionicons name='create-outline' />} style={styles.icon}/>
           )
         }}
       />
