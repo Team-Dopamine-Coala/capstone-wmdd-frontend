@@ -53,9 +53,7 @@ const PageNavs = () => {
         component={ClassDetail}
         options={{
           title:null,
-          headerStyle: {
-            backgroundColor: '#BBA0EC'
-          },
+          headerTransparent: true,
           headerTintColor: '#000000',
           headerBackTitle: null,
           headerBackTitleVisible: false,
