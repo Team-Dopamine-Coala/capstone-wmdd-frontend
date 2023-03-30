@@ -1,4 +1,4 @@
-import { FormControl, Input, Text, VStack, Icon, Pressable, Box, Button, Link, Divider } from 'native-base';
+import { FormControl, Input, Text, VStack, Icon, Pressable, Box, Button, Link } from 'native-base';
 import { MaterialIcons } from "@expo/vector-icons";
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
@@ -49,7 +49,6 @@ const LoginForm = ({navigation}) => {
                     _text={{
                     fontFamily:"Lexend_700",
                     }}
-                    _pressed={{backgroundColor:"#E57229"}}
                 >Login</Button>
                 <Link 
                     mt={5} 
@@ -60,28 +59,12 @@ const LoginForm = ({navigation}) => {
                         color:"#667080",
                     }}
                 >Forgot your password?</Link>
-                <Text fontFamily="Lexend_700" fontSize={15} textAlign='center' mt={7} color="#212427" >OR</Text>
+                <Text bold fontSize="sm" mt={7}>OR</Text>
                 <Button 
                     mt={7}
-                    bg="#FCFCFC"
-                    variant="outline"
-                    _text={{
-                        fontFamily: "Lexend_700",
-                        color:"#212427"
-                    }}
-                    leftIcon={<Google />}
-                >Sign Up with Google</Button>
-                <Box>
-                    <Text mt={5} fontFamily="Lexend_300" textAlign="center" color="#667080">New to Coala? 
-                        <Link 
-                            onPress={() => navigation.navigate('Sign up one')}
-                                _text={{
-                                    fontFamily:"Lexend_500",
-                                    color:"#667080"
-                                }}
-                        > Sign up now</Link>
-                    </Text>
-                </Box>
+                    bg="#FE7F2D"
+                >Google</Button>
+                <Text mt={5}>New to Coala? <Link onPress={() => navigation.navigate('Sign up one') }> Sign up now</Link></Text>
             </FormControl>
         </VStack>
     )
