@@ -120,7 +120,7 @@ const styles = StyleSheet.create ({
     },
     sectionbox: {
        backgroundColor: '#FDFDFD',
-       borderRadius: '12',
+       borderRadius: 12,
        marginHorizontal: 2,
        marginBottom: 20,
        paddingHorizontal: 16,
