@@ -59,12 +59,22 @@ const LoginForm = ({navigation}) => {
                         color:"#667080",
                     }}
                 >Forgot your password?</Link>
-                <Text bold fontSize="sm" mt={7}>OR</Text>
+                <Text fontFamily="Lexend_700" fontSize={15} textAlign='center' mt={7}>OR</Text>
                 <Button 
                     mt={7}
                     bg="#FE7F2D"
                 >Google</Button>
-                <Text mt={5}>New to Coala? <Link onPress={() => navigation.navigate('Sign up one') }> Sign up now</Link></Text>
+                <Box>
+                    <Text mt={5} fontFamily="Lexend_300" textAlign="center" color="#667080">New to Coala? 
+                        <Link 
+                            onPress={() => navigation.navigate('Sign up one')}
+                                _text={{
+                                    fontFamily:"Lexend_500",
+                                    color:"#667080"
+                                }}
+                        > Sign up now</Link>
+                    </Text>
+                </Box>
             </FormControl>
         </VStack>
     )
