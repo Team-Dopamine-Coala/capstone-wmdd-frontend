@@ -117,7 +117,7 @@ const ClassPage = ({navigation, route}) => {
                           <Text fontSize={16} fontFamily="Lexend_400" color="#737373">{item.location}</Text>
                         </HStack>
                       </VStack>
-                      <Icon size={7} as={<Ionicons name='arrow-forward' />} />
+                    <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.iconarrow}/>
                     </HStack>  
                   </Box>
                 </HStack>
@@ -166,6 +166,12 @@ const styles = StyleSheet.create ({
   },
   title: {
    textAlign: 'center',
+  },
+  iconarrow:{
+    width: 24,
+    height: 24,
+    fontSize: 24,
+    lineHeight: 24,
   }
 })
 export default ClassPage
