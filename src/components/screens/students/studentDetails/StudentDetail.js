@@ -134,18 +134,6 @@ const StudentDetail = ({route, navigation }) => {
       })
     },[myAllSkills])  
 
-    //==== FROM　HERER!＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-    //送るものが何も入っていない！これを確認すること！
-    useEffect(() => {
-
-      console.log('1',classTitle)
-      console.log('2',classColor)
-      console.log('3',cardBgColor)
-      console.log('4',classCard)
-    },[isLoading])
-
-    //Skill Achievementにはmy LevelDetailをそのまま送る！
-    //Loading変わったら表示を直す！！！
   return (
     <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}> 
       <View style={styles.container}>
