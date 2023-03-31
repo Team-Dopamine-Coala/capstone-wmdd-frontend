@@ -5,7 +5,7 @@ import SkillList from "./lists/SkillList"
 
 const EvaluationIndividualStudent = ({ navigation, route, studentIndex }) => {
   const currentStudentIndex = studentIndex || 0 // get array index of current student or start from first student
-  const { studentsList, className } = route.params
+  const { studentsList, className, calendarDate } = route.params
   const id = studentsList[currentStudentIndex]._id
   const firstname = studentsList[currentStudentIndex].firstname
   const lastname = studentsList[currentStudentIndex].lastname
@@ -39,7 +39,7 @@ const EvaluationIndividualStudent = ({ navigation, route, studentIndex }) => {
         </Center>
       </Box>
 
-      <SkillList navigation={navigation} evalskills={evaluations} studentId={id} studentName={`${firstname} ${lastname}`} classId={classId} className={className} />
+      <SkillList navigation={navigation} evalskills={evaluations} studentId={id} studentName={`${firstname} ${lastname}`} classId={classId} className={className} calendarDate={calendarDate} />
     </View>
   )
 }
