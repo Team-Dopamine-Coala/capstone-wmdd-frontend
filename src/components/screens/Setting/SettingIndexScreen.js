@@ -33,9 +33,10 @@ const SettingIndexScreen = ({navigation,route}) => {
           >
             <HStack style={styles.sectionbox} shadow={5}>
               <HStack style={styles.lefticontitle}>
-                {/* <Icon size={4} as={<Ionicons name='arrow-forward' />} style={styles.iconleft}/> */}
+                <Icon size={4} as={<Ionicons name='basketball-outline' />} style={styles.iconleft}/>
                 {/* <Image source={{uri: "https://res.cloudinary.com/dp53wf7gb/image/upload/v1679070455/coalaNotStarted_ea6fcm.png"}} alt="myclass icon" size="md" /> */}
-                <Icon size={4} as={<Image source={ClassIcon} alt="myclass icon" size="md" />}/>
+                {/* <Icon size={4} as={<Image source={ClassIcon} alt="myclass icon" size="md" />}/> */}
+                {/* <Image source={ClassIcon} accessibilityLabel='class icon'style={{ size:"md"}}/> */}
 
                 <VStack style={styles.title}>
                   <Text fontFamily="Lexend_600">My Classes</Text>
