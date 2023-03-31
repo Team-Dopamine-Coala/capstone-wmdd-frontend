@@ -85,7 +85,7 @@ const IndexScreen = ({ navigation }) => {
         }}
       />
       
-      {isLoading ? <Loading /> : <ClassList classes={classes.filter((current) => moment(current.startTime).format('YYYY-MM-DD') == moment(dateSelected).format('YYYY-MM-DD')).sort((a, b) => a.startTime > b.startTime)} navigation={navigation} calendarDate={dateSelected} />}
+      {isLoading ? <Loading /> : <ClassList classes={classes.filter((current) => moment(current.startTime).format('YYYY-MM-DD') == moment(dateSelected).format('YYYY-MM-DD')).sort((a, b) => a.startTime > b.startTime)} navigation={navigation} calendarDate={moment(dateSelected).format('YYYY-DD-MM')} />}
     </Box>
 
     </VStack>

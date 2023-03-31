@@ -80,8 +80,7 @@ const EvaluationStack = () => {
         name="Evaluation Complete"
         component={EvaluationComplete}
         options={({ route }) => ({
-          title: 'Evaluation Complete',
-          headerTitleAlign: 'center',
+          title: '',
           headerBackTitle: '',
           headerTitleStyle: {
             fontFamily: 'Lexend_500',
