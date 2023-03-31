@@ -19,8 +19,7 @@ const StudentListItem = ({ item, navigation, className, calendarDate }) => {
       borderBottomColor="#cccccc"
     >
       <HStack justifyContent="space-between" alignItems="center">
-        <Text textAlign="left">{item.firstname} {item.lastname}</Text>
-
+        <Text fontFamily="Lexend_400" fontSize={16} textAlign="left">{item.firstname} {item.lastname}</Text>
         <Icon size={5} as={<Ionicons name='arrow-forward' />} />
       </HStack>
     </Pressable>
