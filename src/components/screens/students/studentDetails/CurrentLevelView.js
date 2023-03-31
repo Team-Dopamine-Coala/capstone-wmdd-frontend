@@ -1,25 +1,15 @@
 import { Text, VStack, View, Box, Heading, HStack } from "native-base"
-import { useEffect, useState } from "react"
+// import { useEffect, useState } from "react"
 import { StyleSheet } from "react-native"
-import Loading from "../../../layout/Loading"
+// import Loading from "../../../layout/Loading"
 
 const CurrentLevelView = ({classTitle, classColor, cardBgColor, classCard}) => {
-  console.log('これ',classTitle, classColor, cardBgColor, classCard)  
-  const [isLoading, setIsLoading] = useState(false)
-    console.log('これ',classCard)
-    // const completedSkillNbr = classCard[0].compNbr
-    // const totalSkillNbr = classCard[0].totalNbr
-    // const barprog = parseFloat(216 / totalSkillNbr * completedSkillNbr)
-    console.log(barprog)
-
-  // useEffect(() => {
-    const completedSkillNbr = classCard.compNbr
-    const totalSkillNbr = classCard.totalNbr
-    const barprog = parseFloat(216 / totalSkillNbr * completedSkillNbr)
-
-    // setIsLoading(true)
-  // },[])
-  //=========================
+  // console.log('これ',classTitle, classColor, cardBgColor, classCard)  
+  // console.log('カード',classCard)
+  
+    const completedSkillNbr = classCard[0].compNbr
+    const totalSkillNbr = classCard[0].totalNbr
+  
   return (
     <View style={styles.container}>
       {/* { isLoading ? <Loading/> :  */}
@@ -32,7 +22,7 @@ const CurrentLevelView = ({classTitle, classColor, cardBgColor, classCard}) => {
               <Text style={styles.levelname} fontFamily="Lexend_500">Level {classCard[0].levelName}</Text>
               <Box style={styles.percentBox}>
                 <Box width="216px" bg="#FDFDFD" borderRadius={18.75} h="10px">
-                  <Box width={barprog} bg={classColor} h="10px" borderRadius={18.75}></Box>
+                  <Box width={parseFloat(216 / totalSkillNbr * completedSkillNbr)} bg={classColor} h="10px" borderRadius={18.75}></Box>
                 </Box>
                 <Box style={styles.numberBox}>
                   <Text style={styles.current} fontFamily="Lexend_400">{completedSkillNbr}</Text>
