@@ -3,6 +3,7 @@ import IndexScreen from "../screens/Evaluation/IndexScreen"
 import EvaluationStudentListScreen from "../screens/Evaluation/EvaluationStudentListScreen"
 import EvaluationIndividualStudent from "../screens/Evaluation/EvaluationIndividualStudent"
 import EvaluationIndividualStudentComment from "../screens/Evaluation/EvaluationIndividualStudentComment"
+import EvaluationComplete from '../screens/Evaluation/EvaluationComplete'
 import HeaderImage from '../layout/HeaderImage'
 
 import { createStackNavigator, TransitionPresets } from "@react-navigation/stack"
@@ -79,7 +80,8 @@ const EvaluationStack = () => {
         name="Evaluation Complete"
         component={EvaluationComplete}
         options={({ route }) => ({
-          title: '',
+          title: 'Evaluation Complete',
+          headerTitleAlign: 'center',
           headerBackTitle: '',
           headerTitleStyle: {
             fontFamily: 'Lexend_500',
