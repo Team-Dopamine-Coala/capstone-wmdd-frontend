@@ -22,28 +22,15 @@ const AttendanceStudentList = ({ navigation, route }) => {
         setStudents(data)
         for (let index = 0; index < data.length; index++) {
           const element = data[index];
-          // console.log(element)
           const curr = attendance
           curr[element._id] = false;
           setAttendance(curr)
-          // console.log("attendance", attendance)
         }
-        // console.log(attendance)
       },
       error => {
         throw error
       }
     )
-    // console.log("allAttendance State:", allAttendance)
-    // getAllAttendance().then(
-    //   data => {
-    //     setAllAttendance(data)
-    //     console.log("attendance"+ allAttendance)
-    //   },
-    //   error => {
-    //     throw error
-    //   }
-    // )
   }, [])
 
 
@@ -67,7 +54,6 @@ const AttendanceStudentList = ({ navigation, route }) => {
 
 
   const addAllAttendance = () => {
-    // console.log(allAttendance)
     for (let index = 0; index < students.length; index++) {
       const element = students[index];
       if (!attendance[element._id]) {
@@ -123,7 +109,6 @@ const updateClassAttendance = async () => {
   return (
     <VStack width="100%" space={1} p={3} pb={20} bgColor="#ffffff" flex={1}>
           <Input m="1" placeholder="Search" fontSize="16" fontFamily="Lexend_400" variant="filled" width="100%" borderRadius="35" py="2" px="3" InputLeftElement={<Icon ml="2" size="4" color="gray.400" as={<Ionicons name="ios-search" />} />} />
-        {/* <StudentList students={students} navigation={navigation} checkboxHandler={checkboxHandler}/> */}
         <Checkbox.Group fontFamily="Lexend_400" fontSize="16" onChange={checkboxHandler}>
         {students.map((item) => {
             return <Checkbox fontFamily="Lexend_400" fontSize="16" m="2" value={item._id} key= {item._id} colorScheme="orange" accessibilityLabel="This is a checkbox of a student" >{`${item.firstname} ${item.lastname}`}</Checkbox>
@@ -135,7 +120,8 @@ const updateClassAttendance = async () => {
           // addAttendance()
           addAllAttendance(); updateClassAttendance(); navigation.navigate('Completed Attendance', {
             allAttendance: allAttendance,
-            classId: classId
+            classId: classId,
+            classTitle: classTitle
           });
         }}
       ><Text fontFamily="Lexend_600" fontSize="16" color="#ffffff">Save Attendance</Text></Button>

@@ -20,7 +20,6 @@ const ViewAttendance = ({ route, students, navigation, checkboxHandler, allAtten
           const element = data[index];
           getStudentById(viewclassId, element.studentId).then(
             studentData => {
-              // console.log("studentData", viewclassId, element.studentId)
               element.firstname = studentData.firstname
               element.lastname = studentData.lastname
               if(element.present==true){
