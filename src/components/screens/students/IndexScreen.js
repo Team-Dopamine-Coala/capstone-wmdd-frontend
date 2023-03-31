@@ -1,4 +1,4 @@
-import { Box, Text, VStack, ScrollView, View, Icon } from "native-base"
+import { Box, Text, VStack, ScrollView, View, Icon, HStack } from "native-base"
 import { useEffect, useState, useContext } from "react"
 import { TouchableOpacity, StyleSheet, SafeAreaView } from "react-native"
 import { Ionicons } from '@expo/vector-icons'
@@ -30,6 +30,7 @@ const IndexScreen = ({ navigation}) => {
         myClassIds.map((eachclassid, i) => {
           getStudentsByClass(eachclassid,userToken)
           .then((data) => {
+            // console.log('子供',data)
               data.map((person) => {
                 myAllStudents.push(person)
               })
@@ -94,7 +95,7 @@ const IndexScreen = ({ navigation}) => {
                           <Text style={styles.name} fontFamily="Lexend_400">{trainee.firstname} {trainee.lastname}</Text>
                           <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.icon}/>
                         </TouchableOpacity >
-                        // { (!title.groupedConn.length == index+1) ? ( <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} borderColor='#BBBBBB' justifyContent="space-between"/> ) : null}
+                        // { index < title.groupedConn.length -1 && <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} borderColor='#BBBBBB' justifyContent="space-between"/>}
                       ))}
                     </VStack>
                   </Box> 
