@@ -17,7 +17,7 @@ const SignUpForm = ({navigation}) => {
 
     
     return(
-        <VStack justifyContent="center" space={2} py={30} px={15}>
+        <VStack justifyContent="center" space={2} py={30} pl={7} pr={7}>
             <FormControl>
                 <Box py={2}>
                 <Input 
