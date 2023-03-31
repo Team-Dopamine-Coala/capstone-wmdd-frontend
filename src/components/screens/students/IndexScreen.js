@@ -1,6 +1,7 @@
-import { Box, Text, VStack, ScrollView, Input, View, HStack } from "native-base"
+import { Box, Text, VStack, ScrollView, View, Icon } from "native-base"
 import { useEffect, useState, useContext } from "react"
 import { TouchableOpacity, StyleSheet, SafeAreaView } from "react-native"
+import { Ionicons } from '@expo/vector-icons'
 import StudentsSearch from "./myStudents/StudentsSearch"
 import { LinearGradient } from 'expo-linear-gradient';
 import Loading from "../../layout/Loading";
@@ -12,8 +13,9 @@ const IndexScreen = ({ navigation}) => {
   
   const [nameTitle, setNameTitle] = useState([])
   const [isLoading, setIsLoading] = useState(false)
-  const {userToken} = useContext(AuthContext)
-  const userId = '63fcf0bd354e8150f45dd4d2'
+  const {userToken, userInfo} = useContext(AuthContext)
+
+  const userId = userInfo._id
   const myClassIds = []
   const myAllStudents = []
 
@@ -86,8 +88,11 @@ const IndexScreen = ({ navigation}) => {
                         <TouchableOpacity   key={index} 
                                             onPress={() => {
                                             navigation.navigate('Student Detail',{trainee})
-                                            }}>
+                                            }}
+                                            style={styles.nameiconbox}
+                        >
                           <Text style={styles.name} fontFamily="Lexend_400">{trainee.firstname} {trainee.lastname}</Text>
+                          <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.icon}/>
                         </TouchableOpacity >
                         // { (!title.groupedConn.length == index+1) ? ( <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} borderColor='#BBBBBB' justifyContent="space-between"/> ) : null}
                       ))}
@@ -128,6 +133,17 @@ const styles = StyleSheet.create ({
     backgroundColor: '#FDFDFD',
     borderRadius: '12',
     marginHorizontal: 2,
+  },
+  nameiconbox:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  icon: {
+    width: 24,
+    height: 24,
+    lineHeight: 24,
+    color: '#1A1A1A',
   },
   name: {
     color: '#242424',
