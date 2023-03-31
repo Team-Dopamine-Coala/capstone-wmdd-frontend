@@ -33,17 +33,17 @@ const Card = ({ title, startTime, endTime, location, id, navigation, dateSelecte
   })
   return (
    <View m={4} my={4} >
-          <Box  mb={3}  bg={color} width="100%" height="90%" borderRadius="md" shadow={9} position="absolute" top="5%"></Box>
+          <Box  mb={3} p={5} bg={color} width="100%" height="90%" borderRadius="md" shadow={9} position="absolute" top="5%"></Box>
           <Box ml={4} p={3} bg={cardColor} flex={1} height="100%" borderRadius="md" shadow={5}>
             <HStack borderBottomWidth="1" borderBottomColor="#737373" mb={3} justifyContent="space-between">      
               <VStack pr={3} pb={3}>
                   <Heading fontSize="24" fontFamily="Lexend_600">{title}</Heading>
                   <HStack alignItems="center" space={1}>
-                  <Icon size={4} as={<Ionicons name='time' />} />
+                  <Icon size={5} as={<Ionicons name='time' />} />
                   <Text  fontSize="16" color="#737373" fontFamily="Lexend_400">{moment(startTime).format('H:mm A')} <Icon size={4} as={<Ionicons name='arrow-forward' />} /> {moment(endTime).format('H:mm A')}</Text>
                   </HStack>
                   <HStack alignItems="center" space={1}>
-                  <Icon size={4} as={<Ionicons name='pin' />} />
+                  <Icon size={5} as={<Ionicons name='location-outline' />} />
                   <Text fontSize="16" color="#737373" fontFamily="Lexend_400">{location}</Text>
                   </HStack>
                 
