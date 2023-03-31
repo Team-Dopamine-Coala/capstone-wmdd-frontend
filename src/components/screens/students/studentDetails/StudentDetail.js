@@ -25,7 +25,7 @@ const StudentDetail = ({route, navigation }) => {
   const [myAllSkills, setMyAllSkills] = useState([])
   const [myLevelDetail, setMyLevelDetail] = useState([])
   const [classCard, setClassCard] = useState('')
-  const [endLoading, setEndLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   let myEvalArray = []
   let mySkillArray = []
   let levellistArray = []
@@ -87,8 +87,7 @@ const StudentDetail = ({route, navigation }) => {
   
   //4.program に行かずにSkillから直接そのスキルがいくつもともと持っているか確認する。
   useEffect(() => {
-    setEndLoading(true)
-    console.log('私の持つSkills',myAllSkills.length, myAllSkills)
+    // console.log('私の持つSkills',myAllSkills.length, myAllSkills)
 
     //自分の持ってるスキルのレベルがtotalで何個持っているのか確認する
       //4-1.全部のスキルをFetchしてLevelが同じものを集める
@@ -116,14 +115,17 @@ const StudentDetail = ({route, navigation }) => {
           myLevelDetailArray.push({levelName:`${level}`, totalNbr: `${totally}`, compNbr: `${compLevelForLevelIhave}`})
           
           if(totallevelIhave.length === i+1) {
+            // console.log('これ',myLevelDetailArray)
             //4-6.CurrentLevelViewに送るものを一つP/Uする
             //もしLEVELが１だったらそのままCurrentLevelViewに送る｜１つ以上ならその中で全部位終わっていないlevelをP/Uして送る
-            if(myLevelDetail.length == 1){
-              setClassCard(myLevelDetail)
-              setEndLoading(false)
+            if(myLevelDetailArray.length == 1){
+              setClassCard(myLevelDetailArray)
+              setMyLevelDetail(myLevelDetailArray)
+              setIsLoading(true)
             }else {
               setClassCard(myLevelDetail.filter((each) => {each.totalNbr !== each.compNbr}))
-              setEndLoading(false)
+              setMyLevelDetail(myLevelDetailArray)
+              setIsLoading(true)
             }
           }else {
             null
@@ -135,32 +137,33 @@ const StudentDetail = ({route, navigation }) => {
     //==== FROM　HERER!＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
     //送るものが何も入っていない！これを確認すること！
     useEffect(() => {
+
       console.log('1',classTitle)
       console.log('2',classColor)
       console.log('3',cardBgColor)
       console.log('4',classCard)
-    },[endLoading])
+    },[isLoading])
 
     //Skill Achievementにはmy LevelDetailをそのまま送る！
     //Loading変わったら表示を直す！！！
   return (
-    <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}>
-      {!endLoading ? <Loading/> : 
+    <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}> 
       <View style={styles.container}>
         <ReportView student={trainee} navigation={navigation}/>
         <View style={styles.background}>
+        {!isLoading ? <Loading/> :
           <ScrollView>
             <TouchableOpacity style={styles.classtab}>
               {<Text style={styles.classtabtext} fontFamily="Lexend_400">{classTitle}</Text>}
             </TouchableOpacity>
-            {/* <CurrentLevelView classTitle={classTitle} classColor={classColor} cardBgColor={cardBgColor} classCard={classCard} /> */}
+            <CurrentLevelView classTitle={classTitle} classColor={classColor} cardBgColor={cardBgColor} classCard={classCard} />
             <SkillsAchievementView myLevelDetail={myLevelDetail}/>
             <AttendanceListView student={trainee} /> 
             <ViewReport student={trainee}/>
           </ScrollView>
+        }
         </View>
-      </View>
-      }   
+      </View>   
     </LinearGradient>
   )
 }
