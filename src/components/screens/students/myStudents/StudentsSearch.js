@@ -34,7 +34,6 @@ const styles = StyleSheet.create ({
     fontSize: 20,
     lineHeight: 20,
     marginRight: 16,
-    
   }
 })
 export default StudentsSearch
