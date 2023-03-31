@@ -5,6 +5,7 @@ import { SafeAreaView, TouchableOpacity, StyleSheet  } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { AuthContext } from '../../context/AuthContext'
 import { Ionicons } from '@expo/vector-icons'
+// import ClassIcon from '../../../Images/ClassIcon.svg'
 import ClassIcon from '../../../Images/ClassIcon.svg'
 
 const SettingIndexScreen = ({navigation,route}) => {
@@ -34,8 +35,8 @@ const SettingIndexScreen = ({navigation,route}) => {
             <HStack style={styles.sectionbox} shadow={5}>
               <HStack style={styles.lefticontitle}>
                 <Icon size={4} as={<Ionicons name='basketball-outline' />} style={styles.iconleft}/>
-                {/* <Image source={{uri: "https://res.cloudinary.com/dp53wf7gb/image/upload/v1679070455/coalaNotStarted_ea6fcm.png"}} alt="myclass icon" size="md" /> */}
                 {/* <Icon size={4} as={<Image source={ClassIcon} alt="myclass icon" size="md" />}/> */}
+                {/* <Icon size={4} as={<Image source={{uri: "https://www.figma.com/file/wuxZxWDMT5G4R6dyflfBAr/Dopamine-Figma?node-id=1749-148166&t=gKW9VyRQxr7928Sb-4"}} size="md" />}/> */}
                 {/* <Image source={ClassIcon} accessibilityLabel='class icon'style={{ size:"md"}}/> */}
 
                 <VStack style={styles.title}>
