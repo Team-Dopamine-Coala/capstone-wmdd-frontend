@@ -7,8 +7,7 @@ import { createStackNavigator } from "@react-navigation/stack"
 
 const Stack = createStackNavigator()
 
-
-const StudentStack = ({navigation}) => {
+const StudentStack = () => {
   return (
     <Stack.Navigator >
       <Stack.Screen 
@@ -16,9 +15,11 @@ const StudentStack = ({navigation}) => {
         component={IndexScreen}
         options={({ navigation }) => ({
           headerTitleAlign: 'center',
-          headerTintColor: '#ffffff',
-          headerStyle: {
-            backgroundColor: 'orange'
+          headerTransparent: true,
+          headerTitleStyle: {
+            color: '#FDFDFD',
+            fontFamily:"Lexend_700",
+            fontSize: 20,
           },
           headerTitle: 'Students',
           headerRight: () => ( 
@@ -31,15 +32,16 @@ const StudentStack = ({navigation}) => {
         component={StudentDetail}
         options={{
           title: 'Student Profile',
-          headerStyle: {
-            backgroundColor: 'orange'
-          },
-          headerTitleStyle: {
-            color: '#fff'
-          },
           headerTitleAlign: 'center',
           headerBackTitle: null,
           headerBackTitleVisible: false,
+          headerTransparent: true,
+          headerTintColor: '#FDFDFD',
+          headerTitleStyle: {
+            color: '#FDFDFD',
+            fontFamily:"Lexend_700",
+            fontSize: 20,
+          },
         }}
       />
       <Stack.Screen 
@@ -47,19 +49,19 @@ const StudentStack = ({navigation}) => {
         component={ViewProfileScreen}
         options={{
           title: 'Student Profile',
-          headerStyle: {
-            backgroundColor: 'orange'
-          },
+          headerTitleAlign: 'center',
           headerBackTitle: null,
           headerBackTitleVisible: false,
+          headerTransparent: true,
+          headerTintColor: '#FDFDFD',
           headerTitleStyle: {
-            color: '#fff'
+            color: '#FDFDFD',
+            fontFamily:"Lexend_700",
+            fontSize: 20,
           },
-          headerTitleAlign: 'center'
         }}
       />
     </Stack.Navigator>
   )
 }
-
 export default StudentStack
