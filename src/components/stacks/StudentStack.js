@@ -7,12 +7,7 @@ import { createStackNavigator } from "@react-navigation/stack"
 
 const Stack = createStackNavigator()
 
-<<<<<<< HEAD
-
-const StudentStack = ({navigation}) => {
-=======
 const StudentStack = () => {
->>>>>>> c15cfed (gradient and header fixed)
   return (
     <Stack.Navigator >
       <Stack.Screen 
