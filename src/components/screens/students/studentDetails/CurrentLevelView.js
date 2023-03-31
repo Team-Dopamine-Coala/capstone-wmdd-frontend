@@ -71,10 +71,12 @@ const styles = StyleSheet.create ({
   current: {
     fontSize: 32,
     lineHeight: 30,
+    color: '#000000',
   },
   total: {
     fontSize: 14,
     lineHeight: 30,
+    color: '#000000',
   }
 })
 export default CurrentLevelView
