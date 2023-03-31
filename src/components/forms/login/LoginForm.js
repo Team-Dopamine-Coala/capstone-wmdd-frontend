@@ -1,4 +1,4 @@
-import { FormControl, Input, Text, VStack, Icon, Pressable, Box, Button, Link } from 'native-base';
+import { FormControl, Input, Text, VStack, Icon, Pressable, Box, Button, Link, Divider } from 'native-base';
 import { MaterialIcons } from "@expo/vector-icons";
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
@@ -60,7 +60,7 @@ const LoginForm = ({navigation}) => {
                         color:"#667080",
                     }}
                 >Forgot your password?</Link>
-                <Text fontFamily="Lexend_700" fontSize={15} textAlign='center' mt={7} color="#212427">OR</Text>
+                <Text fontFamily="Lexend_700" fontSize={15} textAlign='center' mt={7} color="#212427" >OR</Text>
                 <Button 
                     mt={7}
                     bg="#FCFCFC"
