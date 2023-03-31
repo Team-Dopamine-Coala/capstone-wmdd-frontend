@@ -4,7 +4,7 @@ import { AWS_BACKEND_BASE_URL } from "../../../utils/static"
 import { getEvaluationComment, getEvaluationsByStudentId } from "../../../utils/queries"
 
 const EvaluationIndividualStudentComment = ({ navigation, route }) => {
-  const { studentId, classId, studentName, className } = route.params
+  const { studentId, classId, studentName, className, calendarDate } = route.params
   const [comment, setComment] = useState('')
   const [commentId, setCommentId] = useState(null)
   const [incompleteEval, setIncompleteEval] = useState([])
@@ -62,9 +62,10 @@ const EvaluationIndividualStudentComment = ({ navigation, route }) => {
       },
     }).then((response) => {
       if (response.ok) {
-        navigation.navigate('Evaluation Index', {
+        navigation.navigate('Evaluation Complete', {
           classId: classId,
-          className: className
+          className: className,
+          calendarDate: calendarDate
         })
       } else {
         console.log('Response error')
@@ -92,7 +93,7 @@ const EvaluationIndividualStudentComment = ({ navigation, route }) => {
           bgColor="#404142"
           onPress={updateComment}
         >
-          <Text fontFamily="Lexend_600" fontSize={16} color="#ffffff">Next Student</Text>
+          <Text fontFamily="Lexend_600" fontSize={16} color="#ffffff">Complete Evaluation</Text>
         </Button>
       </View>
     </VStack>
