@@ -5,8 +5,7 @@ import { SafeAreaView, TouchableOpacity, StyleSheet  } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { AuthContext } from '../../context/AuthContext'
 import { Ionicons } from '@expo/vector-icons'
-// import ClassIcon from '../../../Images/ClassIcon.svg'
-import ClassIcon from '../../../Images/ClassIcon.svg'
+import SettingMyClass from '../../svg/SettingMyClass'
 
 const SettingIndexScreen = ({navigation,route}) => {
 
@@ -34,11 +33,7 @@ const SettingIndexScreen = ({navigation,route}) => {
           >
             <HStack style={styles.sectionbox} shadow={5}>
               <HStack style={styles.lefticontitle}>
-                <Icon size={4} as={<Ionicons name='basketball-outline' />} style={styles.iconleft}/>
-                {/* <Icon size={4} as={<Image source={ClassIcon} alt="myclass icon" size="md" />}/> */}
-                {/* <Icon size={4} as={<Image source={{uri: "https://www.figma.com/file/wuxZxWDMT5G4R6dyflfBAr/Dopamine-Figma?node-id=1749-148166&t=gKW9VyRQxr7928Sb-4"}} size="md" />}/> */}
-                {/* <Image source={ClassIcon} accessibilityLabel='class icon'style={{ size:"md"}}/> */}
-
+                <SettingMyClass />
                 <VStack style={styles.title}>
                   <Text fontFamily="Lexend_600">My Classes</Text>
                   <Text fontFamily="Lexend_300">Find your classes' details here</Text>   
