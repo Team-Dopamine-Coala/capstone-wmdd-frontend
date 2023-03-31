@@ -5,7 +5,7 @@ import { SafeAreaView, TouchableOpacity, StyleSheet  } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { AuthContext } from '../../context/AuthContext'
 import { Ionicons } from '@expo/vector-icons'
-import SettingMyClass from '../../svg/SettingMyClass'
+import ClassIcon from '../../../Images/ClassIcon.svg'
 
 const SettingIndexScreen = ({navigation,route}) => {
 
@@ -33,7 +33,10 @@ const SettingIndexScreen = ({navigation,route}) => {
           >
             <HStack style={styles.sectionbox} shadow={5}>
               <HStack style={styles.lefticontitle}>
-                <SettingMyClass />
+                {/* <Icon size={4} as={<Ionicons name='arrow-forward' />} style={styles.iconleft}/> */}
+                {/* <Image source={{uri: "https://res.cloudinary.com/dp53wf7gb/image/upload/v1679070455/coalaNotStarted_ea6fcm.png"}} alt="myclass icon" size="md" /> */}
+                <Icon size={4} as={<Image source={ClassIcon} alt="myclass icon" size="md" />}/>
+
                 <VStack style={styles.title}>
                   <Text fontFamily="Lexend_600">My Classes</Text>
                   <Text fontFamily="Lexend_300">Find your classes' details here</Text>   
