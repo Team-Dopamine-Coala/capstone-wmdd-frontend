@@ -3,6 +3,9 @@ import AttendanceStudentList from "../screens/Attendance/Screens/AttendanceStude
 import CompletedAttendance from "../screens/Attendance/Screens/CompletedAttendance"
 import ViewAttendance from "../screens/Attendance/Screens/ViewAttendance"
 import { createStackNavigator, TransitionPresets } from "@react-navigation/stack"
+import HeaderImage from '../layout/HeaderImage'
+import { Text, Button} from "native-base";
+import { selectAllCheckbox } from "../screens/Attendance/Screens/AttendanceStudentList"
 
 
 const Stack = createStackNavigator()
@@ -21,27 +24,43 @@ const AttendanceStack = () => {
         name="Attendance Student List"
         component={AttendanceStudentList}
         options={({ route }) => ({
-          title: 'Jump',
+          title: `${route.params.classTitle}`,
           headerBackTitle: '',
-          headerTitleAlign: 'center'
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            fontFamily: 'Lexend_700',
+            fontSize: 20
+          },
+          headerRight: () => (
+            <Button bgColor= "#ffffff" onPress={selectAllCheckbox} ><Text color="#000000" fontFamily="Lexend_400" fontSize="16">Select All</Text></Button>
+          )
         })}
       />
        <Stack.Screen 
         name="Completed Attendance"
         component={CompletedAttendance}
         options={({ route }) => ({
-          title: 'Jump',
+          title: `${route.params.classTitle}`,
           headerBackTitle: '',
-          headerTitleAlign: 'center'
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            fontFamily: 'Lexend_700',
+            fontSize: 20
+          }
         })}
       />
         <Stack.Screen 
       name="View Attendance"
       component={ViewAttendance}
       options={({ route }) => ({
-        title: 'Jump',
+        title: `${route.params.classTitle}`,
         headerBackTitle: '',
-        headerTitleAlign: 'center'
+        headerTitleAlign: 'center',
+        headerTitleStyle: {
+          fontFamily: 'Lexend_700',
+          fontSize: 20
+        }
+        
       })}
       />
     </Stack.Navigator>

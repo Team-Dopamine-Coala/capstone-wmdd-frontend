@@ -1,61 +1,46 @@
 import { Text, VStack, View, Box, Heading, HStack } from "native-base"
-import { useState } from "react"
 import { StyleSheet } from "react-native"
-import * as Progress from "react-native-progress"
 
-
-const CurrentLevelView = ({classTitle, classCard}) => {
-  // const [title, setTitle] = useState(classTitle)
-  // const [level, setLevel] = useState(classCard.level)
-  // const [completedSkillNbr, setCompletedSkillNbr] = useState(classCard.completeSkillNumber)
-  // const [totalSkillNbr, setTotalSkillNbr] = useState(classCard.totalSkillNumber)
-
-  const completedSkillNbr = classCard.completeSkillNumber
-  const totalSkillNbr = classCard.totalSkillNumber
-  //Progress Bar
-  const percent = completedSkillNbr / totalSkillNbr
-
-  // console.log('doko',classCard.level)
+const CurrentLevelView = ({classTitle, classColor, cardBgColor, classCard}) => {
+  
+    const completedSkillNbr = classCard[0].compNbr
+    const totalSkillNbr = classCard[0].totalNbr
   
   return (
     <View style={styles.container}>
-      <VStack>
-        <Box mb={3} p={5} bg="#F5D26A" width="100%" height="90%" borderRadius="md" shadow={9} position="absolute" top="5%"></Box>  
-          <Box ml={4} p={3} bg="#ffffff" flex={1} height="100%" borderRadius="md" shadow={5}>
-        
-          <Heading style={styles.title}>{classTitle}</Heading>
-          <Box style={styles.levelbox}>
-            <Text style={styles.levelname}>{classCard.level}</Text>
-            <Box style={styles.percentBox}>
-              <Box>
-                {/* <Progress.Bar progress={percent} width={216} height={10} /> */}
-              </Box>
-              <Box style={styles.numberBox}>
-                <Text style={styles.current}>{completedSkillNbr}</Text>
-                <Text style={styles.total}> / {totalSkillNbr} skills</Text>
-              </Box>
+      {/* { isLoading ? <Loading/> :  */}
+        <VStack >
+          <Box  width="100%" bg={classColor} height="80%" shadow={9} borderRadius={12} position="absolute" top="10%" ></Box>
+          <Box  bg={cardBgColor} flex={1} shadow={5} borderRadius={12} style={styles.classbox}>
+            <Heading style={styles.title} fontFamily="Lexend_600">{classTitle}</Heading>
+            <Box style={styles.levelbox}>
+              <Text style={styles.levelname} fontFamily="Lexend_500">Level {classCard[0].levelName}</Text>
+              <HStack style={styles.percentBox}>
+                <Box width="70%" bg="#FDFDFD" borderRadius={18.75} h="10px" style={styles.progressbar}>
+                  <Box width={parseFloat(216 / totalSkillNbr * completedSkillNbr)} bg={classColor} h="10px" borderRadius={18.75}></Box>
+                </Box>
+                <HStack style={styles.numberBox}>
+                  <Text style={styles.current} fontFamily="Lexend_700">{completedSkillNbr}</Text>
+                  <Text style={styles.total} fontFamily="Lexend_400"> / {totalSkillNbr} skills</Text>
+                </HStack>
+              </HStack>
             </Box>
           </Box>
-        
-        </Box>
-      </VStack>
+        </VStack>
+      {/* }  */}
     </View>
       )
 }
 const styles = StyleSheet.create ({
   container: {
-    paddingVertical: 10,
-    // backgroundColor: '#ffffff',
     marginHorizontal: 5,
+    marginVertical: 24,
   },
-  whitebox: {
-    height: 60,
-    flex:1,
+  classbox: {
+    paddingHorizontal: 20,
+    paddingTop: 10,
+    paddingBottom: 20,
     marginLeft: 20,
-    backgroundColor: '#ffffff',
-    height: '100%',
-    borderRadius: 10,
-    shadow: 5,
   },
   contents: {
     marginTop: 10,
@@ -64,26 +49,34 @@ const styles = StyleSheet.create ({
   },
   title: {
    textAlign: 'center',
+   color:'#212427',
+   lineHeight:30,
+   marginBottom: 16,
   },
   levelname: {
+    color: '#000000',
     fontSize: 16,
-    fontWeight: '500',
+    lineHeight: 30,
   },
   percentBox: {
-    flexDirection: "row",
     justifyContent:"space-around",
+    alignItems:"center",
+  },
+  progressbar:{
+    marginVertical: 10,
   },
   numberBox: {
-    flexDirection: "row",
     marginLeft: 16,
   },
   current: {
-    fontSize: 23,
-    fontWeight: "bold",
+    fontSize: 32,
+    lineHeight: 30,
+    color: '#000000',
+  },
+  total: {
+    fontSize: 14,
+    lineHeight: 30,
+    color: '#000000',
   }
 })
 export default CurrentLevelView
-
-//Task
-//3.Need to fix render error when I use useState and progress.bar
-//4.ここでdisplayしたdataをそのままskill Achievementに送る。
