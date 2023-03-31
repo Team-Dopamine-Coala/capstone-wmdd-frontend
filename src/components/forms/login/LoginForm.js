@@ -48,6 +48,7 @@ const LoginForm = ({navigation}) => {
                     _text={{
                     fontFamily:"Lexend_700",
                     }}
+                    _pressed={{backgroundColor:"#E57229"}}
                 >Login</Button>
                 <Link 
                     mt={5} 
