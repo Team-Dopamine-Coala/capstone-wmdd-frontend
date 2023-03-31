@@ -5,7 +5,7 @@ import Carousel from 'react-native-snap-carousel'
 import SkillListItem from '../listItem/SkillListItem'
 import { Dimensions } from 'react-native';
 
-const SkillList = ({ navigation, evalskills, studentId, studentName, classId, className }) => {
+const SkillList = ({ navigation, evalskills, studentId, studentName, classId, className, calendarDate }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const totalEvalsIndex = evalskills.length - 1
   const windowWidth = Dimensions.get('window').width;
@@ -28,7 +28,8 @@ const SkillList = ({ navigation, evalskills, studentId, studentName, classId, cl
       studentId: studentId,
       studentName: studentName,
       classId: classId,
-      className: className
+      className: className,
+      calendarDate: calendarDate
     })
   }
 

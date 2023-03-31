@@ -2,9 +2,10 @@ import {useContext} from 'react'
 import { useRoute } from '@react-navigation/native';
 import {Box,Text, VStack, View, Image, Icon, HStack} from 'native-base'
 import { SafeAreaView, TouchableOpacity, StyleSheet  } from 'react-native'
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient'
 import { AuthContext } from '../../context/AuthContext'
 import { Ionicons } from '@expo/vector-icons'
+import SettingMyClass from '../../svg/SettingMyClass'
 
 const SettingIndexScreen = ({navigation,route}) => {
 
@@ -32,7 +33,7 @@ const SettingIndexScreen = ({navigation,route}) => {
           >
             <HStack style={styles.sectionbox} shadow={5}>
               <HStack style={styles.lefticontitle}>
-                <Icon size={4} as={<Ionicons name='arrow-forward' />} style={styles.iconleft}/>
+                <SettingMyClass />
                 <VStack style={styles.title}>
                   <Text fontFamily="Lexend_600">My Classes</Text>
                   <Text fontFamily="Lexend_300">Find your classes' details here</Text>   
@@ -52,6 +53,7 @@ const SettingIndexScreen = ({navigation,route}) => {
               </HStack>
               <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.iconarrow}/>  
           </HStack>
+
           <HStack style={styles.sectionbox} shadow={5}>
               <HStack style={styles.lefticontitle}>
                 <Icon size={4} as={<Ionicons name='help-circle-outline' />} style={styles.iconleft}/>
@@ -62,6 +64,7 @@ const SettingIndexScreen = ({navigation,route}) => {
               </HStack>
               <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.iconarrow}/>               
           </HStack>
+
           <VStack style={styles.sectionbox} shadow={5}>
               <HStack style={styles.lefticontitle}>
                 <Icon size={4} as={<Ionicons name='information-circle-outline' />} style={styles.iconleft}/>
