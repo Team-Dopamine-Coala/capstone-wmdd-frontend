@@ -7,9 +7,9 @@ const SignUpScreenOne = ({ navigation, route }) => {
     return (
         <View>
             <Center>
-                {/* <Box>
+                <Box>
                     <CoalaNoText/>
-                </Box> */}
+                </Box>
                 <Text fontFamily="Lexend_700" fontSize={28} mt={10}>Create a Coala Account</Text>
             </Center>
             <CreateAccountForm navigation={navigation} route={route}/>
