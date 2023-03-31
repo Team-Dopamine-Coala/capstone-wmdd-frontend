@@ -69,7 +69,6 @@ const styles = StyleSheet.create ({
         lineHeight: 18,
         width: 15,
         height: 18,
-        
     },
     biobackground:{
         flex:1,

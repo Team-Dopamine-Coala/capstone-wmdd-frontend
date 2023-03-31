@@ -4,17 +4,15 @@ import { Ionicons } from '@expo/vector-icons'
 
 const StudentsSearch = () => {
 
-const [value, setValue] = useState('')
-
   return (
     <>
       <Input  placeholder="Search"
-                  variant="rounded"
-                  style={styles.inputfield}
-                  fontFamily="Lexend_400"
-                  // value={myAllStudents}
-                  // onPress={(e) => {
-                  //   setValue(e.target.myAllStudents)}}
+              variant="rounded"
+              style={styles.inputfield}
+              fontFamily="Lexend_400"
+              InputRightElement={
+                <Icon as={<Ionicons name='search-outline' />} style={styles.icon}/>    
+              }
       />
     </>
   )
@@ -36,6 +34,7 @@ const styles = StyleSheet.create ({
     fontSize: 20,
     lineHeight: 20,
     marginRight: 16,
+    
   }
 })
 export default StudentsSearch
