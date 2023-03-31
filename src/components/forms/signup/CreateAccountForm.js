@@ -51,7 +51,16 @@ const CreateAccountForm = ({navigation, route }) => {
                     _pressed={{backgroundColor:"#E57229"}}
                 >Next</Button>
                 <Text fontFamily="Lexend_700" fontSize={15} textAlign='center' mt={7}>OR</Text>
-                <Button mt={7}>Google</Button>
+                <Button 
+                    mt={7}
+                    bg="#FCFCFC"
+                    variant="outline"
+                    _text={{
+                        fontFamily: "Lexend_700",
+                        color:"#212427",
+                    }}
+                    leftIcon={<Google />}
+                    >Sign Up with Google</Button>
                 <Text fontFamily="Lexend_300" textAlign="center" mt={5} color="#667080">Already have an account? <Link onPress={() => navigation.navigate('Login')} _text={{fontFamily:"Lexend_500", color:"#667080"}}> Sign in</Link></Text>
             </FormControl>
         </VStack>

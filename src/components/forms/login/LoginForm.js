@@ -60,11 +60,17 @@ const LoginForm = ({navigation}) => {
                         color:"#667080",
                     }}
                 >Forgot your password?</Link>
-                <Text fontFamily="Lexend_700" fontSize={15} textAlign='center' mt={7}>OR</Text>
+                <Text fontFamily="Lexend_700" fontSize={15} textAlign='center' mt={7} color="#212427">OR</Text>
                 <Button 
                     mt={7}
-                    bg="#FE7F2D"
-                >Google</Button>
+                    bg="#FCFCFC"
+                    variant="outline"
+                    _text={{
+                        fontFamily: "Lexend_700",
+                        color:"#212427"
+                    }}
+                    leftIcon={<Google />}
+                >Sign Up with Google</Button>
                 <Box>
                     <Text mt={5} fontFamily="Lexend_300" textAlign="center" color="#667080">New to Coala? 
                         <Link 
