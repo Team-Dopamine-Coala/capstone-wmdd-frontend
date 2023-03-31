@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
   },
   video: {
     alignSelf: "center",
-    width: 375,
-    height: 220,
+    width: 350,
+    height: 200,
     borderRadius: 15 
   }
 })
