@@ -46,7 +46,7 @@ const CreateAccountForm = ({navigation, route }) => {
                     _text={{
                         fontFamily:"Lexend_700"
                     }}
-                    mt={20}
+                    mt={10}
                     onPress={nextPage}
                     _pressed={{backgroundColor:"#E57229"}}
                 >Next</Button>
