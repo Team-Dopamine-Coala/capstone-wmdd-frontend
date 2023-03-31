@@ -5,16 +5,19 @@ import { getStudentsByClass } from '../../../../utils/queries'
 import { getAllAttendance } from '../../../../utils/queries'
 import { DrawerLayoutAndroidBase } from "react-native"
 import { AWS_BACKEND_BASE_URL } from "../../../../utils/static"
+import { printType } from "graphql"
 // import StudentList from "../ClassList/StudentList"
 
 
-
 const AttendanceStudentList = ({ navigation, route }) => {
-  const {classId, classTitle, classStartTime, classEndTime} = route.params
+  const {classId, classTitle, classStartTime, classEndTime, dateSelected} = route.params
   const [students, setStudents] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [attendance, setAttendance] = useState({})
   const [allAttendance, setAllAttendance] = useState([])
+  const [chkboxGrpValues, setChkboxGrpValues] = useState([])
+
+
   useEffect(() => {
     setIsLoading(true)
     getStudentsByClass(classId).then(
@@ -26,6 +29,7 @@ const AttendanceStudentList = ({ navigation, route }) => {
           curr[element._id] = false;
           setAttendance(curr)
         }
+
       },
       error => {
         throw error
@@ -41,7 +45,7 @@ const AttendanceStudentList = ({ navigation, route }) => {
         classId: classId,
         studentId: element,
         present: true,
-        date: "2023-03-01T20:00:00.000Z",
+        date: dateSelected,
       }
       const curr = attendance
       curr[element] = true
@@ -51,7 +55,15 @@ const AttendanceStudentList = ({ navigation, route }) => {
     setAllAttendance(newAllAttendance)
   }
 
-
+  const selectAllCheckbox = () => {
+    let checkboxGroupValues = []
+    for (let index = 0; index < students.length; index++) {
+      const element = students[index];
+      checkboxGroupValues.push(element._id)
+      
+    }
+    console.log("checkboxGroupValues", checkboxGroupValues)
+  }
 
   const addAllAttendance = () => {
     for (let index = 0; index < students.length; index++) {
@@ -111,9 +123,10 @@ const updateClassAttendance = async () => {
           <Input m="1" placeholder="Search" fontSize="16" fontFamily="Lexend_400" variant="filled" width="100%" borderRadius="35" py="2" px="3" InputLeftElement={<Icon ml="2" size="4" color="gray.400" as={<Ionicons name="ios-search" />} />} />
         <Checkbox.Group fontFamily="Lexend_400" fontSize="16" onChange={checkboxHandler}>
         {students.map((item) => {
-            return <Checkbox fontFamily="Lexend_400" fontSize="16" m="2" value={item._id} key= {item._id} colorScheme="orange" accessibilityLabel="This is a checkbox of a student" >{`${item.firstname} ${item.lastname}`}</Checkbox>
+            return <Checkbox fontFamily="Lexend_400" fontSize="16" m="2" value={item._id} key={item._id} colorScheme="orange" accessibilityLabel="This is a checkbox of a student" >{`${item.firstname} ${item.lastname}`}</Checkbox>
         })}
         </Checkbox.Group>
+        {/* <Button onPress={selectAllCheckbox}>select all</Button> */}
         <Button m="5"
         bgColor="#404142"
         onPress={() => {

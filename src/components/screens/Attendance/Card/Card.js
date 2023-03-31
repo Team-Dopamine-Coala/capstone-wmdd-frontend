@@ -79,7 +79,8 @@ const Card = ({ title, startTime, endTime, location, id, navigation, dateSelecte
                       classId: id,
                       classTitle: title,
                       classStartTime: startTime, 
-                      classEndTime: endTime
+                      classEndTime: endTime,
+                      dateSelected: dateSelected
                     })
                   }}}
                 >
