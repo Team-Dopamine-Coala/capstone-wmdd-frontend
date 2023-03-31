@@ -3,6 +3,8 @@ import AttendanceStudentList from "../screens/Attendance/Screens/AttendanceStude
 import CompletedAttendance from "../screens/Attendance/Screens/CompletedAttendance"
 import ViewAttendance from "../screens/Attendance/Screens/ViewAttendance"
 import { createStackNavigator, TransitionPresets } from "@react-navigation/stack"
+import HeaderImage from '../layout/HeaderImage'
+import { Text} from "native-base";
 
 
 const Stack = createStackNavigator()
@@ -21,27 +23,43 @@ const AttendanceStack = () => {
         name="Attendance Student List"
         component={AttendanceStudentList}
         options={({ route }) => ({
-          title: 'Jump',
+          title: `${route.params.classTitle}`,
           headerBackTitle: '',
-          headerTitleAlign: 'center'
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            fontFamily: 'Lexend_700',
+            fontSize: 20
+          },
+          headerRight: () => (
+            <Text >Select All   </Text>
+          )
         })}
       />
        <Stack.Screen 
         name="Completed Attendance"
         component={CompletedAttendance}
         options={({ route }) => ({
-          title: 'Jump',
+          title: `${route.params.classTitle}`,
           headerBackTitle: '',
-          headerTitleAlign: 'center'
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            fontFamily: 'Lexend_700',
+            fontSize: 20
+          }
         })}
       />
         <Stack.Screen 
       name="View Attendance"
       component={ViewAttendance}
       options={({ route }) => ({
-        title: 'Jump',
+        title: `${route.params.classTitle}`,
         headerBackTitle: '',
-        headerTitleAlign: 'center'
+        headerTitleAlign: 'center',
+        headerTitleStyle: {
+          fontFamily: 'Lexend_700',
+          fontSize: 20
+        }
+        
       })}
       />
     </Stack.Navigator>

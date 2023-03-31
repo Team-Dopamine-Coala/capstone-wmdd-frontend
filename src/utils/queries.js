@@ -36,6 +36,15 @@ export const getStudentsByClass = async (classid) => {
   }
 }
 
+export const getStudentById = async (classid, id) => {
+  if (id) {
+    const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/student/${classid}/${id}`)
+    const data = await res.json()
+
+    return data
+  }
+}
+
 // EVALUATIONS =============================================
 export const getEvaluationsByClass = async (classid) => {
   if (classid) {

@@ -46,6 +46,7 @@ const ClassList = ({ classes, navigation, dateSelected, ready }) => {
             dateSelected={dateSelected}
             title={item.title}
             color={item.color}
+            cardColor={item.cardColor}
             startTime={item.startTime}
             endTime={item.endTime}
             location={item.location}
@@ -53,6 +54,7 @@ const ClassList = ({ classes, navigation, dateSelected, ready }) => {
             completed={item.completed}
             attendances={item.attendances ? item.attendances : null}
             navigation={navigation}
+            // showsHorizontalScrollIndicator={false}
           />
         )}
       />
