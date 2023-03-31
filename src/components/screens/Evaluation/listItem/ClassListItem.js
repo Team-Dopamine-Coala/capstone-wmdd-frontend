@@ -3,7 +3,7 @@ import { Box, HStack, VStack, Text, Button, Heading, View, Icon } from 'native-b
 import moment from 'moment'
 import ProgressCircle from 'react-native-progress-circle'
 
-const ClassListItem = ({ item, navigation }) => {
+const ClassListItem = ({ item, navigation, calendarDate }) => {
   return (
     <View mx={4} my={4}>
       <Box  mb={3} p={5} bg={item.color} width="100%" height="90%" borderRadius="md" shadow={9} position="absolute" top="5%"></Box>
@@ -54,7 +54,8 @@ const ClassListItem = ({ item, navigation }) => {
               onPress={() => {
                 navigation.navigate('Evaluation Student List', {
                   classId: item._id,
-                  className: item.title
+                  className: item.title,
+                  calendarDate: calendarDate
                 })
               }}
             ><Text fontFamily="Lexend_700" fontSize={16} color="#ffffff">Start</Text></Button>

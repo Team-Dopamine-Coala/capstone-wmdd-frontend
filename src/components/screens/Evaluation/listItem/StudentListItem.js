@@ -1,13 +1,14 @@
 import { Ionicons } from '@expo/vector-icons'
 import {Text, Icon, HStack, Pressable } from 'native-base'
 
-const StudentListItem = ({ item, navigation, className }) => {
+const StudentListItem = ({ item, navigation, className, calendarDate }) => {
   return (
     <Pressable
       onPress={() => {
         navigation.navigate('Evaluation Individual Student', {
           studentsList: [item],
-          className: className
+          className: className,
+          calendarDate: calendarDate
         })
       }}
       p={4}
