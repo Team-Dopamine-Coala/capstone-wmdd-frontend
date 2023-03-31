@@ -26,12 +26,7 @@ const CurriculumStack = ({route}) => {
             <HeaderImage navigations={navigation}/>
           )
         })} />
-          headerRight: () => (
-            <HeaderImage navigations={navigation}/>
-          )
-        })} />
         <Stack.Screen name="Skill List" component={SkillList}
-          options={({ route, navigation }) => ({
           options={({ route, navigation }) => ({
             title: `${route.params.name}`,
             skills: route.params.skills,
