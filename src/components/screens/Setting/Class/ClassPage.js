@@ -7,7 +7,6 @@ import Loading from '../../../layout/Loading';
 import { Ionicons } from '@expo/vector-icons'
 import moment from 'moment'
 
-
 import StudentsSearch from "../../Students/myStudents/StudentsSearch"
 import { getClassesOfCoach } from '../../../../utils/queries'
 
@@ -15,7 +14,7 @@ const ClassPage = ({navigation, route}) => {
   const {userID, userToken} = route.params;
   const [isLoading, setIsLoading] = useState(false)
   const [weeklyLists, setWeeklyLists] = useState([])
-  // console.log('クラスページ', navigation, userID, userToken)
+  
   const Sun = []
   const Mon = []
   const Tue = []
@@ -33,7 +32,6 @@ const ClassPage = ({navigation, route}) => {
           switchWeek(week, item)
         })
       })
-      // console.log('みたい',Mon)
       storeWeek(Mon,Tue,Wed,Thu,Fri,Sat,Sun)
       console.log('中身',Mon)
       setIsLoading(true)
@@ -41,7 +39,6 @@ const ClassPage = ({navigation, route}) => {
   },[])
   useEffect(() => {
     setIsLoading(true)
-    console.log('入ったかな',weeklyLists)
   },[weeklyLists])
 
   //=== FUNCTIONS =============

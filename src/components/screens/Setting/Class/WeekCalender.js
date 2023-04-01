@@ -1,4 +1,4 @@
-import { View, Text, HStack, Box } from 'native-base'
+import { Text, HStack, Box } from 'native-base'
 import React from 'react'
 import { StyleSheet } from "react-native"
 

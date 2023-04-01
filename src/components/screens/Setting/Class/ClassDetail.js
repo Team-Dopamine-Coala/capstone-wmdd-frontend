@@ -1,30 +1,26 @@
-import { View, Img, Box, Text, Title, ScrollView, VStack, Heading, Icon, HStack } from 'native-base'
+import { View, Box, Text, ScrollView, Icon, HStack } from 'native-base'
 import React, {useEffect, useState} from 'react'
 import {TouchableOpacity, StyleSheet} from 'react-native'
-import { useRoute } from '@react-navigation/native';
-import moment from 'moment'
+import { useRoute } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons'
-import WeekCalender from './WeekCalender';
+import WeekCalender from './WeekCalender'
+import moment from 'moment'
 
 import {getStudentsByClass} from '../../../../utils/queries'
 
 const ClassDetail = ({navigation, route}) => {
+  
   const {item, weektitle} = route.params
   const [kids, setKids] = useState([])
   const classID = item._id
-  // console.log('Detailきた', classID)
-  // console.log('Detail', item)
   
-  //Student List Fetch
+  //Fetch Student List
   useEffect(() => {
     getStudentsByClass(classID)
     .then((data) => {
       setKids(data)
     })
   },[])
-  useEffect(() => {
-    console.log('みたい',kids)
-  },[kids])
 
   return (
     <View style={styles.container}>
