@@ -25,7 +25,6 @@ const styles = StyleSheet.create ({
   },
   title: {
     fontSize: 16,
-    // fontWeight: "500",
     lineHeight: 24,
     marginHorizontal: 10,
   },
@@ -42,7 +41,6 @@ const styles = StyleSheet.create ({
     gap: 14,
   },
   level:{
-    // fontWeight: '500',
     fontSize: 14,
     lineHeight: 30,
     marginBottom: 4,
@@ -52,20 +50,17 @@ const styles = StyleSheet.create ({
   },
   Bold:{
     color: '#000000',
-    // fontWeight: '700',
     fontSize: 32,
     lineHeight: 31,
   },
   normal:{
     color: '#000000',
-    // fontWeight: '400',
     fontSize: 16,
     lineHeight: 30,
     marginLeft: 5,
   },
   learned:{
     color: '#000000',
-    // fontWeight: '300',
     fontSize: 16,
     marginTop: 10,
   }
