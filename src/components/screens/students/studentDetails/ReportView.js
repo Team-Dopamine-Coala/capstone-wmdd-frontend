@@ -24,9 +24,9 @@ return (
             <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.icon}/>
         </TouchableOpacity>
         <Modal visible={modalIsOpen}>
-            <Box style={styles.biobackground}>
+            <View style={styles.biobackground}>
             <StudentBiometrics student={student} navigation={navigation} closeBio={closeBio}/>
-            </Box>
+            </View>
         </Modal>
     </View>
   )
@@ -73,7 +73,7 @@ const styles = StyleSheet.create ({
         height: 18,
     },
     biobackground:{
-        backgroundColor:'#bbb',
+        flex:1,
     }
   })
 export default ReportView
