@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { Alert, StatusBar, StyleSheet, Text } from 'react-native';
+import { Alert, StatusBar, StyleSheet } from 'react-native';
 import { View } from "native-base"
+import { BlurView } from 'expo-blur';
 import * as LocalAuthentication from 'expo-local-authentication'
 
 const StudentBiometrics = ({student, closeBio, navigation}) => {
  
-  const userID = '63fcf0bd354e8150f45dd4d2'
   const setModalIsOpen = useState
   const [pwdOpen, setPwdOpen] = useState(false)
   const [isBiometricSupported, setIsBiometricSupported] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [biosuccess, setBiosuccess] = useState(false)
-  
+
   //1.Device suppert biometrics? (ture || false)
   //ここFalseだった場合password入力に進むようにする
   useEffect(() => {
@@ -98,7 +98,7 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
     //if not supported, ask to input password 
     if (!isBiometricAvailable)
       return alertComponent(
-      'Please enter your Login password',
+      'Please enter password',
       'Biometric Authentication not supported',
       'OK',
       () => {fallBackPassword(), console.log('PW行くよ')}
@@ -130,7 +130,7 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
       const result = await LocalAuthentication.authenticateAsync
       
       ({
-        promptMessage: 'Varify with Biometrics',
+        promptMessage: 'You access to student personal Information.',
         disableDeviceFallback: true,
         cancelLabel: 'Cancel',
         onPress: () => {navigation.navigate('Student Profile')},
@@ -151,6 +151,7 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
   //navigation
   const movepage = (setModalIsOpen) => {
     // console.log('move to personal page!'),
+
     closeBio(),
     navigation.navigate('Student Profile', {student})
   }
@@ -167,50 +168,24 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
     }
   }
 
-
-
   return (
     <View style={styles.container}>
-        <Text>Yahoo</Text>
-        {/* {biosuccess == true ? <Text>SUCCESS!</Text> : null} */}
+       <BlurView style={styles.blur} intensity={5} blurType="xlight" />
         <StatusBar style="auto" />
     </View>
   )
 }
 const styles = StyleSheet.create ({
   container:{
-      backgroundColor:'yellow',
+      backgroundColor: 'rgba(0, 0, 0, 0.4)',
       flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+  },
+  blur:{
+    position: "absolute",
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0
   }
 })
 export default StudentBiometrics
-
-
-//TO DO LIST
-//3. face idのLogoはどうなるのか？
-
-
-
-
-//Get user Password
-  // useEffect(() => {
-  //   const getUserId = async () => {
-  //     const res = await fetchUser()
-  //     setUserPassword(res.password)
-  //     console.log('PWD',password)
-  //   }
-  //   getUserId()
-  // },[])
-  
-  // const fetchUser = async () => {
-  //   const res = await fetch(`http://3.84.131.140:3000/api/users/${userID}`)
-  //   const data = await res.json()
-   
-  //   if(res.ok){
-  //     return data
-  //   }
-    
-  // }
