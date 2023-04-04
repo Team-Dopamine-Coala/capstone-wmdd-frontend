@@ -2,12 +2,14 @@ import { View, Text,ScrollView, VStack, Icon } from "native-base"
 import { StyleSheet, TouchableOpacity, Modal } from "react-native"
 import { useContext, useState, useEffect} from "react"
 import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons'
 
 import CurrentLevelView from "./CurrentLevelView"
 import SkillsAchievementView from "./SkillsAchievementView"
 import AttendanceListView from "./AttendanceListView"
 import ViewReport from "./ViewReport"
 import Loading from "../../../layout/Loading"
+import StudentBiometrics from "../Biometrics/StudentBiometrics"
 
 import { AuthContext } from '../../../context/AuthContext'
 import { getSingleClass, getEvaluationsByClass, getSkillById, fetchSkills } from '../../../../utils/queries'
@@ -25,6 +27,7 @@ const StudentDetail = ({route, navigation }) => {
   const [myLevelDetail, setMyLevelDetail] = useState([])
   const [classCard, setClassCard] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [modalIsOpen, setModalIsOpen] = useState(false)
   let myEvalArray = []
   let mySkillArray = []
   let levellistArray = []
@@ -133,10 +136,23 @@ const StudentDetail = ({route, navigation }) => {
       })
     },[myAllSkills])  
 
+    //=====Modal Functions
+    const clickStudent = () => { setModalIsOpen(true)}
+    const closeBio = () => { setModalIsOpen(false) }
+
   return (
+  <>
     <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}> 
       <View style={styles.container}>
-        <ReportView student={trainee} navigation={navigation}/>
+        <TouchableOpacity onPress={clickStudent} trainee={trainee} style={styles.biobtncontainer} shadow={5}>
+            <VStack>
+                <Text style={styles.name} fontFamily="Lexend_700">{trainee.firstname} {trainee.lastname}</Text> 
+                <Text style={styles.text} fontFamily="Lexend_400">View profile and Contact Information</Text>
+            </VStack>
+            <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.icon}/>
+        </TouchableOpacity>
+
+
         <View style={styles.background}>
         {!isLoading ? <Loading/> :
           <ScrollView>
@@ -152,6 +168,12 @@ const StudentDetail = ({route, navigation }) => {
         </View>
       </View>   
     </LinearGradient>
+
+    <Modal visible={modalIsOpen} transparent={true}>
+        <StudentBiometrics student={trainee} navigation={navigation} closeBio={closeBio}/>
+      
+    </Modal>
+  </> 
   )
 }
 
@@ -223,7 +245,28 @@ icon:{
 },
 biobackground:{
   backgroundColor: 'transparent',
-  flex:1,
+    flex:1,
 }
 })
 export default StudentDetail
+
+// return (
+//   <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}> 
+//     <View style={styles.container}>
+//       <ReportView student={trainee} navigation={navigation}/>
+//       <View style={styles.background}>
+//       {!isLoading ? <Loading/> :
+//         <ScrollView>
+//           <TouchableOpacity style={styles.classtab}>
+//             {<Text style={styles.classtabtext} fontFamily="Lexend_400">{classTitle}</Text>}
+//           </TouchableOpacity>
+//           <CurrentLevelView classTitle={classTitle} classColor={classColor} cardBgColor={cardBgColor} classCard={classCard} />
+//           <SkillsAchievementView myLevelDetail={myLevelDetail}/>
+//           <AttendanceListView student={trainee} /> 
+//           <ViewReport student={trainee}/>
+//         </ScrollView>
+//       }
+//       </View>
+//     </View>   
+//   </LinearGradient>
+// )
