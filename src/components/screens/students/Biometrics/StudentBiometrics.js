@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Alert, StatusBar, StyleSheet } from 'react-native';
 import { View } from "native-base"
 import { BlurView } from 'expo-blur';
@@ -6,6 +6,12 @@ import * as LocalAuthentication from 'expo-local-authentication'
 
 const StudentBiometrics = ({student, closeBio, navigation}) => {
  
+  const setModalIsOpen = useState
+  const [pwdOpen, setPwdOpen] = useState(false)
+  const [isBiometricSupported, setIsBiometricSupported] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [biosuccess, setBiosuccess] = useState(false)
+
   //1.Device suppert biometrics? (ture || false)
   useEffect(() => {(
     async () => {
@@ -56,15 +62,18 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
     //       () => {fallBackPassword(), console.log('PW行くよ')}
     //     )}
       
-    //5.Finally Authenticate use with Biometrics (Fingerprint, Facial recognition)
-    const result = await LocalAuthentication.authenticateAsync ({
-      promptMessage: 'Access to student personal Information.',
-        // disableDeviceFallback: true,
-        // cancelLabel: 'Cancel',
-        // onPress: () => closeBio(),
-    });
-    successProcess(result)
-  }
+
+      //5.Finally Authenticate use with Biometrics (Fingerprint, Facial recognition)
+      const result = await LocalAuthentication.authenticateAsync
+      
+      ({
+        promptMessage: 'You access to student personal Information.',
+        disableDeviceFallback: true,
+        cancelLabel: 'Cancel',
+        onPress: () => {navigation.navigate('Student Profile')},
+      });
+        successProcess(result)
+    }
 
 //==========Functions ===========================================================
   const alertComponent = (title, mess, btnTxt, btnFunc) => {
@@ -77,7 +86,9 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
   };
 
   //navigation
-  const movepage = () => {
+  const movepage = (setModalIsOpen) => {
+    // console.log('move to personal page!'),
+
     closeBio(),
     navigation.navigate('Student Profile', {student})
   }
@@ -103,8 +114,8 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
 }
 const styles = StyleSheet.create ({
   container:{
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
-    flex: 1,
+      backgroundColor: 'rgba(0, 0, 0, 0.4)',
+      flex: 1,
   },
   blur:{
     position: "absolute",
