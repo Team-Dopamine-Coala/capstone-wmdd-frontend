@@ -67,10 +67,11 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
       const result = await LocalAuthentication.authenticateAsync
       
       ({
-        promptMessage: 'You access to student personal Information.',
+        promptMessage: 'Access to student personal Information.',
         disableDeviceFallback: true,
         cancelLabel: 'Cancel',
-        onPress: () => {navigation.navigate('Student Profile')},
+        // onPress: () => {navigation.navigate('Student Profile')},
+        onPress: () => closeBio(),
       });
         successProcess(result)
     }
@@ -87,8 +88,6 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
 
   //navigation
   const movepage = (setModalIsOpen) => {
-    // console.log('move to personal page!'),
-
     closeBio(),
     navigation.navigate('Student Profile', {student})
   }

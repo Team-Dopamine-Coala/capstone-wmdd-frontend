@@ -169,7 +169,6 @@ const StudentDetail = ({route, navigation }) => {
 
     <Modal visible={modalIsOpen} transparent={true}>
         <StudentBiometrics student={trainee} navigation={navigation} closeBio={closeBio}/>
-      
     </Modal>
   </> 
   )
@@ -242,7 +241,7 @@ icon:{
 },
 biobackground:{
   backgroundColor: 'transparent',
-    flex:1,
+  flex:1,
 }
 })
 export default StudentDetail
