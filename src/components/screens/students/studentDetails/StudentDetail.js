@@ -171,7 +171,6 @@ const StudentDetail = ({route, navigation }) => {
 
     <Modal visible={modalIsOpen} transparent={true}>
         <StudentBiometrics student={trainee} navigation={navigation} closeBio={closeBio}/>
-      
     </Modal>
   </> 
   )
@@ -187,7 +186,6 @@ const styles = StyleSheet.create ({
     paddingVertical: 24,
     borderTopRightRadius: 28,
     borderTopLeftRadius: 28,
-    
     height: '100%',
   },
   classtab:{
@@ -245,7 +243,7 @@ icon:{
 },
 biobackground:{
   backgroundColor: 'transparent',
-    flex:1,
+  flex:1,
 }
 })
 export default StudentDetail
