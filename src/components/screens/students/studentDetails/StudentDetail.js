@@ -246,23 +246,3 @@ biobackground:{
 })
 export default StudentDetail
 
-// return (
-//   <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}> 
-//     <View style={styles.container}>
-//       <ReportView student={trainee} navigation={navigation}/>
-//       <View style={styles.background}>
-//       {!isLoading ? <Loading/> :
-//         <ScrollView>
-//           <TouchableOpacity style={styles.classtab}>
-//             {<Text style={styles.classtabtext} fontFamily="Lexend_400">{classTitle}</Text>}
-//           </TouchableOpacity>
-//           <CurrentLevelView classTitle={classTitle} classColor={classColor} cardBgColor={cardBgColor} classCard={classCard} />
-//           <SkillsAchievementView myLevelDetail={myLevelDetail}/>
-//           <AttendanceListView student={trainee} /> 
-//           <ViewReport student={trainee}/>
-//         </ScrollView>
-//       }
-//       </View>
-//     </View>   
-//   </LinearGradient>
-// )
