@@ -30,7 +30,7 @@ const IndexScreen = ({ navigation}) => {
         myClassIds.map((eachclassid, i) => {
           getStudentsByClass(eachclassid,userToken)
           .then((data) => {
-            // console.log('子供',data)
+            // console.log('Chileden',data)
               data.map((person) => {
                 myAllStudents.push(person)
               })
