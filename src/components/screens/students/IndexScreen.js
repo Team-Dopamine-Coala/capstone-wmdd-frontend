@@ -115,7 +115,7 @@ const styles = StyleSheet.create ({
     paddingHorizontal: 20,
     borderTopRightRadius:28,
     borderTopLeftRadius:28,
-    marginTop: 53,
+    marginTop: 98,
     height: '100%',
   },
   scrollarea: {
