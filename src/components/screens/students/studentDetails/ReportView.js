@@ -1,4 +1,4 @@
-import { View, Text, Box, Icon, VStack } from "native-base"
+import { View, Text, Icon, VStack } from "native-base"
 import { useState } from "react"
 import { StyleSheet, Modal, TouchableOpacity } from "react-native"
 import { Ionicons } from '@expo/vector-icons'
@@ -9,6 +9,7 @@ const [modalIsOpen, setModalIsOpen] = useState(false)
 
 const clickStudent = () => {
     setModalIsOpen(true)
+    //Pass the student's data 
 }
 
 const closeBio = () => {setModalIsOpen(false)}
