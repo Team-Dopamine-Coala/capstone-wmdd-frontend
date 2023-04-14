@@ -9,7 +9,6 @@ const [modalIsOpen, setModalIsOpen] = useState(false)
 
 const clickStudent = () => {
     setModalIsOpen(true)
-    //Pass the student's data 
 }
 
 const closeBio = () => {setModalIsOpen(false)}
