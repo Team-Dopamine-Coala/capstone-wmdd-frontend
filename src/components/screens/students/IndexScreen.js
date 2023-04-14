@@ -30,7 +30,7 @@ const IndexScreen = ({ navigation}) => {
         myClassIds.map((eachclassid, i) => {
           getStudentsByClass(eachclassid,userToken)
           .then((data) => {
-            // console.log('子供',data)
+            // console.log('Chileden',data)
               data.map((person) => {
                 myAllStudents.push(person)
               })
@@ -56,7 +56,7 @@ const IndexScreen = ({ navigation}) => {
       }
       return 0
     })
-    // console.log('並べた結果',myAllStudents.length, myAllStudents)
+    // console.log('RESULT',myAllStudents.length, myAllStudents)
   }
       
   //Alphabetic Title display
@@ -69,7 +69,7 @@ const IndexScreen = ({ navigation}) => {
         return c      
     },{})
     setNameTitle(Object.values(title))
-    // console.log('nameタイトル',nameTitle)
+    // console.log('NAME　TITLE',nameTitle)
   }
   
     return(
