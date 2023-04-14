@@ -15,7 +15,7 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
   //1.Device suppert biometrics? (ture || false)
   useEffect(() => {(
     async () => {
-      const isBiometricSupported = await LocalAuthentication.hasHardwareAsync()
+      const isBiometricSupported = await LocalAuthentication.hasHardwareAsync();
       
       console.log('1.bio support on device?',isBiometricSupported)
       if(isBiometricSupported === false){
@@ -27,6 +27,66 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
       }
     })();
   });
+      
+    //===========================================================  
+  //Function if device does not support biometrics (Enter password!)
+  const fallBackPassword = () => {
+    //check useID and input id is equal!
+    //Password入力
+    Alert.prompt(
+      "Enter Password",
+      "Please enter login password to access student's personal info.",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("cancel password"),
+          style: "cancel"
+        },
+        {
+          text: "OK",
+          onPress: password => checkPWD(password),
+        }
+      ],
+      "secure-text"
+    )
+   
+      //1.userID(fetchしたもの)と入力したものを比べる
+      const checkPWD = (password) => {
+        const enteredPWD = password
+        // console.log('入力',enteredPWD)
+        // console.log('持ってきたPWD',userPassword)
+
+        // const checkPWD = bcrypt.compare(password, enteredPWD);
+        if(enteredPWD == true ) {
+          alertComponent(
+            'Password Confirmed',
+            'Biometric Authentication not supported',
+            'OK',
+          )  
+          console.log('success!')
+          movepage()
+        } else {
+          Alert.prompt(
+            "Invalid Password",
+            "Please enter collect password",
+            [
+              {
+                text: "Cancel",
+                onPress: () => console.log("cancel password"),
+                style: "cancel"
+              },
+              {
+                text: "OK",
+                onPress: password => checkPWD(password),
+              }
+            ],
+            "secure-text"
+          )
+        }
+      }
+  };
+
+ //============================================== 
 
   //2.Hardware support biometrics? 
   const handleBiometricAuth = async () => {
@@ -40,7 +100,7 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
       'Please enter password',
       'Biometric Authentication not supported',
       'OK',
-      // () => {fallBackPassword()}
+      () => {fallBackPassword()}
     );
 
     // 3.What Biometrics types available? ([1] - Fingerprint, [2] - Facial recognition)
@@ -63,12 +123,10 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
     //     )}
       
 
-      //5.Finally Authenticate use with Biometrics (Fingerprint, Facial recognition)
-      const result = await LocalAuthentication.authenticateAsync
-      
-      ({
+    //5.Finally Authenticate use with Biometrics (Fingerprint, Facial recognition)
+      const result = await LocalAuthentication.authenticateAsync ({
         promptMessage: 'Access to student personal Information.',
-        disableDeviceFallback: true,
+        // disableDeviceFallback: true,
         cancelLabel: 'Cancel',
         // onPress: () => {navigation.navigate('Student Profile')},
         onPress: () => closeBio(),
@@ -113,8 +171,8 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
 }
 const styles = StyleSheet.create ({
   container:{
-      backgroundColor: 'rgba(0, 0, 0, 0.4)',
-      flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    flex: 1,
   },
   blur:{
     position: "absolute",
