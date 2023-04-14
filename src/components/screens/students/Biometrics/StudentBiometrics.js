@@ -13,9 +13,8 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
   const [biosuccess, setBiosuccess] = useState(false)
 
   //1.Device suppert biometrics? (ture || false)
-  //ここFalseだった場合password入力に進むようにする
-  useEffect(() => {
-    (async () => {
+  useEffect(() => {(
+    async () => {
       const isBiometricSupported = await LocalAuthentication.hasHardwareAsync();
       
       console.log('1.bio support on device?',isBiometricSupported)
@@ -30,7 +29,7 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
   });
       
     //===========================================================  
-  //Function if device does not support biometrics (Enter password!)　パスワード入力コードを作成
+  //Function if device does not support biometrics (Enter password!)
   const fallBackPassword = () => {
     //check useID and input id is equal!
     //Password入力
@@ -101,7 +100,7 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
       'Please enter password',
       'Biometric Authentication not supported',
       'OK',
-      () => {fallBackPassword(), console.log('PW行くよ')}
+      () => {fallBackPassword()}
     );
 
     // 3.What Biometrics types available? ([1] - Fingerprint, [2] - Facial recognition)
@@ -126,12 +125,10 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
     //     )}
       
 
-      //5.Finally Authenticate use with Biometrics (Fingerprint, Facial recognition)
-      const result = await LocalAuthentication.authenticateAsync
-      
-      ({
+    //5.Finally Authenticate use with Biometrics (Fingerprint, Facial recognition)
+      const result = await LocalAuthentication.authenticateAsync ({
         promptMessage: 'Access to student personal Information.',
-        disableDeviceFallback: true,
+        // disableDeviceFallback: true,
         cancelLabel: 'Cancel',
         // onPress: () => {navigation.navigate('Student Profile')},
         onPress: () => closeBio(),
@@ -175,8 +172,8 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
 }
 const styles = StyleSheet.create ({
   container:{
-      backgroundColor: 'rgba(0, 0, 0, 0.4)',
-      flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    flex: 1,
   },
   blur:{
     position: "absolute",
