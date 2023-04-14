@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Alert, StatusBar, StyleSheet } from 'react-native';
 import { View } from "native-base"
 import { BlurView } from 'expo-blur';
@@ -6,17 +6,10 @@ import * as LocalAuthentication from 'expo-local-authentication'
 
 const StudentBiometrics = ({student, closeBio, navigation}) => {
  
-  const setModalIsOpen = useState
-  const [pwdOpen, setPwdOpen] = useState(false)
-  const [isBiometricSupported, setIsBiometricSupported] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [biosuccess, setBiosuccess] = useState(false)
-
   //1.Device suppert biometrics? (ture || false)
-  //ここFalseだった場合password入力に進むようにする
-  useEffect(() => {
-    (async () => {
-      const isBiometricSupported = await LocalAuthentication.hasHardwareAsync();
+  useEffect(() => {(
+    async () => {
+      const isBiometricSupported = await LocalAuthentication.hasHardwareAsync()
       
       console.log('1.bio support on device?',isBiometricSupported)
       if(isBiometricSupported === false){
@@ -28,66 +21,6 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
       }
     })();
   });
-      
-    //===========================================================  
-  //Function if device does not support biometrics (Enter password!)　パスワード入力コードを作成
-  const fallBackPassword = () => {
-    //check useID and input id is equal!
-    //Password入力
-    Alert.prompt(
-      "Enter Password",
-      "Please enter login password to access student's personal info.",
-      [
-        {
-          text: "Cancel",
-          onPress: () => console.log("cancel password"),
-          style: "cancel"
-        },
-        {
-          text: "OK",
-          onPress: password => checkPWD(password),
-        }
-      ],
-      "secure-text"
-    )
-   
-      //1.userID(fetchしたもの)と入力したものを比べる
-      const checkPWD = (password) => {
-        const enteredPWD = password
-        // console.log('入力',enteredPWD)
-        // console.log('持ってきたPWD',userPassword)
-
-        // const checkPWD = bcrypt.compare(password, enteredPWD);
-        if(enteredPWD == true ) {
-          alertComponent(
-            'Password Confirmed',
-            'Biometric Authentication not supported',
-            'OK',
-          )  
-          console.log('success!')
-          movepage()
-        } else {
-          Alert.prompt(
-            "Invalid Password",
-            "Please enter collect password",
-            [
-              {
-                text: "Cancel",
-                onPress: () => console.log("cancel password"),
-                style: "cancel"
-              },
-              {
-                text: "OK",
-                onPress: password => checkPWD(password),
-              }
-            ],
-            "secure-text"
-          )
-        }
-      }
-  };
-
- //============================================== 
 
   //2.Hardware support biometrics? 
   const handleBiometricAuth = async () => {
@@ -101,17 +34,15 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
       'Please enter password',
       'Biometric Authentication not supported',
       'OK',
-      () => {fallBackPassword(), console.log('PW行くよ')}
+      // () => {fallBackPassword()}
     );
 
     // 3.What Biometrics types available? ([1] - Fingerprint, [2] - Facial recognition)
     let supportedBiometrics;
     if (isBiometricAvailable) {
-      supportedBiometrics = await LocalAuthentication.supportedAuthenticationTypesAsync();
+      supportedBiometrics = await LocalAuthentication.supportedAuthenticationTypesAsync()
       console.log('3.finger or face?',supportedBiometrics)
     }
-    
-    
     
     //4.Check if biometric record exist in your local device or not (facial or fingerprints record)
     // const savedBiometrics = await LocalAuthentication.isEnrolledAsync();
@@ -125,19 +56,15 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
     //       () => {fallBackPassword(), console.log('PW行くよ')}
     //     )}
       
-
-      //5.Finally Authenticate use with Biometrics (Fingerprint, Facial recognition)
-      const result = await LocalAuthentication.authenticateAsync
-      
-      ({
-        promptMessage: 'Access to student personal Information.',
-        disableDeviceFallback: true,
-        cancelLabel: 'Cancel',
-        // onPress: () => {navigation.navigate('Student Profile')},
-        onPress: () => closeBio(),
-      });
-        successProcess(result)
-    }
+    //5.Finally Authenticate use with Biometrics (Fingerprint, Facial recognition)
+    const result = await LocalAuthentication.authenticateAsync ({
+      promptMessage: 'Access to student personal Information.',
+        // disableDeviceFallback: true,
+        // cancelLabel: 'Cancel',
+        // onPress: () => closeBio(),
+    });
+    successProcess(result)
+  }
 
 //==========Functions ===========================================================
   const alertComponent = (title, mess, btnTxt, btnFunc) => {
@@ -150,7 +77,7 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
   };
 
   //navigation
-  const movepage = (setModalIsOpen) => {
+  const movepage = () => {
     closeBio(),
     navigation.navigate('Student Profile', {student})
   }
@@ -163,6 +90,7 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
       movepage()
     } else if (result.success == false){
       console.log('failed bio')
+      closeBio()
     }
   }
 
@@ -175,8 +103,8 @@ const StudentBiometrics = ({student, closeBio, navigation}) => {
 }
 const styles = StyleSheet.create ({
   container:{
-      backgroundColor: 'rgba(0, 0, 0, 0.4)',
-      flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    flex: 1,
   },
   blur:{
     position: "absolute",
