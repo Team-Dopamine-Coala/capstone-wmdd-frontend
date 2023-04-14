@@ -61,6 +61,7 @@ const styles = StyleSheet.create ({
   percentBox: {
     justifyContent:"space-around",
     alignItems:"center",
+    width: 260,
   },
   progressbar:{
     marginVertical: 10,
