@@ -107,7 +107,7 @@ const IndexScreen = ({ navigation }) => {
 
       <RBSheet
         ref={RBSheetRef}
-        height={480}
+        height={500}
         animationType="fade"
         closeOnDragDown={true}
         closeOnPressMask={true}
@@ -120,6 +120,7 @@ const IndexScreen = ({ navigation }) => {
             borderTopRightRadius: 30
           },
           draggableIcon: {
+            width: 75,
             backgroundColor: "#9F9F9F"
           }
         }}
@@ -129,11 +130,12 @@ const IndexScreen = ({ navigation }) => {
             <Text fontFamily="Lexend_600" fontSize={20} mb="30px">{selectedClassName} Report</Text>
           </Center>
           <StudentList students={students} selectedClass={selectedClass} openDialog={openDialog} />
-          <Button
-            mx="40px"
-            my="24px"
-            bgColor="#404142"
-          ><Text fontFamily="Lexend_600" color="#ffffff">Send Report</Text></Button>
+          <Box mt={5} py="24px" borderTopColor="#EEEEEE" borderTopWidth="4px">
+            <Button
+              mx="40px"
+              bgColor="#404142"
+            ><Text fontFamily="Lexend_600" fontSize={16} color="#ffffff">Send Report</Text></Button>
+          </Box>
         </View>
       </RBSheet>
 
