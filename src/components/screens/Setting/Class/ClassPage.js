@@ -33,7 +33,7 @@ const ClassPage = ({navigation, route}) => {
         })
       })
       storeWeek(Mon,Tue,Wed,Thu,Fri,Sat,Sun)
-      console.log('中身',Mon)
+      // console.log('中身',Mon)
       setIsLoading(true)
     })  
   },[])
