@@ -47,13 +47,13 @@ const SignUpForm = ({navigation}) => {
                 </Box>
                 <Button 
                     bg="#FE7F2D"
-                    mt={20} 
+                    mt={100} 
                     onPress={() => {createAccount(firstName, lastName, email, password)}}  
                     _text={{
                     fontFamily:"Lexend_700",
                     }}
                     _pressed={{backgroundColor:"#E57229"}}>Create New Account</Button>
-                <Text fontFamily="Lexend_300" textAlign="center" mt={5} color="#667080">Already have an account? <Link onPress={() => navigation.navigate('Login')} _text={{fontFamily:"Lexend_500", color:"#667080"}}> Sign in</Link></Text>
+                <Text fontFamily="Lexend_300" textAlign="center" mt={5} color="#667080">Already have an account? <Link onPress={() => navigation.navigate('Login')} _text={{fontFamily:"Lexend_700", color:"#667080"}}> Sign in</Link></Text>
             </FormControl>
         </VStack>
     )
