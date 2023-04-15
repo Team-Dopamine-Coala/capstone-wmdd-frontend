@@ -5,7 +5,7 @@ import { AWS_BACKEND_BASE_URL } from '../../../../utils/static'
 const StudentListItem = ({ item, selectedClass, openDialog }) => {
   return (
     <Pressable
-      onPress={() => openDialog(item._id)}
+      onPress={() => openDialog(item._id, item.firstname)}
       ml="20px"
       p={4}
       pl={0}
