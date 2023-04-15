@@ -55,8 +55,8 @@ const IndexScreen = ({ navigation }) => {
         }}
         selectedDate={new Date()}
         onDateSelected={onDateClick}
-        minDate="2023-03-01"
-        maxDate="2023-04-3"
+        minDate="2023-04-01"
+        maxDate="2023-04-30"
         dayContainerStyle={{
           paddingBottom: 4
         }}
