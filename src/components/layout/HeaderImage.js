@@ -4,7 +4,7 @@ import {Image } from 'native-base'
 import { AuthContext } from '../context/AuthContext';
 import { fetchUserById } from '../../utils/queries';
 
-const HeaderImage = ({navigations}) => {
+const HeaderImage = ({navigations, attendance}) => {
     const {userInfo} = useContext(AuthContext)
     const [userToken] = useState(userInfo.token)
     const [userID] = useState(userInfo._id)
@@ -23,12 +23,15 @@ const HeaderImage = ({navigations}) => {
         })
     },[])  
 
+    //User phot size
+    const imageSize = attendance ? 66 : 40;
+    
   return (
     isLoading && (
     <View mb={9} mt={9}>
         <TouchableOpacity onPress={() => {navigations.navigate('Setting Index',{userID:userID, userFirstname:userFirstname, userLastname:userLastname, userEmail:userEmail, userPhoto:userPhoto, userToken:userToken})}}>
             <Image
-                style={{ width: 40, height: 40, borderRadius: 149, marginRight: 20, borderColor: "#FDFDFD", borderWidth: 1.5}}
+                style={{ width: imageSize, height: imageSize, borderRadius: 149, marginRight: 20, borderColor: "#FDFDFD", borderWidth: 1.5}}
                 source={{ uri: `${userPhoto}`}}
                 resizeMode='contain'
                 alt='user img'
@@ -40,3 +43,5 @@ const HeaderImage = ({navigations}) => {
 }
 
 export default HeaderImage
+
+// style={{ width: 40, height: 40, borderRadius: 149, marginRight: 20, borderColor: "#FDFDFD", borderWidth: 1.5}}
