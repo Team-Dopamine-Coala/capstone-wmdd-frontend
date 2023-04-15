@@ -7,7 +7,6 @@ import Loading from '../../../layout/Loading';
 import { Ionicons } from '@expo/vector-icons'
 import moment from 'moment'
 
-
 import StudentsSearch from "../../Students/myStudents/StudentsSearch"
 import { getClassesOfCoach } from '../../../../utils/queries'
 
@@ -15,7 +14,7 @@ const ClassPage = ({navigation, route}) => {
   const {userID, userToken} = route.params;
   const [isLoading, setIsLoading] = useState(false)
   const [weeklyLists, setWeeklyLists] = useState([])
-  // console.log('クラスページ', navigation, userID, userToken)
+  
   const Sun = []
   const Mon = []
   const Tue = []
@@ -33,15 +32,13 @@ const ClassPage = ({navigation, route}) => {
           switchWeek(week, item)
         })
       })
-      // console.log('みたい',Mon)
       storeWeek(Mon,Tue,Wed,Thu,Fri,Sat,Sun)
-      console.log('中身',Mon)
+      // console.log('中身',Mon)
       setIsLoading(true)
     })  
   },[])
   useEffect(() => {
     setIsLoading(true)
-    console.log('入ったかな',weeklyLists)
   },[weeklyLists])
 
   //=== FUNCTIONS =============
@@ -107,9 +104,9 @@ const ClassPage = ({navigation, route}) => {
                       <VStack style={styles.contents}>
                         <Heading style={styles.classtitle} fontSize={24} fontFamily="Lexend_600" fontWeight="400">{item.title}</Heading>
                         <HStack alignItems="center" space={1} style={styles.classtitle}>
-                          <Icon size={4} as={<Ionicons name='time-outline' />} style={styles.icon}/>
+                          <Icon size={4} as={<Ionicons name='time-outline-outline' />} style={styles.icon}style={styles.icon}/>
                           <Text fontSize={16} fontFamily="Lexend_400" lineHeight={24} color="#737373" >{moment(item.startTime).format('H:mm A')}</Text>
-                          <Icon size={4} as={<Ionicons name='arrow-forward' />} style={styles.icon}/>
+                          <Icon size={4} as={<Ionicons name='arrow-forward' />} style={styles.icon}style={styles.icon}/>
                           <Text fontSize={16} fontFamily="Lexend_400" lineHeight={24} color="#737373" >{moment(item.endTime).format('H:mm A')}</Text>
                         </HStack>
                         <HStack alignItems="center" space={1}>
