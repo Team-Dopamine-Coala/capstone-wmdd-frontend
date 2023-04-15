@@ -73,6 +73,7 @@ const styles = StyleSheet.create ({
         backgroundColor: '#FDFDFD',
         borderTopLeftRadius: 28,
         borderTopRightRadius: 28,
+        height: "100%",
         marginTop: 97,
     },
     heading: {

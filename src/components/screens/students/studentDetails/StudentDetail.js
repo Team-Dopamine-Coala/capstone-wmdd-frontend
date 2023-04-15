@@ -137,7 +137,7 @@ const StudentDetail = ({route, navigation }) => {
 
     //=====Modal Functions
     const clickStudent = () => { setModalIsOpen(true)}
-    const closeBio = () => { setModalIsOpen(false) }
+    const closeBio = () => { setModalIsOpen(false)}
 
   return (
   <>
@@ -176,7 +176,7 @@ const StudentDetail = ({route, navigation }) => {
 
 const styles = StyleSheet.create ({
   container:{
-    marginTop: 110,
+    marginTop: 101,
   },
   background:{
     backgroundColor: '#FDFDFD',
