@@ -104,9 +104,9 @@ const ClassPage = ({navigation, route}) => {
                       <VStack style={styles.contents}>
                         <Heading style={styles.classtitle} fontSize={24} fontFamily="Lexend_600" fontWeight="400">{item.title}</Heading>
                         <HStack alignItems="center" space={1} style={styles.classtitle}>
-                          <Icon size={4} as={<Ionicons name='time-outline' />} style={styles.icon}/>
+                          <Icon size={4} as={<Ionicons name='time-outline-outline' />} style={styles.icon}style={styles.icon}/>
                           <Text fontSize={16} fontFamily="Lexend_400" lineHeight={24} color="#737373" >{moment(item.startTime).format('H:mm A')}</Text>
-                          <Icon size={4} as={<Ionicons name='arrow-forward' />} style={styles.icon}/>
+                          <Icon size={4} as={<Ionicons name='arrow-forward' />} style={styles.icon}style={styles.icon}/>
                           <Text fontSize={16} fontFamily="Lexend_400" lineHeight={24} color="#737373" >{moment(item.endTime).format('H:mm A')}</Text>
                         </HStack>
                         <HStack alignItems="center" space={1}>
