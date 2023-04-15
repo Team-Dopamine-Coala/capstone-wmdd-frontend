@@ -1,8 +1,8 @@
 import { VStack, Box, Heading, FlatList, ScrollView, Divider, View, Pressable, Text, Flex, Link, Button } from "native-base"
 import { useEffect, useRef, useState } from "react"
 import { Dimensions } from 'react-native'
-import BottomSheet from 'react-native-simple-bottom-sheet';
 import { fetchSkill } from '../../../../utils/queries';
+import RBSheet from "react-native-raw-bottom-sheet";
 
 import SkillItem from '../listItems/SkillItem'
 import SkillDetails from "../listItems/SkillDetails";
@@ -14,15 +14,16 @@ const SkillsList = ({ navigation, skills }) => {
     const [skill, setSkill] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
+    const RBSheetRef = useRef()
 
     const openSheet = (id) => {
-        panelRef.current.togglePanel()
         setSelectedId(id)
         setIsLoading(true)
         fetchSkill(id).then(
             data => {
                 setSkill(data)
                 setIsLoading(false)
+                RBSheetRef.current?.open()
             },
             error => {
                 throw error
@@ -127,17 +128,30 @@ const SkillsList = ({ navigation, skills }) => {
                     </Box>
                 </VStack>
             </ScrollView>
-            <BottomSheet 
-                isOpen={false}
-                sliderMinHeight={0}
-                ref={ref => panelRef.current = ref}
-                animationDuration={300}
-                sliderMaxHeight={Dimensions.get('window').height * 0.9}
-            >
-                <View pb={10}>
-                    <SkillDetails skill={skill}/>
-                </View>
-            </BottomSheet>
+            <RBSheet 
+                    ref={RBSheetRef}
+                    height={400}
+                    animationType="fade"
+                    closeOnDragDown={true}
+                    closeOnPressMask={true}
+                    customStyles={{
+                        wrapper: {
+                        backgroundColor: "rgba(0,0,0,.5)"
+                        },
+                        container: {
+                        borderTopLeftRadius: 30,
+                        borderTopRightRadius: 30
+                        },
+                        draggableIcon: {
+                        width: 75,
+                        backgroundColor: "#9F9F9F"
+                        }
+                    }}
+                >
+                    <View style={{paddingVertical: 20}} mb={10}>
+                        <SkillDetails skill={skill}/>    
+                    </View>
+                </RBSheet>
         </View>
     )
   }
