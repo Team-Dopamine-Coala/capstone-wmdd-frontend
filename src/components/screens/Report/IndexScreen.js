@@ -3,7 +3,6 @@ import { Dimensions } from 'react-native'
 import { AWS_BACKEND_BASE_URL } from '../../../utils/static';
 import { Ionicons } from '@expo/vector-icons';
 import { View, Box, Center, Heading, VStack, Text, Icon, Button } from 'native-base'
-import BottomSheet from 'react-native-simple-bottom-sheet';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { LinearGradient } from 'expo-linear-gradient';
 import Dialog from 'react-native-dialog'
@@ -22,6 +21,7 @@ const IndexScreen = ({ navigation }) => {
   const [selectedClass, setSelectedClass] = useState(null)
   const [selectedClassName, setSelectedClassName] = useState(null)
   const [selectedStudent, setSelectedStudent] = useState(null)
+  const [selectedStudentName, setSelectedStudentName] = useState(null)
   const [students, setStudents] = useState(null)
   const [totalStudents, setTotalStudents] = useState(null)
   const [isDialogVisible, setIsDialogVisible] = useState(false)
@@ -66,9 +66,14 @@ const IndexScreen = ({ navigation }) => {
     })
   }
 
-  const openDialog = (studentId) => {
-    setIsDialogVisible(true)
+  const openDialog = (studentId, studentName) => {
+    RBSheetRef.current?.close()
     setSelectedStudent(studentId)
+    setSelectedStudentName(studentName)
+
+    setTimeout(() => {
+      setIsDialogVisible(true)
+    }, 700)
   }
 
   const handleSend = () => {
@@ -100,17 +105,12 @@ const IndexScreen = ({ navigation }) => {
         </Box>
       </VStack>
 
-      {/* {isSheetOpen && (
-      <Box style={{ backgroundColor: '#000000', position: 'absolute', bottom: 0, opacity: .5, zIndex: 0, left: 0, width: '100%', height: '100%' }}>
-      </Box>
-      )} */}
-
       <RBSheet
         ref={RBSheetRef}
         height={480}
         animationType="fade"
         closeOnDragDown={true}
-        closeOnPressMask={false}
+        closeOnPressMask={true}
         customStyles={{
           wrapper: {
             backgroundColor: "rgba(0,0,0,.5)"
@@ -136,26 +136,10 @@ const IndexScreen = ({ navigation }) => {
           ><Text fontFamily="Lexend_600" color="#ffffff">Send Report</Text></Button>
         </View>
       </RBSheet>
-      
-      {/* <BottomSheet
-        style={{ zIndex: 999999, position: 'relative' }}
-        isOpen={false}
-        ref={panelRef}
-        animationDuration={300}
-        sliderMinHeight={0}
-        sliderMaxHeight={Dimensions.get('window').height * 0.9}
-        onOpen={() => {
-          setIsSheetOpen(true)
-        }}
-        onClose={() => {
-          setIsSheetOpen(false)
-        }}
-      >
-      </BottomSheet> */}
 
       <Dialog.Container visible={isDialogVisible}>
         <Dialog.Title>
-          <Text fontFamily="Lexend_600" fontSize={17}>Send Report?</Text>
+          <Text fontFamily="Lexend_600" fontSize={17}>Send {selectedStudentName}&apos;s Report?</Text>
         </Dialog.Title>
         <Dialog.Description>
           <Text fontFamily="Lexend_400" fontSize={14}>You cannot undo this action.</Text>
