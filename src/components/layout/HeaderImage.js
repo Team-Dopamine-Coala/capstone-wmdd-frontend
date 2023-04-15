@@ -23,15 +23,17 @@ const HeaderImage = ({navigations, attendance}) => {
         })
     },[])  
 
-    //User phot size
+    //User photo size
     const imageSize = attendance ? 66 : 40;
+    //User photo marginRight
+    const imageMarginRight = attendance ? 8 : 20;
     
   return (
     isLoading && (
     <View mb={9} mt={9}>
         <TouchableOpacity onPress={() => {navigations.navigate('Setting Index',{userID:userID, userFirstname:userFirstname, userLastname:userLastname, userEmail:userEmail, userPhoto:userPhoto, userToken:userToken})}}>
             <Image
-                style={{ width: imageSize, height: imageSize, borderRadius: 149, marginRight: 20, borderColor: "#FDFDFD", borderWidth: 1.5}}
+                style={{ width: imageSize, height: imageSize, borderRadius: 149, marginRight: imageMarginRight, borderColor: "#FDFDFD", borderWidth: 1.5}}
                 source={{ uri: `${userPhoto}`}}
                 resizeMode='contain'
                 alt='user img'
@@ -43,5 +45,3 @@ const HeaderImage = ({navigations, attendance}) => {
 }
 
 export default HeaderImage
-
-// style={{ width: 40, height: 40, borderRadius: 149, marginRight: 20, borderColor: "#FDFDFD", borderWidth: 1.5}}

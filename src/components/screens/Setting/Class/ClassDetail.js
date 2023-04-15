@@ -59,7 +59,7 @@ const ClassDetail = ({navigation, route}) => {
 const styles = StyleSheet.create ({
   container: {
     backgroundColor: '#BBA0EC',
-    paddingTop: 33,
+    paddingTop: 62,
   },
   title:{
     fontSize: 32,
