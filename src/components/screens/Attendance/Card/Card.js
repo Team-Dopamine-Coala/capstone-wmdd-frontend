@@ -1,11 +1,11 @@
-import { Box, Icon, HStack, Text, VStack, Button, Heading, View } from "native-base";
-import { Ionicons } from "@expo/vector-icons"
+import { Box, HStack, Text, VStack, Button, Heading, View } from "native-base";
 import { useEffect, useState } from "react";
 import moment from 'moment';
 
 import Clock from "../../../svg/AttendanceIcons/Clock";
 import MapPin from "../../../svg/AttendanceIcons/MapPin";
 import RightArrow from "../../../svg/SettingIcons/RightArrow";
+import AttendanceChart from "../../../svg/AttendanceIcons/AttendanceChart";
 
 const Card = ({ title, startTime, endTime, location, id, navigation, dateSelected, completed, attendances, color, cardColor }) => {
   const [present, setPresent] =  useState("-")
@@ -40,7 +40,7 @@ const Card = ({ title, startTime, endTime, location, id, navigation, dateSelecte
           <Box  mb={3} p={5} bg={color} width="100%" height="90%" borderRadius="md" shadow={9} position="absolute" top="5%"></Box>
           <Box ml={4} p={3} bg={cardColor} flex={1} height="100%" borderRadius="md" shadow={5}>
             <HStack borderBottomWidth="1" borderBottomColor="#737373" mb={3} justifyContent="space-between" alignItems="center">      
-              <VStack pr={3} pb={3} space={1}>
+              <VStack pr={3} pb={3} space={1} >
                 <Heading fontSize="24" fontFamily="Lexend_600" fontWeight="400">{title}</Heading>
                 <HStack alignItems="center" space={1}>
                   <Clock/>
@@ -57,10 +57,10 @@ const Card = ({ title, startTime, endTime, location, id, navigation, dateSelecte
                   <Text fontSize="16" color="#737373" fontFamily="Lexend_400">{location}</Text>
                 </HStack>
               </VStack>
-              <Icon size="88" color={ completed ? color : "gray.200"} as={<Ionicons name="checkmark-circle-outline"/>} />         
+               <AttendanceChart completed={completed}/>
             </HStack>
 
-            <HStack space={1} pt={2} justifyContent="space-between">
+            <HStack space={1} justifyContent="space-between">
                <VStack flex={1} alignItems="center">
                 <Text fontSize="20" color="#212427" fontFamily="Lexend_700">{present}</Text>
                 <Text fontSize="14" color="#737373" fontFamily="Lexend_400">Present</Text>
@@ -76,6 +76,8 @@ const Card = ({ title, startTime, endTime, location, id, navigation, dateSelecte
                   borderRadius="61"
                   variant="outline"
                   bgColor= { completed ? "#eeeeee":"#404142"}
+                  borderColor="#404142"
+                  borderWidth="1.5px"
                   id={id}
                   onPress={() => {
                     if(completed){

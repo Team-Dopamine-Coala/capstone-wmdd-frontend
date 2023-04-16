@@ -20,11 +20,9 @@ const WelcomeCard = ({navigation, classNumber}) => {
             <HeaderImage navigations={navigation} attendance={attendance}/>
           </HStack>
               <Center pt="3" borderTopWidth="1" borderTopColor="rgba(255, 255, 255, .5)">
-                <Text color="#FFFFFF" fontSize="20" fontFamily="Lexend_500">You have {classNumber} {classNumber == 1 ? "class" : "classes"} today!</Text>
+                <Text color="#FFFFFF" fontSize="20" fontFamily="Lexend_500">You have {classNumber} {(classNumber == 0 || classNumber == 1 )? "class" : "classes"} today!</Text>
               </Center>
               <Pressable >
-          
-            
         </Pressable>
             
               {/* <Button onPress={() => {logout()}}>Logout</Button> */}
