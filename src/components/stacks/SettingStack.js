@@ -19,11 +19,7 @@ const SettingStack = () => {
         options={{
           title: 'Settings',
           headerTitleAlign: 'center',
-          // headerTransparent: true,
-          headerTintColor: '#ffffff',
-          // headerStyle: {
-          //   backgroundColor: 'orange'
-          // },
+          headerTintColor: '#FDFDFD',
         }}
       />
       <Stack.Screen 
@@ -32,11 +28,8 @@ const SettingStack = () => {
         options={{
           title: 'My Classes',
           headerShown: false,
-          // headerStyle: {
-          //   backgroundColor: 'orange'
-          // },
           headerTitleStyle: {
-            color: '#fff',
+            color: '#FDFDFD',
             fontFamily: 'Lexend_700',
             fontSize: 20
           },

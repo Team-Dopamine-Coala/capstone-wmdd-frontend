@@ -8,10 +8,15 @@ import moment from 'moment'
 
 import {getStudentsByClass} from '../../../../utils/queries'
 
+import RightChevron from '../../../svg/SettingIcons/RightChevron'
+import RightArrow from '../../../svg/SettingIcons/RightArrow'
+import MapPin from '../../../svg/SettingIcons/MapPin'
+
 const ClassDetail = ({navigation, route}) => {
   
   const {item, weektitle} = route.params
   const [kids, setKids] = useState([])
+  const [Classdetail] = useState(true)
   const classID = item._id
   
   //Fetch Student List
@@ -30,11 +35,11 @@ const ClassDetail = ({navigation, route}) => {
 
       <HStack style={styles.timebox} alignItems="center" space={1}>
         <Text style={styles.time} fontFamily="Lexend_400">{moment(item.startTime).format('H:mm A')}</Text>
-        <Icon size={4} as={<Ionicons name='arrow-forward' />} style={styles.icontime}/>
+        <RightArrow Classdetail={Classdetail}/>
         <Text style={styles.time} fontFamily="Lexend_400">{moment(item.endTime).format('H:mm A')}</Text>
       </HStack>
       <HStack style={styles.locationbox}>
-        <Icon size={4} as={<Ionicons name='location-outline' />} style={styles.iconlocation}/>
+        <MapPin Classdetail={Classdetail}/>
         <Text style={styles.location} fontFamily="Lexend_500">{item.location}</Text>
       </HStack>
 
@@ -46,7 +51,7 @@ const ClassDetail = ({navigation, route}) => {
             <Box key={i}>
               <TouchableOpacity onPress={() => {navigation.navigate('Student Detail',{trainee})}} style={styles.namebox}>
                   <Text style={styles.name} fontFamily="Lexend_400">{trainee.firstname} {trainee.lastname}</Text>
-                  <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.iconarrow}/>
+                  <RightChevron Classdetail={Classdetail}/>
               </TouchableOpacity>
               <HStack space={1}  borderBottomWidth=".5" borderColor="#BBBBBB" justifyContent="space-between"/>
             </Box>
@@ -73,12 +78,6 @@ const styles = StyleSheet.create ({
     marginVertical:12,
     alignSelf:'center',
   },
-  icontime:{
-    marginHorizontal: 18,
-    color: '#212427',
-    fontSize: 20,
-    lineHeight: 20,
-  },
   time:{
     lineHeight:25,
     fontSize: 20,
@@ -88,17 +87,10 @@ const styles = StyleSheet.create ({
     marginBottom: 24,
     alignSelf:'center',
   },
-  iconlocation:{
-    width:24,
-    height: 24,
-    fontSize:22,
-    color: '#212427',
-    lineHeight: 24,
-    marginRight: 8,
-  },
   location:{
     fontSize: 16,
     lineHeight:24,
+    marginLeft: 8,
     color:'#212427',
   },
   studentbg: {
