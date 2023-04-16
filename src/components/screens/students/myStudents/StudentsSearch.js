@@ -1,7 +1,7 @@
-import { Input, Icon } from "native-base"
+import { Input } from "native-base"
 import { StyleSheet } from "react-native"
-import { Ionicons } from '@expo/vector-icons'
 
+import Search from '../../../svg/StudentsIcons/Search'
 const StudentsSearch = () => {
 
   return (
@@ -11,7 +11,7 @@ const StudentsSearch = () => {
               style={styles.inputfield}
               fontFamily="Lexend_400"
               InputRightElement={
-                <Icon as={<Ionicons name='search-outline' />} style={styles.icon}/>    
+                <Search />
               }
       />
     </>
@@ -26,14 +26,6 @@ const styles = StyleSheet.create ({
     paddingLeft: 16,
     paddingRight: 8,
     paddingBottom: 10,
-  },
-  icon:{
-    color: '#737373',
-    width:20,
-    height: 20,
-    fontSize: 20,
-    lineHeight: 20,
-    marginRight: 16,
   }
 })
 export default StudentsSearch
