@@ -58,6 +58,7 @@ const ViewAttendance = ({ route, students, navigation, checkboxHandler, allAtten
        absent={absent}
        presentList={presentList}
        absentList={absentList}
+       navigation={navigation}
        />
     </Box>
    </VStack>

@@ -5,10 +5,10 @@ const StudentCard = ({ item }) => {
     <Box   p={4}
     pl={0}
     borderRadius={0}
-    borderBottomWidth={1}
-    borderBottomColor="#cccccc"
+    borderBottomWidth={.5}
+    borderBottomColor="#BBBBBB"
     justifyContent="flex-start">
-      <Text fontFamily="Lexend_400" fontSize="16">{`${item.firstname} ${item.lastname}`}</Text>
+      <Text fontFamily="Lexend_400" fontSize="16" color="#000000">{`${item.firstname} ${item.lastname}`}</Text>
     </Box>
   )
 }
