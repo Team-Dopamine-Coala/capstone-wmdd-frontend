@@ -5,7 +5,6 @@ const CurrentLevelView = ({classTitle, classColor, cardBgColor, classCard}) => {
   
     const completedSkillNbr = classCard[0].compNbr
     const totalSkillNbr = classCard[0].totalNbr
-    console.log(completedSkillNbr,totalSkillNbr)
   
   return (
     <View style={styles.container}>
