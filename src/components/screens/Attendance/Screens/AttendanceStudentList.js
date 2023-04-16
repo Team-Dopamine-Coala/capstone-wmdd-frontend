@@ -121,32 +121,34 @@ const updateClassAttendance = async () => {
 
   return (
     <VStack width="100%" paddingTop="16px" bgColor="#ffffff" height="100%" justifyContent="space-between">
+      <Box>
         <Box paddingRight="20px" paddingLeft="20px">
-          <StudentsSearch/>
-          <Checkbox.Group fontFamily="Lexend_400" fontSize="16" onChange={checkboxHandler} marginTop="20px">
-          {students.map((item, i) => (
-              <VStack key={i} >
-                <Checkbox fontFamily="Lexend_400" 
-                          width="350px" 
-                          fontSize="16" 
-                          mb={3}
-                          mt={3}
-                          value={item._id} 
-                          key={item._id} 
-                          size="md" 
-                          colorScheme="red"
-                          borderRadius="50%" 
-                          accessibilityLabel="This is a checkbox of a student" 
-                >
-                  {`${item.firstname} ${item.lastname}`}
-                </Checkbox>
-                <HStack space={1}  borderBottomWidth=".5" borderColor="#BBBBBB" justifyContent="space-between"/>                  
-              </VStack>             
-          ))}
-          </Checkbox.Group>
-        </Box>  
+          <StudentsSearch/>  
+        </Box>
+        <Checkbox.Group fontFamily="Lexend_400" fontSize="16" onChange={checkboxHandler} marginTop="20px" marginLeft="20px">
+        {students.map((item, i) => (
+            <VStack key={i} >
+              <Checkbox fontFamily="Lexend_400" 
+                        width="380px" 
+                        fontSize="16" 
+                        mb={3}
+                        mt={3}
+                        value={item._id} 
+                        key={item._id} 
+                        size="md" 
+                        colorScheme="orange"
+                        borderRadius="50%" 
+                        accessibilityLabel="This is a checkbox of a student" 
+              >
+                {`${item.firstname} ${item.lastname}`}
+              </Checkbox>
+              <HStack space={1}  borderBottomWidth=".5" borderColor="#BBBBBB" justifyContent="space-between"/>                  
+            </VStack>             
+        ))}
+        </Checkbox.Group>
+      </Box>  
           {/* <Button onPress={selectAllCheckbox}>select all</Button> */}
-        <Button m="5"
+      <Button m="5"
         bgColor="#404142"
         onPress={() => {
           // addAttendance()
