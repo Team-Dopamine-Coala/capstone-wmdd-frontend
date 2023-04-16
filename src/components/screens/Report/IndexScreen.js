@@ -2,8 +2,8 @@ import { useState, useEffect, useContext, useRef } from 'react'
 import { Dimensions } from 'react-native'
 import { AWS_BACKEND_BASE_URL } from '../../../utils/static';
 import { Ionicons } from '@expo/vector-icons';
-import { View, Box, Center, Heading, VStack, Text, Icon } from 'native-base'
-import BottomSheet from 'react-native-simple-bottom-sheet';
+import { View, Box, Center, Heading, VStack, Text, Icon, Button } from 'native-base'
+import RBSheet from "react-native-raw-bottom-sheet";
 import { LinearGradient } from 'expo-linear-gradient';
 import Dialog from 'react-native-dialog'
 
@@ -19,13 +19,18 @@ const IndexScreen = ({ navigation }) => {
   const [classes, setClasses] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [selectedClass, setSelectedClass] = useState(null)
+  const [selectedClassName, setSelectedClassName] = useState(null)
   const [selectedStudent, setSelectedStudent] = useState(null)
+  const [selectedStudentName, setSelectedStudentName] = useState(null)
   const [students, setStudents] = useState(null)
   const [totalStudents, setTotalStudents] = useState(null)
   const [isDialogVisible, setIsDialogVisible] = useState(false)
   const [isSentVisible, setIsSentVisible] = useState(false)
+  const [isSending, setIsSending] = useState(true)
+  const [isSheetOpen, setIsSheetOpen] = useState(false)
 
-  const panelRef = useRef(null)
+  const panelRef = useRef()
+  const RBSheetRef = useRef()
 
   useEffect(() => {
     setIsLoading(true)
@@ -42,13 +47,16 @@ const IndexScreen = ({ navigation }) => {
     })
   }, [])
 
-  useEffect(() => {
-    getStudentsByClass(selectedClass).then(
+  const clickedClass = (classid, className) => {
+    setSelectedClass(classid)
+    setSelectedClassName(className)
+    getStudentsByClass(classid).then(
       data => {
         setStudents(data)
         if (data) {
           setTotalStudents(data.length)
         }
+        RBSheetRef.current?.open()
       },
       error => {
         throw error
@@ -56,28 +64,29 @@ const IndexScreen = ({ navigation }) => {
     ).catch((error) => {
       throw error
     })
-  }, [selectedClass])
-
-  const clickedClass = (classid) => {
-    setSelectedClass(classid)
-    setTimeout(() => {
-      panelRef.current.togglePanel()
-    }, 1000)
   }
 
-  const openDialog = (studentId) => {
-    setIsDialogVisible(true)
+  const openDialog = (studentId, studentName) => {
+    RBSheetRef.current?.close()
     setSelectedStudent(studentId)
+    setSelectedStudentName(studentName)
+
+    setTimeout(() => {
+      setIsDialogVisible(true)
+    }, 700)
   }
 
   const handleSend = () => {
-    fetch(`${AWS_BACKEND_BASE_URL}/api/pdf/${selectedClass}/${selectedStudent}`)
-    .then(() => {
-      setIsDialogVisible(false)
+    setIsDialogVisible(false)
+    setTimeout(() => {
       setIsSentVisible(true)
+    }, 500)
 
+    fetch(`${AWS_BACKEND_BASE_URL}/api/pdf/${selectedClass}/${selectedStudent}`).then(() => {
+      setIsSending(false)
       setTimeout(() => {
         setIsSentVisible(false)
+        RBSheetRef.current?.close()
       }, 2000)
     })
   }
@@ -96,26 +105,43 @@ const IndexScreen = ({ navigation }) => {
         </Box>
       </VStack>
 
-      {/* <Box style={{ backgroundColor: '#000000', position: 'absolute', bottom: 0, opacity: .5, zIndex: 0, left: 0, width: '100%', height: '100%' }}>
-        <Text>Hello</Text>
-      </Box> */}
-      
-      <BottomSheet
-        style={{ zIndex: 999999, position: 'relative' }}
-        isOpen={true}
-        ref={ref => panelRef.current = ref}
-        animationDuration={300}
-        sliderMinHeight={0}
-        sliderMaxHeight={Dimensions.get('window').height * 0.9}
+      <RBSheet
+        ref={RBSheetRef}
+        height={500}
+        animationType="fade"
+        closeOnDragDown={true}
+        closeOnPressMask={true}
+        customStyles={{
+          wrapper: {
+            backgroundColor: "rgba(0,0,0,.5)"
+          },
+          container: {
+            borderTopLeftRadius: 30,
+            borderTopRightRadius: 30
+          },
+          draggableIcon: {
+            width: 75,
+            backgroundColor: "#9F9F9F"
+          }
+        }}
       >
-        <View>
+        <View pb={5}>
+          <Center>
+            <Text fontFamily="Lexend_600" fontSize={20} mb="30px">{selectedClassName} Report</Text>
+          </Center>
           <StudentList students={students} selectedClass={selectedClass} openDialog={openDialog} />
+          <Box mt={5} py="24px" borderTopColor="#EEEEEE" borderTopWidth="4px">
+            <Button
+              mx="40px"
+              bgColor="#404142"
+            ><Text fontFamily="Lexend_600" fontSize={16} color="#ffffff">Send Report</Text></Button>
+          </Box>
         </View>
-      </BottomSheet>
+      </RBSheet>
 
       <Dialog.Container visible={isDialogVisible}>
         <Dialog.Title>
-          <Text fontFamily="Lexend_600" fontSize={17}>Send Report?</Text>
+          <Text fontFamily="Lexend_600" fontSize={17}>Send {selectedStudentName}&apos;s Report?</Text>
         </Dialog.Title>
         <Dialog.Description>
           <Text fontFamily="Lexend_400" fontSize={14}>You cannot undo this action.</Text>
@@ -128,8 +154,16 @@ const IndexScreen = ({ navigation }) => {
         <Dialog.Description>
           <View w="100%" justifyContent="center" alignItems="center">
           <VStack alignItems="center">
-            <Icon mb={1} size={75} as={<Ionicons name="checkmark-circle-outline"/>} color="#404142" />
-            <Text pb={1} fontFamily="Lexend_600" fontSize={17}>Sent</Text>
+            {!isSending ? (
+              <>
+              <Icon mb={1} size={75} as={<Ionicons name="checkmark-circle-outline"/>} color="#404142" />
+              <Text pb={1} fontFamily="Lexend_600" fontSize={17}>Sent</Text>
+              </>
+            )
+            :
+            (
+              <Text pb={1} fontFamily="Lexend_600" fontSize={17}>Sending...</Text>
+            )}
           </VStack>
           </View>
         </Dialog.Description>

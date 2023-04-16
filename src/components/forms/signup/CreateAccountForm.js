@@ -46,11 +46,15 @@ const CreateAccountForm = ({navigation, route }) => {
                     _text={{
                         fontFamily:"Lexend_700"
                     }}
-                    mt={10}
+                    mt={100}
                     onPress={nextPage}
                     _pressed={{backgroundColor:"#E57229"}}
                 >Next</Button>
-                <Text fontFamily="Lexend_700" fontSize={15} textAlign='center' mt={7}>OR</Text>
+                <Box style={{ position: 'relative', borderTopWidth: '1px', borderTopColor: 'black', marginTop: 40 }}>
+                    <Center>
+                        <Text fontFamily="Lexend_700" fontSize={15} textAlign='center' mt={-3} color="black" style={{ position: 'relative', backgroundColor: '#FCFCFC', width: 35 }}>OR</Text>
+                    </Center>
+                </Box>
                 <Button 
                     mt={7}
                     bg="#FCFCFC"
@@ -61,7 +65,7 @@ const CreateAccountForm = ({navigation, route }) => {
                     }}
                     leftIcon={<Google />}
                     >Sign Up with Google</Button>
-                <Text fontFamily="Lexend_300" textAlign="center" mt={5} color="#667080">Already have an account? <Link onPress={() => navigation.navigate('Login')} _text={{fontFamily:"Lexend_500", color:"#667080"}}> Sign in</Link></Text>
+                <Text fontFamily="Lexend_300" textAlign="center" mt={5} color="#667080">Already have an account? <Link onPress={() => navigation.navigate('Login')} _text={{fontFamily:"Lexend_700", color:"#667080"}}> Sign in</Link></Text>
             </FormControl>
         </VStack>
     )

@@ -1,4 +1,4 @@
-import { FormControl, Input, Text, VStack, Icon, Pressable, Box, Button, Link, Divider } from 'native-base';
+import { FormControl, Input, Text, VStack, Icon, Pressable, Box, Button, Link, HStack, Center } from 'native-base';
 import { MaterialIcons } from "@expo/vector-icons";
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
@@ -13,8 +13,8 @@ const LoginForm = ({navigation}) => {
     const {login} = useContext(AuthContext)
 
     return(
-        <VStack justifyContent="center" pl={8} pr={8}>
-            <Text fontFamily="Lexend_700" fontSize={28} mt={20}>Welcome Back!</Text>
+        <VStack justifyContent="center" pl={8} pr={8} mt={200}>
+            <Text fontFamily="Lexend_700" fontSize={28}>Welcome Back!</Text>
             <Text fontFamily="Lexend_500" fontSize={12}>Log In to continue</Text>
             <FormControl isRequired>
                 <Box py={2} mt={20}>
@@ -60,7 +60,11 @@ const LoginForm = ({navigation}) => {
                         color:"#667080",
                     }}
                 >Forgot your password?</Link>
-                <Text fontFamily="Lexend_700" fontSize={15} textAlign='center' mt={7} color="#212427" >OR</Text>
+                <Box style={{ position: 'relative', borderTopWidth: '1px', borderTopColor: 'black', marginTop: 30 }}>
+                    <Center>
+                        <Text fontFamily="Lexend_700" fontSize={15} textAlign='center' mt={-3} color="black" style={{ position: 'relative', backgroundColor: '#FCFCFC', width: 35 }}>OR</Text>
+                    </Center>
+                </Box>
                 <Button 
                     mt={7}
                     bg="#FCFCFC"
@@ -76,7 +80,7 @@ const LoginForm = ({navigation}) => {
                         <Link 
                             onPress={() => navigation.navigate('Sign up one')}
                                 _text={{
-                                    fontFamily:"Lexend_500",
+                                    fontFamily:"Lexend_700",
                                     color:"#667080"
                                 }}
                         > Sign up now</Link>

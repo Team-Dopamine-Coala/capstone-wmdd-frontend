@@ -73,7 +73,8 @@ const styles = StyleSheet.create ({
         backgroundColor: '#FDFDFD',
         borderTopLeftRadius: 28,
         borderTopRightRadius: 28,
-        marginTop: 62,
+        height: "100%",
+        marginTop: 97,
     },
     heading: {
         textAlign: "center",
