@@ -9,6 +9,11 @@ import EvaluationOutline from '../svg/EvaluationOutline';
 import ReportOutline from '../svg/ReportOutline';
 import CurriculumOutline from '../svg/CurriculumOutline';
 import StudentsOutline from '../svg/StudentsOutline';
+import AttendanceFilled from '../svg/AttendanceFilled';
+import EvaluationFilled from '../svg/EvaluationFilled';
+import ReportFilled from '../svg/ReportFilled';
+import CurriculumFilled from '../svg/CurriculumFilled';
+import StudentsFilled from '../svg/StudentsFilled';
 
 import { Ionicons, createIconSetFromFontello } from '@expo/vector-icons'
 import { Image, Icon, View, Box, Text } from 'native-base'
@@ -31,28 +36,28 @@ const AppTabs = () => {
             })}
       >
         <Tab.Screen name="Attendance" component={AttendanceStack} options={{
-          tabBarIcon: ({ color }) => (
-            <Icon size={5} mt={5} color={color} as={<AttendanceOutline />} />
+          tabBarIcon: ({ color, focused }) => (
+            <Icon size={5} mt={5} ml={2} color={color} as={ focused ? <AttendanceFilled /> : <AttendanceOutline />} />
           )
         }} />
         <Tab.Screen name="Evaluation" component={EvaluationStack} options={{
-          tabBarIcon: ({ color }) => (
-            <Icon size={5} mt={5} ml={2} color={color} as={<EvaluationOutline />} />
+          tabBarIcon: ({ color, focused  }) => (
+            <Icon size={5} mt={5} ml={2} color={color} as={ focused ? <EvaluationFilled /> : <EvaluationOutline />} />
           )
         }} />
         <Tab.Screen name="Reports" component={ReportStack} options={{
-          tabBarIcon: ({ color }) => (
-            <Icon size={5} mt={5} ml={2} color={color} as={<ReportOutline />} />
+          tabBarIcon: ({ color, focused }) => (
+            <Icon size={5} mt={5} ml={2} color={color} as={ focused ? <ReportFilled /> : <ReportOutline />} />
           )
         }} />
         <Tab.Screen name="Curriculum" component={CurriculumStack} options={{
-          tabBarIcon: ({ color }) => (
-            <Icon size={5} mt={5} ml={2} color={color} as={<CurriculumOutline />} />
+          tabBarIcon: ({ color, focused }) => (
+            <Icon size={5} mt={5} ml={2} color={color} as={ focused ? <CurriculumFilled /> : <CurriculumOutline />} />
           )
         }} />
         <Tab.Screen name="Students" component={StudentStack} options={{
-          tabBarIcon: ({ color }) => (
-            <Icon size={5} mt={5} ml={2} color={color} as={<StudentsOutline />} />
+          tabBarIcon: ({ color, focused }) => (
+            <Icon size={5} mt={5} ml={2} color={color} as={ focused ? <StudentsFilled /> : <StudentsOutline />} />
           )
         }} />
       </Tab.Navigator>
