@@ -6973,7 +6973,7 @@
     "kleur" "^3.0.3"
     "sisteransi" "^1.0.5"
 
-"prop-types@*", "prop-types@^15.6.0", "prop-types@^15.6.1", "prop-types@^15.7.2":
+"prop-types@*", "prop-types@^15.6.0", "prop-types@^15.6.1", "prop-types@^15.7.2", "prop-types@^15.8.1":
   "integrity" "sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg=="
   "resolved" "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   "version" "15.8.1"
@@ -7117,6 +7117,13 @@
     "node-git-hooks" "^1.0.1"
     "prop-types" "^15.6.0"
     "recyclerlistview" "^3.0.0"
+
+"react-native-circular-progress@^1.3.8":
+  "integrity" "sha512-XcGO6MzOLvGCEQqPlqsbxzv0R8JEF1W7enyKaZMIihCbrneH+BSPmec/9emlroNUNqRg9LrbNtZMy9843ixMCg=="
+  "resolved" "https://registry.npmjs.org/react-native-circular-progress/-/react-native-circular-progress-1.3.8.tgz"
+  "version" "1.3.8"
+  dependencies:
+    "prop-types" "^15.8.1"
 
 "react-native-codegen@^0.70.6":
   "integrity" "sha512-kdwIhH2hi+cFnG5Nb8Ji2JwmcCxnaOOo9440ov7XDzSvGfmUStnCzl+MCW8jLjqHcE4icT7N9y+xx4f50vfBTw=="
