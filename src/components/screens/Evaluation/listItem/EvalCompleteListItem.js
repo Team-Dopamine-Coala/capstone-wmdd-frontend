@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Text, Box, HStack } from 'native-base'
 import { getEvaluationsByStudentId } from '../../../../utils/queries'
+import AnimatedEntrance from 'react-native-animated-entrance';
 
-const EvalCompleteListItem = ({ item, isLastItem }) => {
+const EvalCompleteListItem = ({ item, isLastItem, order }) => {
   const [evaluations, setEvaluations] = useState([])
 
   const boxWidth = 30
@@ -22,16 +23,24 @@ const EvalCompleteListItem = ({ item, isLastItem }) => {
   }, [])
 
   return (
-    <HStack py={4} pl={0} pr={3} justifyContent="space-between" alignItems="center" borderBottomWidth={isLastItem ? 0 : 1} borderBottomColor="#cccccc">
-      <Text fontFamily="Lexend_400" fontSize={16}>{item.firstname} {item.lastname}</Text>
-      <HStack>
-        <Box w={boxWidth} h={boxHeight} bgColor={evaluations.length >= 1 ? colorFilled : colorEmpty} ml="1px" borderTopLeftRadius={8} borderBottomLeftRadius={8} />
-        <Box w={boxWidth} h={boxHeight} bgColor={evaluations.length >= 2 ? colorFilled : colorEmpty} ml="1px" />
-        <Box w={boxWidth} h={boxHeight} bgColor={evaluations.length >= 3 ? colorFilled : colorEmpty} ml="1px" />
-        <Box w={boxWidth} h={boxHeight} bgColor={evaluations.length >= 4 ? colorFilled : colorEmpty} ml="1px" />
-        <Box w={boxWidth} h={boxHeight} bgColor={evaluations.length >= 5 ? colorFilled : colorEmpty} ml="1px" borderTopRightRadius={8} borderBottomRightRadius={8} />
+    <AnimatedEntrance
+      axis={AnimatedEntrance.axis.horizontal}
+      offset={-20}
+      duration={400}
+      delay={200}
+      order={order + 1}
+    >
+      <HStack py={4} pl={0} pr={3} justifyContent="space-between" alignItems="center" borderBottomWidth={isLastItem ? 0 : 1} borderBottomColor="#cccccc">
+        <Text fontFamily="Lexend_400" fontSize={16}>{item.firstname} {item.lastname}</Text>
+        <HStack>
+          <Box w={boxWidth} h={boxHeight} bgColor={evaluations.length >= 1 ? colorFilled : colorEmpty} ml="1px" borderTopLeftRadius={8} borderBottomLeftRadius={8} />
+          <Box w={boxWidth} h={boxHeight} bgColor={evaluations.length >= 2 ? colorFilled : colorEmpty} ml="1px" />
+          <Box w={boxWidth} h={boxHeight} bgColor={evaluations.length >= 3 ? colorFilled : colorEmpty} ml="1px" />
+          <Box w={boxWidth} h={boxHeight} bgColor={evaluations.length >= 4 ? colorFilled : colorEmpty} ml="1px" />
+          <Box w={boxWidth} h={boxHeight} bgColor={evaluations.length >= 5 ? colorFilled : colorEmpty} ml="1px" borderTopRightRadius={8} borderBottomRightRadius={8} />
+        </HStack>
       </HStack>
-    </HStack>
+    </AnimatedEntrance>
   )
 }
 
