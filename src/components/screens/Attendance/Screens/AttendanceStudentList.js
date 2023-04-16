@@ -120,17 +120,26 @@ const updateClassAttendance = async () => {
 
 
   return (
-    <VStack width="100%" paddingTop="16px" pb={20} bgColor="#ffffff" height="100%">
+    <VStack width="100%" paddingTop="16px" bgColor="#ffffff" height="100%" justifyContent="space-between">
         <Box paddingRight="20px" paddingLeft="20px">
           <StudentsSearch/>
-        
           <Checkbox.Group fontFamily="Lexend_400" fontSize="16" onChange={checkboxHandler} marginTop="20px">
           {students.map((item, i) => (
               <VStack key={i} >
-                <Checkbox fontFamily="Lexend_400" fontSize="16" m="2" value={item._id} key={item._id} colorScheme="orange" accessibilityLabel="This is a checkbox of a student" >{`${item.firstname} ${item.lastname}`}</Checkbox>
-                <HStack space={1} borderBottomWidth=".5" borderColor="#BBBBBB" justifyContent="space-between"/>                  
+                <Checkbox fontFamily="Lexend_400" 
+                          width="350px" 
+                          fontSize="16" 
+                          mb={3}
+                          mt={3}
+                          value={item._id} 
+                          key={item._id} 
+                          colorScheme="orange" 
+                          accessibilityLabel="This is a checkbox of a student" 
+                >
+                  {`${item.firstname} ${item.lastname}`}
+                </Checkbox>
+                <HStack space={1}  borderBottomWidth=".5" borderColor="#BBBBBB" justifyContent="space-between"/>                  
               </VStack>             
-                
           ))}
           </Checkbox.Group>
         </Box>  
@@ -145,7 +154,9 @@ const updateClassAttendance = async () => {
             classTitle: classTitle
           });
         }}
-      ><Text fontFamily="Lexend_600" fontSize="16" color="#ffffff">Save Attendance</Text></Button>
+      >
+        <Text fontFamily="Lexend_600" fontSize="16" color="#ffffff">Save Attendance</Text>
+      </Button>
 
       </VStack>
   )
