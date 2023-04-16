@@ -1,5 +1,6 @@
 import { Text, VStack, View, Box, Heading, HStack } from "native-base"
 import { StyleSheet } from "react-native"
+import ProgressBar from "react-native-animated-progress";
 
 const CurrentLevelView = ({classTitle, classColor, cardBgColor, classCard}) => {
   
@@ -16,8 +17,11 @@ const CurrentLevelView = ({classTitle, classColor, cardBgColor, classCard}) => {
             <Box style={styles.levelbox}>
               <Text style={styles.levelname} fontFamily="Lexend_500">Level {classCard[0].levelName}</Text>
               <HStack style={styles.percentBox}>
-                <Box width="178px" bg="#FDFDFD" borderRadius={18.75} h="10px" style={styles.progressbar}>
+                {/* <Box width="178px" bg="#FDFDFD" borderRadius={18.75} h="10px" style={styles.progressbar}>
                   <Box width={parseFloat(178 / totalSkillNbr * completedSkillNbr)} bg={classColor} h="10px" borderRadius={18.75}></Box>
+                </Box> */}
+                <Box width="180px">
+                  <ProgressBar progress={parseFloat(completedSkillNbr / totalSkillNbr * 100)} height={10} backgroundColor={classColor} trackColor="#FFFFFF" />
                 </Box>
                 <HStack style={styles.numberBox}>
                   <Text style={styles.current} fontFamily="Lexend_700">{completedSkillNbr}</Text>

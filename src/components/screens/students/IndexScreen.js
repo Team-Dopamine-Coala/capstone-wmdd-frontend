@@ -133,7 +133,7 @@ const styles = StyleSheet.create ({
   nameContainer: {
     marginTop: 8,
     backgroundColor: '#FDFDFD',
-    borderRadius: '12',
+    borderRadius: 12,
     marginHorizontal: 2,
   },
   nameiconbox:{
