@@ -5,7 +5,7 @@ import LoginForm from '../../forms/login/LoginForm';
 const LoginScreen = ({navigation}) => {
 
     return (
-        <View>
+        <View style={{backgroundColor: '#FCFCFC', height:'100%'}}>
             <LoginForm navigation={navigation}/>
         </View>
     )

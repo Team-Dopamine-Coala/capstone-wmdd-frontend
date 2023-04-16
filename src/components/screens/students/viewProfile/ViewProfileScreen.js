@@ -1,8 +1,10 @@
-import { Text, VStack, View, Box, Heading, HStack, ScrollView, Icon } from "native-base"
+import { Text, VStack, View, Box, Heading, HStack, ScrollView } from "native-base"
 import { LinearGradient } from 'expo-linear-gradient'
 import { StyleSheet } from "react-native"
-import { Ionicons } from '@expo/vector-icons'
 import moment from "moment"
+
+import Phone from "../../../svg/StudentsIcons/Phone"
+import Mail from "../../../svg/StudentsIcons/Mail"
 
 const ViewProfileScreen = ({route}) => {
 
@@ -46,15 +48,15 @@ const ViewProfileScreen = ({route}) => {
                                     <Text style={styles.title} fontFamily="Lexend_400">Phone Number</Text>
                                     <HStack style={styles.infoiconbox}>
                                         <Text style={styles.data} fontFamily="Lexend_400">{student.guardianNumber}</Text>
-                                        <Icon size={4} as={<Ionicons name='call-outline' />} style={styles.icon}/>
+                                        <Phone/>
                                     </HStack>
                                 </VStack>
                                 <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} borderColor="#BBBBBB" justifyContent="space-between"/>
                                 <VStack>
                                     <Text style={styles.title} fontFamily="Lexend_400">Email</Text>
                                     <HStack style={styles.infoiconbox}>
-                                        <Text style={styles.data} fontFamily="Lexend_400">{student.guardianEmail}</Text>
-                                        <Icon size={4} as={<Ionicons name='mail-outline' />} style={styles.icon}/>
+                                        <Text style={styles.data} fontFamily="Lexend_400">{student.guardianEmail}</Text> 
+                                        <Mail/>
                                     </HStack>
                                 </VStack>
                             </VStack>
@@ -73,7 +75,8 @@ const styles = StyleSheet.create ({
         backgroundColor: '#FDFDFD',
         borderTopLeftRadius: 28,
         borderTopRightRadius: 28,
-        marginTop: 62,
+        height: "100%",
+        marginTop: 97,
     },
     heading: {
         textAlign: "center",
@@ -101,15 +104,7 @@ const styles = StyleSheet.create ({
     },
     infoiconbox:{
         justifyContent: 'space-between',
-        alignItems:'baseline',
-    },
-    icon:{
-        color: '#667080',
-        width: 24,
-        height: 26,
-        fontSize: 24,
-        lineHeight: 30,
-        marginRight: 16,
+        alignItems: 'center',
     }
   })
 export default ViewProfileScreen

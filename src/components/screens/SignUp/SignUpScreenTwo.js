@@ -5,9 +5,9 @@ import CoalaNoText from '../../svg/CoalaNoText';
 
 const SignUpScreenTwo = ({ navigation, route }) => {
     return (
-        <View>
+        <View style={{backgroundColor: '#FCFCFC', height:'100%'}}>
             <Center>
-            <   Box mt={20}>
+                <Box mt={150}>
                     <CoalaNoText alignItem='center' />
                 </Box>
                 <Text fontFamily="Lexend_700" fontSize={28} mt={10}>Create a Coala Account</Text>

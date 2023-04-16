@@ -10,14 +10,14 @@ const CurrentLevelView = ({classTitle, classColor, cardBgColor, classCard}) => {
     <View style={styles.container}>
       {/* { isLoading ? <Loading/> :  */}
         <VStack >
-          <Box  width="100%" bg={classColor} height="80%" shadow={9} borderRadius={12} position="absolute" top="10%" ></Box>
+          <Box  width="100%" bg={classColor} height="80%" shadow={5} borderRadius={12} position="absolute" top="10%" ></Box>
           <Box  bg={cardBgColor} flex={1} shadow={5} borderRadius={12} style={styles.classbox}>
             <Heading style={styles.title} fontFamily="Lexend_600">{classTitle}</Heading>
             <Box style={styles.levelbox}>
               <Text style={styles.levelname} fontFamily="Lexend_500">Level {classCard[0].levelName}</Text>
               <HStack style={styles.percentBox}>
-                <Box width="70%" bg="#FDFDFD" borderRadius={18.75} h="10px" style={styles.progressbar}>
-                  <Box width={parseFloat(216 / totalSkillNbr * completedSkillNbr)} bg={classColor} h="10px" borderRadius={18.75}></Box>
+                <Box width="178px" bg="#FDFDFD" borderRadius={18.75} h="10px" style={styles.progressbar}>
+                  <Box width={parseFloat(178 / totalSkillNbr * completedSkillNbr)} bg={classColor} h="10px" borderRadius={18.75}></Box>
                 </Box>
                 <HStack style={styles.numberBox}>
                   <Text style={styles.current} fontFamily="Lexend_700">{completedSkillNbr}</Text>
@@ -59,8 +59,8 @@ const styles = StyleSheet.create ({
     lineHeight: 30,
   },
   percentBox: {
-    justifyContent:"space-around",
     alignItems:"center",
+    width: 260,
   },
   progressbar:{
     marginVertical: 10,

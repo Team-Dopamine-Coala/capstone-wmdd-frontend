@@ -1,19 +1,20 @@
-import { Box, Text, VStack, ScrollView, View, Icon, HStack } from "native-base"
+import { Box, Text, VStack, ScrollView, View } from "native-base"
 import { useEffect, useState, useContext } from "react"
-import { TouchableOpacity, StyleSheet, SafeAreaView } from "react-native"
-import { Ionicons } from '@expo/vector-icons'
+import { TouchableOpacity, StyleSheet } from "react-native"
 import StudentsSearch from "./myStudents/StudentsSearch"
 import { LinearGradient } from 'expo-linear-gradient';
 import Loading from "../../layout/Loading";
+import RightChevron from "../../svg/StudentsIcons/RightChevron"
 
-import {getClassesOfCoach, getStudentsByClass} from '../../../utils/queries'
+import { getClassesOfCoach, getStudentsByClass } from '../../../utils/queries'
 import { AuthContext } from '../../context/AuthContext';
 
-const IndexScreen = ({ navigation}) => {
+const IndexScreen = ({ navigation }) => {
   
-  const [nameTitle, setNameTitle] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-  const {userToken, userInfo} = useContext(AuthContext)
+  const [ nameTitle, setNameTitle ] = useState([])
+  const [ isLoading, setIsLoading ] = useState(false)
+  const { userToken, userInfo } = useContext(AuthContext)
+  const [ classIndex ] = useState(true)
 
   const userId = userInfo._id
   const myClassIds = []
@@ -93,7 +94,7 @@ const IndexScreen = ({ navigation}) => {
                                             style={styles.nameiconbox}
                         >
                           <Text style={styles.name} fontFamily="Lexend_400">{trainee.firstname} {trainee.lastname}</Text>
-                          <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.icon}/>
+                           <RightChevron classIndex={classIndex}/>
                         </TouchableOpacity >
                         // { index < title.groupedConn.length -1 && <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} borderColor='#BBBBBB' justifyContent="space-between"/>}
                       ))}
@@ -115,8 +116,8 @@ const styles = StyleSheet.create ({
     paddingHorizontal: 20,
     borderTopRightRadius:28,
     borderTopLeftRadius:28,
-    marginTop: 53,
     height: '100%',
+    marginTop: 99,
   },
   scrollarea: {
     marginTop: 24,
@@ -139,12 +140,6 @@ const styles = StyleSheet.create ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-  },
-  icon: {
-    width: 24,
-    height: 24,
-    lineHeight: 24,
-    color: '#1A1A1A',
   },
   name: {
     color: '#242424',
