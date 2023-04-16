@@ -1,8 +1,7 @@
-import { View, Text,ScrollView, VStack, Icon } from "native-base"
+import { View, Text,ScrollView, VStack } from "native-base"
 import { StyleSheet, TouchableOpacity, Modal } from "react-native"
 import { useContext, useState, useEffect} from "react"
-import { LinearGradient } from 'expo-linear-gradient';
-import { Ionicons } from '@expo/vector-icons'
+import { LinearGradient } from 'expo-linear-gradient'
 
 import CurrentLevelView from "./CurrentLevelView"
 import SkillsAchievementView from "./SkillsAchievementView"
@@ -14,20 +13,22 @@ import StudentBiometrics from "../Biometrics/StudentBiometrics"
 import { AuthContext } from '../../../context/AuthContext'
 import { getSingleClass, getEvaluationsByClass, getSkillById, fetchSkills } from '../../../../utils/queries'
 
+import RightChevron from "../../../svg/StudentsIcons/RightChevron";
+
 const StudentDetail = ({route, navigation }) => {
   const { trainee } = route.params
-  const {userToken} = useContext(AuthContext)
-  const {userInfo} = useContext(AuthContext)
-  const [classTitle, setClassTitle] = useState('')
-  const [classColor, setClassColor] = useState('')
-  const [cardBgColor, setCardBgColor] = useState('')
-  const [myClassData, setMyClassData] = useState('')
-  const [myCompletedEvaluations, setMyCompletedEvaluations] = useState([])
-  const [myAllSkills, setMyAllSkills] = useState([])
-  const [myLevelDetail, setMyLevelDetail] = useState([])
-  const [classCard, setClassCard] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-  const [modalIsOpen, setModalIsOpen] = useState(false)
+  const { userToken } = useContext(AuthContext)
+  const { userInfo } = useContext(AuthContext)
+  const [ classTitle, setClassTitle ] = useState('')
+  const [ classColor, setClassColor ] = useState('')
+  const [ cardBgColor, setCardBgColor ] = useState('')
+  const [ myClassData, setMyClassData ] = useState('')
+  const [ myCompletedEvaluations, setMyCompletedEvaluations ] = useState([])
+  const [ myAllSkills, setMyAllSkills ] = useState([])
+  const [ myLevelDetail, setMyLevelDetail ] = useState([])
+  const [ classCard, setClassCard ] = useState('')
+  const [ isLoading, setIsLoading ] = useState(false)
+  const [ modalIsOpen, setModalIsOpen ] = useState(false)
   let myEvalArray = []
   let mySkillArray = []
   let levellistArray = []
@@ -148,7 +149,7 @@ const StudentDetail = ({route, navigation }) => {
                 <Text style={styles.name} fontFamily="Lexend_700">{trainee.firstname} {trainee.lastname}</Text> 
                 <Text style={styles.text} fontFamily="Lexend_400">View profile and Contact Information</Text>
             </VStack>
-            <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.icon}/>
+            <RightChevron/>
         </TouchableOpacity>
 
         <View style={styles.background}>
@@ -211,7 +212,8 @@ const styles = StyleSheet.create ({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,    
-    paddingHorizontal: 16,
+    paddingLeft: 16,
+    paddingRight: 8,
     paddingVertical: 10,
     borderRadius: 12,
     marginHorizontal: 20,
@@ -230,13 +232,6 @@ text: {
     color: '#212427',
     fontSize: 16,
     lineHeight: 20,
-},
-icon:{
-    color: '#212427',
-    fontSize: 20,
-    lineHeight: 18,
-    width: 15,
-    height: 18,
 },
 biobackground:{
   backgroundColor: 'transparent',
