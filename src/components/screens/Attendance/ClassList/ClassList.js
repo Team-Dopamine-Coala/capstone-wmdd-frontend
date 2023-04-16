@@ -41,7 +41,7 @@ const ClassList = ({ classes, navigation, dateSelected, ready }) => {
         <FlatList
         data={classesWithCheck}
         extraData={fetchedAtdc}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <Card
             dateSelected={dateSelected}
             title={item.title}
@@ -51,6 +51,7 @@ const ClassList = ({ classes, navigation, dateSelected, ready }) => {
             endTime={item.endTime}
             location={item.location}
             id={item._id}
+            order={index}
             completed={item.completed}
             attendances={item.attendances ? item.attendances : null}
             navigation={navigation}
