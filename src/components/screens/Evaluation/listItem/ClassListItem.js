@@ -32,8 +32,8 @@ const ClassListItem = ({ item, order, navigation, calendarDate }) => {
     <AnimatedEntrance
       axis={AnimatedEntrance.axis.horizontal}
       offset={20}
-      duration={600}
-      delay={300}
+      duration={500}
+      delay={250}
       order={order + 1}
     >
     <View mx={4} my={4}>
