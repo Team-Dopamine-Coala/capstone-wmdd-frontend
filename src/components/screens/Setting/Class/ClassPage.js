@@ -72,7 +72,6 @@ const ClassPage = ({navigation, route}) => {
   }
   
   const storeWeek = (Mon,Tue,Wed,Thu,Fri,Sat,Sun) => {
-    
       setWeeklyLists([
       {id: 1,title: "Monday",class: Mon},
       {id: 2,title: "Tuesday",class: Tue},
@@ -93,42 +92,42 @@ const ClassPage = ({navigation, route}) => {
         <View style={styles.background}>
           <StudentsSearch/>
           <ScrollView>
-          { !weeklyLists ? <Loading/> : 
-            <View style={styles.container}>
-              {weeklyLists.map((week,j) => (
-               <>
-               <Text key={j} fontFamily="Lexend_500"  style={styles.week}>{week.title}</Text>
-                {week.class.map((item, i) => (
-              <TouchableOpacity key={i} onPress={() => { navigation.navigate('Detailers',{item:item, weektitle:week.title})}}>  
-                <HStack alignItems="center" justifyContent="space-between" mb={14}>
-                  <Box  style={styles.vivid} bg={item.color} width="100%" borderRadius={12} shadow={9} position="absolute" top="5%"></Box>
-                  <Box  style={styles.maincard} bg={item.cardColor} flex={1} height="100%" borderRadius={12} shadow={5} >
-                    <HStack alignItems="center" justifyContent="space-between">    
-                      <VStack style={styles.contents}>
-                        <Heading style={styles.classtitle} fontSize={24} fontFamily="Lexend_600" fontWeight="400">{item.title}</Heading>
-                        <HStack alignItems="center" space={1} style={styles.classtitle}>
-                          <Clock/>
-                          <Text fontSize={16} fontFamily="Lexend_400" lineHeight={24} color="#737373" >{moment(item.startTime).format('H:mm A')}</Text>
-                          <RightArrow/>
-                          <Text fontSize={16} fontFamily="Lexend_400" lineHeight={24} color="#737373" >{moment(item.endTime).format('H:mm A')}</Text>
+            { !weeklyLists ? <Loading/> : 
+              <View style={styles.container}>
+                {weeklyLists.map((week,j) => (
+                  <>
+                    <Text key={j} fontFamily="Lexend_500"  style={styles.week}>{week.title}</Text>
+                    {week.class.map((item, i) => (
+                      <TouchableOpacity key={i} onPress={() => { navigation.navigate('Detailers',{item:item, weektitle:week.title})}}>  
+                        <HStack alignItems="center" justifyContent="space-between" mb={14}>
+                          <Box  style={styles.vivid} bg={item.color} width="100%" borderRadius={12} shadow={9} position="absolute" top="5%"></Box>
+                          <Box  style={styles.maincard} bg={item.cardColor} flex={1} height="100%" borderRadius={12} shadow={5} >
+                            <HStack alignItems="center" justifyContent="space-between">    
+                              <VStack style={styles.contents}>
+                                <Heading style={styles.classtitle} fontSize={24} fontFamily="Lexend_600" fontWeight="400">{item.title}</Heading>
+                                <HStack alignItems="center" space={1} style={styles.classtitle}>
+                                  <Clock/>
+                                  <Text fontSize={16} fontFamily="Lexend_400" lineHeight={24} color="#737373" >{moment(item.startTime).format('H:mm A')}</Text>
+                                  <RightArrow/>
+                                  <Text fontSize={16} fontFamily="Lexend_400" lineHeight={24} color="#737373" >{moment(item.endTime).format('H:mm A')}</Text>
+                                </HStack>
+                                <HStack alignItems="center" space={1}>
+                                  <MapPin/>
+                                  <Text fontSize={16} fontFamily="Lexend_400" color="#737373">{item.location}</Text>
+                                </HStack>
+                              </VStack>
+                              <RightChevron/>
+                            </HStack>  
+                          </Box>
                         </HStack>
-                        <HStack alignItems="center" space={1}>
-                          <MapPin/>
-                          <Text fontSize={16} fontFamily="Lexend_400" color="#737373">{item.location}</Text>
-                        </HStack>
-                      </VStack>
-                      <RightChevron/>
-                    </HStack>  
-                  </Box>
-                </HStack>
-              </TouchableOpacity>   
-                ))} 
-              </>
-              ))}
-            </View>
-          } 
+                      </TouchableOpacity>   
+                    ))} 
+                  </>
+                ))}
+              </View>
+            } 
           </ScrollView>
-         </View>
+        </View>
     </LinearGradient>
   )
 }

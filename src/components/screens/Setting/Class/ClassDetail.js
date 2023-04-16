@@ -1,8 +1,7 @@
-import { View, Box, Text, ScrollView, Icon, HStack } from 'native-base'
+import { View, Box, Text, ScrollView, HStack } from 'native-base'
 import React, {useEffect, useState} from 'react'
 import {TouchableOpacity, StyleSheet} from 'react-native'
 import { useRoute } from '@react-navigation/native'
-import { Ionicons } from '@expo/vector-icons'
 import WeekCalender from './WeekCalender'
 import moment from 'moment'
 
@@ -115,13 +114,6 @@ const styles = StyleSheet.create ({
     fontSize:16,
     lineHeight:22,
     color:'#000000',
-  },
-  iconarrow:{
-    width: 24,
-    height: 24,
-    fontSize: 24,
-    lineHeight: 24,
-    marginRight: 20,
   }
 })
 export default ClassDetail
