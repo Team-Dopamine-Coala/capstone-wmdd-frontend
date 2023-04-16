@@ -39,7 +39,7 @@ const IndexScreen = ({ navigation }) => {
 
   return (
     <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}>
-    <VStack mt="60px">
+    <VStack mt="110px">
       <Box pt={2} height="100%" bgColor="#FDFDFD" borderTopLeftRadius={20} borderTopRightRadius={20}>
         <CalendarStrip
         scrollable

@@ -98,7 +98,7 @@ const IndexScreen = ({ navigation }) => {
 
   return (
     <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}>
-      <VStack mt="60px">
+      <VStack mt="110px">
         <Box pt={7} height="100%" bgColor="#fdfdfd" borderTopLeftRadius={20} borderTopRightRadius={20}>
         
           {isLoading ? <Loading /> : <ClassList classes={classes.sort((a, b) => a.title.localeCompare(b.title))} navigation={navigation} clickedClass={clickedClass} />}
