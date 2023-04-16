@@ -7,7 +7,7 @@ const EvalCompleteList = ({ navigation, students }) => {
       <FlatList
         data={students}
         renderItem={({ item, index }) => (
-          <EvalCompleteListItem item={item} isLastItem={index == students.length - 1 ? true : false} />
+          <EvalCompleteListItem item={item} isLastItem={index == students.length - 1 ? true : false} order={index} />
         )}
         keyExtractor={item => item._id}
         showsHorizontalScrollIndicator={false}
