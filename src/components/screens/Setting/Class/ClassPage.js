@@ -1,11 +1,15 @@
-import { View, Box, Text, ScrollView, VStack, Heading, Icon, HStack } from 'native-base'
+import { View, Box, Text, ScrollView, VStack, Heading, HStack } from 'native-base'
 import { TouchableOpacity, StyleSheet} from "react-native"
 import { useEffect, useState } from 'react'
 import { useRoute } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Loading from '../../../layout/Loading';
-import { Ionicons } from '@expo/vector-icons'
 import moment from 'moment'
+
+import MapPin from '../../../svg/SettingIcons/MapPin'
+import Clock from '../../../svg/SettingIcons/Clock'
+import RightArrow from '../../../svg/SettingIcons/RightArrow'
+import RightChevron from '../../../svg/SettingIcons/RightChevron'
 
 import StudentsSearch from "../../Students/myStudents/StudentsSearch"
 import { getClassesOfCoach } from '../../../../utils/queries'
@@ -33,7 +37,6 @@ const ClassPage = ({navigation, route}) => {
         })
       })
       storeWeek(Mon,Tue,Wed,Thu,Fri,Sat,Sun)
-      // console.log('中身',Mon)
       setIsLoading(true)
     })  
   },[])
@@ -104,17 +107,17 @@ const ClassPage = ({navigation, route}) => {
                       <VStack style={styles.contents}>
                         <Heading style={styles.classtitle} fontSize={24} fontFamily="Lexend_600" fontWeight="400">{item.title}</Heading>
                         <HStack alignItems="center" space={1} style={styles.classtitle}>
-                          <Icon size={4} as={<Ionicons name='time-outline-outline' />} style={styles.icon}style={styles.icon}/>
+                          <Clock/>
                           <Text fontSize={16} fontFamily="Lexend_400" lineHeight={24} color="#737373" >{moment(item.startTime).format('H:mm A')}</Text>
-                          <Icon size={4} as={<Ionicons name='arrow-forward' />} style={styles.icon}style={styles.icon}/>
+                          <RightArrow/>
                           <Text fontSize={16} fontFamily="Lexend_400" lineHeight={24} color="#737373" >{moment(item.endTime).format('H:mm A')}</Text>
                         </HStack>
                         <HStack alignItems="center" space={1}>
-                          <Icon size={4} as={<Ionicons name='location-outline' />} style={styles.icon}/>
+                          <MapPin/>
                           <Text fontSize={16} fontFamily="Lexend_400" color="#737373">{item.location}</Text>
                         </HStack>
                       </VStack>
-                    <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.iconarrow}/>
+                      <RightChevron/>
                     </HStack>  
                   </Box>
                 </HStack>
@@ -163,18 +166,6 @@ const styles = StyleSheet.create ({
   },
   title: {
    textAlign: 'center',
-  },
-  iconarrow:{
-    width: 24,
-    height: 24,
-    fontSize: 24,
-    lineHeight: 24,
-  },
-  icon:{
-    width: 24,
-    height: 24,
-    fontSize: 24,
-    lineHeight: 24,
   }
 })
 export default ClassPage
