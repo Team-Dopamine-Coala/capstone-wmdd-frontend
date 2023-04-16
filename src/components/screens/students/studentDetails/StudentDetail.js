@@ -147,7 +147,7 @@ const StudentDetail = ({route, navigation }) => {
       <View style={styles.container}>
         <TouchableOpacity onPress={clickStudent} trainee={trainee} style={styles.biobtncontainer} shadow={5}>
             <VStack>
-                <Text style={styles.name} fontFamily="Lexend_700">{trainee.firstname} {trainee.lastname}</Text> 
+                <Text style={styles.name} fontFamily="Lexend_600">{trainee.firstname} {trainee.lastname}</Text> 
                 <Text style={styles.text} fontFamily="Lexend_400">View profile and Contact Information</Text>
             </VStack>
             <RightChevron/>
@@ -261,7 +261,7 @@ const styles = StyleSheet.create ({
 },
 name: {
     color: '#212427',
-    fontSize: 28,
+    fontSize: 24,
     lineHeight: 30,
 },
 text: {
