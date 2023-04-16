@@ -1,4 +1,4 @@
-import { Box, FlatList, Text, VStack, Button } from "native-base"
+import { Text, VStack, Button, ScrollView, Box } from "native-base"
 import StudentList from "../ClassList/StudentList"
 import { useState, useEffect, useContext } from 'react'
 import { AuthContext } from '../../../context/AuthContext';
@@ -9,7 +9,6 @@ const CompletedAttendance = ({ route, students, navigation, checkboxHandler, all
   const { userToken } = useContext(AuthContext)
   const [presentList, setPresentList] = useState([]);
   const [absentList, setAbsentList] = useState([]);
-
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
@@ -49,32 +48,28 @@ const CompletedAttendance = ({ route, students, navigation, checkboxHandler, all
     
   }, [])
 
-
-  
-  
   return (
-    <VStack  height="100%" bgColor="#FFFFFF">
-    <Box>
-       <StudentList
-        present={presentList.length}
-        absent={absentList.length}
-        presentList={presentList}
-        absentList={absentList}
-       />
+    <VStack height="100%" bgColor="#FFFFFF" paddingX="18px" paddingTop="31px" justifyContent="space-between">
+      <ScrollView paddingX="2px" height="70%">
+        <StudentList
+          present={presentList.length}
+          absent={absentList.length}
+          presentList={presentList}
+          absentList={absentList}
+        />
+      </ScrollView>   
+      <Box bgColor="#FFFFFF" width="100%">
+    <Button
+      m="5"
+      bgColor="#404142"
+      onPress={() => {
+        navigation.navigate('Attendance Index', {
+          ready: Math.floor(Math.random() * 1000000)
+        });
+      }}
+    ><Text fontFamily="Lexend_600" fontSize="16" color="#ffffff">Done</Text></Button>
     </Box>
-     <Button
-     m="5"
-     bgColor="#404142"
-     onPress={() => {
-       navigation.navigate('Attendance Index', {
-        ready: Math.floor(Math.random() * 1000000)
-      });
-     }}
-   ><Text fontFamily="Lexend_600" fontSize="16" color="#ffffff">Done</Text></Button>
    </VStack>
-        
-
-
   )
 }
 

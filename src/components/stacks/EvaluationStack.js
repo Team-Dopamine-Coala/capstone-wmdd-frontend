@@ -41,6 +41,8 @@ const EvaluationStack = () => {
           headerTitleAlign: 'center',
           headerTransparent: true,
           headerTintColor: '#FDFDFD',
+          headerBackTitle: null,
+          headerBackTitleVisible: false,
           headerTitleStyle: {
             fontFamily: 'Lexend_700',
             fontSize: 20
@@ -55,6 +57,9 @@ const EvaluationStack = () => {
         options={({ route }) => ({
           title: '',
           headerBackTitle: '',
+          headerTintColor: '#667080',
+          headerBackTitle: null,
+          headerBackTitleVisible: false,
           studentsList: route.params.students,
           className: route.params.className
         })}
@@ -66,6 +71,9 @@ const EvaluationStack = () => {
           title: 'Add Feedback',
           headerTitleAlign: 'center',
           headerBackTitle: '',
+          headerTintColor: '#667080',
+          headerBackTitle: null,
+          headerBackTitleVisible: false,
           headerTitleStyle: {
             fontFamily: 'Lexend_500',
             fontSize: 20
@@ -82,6 +90,9 @@ const EvaluationStack = () => {
         options={({ route }) => ({
           title: '',
           headerBackTitle: '',
+          headerTintColor: '#667080',
+          headerBackTitle: null,
+          headerBackTitleVisible: false,
           headerTitleStyle: {
             fontFamily: 'Lexend_500',
             fontSize: 20

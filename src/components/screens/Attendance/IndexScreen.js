@@ -54,10 +54,10 @@ const IndexScreen = ({ navigation, route }) => {
        <WelcomeCard classNumber={classNumber} navigation={navigation}/>
       </VStack>
     <VStack  flex={1}  >
-       <Box  pt="2" height="100%" bgColor="#FDFDFD" borderTopLeftRadius={28} borderTopRightRadius={28}>
+       <Box height="100%" bgColor="#FDFDFD" borderTopLeftRadius={28} borderTopRightRadius={28}>
       <CalendarStrip   
         scrollable
-        style={{height: 130, paddingTop: 20, paddingBottom: 0, paddingHorizontal: 15}}
+        style={{height: 130, paddingTop: 24, paddingBottom: 0, paddingHorizontal: 20, fontFamily: 'Lexend_400'}}
         calendarHeaderStyle={{
           fontSize: 20,
           fontFamily: "Lexend_700",
@@ -65,40 +65,39 @@ const IndexScreen = ({ navigation, route }) => {
         }}
         selectedDate={dateSelected}
         onDateSelected={onDateClick}
-        minDate="2023-01-01"
-        maxDate="2023-12-31"
+        minDate="2023-04-01"
+        maxDate="2023-04-30"
         dayContainerStyle={{
           paddingBottom: 4
         }}
         dateNameStyle={{
-          marginBottom: 6,
+          marginBottom: 4,
           fontSize: 14,
           textTransform: 'capitalize',
           fontFamily: "Lexend_400",
         }}
         dateNumberStyle={{
-          paddingBottom: 4,
+          paddingBottom: 3,
           fontSize: 16,
           fontFamily: "Lexend_600"
         }}
         highlightDateNameStyle={{
           color: '#F4903F',
-          marginBottom: 6,
+          marginBottom: 4,
           fontSize: 14,
-          textTransform: 'capitalize'
+          textTransform: 'capitalize',
+          fontFamily: 'Lexend_400'
         }}
         highlightDateNumberStyle={{
           color: '#F4903F',
-          fontSize: 16
+          fontSize: 16,
+          paddingBottom: 1,
+          fontFamily: 'Lexend_600'
         }}
-        highlightDateNumberContainerStyle={{
-          // backgroundColor: '#40506A',
-          borderRadius: 40,
-          justifyContent: 'center',
-          alignItems: 'center',
-          alignContent: 'center',
-          minWidth: 25,
-          minHeight: 25
+        highlightDateContainerStyle={{
+          borderRadius: 0,
+          borderBottomColor: '#F4903F',
+          borderBottomWidth: 2
         }}
       />
       {isLoading ? <Loading /> : <ClassList classes={classes} navigation={navigation} dateSelected={dateSelected} ready={ready}/>}

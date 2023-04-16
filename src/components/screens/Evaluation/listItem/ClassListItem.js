@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react'
-import { Ionicons } from '@expo/vector-icons'
-import { Box, HStack, VStack, Text, Button, Heading, View, Icon } from 'native-base'
+import { Box, HStack, VStack, Text, Button, Heading, View } from 'native-base'
 import moment from 'moment'
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { getStudentsByClass } from '../../../../utils/queries'
 import AnimatedEntrance from 'react-native-animated-entrance';
+
+import Clock from '../../../svg/AttendanceIcons/Clock'
+import MapPin from '../../../svg/AttendanceIcons/MapPin'
+import RightArrow from '../../../svg/AttendanceIcons/RightArrow'
 
 const ClassListItem = ({ item, order, navigation, calendarDate }) => {
   const [total, setTotal] = useState(0)
@@ -59,13 +62,13 @@ const ClassListItem = ({ item, order, navigation, calendarDate }) => {
             <VStack space={1} mb={2} ml={1} pt={1}>
               <Heading fontSize={24} fontFamily="Lexend_600" fontWeight="400">{item.title}</Heading>
               <HStack alignItems="center" space={1}>
-                <Icon size={4} as={<Ionicons name='time' />} />
+                <Clock/>
                 <Text fontSize={16} fontFamily="Lexend_400" color="#737373">{moment(item.startTime).format('H:mm A')}</Text>
-                <Icon size={4} as={<Ionicons name='arrow-forward' />} />
+                <RightArrow/>
                 <Text fontSize={16} fontFamily="Lexend_400" color="#737373">{moment(item.endTime).format('H:mm A')}</Text>
               </HStack>
               <HStack alignItems="center" space={1}>
-                <Icon size={4} as={<Ionicons name='pin' />} />
+                <MapPin/>
                 <Text fontSize={16} fontFamily="Lexend_400" color="#737373">{item.location}</Text>
               </HStack>
             </VStack>

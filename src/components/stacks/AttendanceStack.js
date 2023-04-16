@@ -3,7 +3,6 @@ import AttendanceStudentList from "../screens/Attendance/Screens/AttendanceStude
 import CompletedAttendance from "../screens/Attendance/Screens/CompletedAttendance"
 import ViewAttendance from "../screens/Attendance/Screens/ViewAttendance"
 import { createStackNavigator, TransitionPresets } from "@react-navigation/stack"
-import HeaderImage from '../layout/HeaderImage'
 import { Text, Button} from "native-base";
 import { selectAllCheckbox } from "../screens/Attendance/Screens/AttendanceStudentList"
 
@@ -25,14 +24,18 @@ const AttendanceStack = () => {
         component={AttendanceStudentList}
         options={({ route }) => ({
           title: `${route.params.classTitle}`,
-          headerBackTitle: '',
+          headerTitleAlign: 'center',
+          headerTintColor: '#667080',
+          headerBackTitle: null,
+          headerBackTitleVisible: false,
           headerTitleAlign: 'center',
           headerTitleStyle: {
-            fontFamily: 'Lexend_700',
-            fontSize: 20
+            fontFamily: 'Lexend_500',
+            fontSize: 16,
+            color:'#000000'
           },
           headerRight: () => (
-            <Button bgColor= "#ffffff" onPress={selectAllCheckbox} ><Text color="#000000" fontFamily="Lexend_400" fontSize="16">Select All</Text></Button>
+            <Button bgColor= "#ffffff" onPress={selectAllCheckbox} ><Text color="#737373" fontFamily="Lexend_400" fontSize="14">Select All</Text></Button>
           )
         })}
       />
@@ -41,12 +44,19 @@ const AttendanceStack = () => {
         component={CompletedAttendance}
         options={({ route }) => ({
           title: `${route.params.classTitle}`,
-          headerBackTitle: '',
+          headerTitleAlign: 'center',
+          headerTintColor: '#667080',
+          headerBackTitle: null,
+          headerBackTitleVisible: false,
           headerTitleAlign: 'center',
           headerTitleStyle: {
-            fontFamily: 'Lexend_700',
-            fontSize: 20
-          }
+            fontFamily: 'Lexend_500',
+            fontSize: 16,
+            color:'#000000'
+          },
+          headerRight: () => (
+            <Text color="#000000" fontFamily="Lexend_400" fontSize="16" marginRight="16px">Edit</Text>
+          )
         })}
       />
         <Stack.Screen 
@@ -54,13 +64,15 @@ const AttendanceStack = () => {
       component={ViewAttendance}
       options={({ route }) => ({
         title: `${route.params.classTitle}`,
-        headerBackTitle: '',
         headerTitleAlign: 'center',
+        headerTintColor: '#667080',
+        headerBackTitle: null,
+        headerBackTitleVisible: false,
         headerTitleStyle: {
-          fontFamily: 'Lexend_700',
-          fontSize: 20
+          fontFamily: 'Lexend_500',
+          fontSize: 16,
+          color:'#000000'
         }
-        
       })}
       />
     </Stack.Navigator>
