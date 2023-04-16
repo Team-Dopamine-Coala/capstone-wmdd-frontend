@@ -61,25 +61,31 @@ const IndexScreen = ({ navigation }) => {
           paddingBottom: 4
         }}
         dateNameStyle={{
-          marginBottom: 6,
+          marginBottom: 4,
           fontSize: 14,
           textTransform: 'capitalize',
           fontFamily: 'Lexend_400'
         }}
         dateNumberStyle={{
-          paddingBottom: 4,
+          paddingBottom: 3,
           fontSize: 16,
           fontFamily: 'Lexend_500'
         }}
+        highlightDateContainerStyle={{
+          borderRadius: 0,
+          borderBottomColor: '#F4903F',
+          borderBottomWidth: 2
+        }}
         highlightDateNameStyle={{
           color: '#F4903F',
-          marginBottom: 6,
+          marginBottom: 4,
           fontSize: 14,
           textTransform: 'capitalize',
           fontFamily: 'Lexend_400'
         }}
         highlightDateNumberStyle={{
           color: '#F4903F',
+          paddingBottom: 1,
           fontSize: 16,
           fontFamily: 'Lexend_500'
         }}
