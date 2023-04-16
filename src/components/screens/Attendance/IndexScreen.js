@@ -94,14 +94,10 @@ const IndexScreen = ({ navigation, route }) => {
           paddingBottom: 1,
           fontFamily: 'Lexend_600'
         }}
-        highlightDateNumberContainerStyle={{
-          // backgroundColor: '#40506A',
-          borderRadius: 40,
-          justifyContent: 'center',
-          alignItems: 'center',
-          alignContent: 'center',
-          minWidth: 25,
-          minHeight: 25
+        highlightDateContainerStyle={{
+          borderRadius: 0,
+          borderBottomColor: '#F4903F',
+          borderBottomWidth: 2
         }}
       />
       {isLoading ? <Loading /> : <ClassList classes={classes} navigation={navigation} dateSelected={dateSelected} ready={ready}/>}

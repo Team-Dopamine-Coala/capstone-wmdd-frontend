@@ -133,7 +133,8 @@ const updateClassAttendance = async () => {
                           mt={3}
                           value={item._id} 
                           key={item._id} 
-                          colorScheme="orange" 
+                          colorScheme="orange"
+                          borderRadius="50%" 
                           accessibilityLabel="This is a checkbox of a student" 
                 >
                   {`${item.firstname} ${item.lastname}`}
