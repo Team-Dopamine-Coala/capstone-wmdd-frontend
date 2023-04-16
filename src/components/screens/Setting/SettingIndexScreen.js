@@ -1,11 +1,16 @@
-import {useContext} from 'react'
+import { useContext } from 'react'
 import { useRoute } from '@react-navigation/native';
-import {Box,Text, VStack, View, Image, Icon, HStack} from 'native-base'
+import { Box,Text, VStack, View, Image, HStack } from 'native-base'
 import { SafeAreaView, TouchableOpacity, StyleSheet  } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { AuthContext } from '../../context/AuthContext'
-import { Ionicons } from '@expo/vector-icons'
-import SettingMyClass from '../../svg/SettingMyClass'
+
+import Class from '../../svg/SettingIcons/Class'
+import Notification from '../../svg/SettingIcons/Notification'
+import QuestionMark from '../../svg/SettingIcons/QuestionMark'
+import Information from '../../svg/SettingIcons/Information'
+import SignOut from '../../svg/SettingIcons/SignOut'
+import RightChevron from '../../svg/SettingIcons/RightChevron'
 
 const SettingIndexScreen = ({navigation,route}) => {
 
@@ -15,14 +20,14 @@ const SettingIndexScreen = ({navigation,route}) => {
   return (
     <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}>  
       <SafeAreaView>
-          <View style={styles.background}>
-            <Box style={styles.imgbox}>
-              <Image  style={{ width: 82, height: 82, borderRadius: 149, borderColor: "#FDFDFD", borderWidth: 3 }}
-                      source={{ uri: `${userPhoto}`}}
-                      resizeMode='contain'
-                      alt='user img'
-                      />
-            </Box>      
+        <View style={styles.background}>
+          <Box style={styles.imgbox}>
+            <Image  style={{ width: 82, height: 82, borderRadius: 149, borderColor: "#FDFDFD", borderWidth: 3 }}
+                  source={{ uri: `${userPhoto}`}}
+                  resizeMode='contain'
+                  alt='user img'
+          />
+          </Box>      
           <Box style={styles.userbox}>
             <Text style={styles.username} fontFamily="Lexend_600">{userFirstname} {userLastname}</Text>
             <Text style={styles.useremail} fontFamily="Lexend_400">{userEmail}</Text>
@@ -33,58 +38,58 @@ const SettingIndexScreen = ({navigation,route}) => {
           >
             <HStack style={styles.sectionbox} shadow={5}>
               <HStack style={styles.lefticontitle}>
-                <SettingMyClass />
+                <Class />
                 <VStack style={styles.title}>
-                  <Text fontFamily="Lexend_600">My Classes</Text>
-                  <Text fontFamily="Lexend_300">Find your classes' details here</Text>   
+                  <Text fontSize={16} fontFamily="Lexend_600">My Classes</Text>
+                  <Text fontSize={14} fontFamily="Lexend_300">Find your classes' details here</Text>   
                 </VStack>                                    
               </HStack>
-              <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.iconarrow}/>
+              <RightChevron />
             </HStack>
           </TouchableOpacity > 
               
           <HStack style={styles.sectionbox} shadow={5}>
-              <HStack style={styles.lefticontitle}>
-                <Icon size={4} as={<Ionicons name='notifications-outline' />} style={styles.iconleft}/>
-                <VStack style={styles.title}>
-                  <Text fontFamily="Lexend_600">Notification</Text>
-                  <Text fontFamily="Lexend_300">Make sure you don't miss anything!</Text>              
-                </VStack>
-              </HStack>
-              <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.iconarrow}/>  
+            <HStack style={styles.lefticontitle}>
+              <Notification />
+              <VStack style={styles.title}>
+                <Text fontSize={16} fontFamily="Lexend_600">Notification</Text>
+                <Text fontSize={14} fontFamily="Lexend_300">Make sure you don't miss anything!</Text>              
+              </VStack>
+            </HStack>
+            <RightChevron />
           </HStack>
 
           <HStack style={styles.sectionbox} shadow={5}>
-              <HStack style={styles.lefticontitle}>
-                <Icon size={4} as={<Ionicons name='help-circle-outline' />} style={styles.iconleft}/>
-                <VStack style={styles.title}>
-                  <Text fontFamily="Lexend_600">Help</Text>
-                  <Text fontFamily="Lexend_300">Contact our help centre</Text> 
-                </VStack>
-              </HStack>
-              <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.iconarrow}/>               
+            <HStack style={styles.lefticontitle}>
+              <QuestionMark />
+              <VStack style={styles.title}>
+                <Text fontSize={16} fontFamily="Lexend_600">Help</Text>
+                <Text fontSize={14} fontFamily="Lexend_300">Contact our help centre</Text> 
+              </VStack>
+            </HStack>
+            <RightChevron />
           </HStack>
 
           <VStack style={styles.sectionbox} shadow={5}>
-              <HStack style={styles.lefticontitle}>
-                <Icon size={4} as={<Ionicons name='information-circle-outline' />} style={styles.iconleft}/>
-                <VStack style={styles.title}>
-                  <Text fontFamily="Lexend_600">About Us</Text>
-                  <Text fontFamily="Lexend_300">More about Coala and our team</Text>
-                </VStack>
-              </HStack>
-              <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.iconarrow}/>
+            <HStack style={styles.lefticontitle}>
+              <Information />
+              <VStack style={styles.title}>
+                <Text fontSize={16} fontFamily="Lexend_600">About Us</Text>
+                <Text fontSize={14} fontFamily="Lexend_300">More about Coala and our team</Text>
+              </VStack>
+            </HStack>
+            <RightChevron />
           </VStack>
           
-            <TouchableOpacity onPress={logout}>
-              <HStack style={styles.sectionbox} shadow={5}>
-                <HStack style={styles.lefticontitle}>
-                  <Icon size={4} as={<Ionicons name='log-out-outline' />} style={styles.iconleft}/>
-                  <Text style={styles.title} fontFamily="Lexend_600">Log out</Text>            
-                </HStack>
-                <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.iconarrow}/>
-              </HStack>                
-            </TouchableOpacity >                           
+          <TouchableOpacity onPress={logout}>
+            <HStack style={styles.sectionbox} shadow={5}>
+              <HStack style={styles.lefticontitle}>
+                <SignOut />
+                <Text fontSize={16} style={styles.title} fontFamily="Lexend_600">Log out</Text>            
+              </HStack>
+              <RightChevron />
+            </HStack>                
+          </TouchableOpacity >                           
         </View> 
       </SafeAreaView>
     </LinearGradient>
@@ -122,11 +127,11 @@ const styles = StyleSheet.create ({
       lineHeight: 20,
     },
     sectionbox: {
-       backgroundColor: '#FDFDFD',
-       borderRadius: 12,
-       marginHorizontal: 2,
-       marginBottom: 20,
-       paddingHorizontal: 16,
+      backgroundColor: '#FDFDFD',
+      borderRadius: 12,
+      marginHorizontal: 2,
+      marginBottom: 20,
+      paddingHorizontal: 16,
       paddingVertical: 14,
       flexDirection: 'row',
       justifyContent: 'space-between',
@@ -136,22 +141,8 @@ const styles = StyleSheet.create ({
       flexDirection: 'row',
       alignItems:'center',
     },
-    iconleft:{
-      width: 32,
-      height: 32,
-      fontSize: 27,
-      color: '#667080',
-      lineHeight: 32,
-    },
     title:{
       marginLeft: 16,
-    },
-    iconarrow:{
-      width: 24,
-      height: 24,
-      fontSize: 24,
-      color: '#667080',
-      lineHeight: 24,
     }
   })
 export default SettingIndexScreen

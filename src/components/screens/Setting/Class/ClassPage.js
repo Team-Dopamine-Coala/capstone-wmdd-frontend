@@ -1,11 +1,15 @@
-import { View, Box, Text, ScrollView, VStack, Heading, Icon, HStack } from 'native-base'
+import { View, Box, Text, ScrollView, VStack, Heading, HStack } from 'native-base'
 import { TouchableOpacity, StyleSheet} from "react-native"
 import { useEffect, useState } from 'react'
 import { useRoute } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Loading from '../../../layout/Loading';
-import { Ionicons } from '@expo/vector-icons'
 import moment from 'moment'
+
+import MapPin from '../../../svg/SettingIcons/MapPin'
+import Clock from '../../../svg/SettingIcons/Clock'
+import RightArrow from '../../../svg/SettingIcons/RightArrow'
+import RightChevron from '../../../svg/SettingIcons/RightChevron'
 
 import StudentsSearch from "../../Students/myStudents/StudentsSearch"
 import { getClassesOfCoach } from '../../../../utils/queries'
@@ -27,13 +31,12 @@ const ClassPage = ({navigation, route}) => {
   useEffect(() => {
     getClassesOfCoach(userID, userToken)
     .then((data) => {
-      data.map((item) => {
-        item.classDay.map((week) => {
+      data.map((item, l) => {
+        item.classDay.map((week, s) => {
           switchWeek(week, item)
         })
       })
       storeWeek(Mon,Tue,Wed,Thu,Fri,Sat,Sun)
-      // console.log('中身',Mon)
       setIsLoading(true)
     })  
   },[])
@@ -69,7 +72,6 @@ const ClassPage = ({navigation, route}) => {
   }
   
   const storeWeek = (Mon,Tue,Wed,Thu,Fri,Sat,Sun) => {
-    
       setWeeklyLists([
       {id: 1,title: "Monday",class: Mon},
       {id: 2,title: "Tuesday",class: Tue},
@@ -90,42 +92,42 @@ const ClassPage = ({navigation, route}) => {
         <View style={styles.background}>
           <StudentsSearch/>
           <ScrollView>
-          { !weeklyLists ? <Loading/> : 
-            <View style={styles.container}>
-              {weeklyLists.map((week,j) => (
-               <>
-               <Text key={j} fontFamily="Lexend_500"  style={styles.week}>{week.title}</Text>
-                {week.class.map((item, i) => (
-              <TouchableOpacity key={i} onPress={() => { navigation.navigate('Detailers',{item:item, weektitle:week.title})}}>  
-                <HStack alignItems="center" justifyContent="space-between" mb={14}>
-                  <Box  style={styles.vivid} bg={item.color} width="100%" borderRadius={12} shadow={9} position="absolute" top="5%"></Box>
-                  <Box  style={styles.maincard} bg={item.cardColor} flex={1} height="100%" borderRadius={12} shadow={5} >
-                    <HStack alignItems="center" justifyContent="space-between">    
-                      <VStack style={styles.contents}>
-                        <Heading style={styles.classtitle} fontSize={24} fontFamily="Lexend_600" fontWeight="400">{item.title}</Heading>
-                        <HStack alignItems="center" space={1} style={styles.classtitle}>
-                          <Icon size={4} as={<Ionicons name='time-outline-outline' />} style={styles.icon}style={styles.icon}/>
-                          <Text fontSize={16} fontFamily="Lexend_400" lineHeight={24} color="#737373" >{moment(item.startTime).format('H:mm A')}</Text>
-                          <Icon size={4} as={<Ionicons name='arrow-forward' />} style={styles.icon}style={styles.icon}/>
-                          <Text fontSize={16} fontFamily="Lexend_400" lineHeight={24} color="#737373" >{moment(item.endTime).format('H:mm A')}</Text>
+            { !weeklyLists ? <Loading/> : 
+              <View style={styles.container}>
+                {weeklyLists.map((week,j) => (
+                  <>
+                    <Text key={j} fontFamily="Lexend_500"  style={styles.week}>{week.title}</Text>
+                    {week.class.map((item, i) => (
+                      <TouchableOpacity key={i} onPress={() => { navigation.navigate('Detailers',{item:item, weektitle:week.title})}}>  
+                        <HStack alignItems="center" justifyContent="space-between" mb={14}>
+                          <Box  style={styles.vivid} bg={item.color} width="100%" borderRadius={12} shadow={9} position="absolute" top="5%"></Box>
+                          <Box  style={styles.maincard} bg={item.cardColor} flex={1} height="100%" borderRadius={12} shadow={5} >
+                            <HStack alignItems="center" justifyContent="space-between">    
+                              <VStack style={styles.contents}>
+                                <Heading style={styles.classtitle} fontSize={24} fontFamily="Lexend_600" fontWeight="400">{item.title}</Heading>
+                                <HStack alignItems="center" space={1} style={styles.classtitle}>
+                                  <Clock/>
+                                  <Text fontSize={16} fontFamily="Lexend_400" lineHeight={24} color="#737373" >{moment(item.startTime).format('H:mm A')}</Text>
+                                  <RightArrow/>
+                                  <Text fontSize={16} fontFamily="Lexend_400" lineHeight={24} color="#737373" >{moment(item.endTime).format('H:mm A')}</Text>
+                                </HStack>
+                                <HStack alignItems="center" space={1}>
+                                  <MapPin/>
+                                  <Text fontSize={16} fontFamily="Lexend_400" color="#737373">{item.location}</Text>
+                                </HStack>
+                              </VStack>
+                              <RightChevron/>
+                            </HStack>  
+                          </Box>
                         </HStack>
-                        <HStack alignItems="center" space={1}>
-                          <Icon size={4} as={<Ionicons name='location-outline' />} style={styles.icon}/>
-                          <Text fontSize={16} fontFamily="Lexend_400" color="#737373">{item.location}</Text>
-                        </HStack>
-                      </VStack>
-                    <Icon size={4} as={<Ionicons name='chevron-forward-outline' />} style={styles.iconarrow}/>
-                    </HStack>  
-                  </Box>
-                </HStack>
-              </TouchableOpacity>   
-                ))} 
-              </>
-              ))}
-            </View>
-          } 
+                      </TouchableOpacity>   
+                    ))} 
+                  </>
+                ))}
+              </View>
+            } 
           </ScrollView>
-         </View>
+        </View>
     </LinearGradient>
   )
 }
@@ -140,8 +142,8 @@ const styles = StyleSheet.create ({
     paddingHorizontal: 20,
     borderTopRightRadius:28,
     borderTopLeftRadius:28,
-    marginTop: 50,
     height: '100%',
+    marginTop: 110,
   },
   week:{
     color:"#212427",
@@ -163,18 +165,6 @@ const styles = StyleSheet.create ({
   },
   title: {
    textAlign: 'center',
-  },
-  iconarrow:{
-    width: 24,
-    height: 24,
-    fontSize: 24,
-    lineHeight: 24,
-  },
-  icon:{
-    width: 24,
-    height: 24,
-    fontSize: 24,
-    lineHeight: 24,
   }
 })
 export default ClassPage
