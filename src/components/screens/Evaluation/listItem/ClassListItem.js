@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { Box, HStack, VStack, Text, Button, Heading, View, Icon } from 'native-base'
 import moment from 'moment'
-import ProgressCircle from 'react-native-progress-circle'
+import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { getStudentsByClass } from '../../../../utils/queries'
 
 const ClassListItem = ({ item, navigation, calendarDate }) => {
   const [total, setTotal] = useState(0)
   const [pending, setPending] = useState(0)
   const [completed, setCompleted] = useState(0)
+  const [percentage, setPercentage] = useState(0)
 
   useEffect(() => {
     getStudentsByClass(item._id).then(
@@ -16,6 +17,7 @@ const ClassListItem = ({ item, navigation, calendarDate }) => {
         setTotal(data?.length)
         setPending(data?.filter(item => item.evaluated == 0).length)
         setCompleted(data?.filter(item => item.evaluated == 1).length)
+        setPercentage(data?.filter(item => item.evaluated == 1).length / data?.length * 100)
       },
       error => {
         throw error
@@ -32,16 +34,18 @@ const ClassListItem = ({ item, navigation, calendarDate }) => {
         <VStack>
           <HStack borderBottomColor="#737373" borderBottomWidth={1} mb={3}>
             <Box pr={3} pb={3}>
-              <ProgressCircle
-                  percent={completed / total * 100}
-                  radius={50}
-                  borderWidth={10}
-                  color={item.color}
-                  shadowColor="#D0CFD4"
-                  bgColor={item.cardColor}
-              >
-                <Text style={{ fontSize: 20, fontFamily: 'Lexend_700' }}>{completed}/{total}</Text>
-              </ProgressCircle>
+              <AnimatedCircularProgress
+                size={90}
+                width={10}
+                fill={percentage > 0 ? percentage : 0}
+                tintColor={item.color}
+                backgroundColor="#D0CFD4">
+                {
+                  (fill) => (
+                    <Text style={{ fontSize: 20, fontFamily: 'Lexend_700' }}>{completed}/{total}</Text>
+                  )
+                }
+              </AnimatedCircularProgress>
             </Box>
             <VStack space={1} mb={2} ml={1} pt={1}>
               <Heading fontSize={24} fontFamily="Lexend_600" fontWeight="400">{item.title}</Heading>
