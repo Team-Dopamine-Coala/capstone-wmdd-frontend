@@ -151,7 +151,7 @@ const IndexScreen = ({ navigation }) => {
         <Dialog.Button label="Send"  onPress={handleSend} />
       </Dialog.Container>
 
-      <Dialog.Container visible={isSentVisible} contentStyle={{ minWidth: 120, height: 'auto', padding: 0, alignItems: 'center', boxShadow: 0 }}>
+      <Dialog.Container visible={isSentVisible} contentStyle={{ minWidth: 120, width: 150, height: 'auto', padding: 0, alignItems: 'center', boxShadow: 0 }}>
         <Dialog.Description>
           <View w="100%" justifyContent="center" alignItems="center">
           <VStack alignItems="center">
