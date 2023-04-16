@@ -27,9 +27,7 @@ const IndexScreen = ({ navigation }) => {
   const [isDialogVisible, setIsDialogVisible] = useState(false)
   const [isSentVisible, setIsSentVisible] = useState(false)
   const [isSending, setIsSending] = useState(true)
-  const [isSheetOpen, setIsSheetOpen] = useState(false)
 
-  const panelRef = useRef()
   const RBSheetRef = useRef()
 
   useEffect(() => {
@@ -73,7 +71,7 @@ const IndexScreen = ({ navigation }) => {
 
     setTimeout(() => {
       setIsDialogVisible(true)
-    }, 700)
+    }, 500)
   }
 
   const handleSend = () => {
@@ -93,6 +91,9 @@ const IndexScreen = ({ navigation }) => {
 
   const handleCancel = () => {
     setIsDialogVisible(false)
+    setTimeout(() => {
+      RBSheetRef.current?.open()
+    }, 500)
   }
 
   return (
