@@ -31,8 +31,8 @@ const ClassPage = ({navigation, route}) => {
   useEffect(() => {
     getClassesOfCoach(userID, userToken)
     .then((data) => {
-      data.map((item) => {
-        item.classDay.map((week) => {
+      data.map((item, l) => {
+        item.classDay.map((week, s) => {
           switchWeek(week, item)
         })
       })
