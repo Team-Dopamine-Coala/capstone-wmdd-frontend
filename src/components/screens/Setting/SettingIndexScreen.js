@@ -1,6 +1,6 @@
-import {useContext} from 'react'
+import { useContext } from 'react'
 import { useRoute } from '@react-navigation/native';
-import {Box,Text, VStack, View, Image, HStack} from 'native-base'
+import { Box,Text, VStack, View, Image, HStack } from 'native-base'
 import { SafeAreaView, TouchableOpacity, StyleSheet  } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { AuthContext } from '../../context/AuthContext'
@@ -20,14 +20,14 @@ const SettingIndexScreen = ({navigation,route}) => {
   return (
     <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}>  
       <SafeAreaView>
-          <View style={styles.background}>
-            <Box style={styles.imgbox}>
-              <Image  style={{ width: 82, height: 82, borderRadius: 149, borderColor: "#FDFDFD", borderWidth: 3 }}
-                      source={{ uri: `${userPhoto}`}}
-                      resizeMode='contain'
-                      alt='user img'
-                      />
-            </Box>      
+        <View style={styles.background}>
+          <Box style={styles.imgbox}>
+            <Image  style={{ width: 82, height: 82, borderRadius: 149, borderColor: "#FDFDFD", borderWidth: 3 }}
+                  source={{ uri: `${userPhoto}`}}
+                  resizeMode='contain'
+                  alt='user img'
+          />
+          </Box>      
           <Box style={styles.userbox}>
             <Text style={styles.username} fontFamily="Lexend_600">{userFirstname} {userLastname}</Text>
             <Text style={styles.useremail} fontFamily="Lexend_400">{userEmail}</Text>
@@ -44,52 +44,52 @@ const SettingIndexScreen = ({navigation,route}) => {
                   <Text fontSize={14} fontFamily="Lexend_300">Find your classes' details here</Text>   
                 </VStack>                                    
               </HStack>
-              <RightChevron/>
+              <RightChevron />
             </HStack>
           </TouchableOpacity > 
               
           <HStack style={styles.sectionbox} shadow={5}>
-              <HStack style={styles.lefticontitle}>
-                <Notification />
-                <VStack style={styles.title}>
-                  <Text fontSize={16} fontFamily="Lexend_600">Notification</Text>
-                  <Text fontSize={14} fontFamily="Lexend_300">Make sure you don't miss anything!</Text>              
-                </VStack>
-              </HStack>
-              <RightChevron/>
+            <HStack style={styles.lefticontitle}>
+              <Notification />
+              <VStack style={styles.title}>
+                <Text fontSize={16} fontFamily="Lexend_600">Notification</Text>
+                <Text fontSize={14} fontFamily="Lexend_300">Make sure you don't miss anything!</Text>              
+              </VStack>
+            </HStack>
+            <RightChevron />
           </HStack>
 
           <HStack style={styles.sectionbox} shadow={5}>
-              <HStack style={styles.lefticontitle}>
-                <QuestionMark/>
-                <VStack style={styles.title}>
-                  <Text fontSize={16} fontFamily="Lexend_600">Help</Text>
-                  <Text fontSize={14} fontFamily="Lexend_300">Contact our help centre</Text> 
-                </VStack>
-              </HStack>
-              <RightChevron/>
+            <HStack style={styles.lefticontitle}>
+              <QuestionMark />
+              <VStack style={styles.title}>
+                <Text fontSize={16} fontFamily="Lexend_600">Help</Text>
+                <Text fontSize={14} fontFamily="Lexend_300">Contact our help centre</Text> 
+              </VStack>
+            </HStack>
+            <RightChevron />
           </HStack>
 
           <VStack style={styles.sectionbox} shadow={5}>
-              <HStack style={styles.lefticontitle}>
-                <Information/>
-                <VStack style={styles.title}>
-                  <Text fontSize={16} fontFamily="Lexend_600">About Us</Text>
-                  <Text fontSize={14} fontFamily="Lexend_300">More about Coala and our team</Text>
-                </VStack>
-              </HStack>
-              <RightChevron/>
+            <HStack style={styles.lefticontitle}>
+              <Information />
+              <VStack style={styles.title}>
+                <Text fontSize={16} fontFamily="Lexend_600">About Us</Text>
+                <Text fontSize={14} fontFamily="Lexend_300">More about Coala and our team</Text>
+              </VStack>
+            </HStack>
+            <RightChevron />
           </VStack>
           
-            <TouchableOpacity onPress={logout}>
-              <HStack style={styles.sectionbox} shadow={5}>
-                <HStack style={styles.lefticontitle}>
-                  <SignOut/>
-                  <Text fontSize={16} style={styles.title} fontFamily="Lexend_600">Log out</Text>            
-                </HStack>
-                <RightChevron/>
-              </HStack>                
-            </TouchableOpacity >                           
+          <TouchableOpacity onPress={logout}>
+            <HStack style={styles.sectionbox} shadow={5}>
+              <HStack style={styles.lefticontitle}>
+                <SignOut />
+                <Text fontSize={16} style={styles.title} fontFamily="Lexend_600">Log out</Text>            
+              </HStack>
+              <RightChevron />
+            </HStack>                
+          </TouchableOpacity >                           
         </View> 
       </SafeAreaView>
     </LinearGradient>
@@ -127,11 +127,11 @@ const styles = StyleSheet.create ({
       lineHeight: 20,
     },
     sectionbox: {
-       backgroundColor: '#FDFDFD',
-       borderRadius: 12,
-       marginHorizontal: 2,
-       marginBottom: 20,
-       paddingHorizontal: 16,
+      backgroundColor: '#FDFDFD',
+      borderRadius: 12,
+      marginHorizontal: 2,
+      marginBottom: 20,
+      paddingHorizontal: 16,
       paddingVertical: 14,
       flexDirection: 'row',
       justifyContent: 'space-between',
