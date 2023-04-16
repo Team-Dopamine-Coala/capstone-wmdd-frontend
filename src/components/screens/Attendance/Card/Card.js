@@ -12,7 +12,6 @@ const Card = ({ title, startTime, endTime, location, id, navigation, dateSelecte
   const [absent, setAbsent] =  useState("-")
   useEffect(() => {
     // TODO: fetch attendance by id
-    console.log()
     let present = 0
     let absent = 0
     if (attendances) {

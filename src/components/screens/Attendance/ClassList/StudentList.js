@@ -10,27 +10,29 @@ const StudentList = ({ present, absent, presentList, absentList }) => {
     <VStack >
         <Text mb="3" fontFamily="Lexend_700" fontSize="16">{`Present (${present})`}</Text>
         <Box mb={7} pl="16px" bgColor="#FDFDFD"  borderRadius="12px" shadow={5} >
-          {presentList.map((item, i) => (<StudentCard item={item} index={i} arraylength={presentList.length}/>))}
-          {/* <FlatList 
-          //  data={presentList}
-          //  renderItem={({ item }) => (
-          //     <StudentCard 
-          //       item={item}
-          //       />
-          //       )}
-          //     /> */}
+          <FlatList 
+            data={presentList}
+            renderItem={({ item, i }) => (
+              <StudentCard 
+                item={item}
+                index={i}
+                arraylength={presentList.length}
+              />
+            )}
+          />
         </Box>
         <Text  mb="3" fontFamily="Lexend_700" fontSize="16">{`Absent (${newAbsent})`}</Text>
         <Box mb={7} pl="16px" bgColor="#FDFDFD"  borderRadius="12px" shadow={5} > 
-          {absentList.map((item, i) => <StudentCard item={item} index={i} arraylength={absentList.length}/>)}
-          {/* <FlatList 
-           data={absentList}
-           renderItem={({ item }) => (
+          <FlatList 
+            data={absentList}
+            renderItem={({ item, i }) => (
               <StudentCard
                 item={item}
-                />
-                )}
-          /> */}
+                index={i} 
+                arraylength={absentList.length}
+              />
+            )}
+          />
         </Box>
     </VStack>
   )
