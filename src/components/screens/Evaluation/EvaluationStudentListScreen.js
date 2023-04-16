@@ -28,7 +28,7 @@ const EvaluationStudentListScreen = ({ navigation, route }) => {
 
   return (
     <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}>
-      <VStack flex={1} mt="60px" p={4} pb={2} bgColor="#fdfdfd" borderTopLeftRadius={20} borderTopRightRadius={20}>
+      <VStack flex={1} mt="110px" p={4} pb={2} bgColor="#fdfdfd" borderTopLeftRadius={20} borderTopRightRadius={20}>
 
         {isLoading ? <Loading /> : <StudentList students={students} navigation={navigation} className={route.params.className} calendarDate={calendarDate} />}
 
