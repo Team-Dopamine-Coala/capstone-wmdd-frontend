@@ -3,6 +3,10 @@ import { Ionicons } from "@expo/vector-icons"
 import { useEffect, useState } from "react";
 import moment from 'moment';
 
+import Clock from "../../../svg/AttendanceIcons/Clock";
+import MapPin from "../../../svg/AttendanceIcons/MapPin";
+import RightArrow from "../../../svg/SettingIcons/RightArrow";
+
 const Card = ({ title, startTime, endTime, location, id, navigation, dateSelected, completed, attendances, color, cardColor }) => {
   const [present, setPresent] =  useState("-")
   const [absent, setAbsent] =  useState("-")
@@ -35,32 +39,39 @@ const Card = ({ title, startTime, endTime, location, id, navigation, dateSelecte
    <View m={4} my={4} >
           <Box  mb={3} p={5} bg={color} width="100%" height="90%" borderRadius="md" shadow={9} position="absolute" top="5%"></Box>
           <Box ml={4} p={3} bg={cardColor} flex={1} height="100%" borderRadius="md" shadow={5}>
-            <HStack borderBottomWidth="1" borderBottomColor="#737373" mb={3} justifyContent="space-between">      
-              <VStack pr={3} pb={3}>
-                  <Heading fontSize="24" fontFamily="Lexend_600">{title}</Heading>
-                  <HStack alignItems="center" space={1}>
-                  <Icon size={5} as={<Ionicons name='time' />} />
-                  <Text  fontSize="16" color="#737373" fontFamily="Lexend_400">{moment(startTime).format('H:mm A')} <Icon size={4} as={<Ionicons name='arrow-forward' />} /> {moment(endTime).format('H:mm A')}</Text>
-                  </HStack>
-                  <HStack alignItems="center" space={1}>
-                  <Icon size={5} as={<Ionicons name='location-outline' />} />
+            <HStack borderBottomWidth="1" borderBottomColor="#737373" mb={3} justifyContent="space-between" alignItems="center">      
+              <VStack pr={3} pb={3} space={1}>
+                <Heading fontSize="24" fontFamily="Lexend_600" fontWeight="400">{title}</Heading>
+                <HStack alignItems="center" space={1}>
+                  <Clock/>
+                  <Text  fontSize="16" color="#737373" fontFamily="Lexend_400">
+                    {moment(startTime).format('H:mm A')}
+                  </Text>   
+                  <RightArrow/>
+                  <Text  fontSize="16" color="#737373" fontFamily="Lexend_400">  
+                    {moment(endTime).format('H:mm A')}
+                  </Text>
+                </HStack>
+                <HStack alignItems="center" space={1}>
+                  <MapPin/>
                   <Text fontSize="16" color="#737373" fontFamily="Lexend_400">{location}</Text>
-                  </HStack>
-                
+                </HStack>
               </VStack>
-                  <Icon ml="2" size="70" color={ completed ? color : "gray.200"} as={<Ionicons name="checkmark-circle-outline"/>} />         
+              <Icon size="88" color={ completed ? color : "gray.200"} as={<Ionicons name="checkmark-circle-outline"/>} />         
             </HStack>
+
             <HStack space={1} pt={2} justifyContent="space-between">
-               <VStack >
+               <VStack flex={1} alignItems="center">
                 <Text fontSize="20" color="#212427" fontFamily="Lexend_700">{present}</Text>
                 <Text fontSize="14" color="#737373" fontFamily="Lexend_400">Present</Text>
                 </VStack >
-                <VStack >
+                <VStack flex={1} alignItems="center">
                 <Text fontSize="20" color="#212427" fontFamily="Lexend_700">{absent}</Text>
                 <Text fontSize="14" color="#737373" fontFamily="Lexend_400">Absent</Text>
                 </VStack >
                 <Button
-                  width={100}
+                  flex={1}
+                  ml={3}
                   dateSelected = {dateSelected}
                   borderRadius="61"
                   variant="outline"
