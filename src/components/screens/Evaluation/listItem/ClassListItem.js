@@ -4,8 +4,9 @@ import { Box, HStack, VStack, Text, Button, Heading, View, Icon } from 'native-b
 import moment from 'moment'
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { getStudentsByClass } from '../../../../utils/queries'
+import AnimatedEntrance from 'react-native-animated-entrance';
 
-const ClassListItem = ({ item, navigation, calendarDate }) => {
+const ClassListItem = ({ item, order, navigation, calendarDate }) => {
   const [total, setTotal] = useState(0)
   const [pending, setPending] = useState(0)
   const [completed, setCompleted] = useState(0)
@@ -28,6 +29,13 @@ const ClassListItem = ({ item, navigation, calendarDate }) => {
   }, [item])
 
   return (
+    <AnimatedEntrance
+      axis={AnimatedEntrance.axis.horizontal}
+      offset={20}
+      duration={600}
+      delay={300}
+      order={order + 1}
+    >
     <View mx={4} my={4}>
       <Box  mb={3} p={5} bg={item.color} width="100%" height="90%" borderRadius="md" shadow={9} position="absolute" top="5%"></Box>
       <Box ml={4} p={3} bg={item.cardColor} flex={1} height="100%" borderRadius="md" shadow={5}>
@@ -38,6 +46,7 @@ const ClassListItem = ({ item, navigation, calendarDate }) => {
                 size={90}
                 width={10}
                 fill={percentage}
+                duration={1000}
                 tintColor={item.color}
                 backgroundColor="#D0CFD4">
                 {
@@ -89,6 +98,7 @@ const ClassListItem = ({ item, navigation, calendarDate }) => {
         </VStack>
       </Box>
     </View>
+    </AnimatedEntrance>
   )
 }
 
