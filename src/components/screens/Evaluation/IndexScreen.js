@@ -20,8 +20,6 @@ const IndexScreen = ({ navigation }) => {
   const isFocused = useIsFocused()
 
   useEffect(() => {
-    console.log(dateSelected)
-
     setIsLoading(true)
     getClassesOfCoach('63fcf0bd354e8150f45dd4d2', userToken).then(
       data => {
@@ -55,11 +53,10 @@ const IndexScreen = ({ navigation }) => {
           fontSize: 20,
           fontFamily: 'Lexend_700',
         }}
-        startingDate={moment().subtract(3, 'days')}
-        selectedDate={moment()}
+        selectedDate={new Date()}
         onDateSelected={onDateClick}
-        minDate="2023-03-01"
-        maxDate="2023-04-3"
+        minDate="2023-04-01"
+        maxDate="2023-04-30"
         dayContainerStyle={{
           paddingBottom: 4
         }}
@@ -88,7 +85,7 @@ const IndexScreen = ({ navigation }) => {
         }}
       />
       
-      {isLoading ? <Loading /> : <ClassList classes={classes} navigation={navigation} />}
+      {isLoading ? <Loading /> : <ClassList classes={classes.filter((current) => moment(current.startTime).format('YYYY-MM-DD') == moment(dateSelected).format('YYYY-MM-DD')).sort((a, b) => a.startTime > b.startTime)} navigation={navigation} calendarDate={moment(dateSelected).format('YYYY-DD-MM')} />}
     </Box>
 
     </VStack>

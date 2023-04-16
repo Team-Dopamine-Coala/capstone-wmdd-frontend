@@ -25,7 +25,7 @@ const CurriculumScreen = ({ navigation }) => {
 
   return (
     <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}>
-      <VStack mt="60px" flex={1}>
+      <VStack mt="100px" flex={1}>
         <Box bgColor="#ffffff" borderTopLeftRadius={20} borderTopRightRadius={20} flex={1}>
           { isLoading ? <Loading /> : <SkillsList skills={skills} navigation={navigation}/>}
         </Box>

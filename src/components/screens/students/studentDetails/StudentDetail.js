@@ -1,38 +1,43 @@
-import { View, Text,ScrollView } from "native-base"
-import { StyleSheet, TouchableOpacity } from "react-native"
+import { View, Text,ScrollView, VStack } from "native-base"
+import { StyleSheet, TouchableOpacity, Modal } from "react-native"
 import { useContext, useState, useEffect} from "react"
+import { LinearGradient } from 'expo-linear-gradient'
 
-import ReportView from "./ReportView"
 import CurrentLevelView from "./CurrentLevelView"
 import SkillsAchievementView from "./SkillsAchievementView"
 import AttendanceListView from "./AttendanceListView"
 import ViewReport from "./ViewReport"
+import Loading from "../../../layout/Loading"
+import StudentBiometrics from "../Biometrics/StudentBiometrics"
 
 import { AuthContext } from '../../../context/AuthContext'
-import { getSingleClass, getEvaluationsByClass, getSkillById, getProgramById, getLevelById } from '../../../../utils/queries'
+import { getSingleClass, getEvaluationsByClass, getSkillById, fetchSkills } from '../../../../utils/queries'
+
+import RightChevron from "../../../svg/StudentsIcons/RightChevron";
 
 const StudentDetail = ({route, navigation }) => {
   const { trainee } = route.params
-  const {userToken} = useContext(AuthContext)
-  const [classTitle, setClassTitle] = useState('')
-  const [myClassData, setMyClassData] = useState('')
-  const [myCompletedEvaluations, setMyCompletedEvaluations] = useState([])
-  const [myAllSkills, setMyAllSkills] = useState([])
-  const [myAllLevelsId, setMyAllLevelId] = useState([])
-  const [allLevelsThisProgramHas, setAllLevelsThisProgramHas] = useState([])
-  const [achievementCard, setAchievementCard] = useState([])
-  const [classCard, setClassCard] = useState([])
+  const { userToken } = useContext(AuthContext)
+  const { userInfo } = useContext(AuthContext)
+  const [ classTitle, setClassTitle ] = useState('')
+  const [ classColor, setClassColor ] = useState('')
+  const [ cardBgColor, setCardBgColor ] = useState('')
+  const [ myClassData, setMyClassData ] = useState('')
+  const [ myCompletedEvaluations, setMyCompletedEvaluations ] = useState([])
+  const [ myAllSkills, setMyAllSkills ] = useState([])
+  const [ myLevelDetail, setMyLevelDetail ] = useState([])
+  const [ classCard, setClassCard ] = useState('')
+  const [ isLoading, setIsLoading ] = useState(false)
+  const [ modalIsOpen, setModalIsOpen ] = useState(false)
   let myEvalArray = []
   let mySkillArray = []
-  let programArray = []
-  let allLevelsThisProgramHasArray = []
-  let achievementCardArray = []
-
-  
-  //class ID (1人１個)
+  let levellistArray = []
+  let myLevelDetailArray = []
+ 
+  //class ID (1 for each)
   const classid = trainee.class_id
   //user ID
-  const userid = '63fcf0bd354e8150f45dd4d2'
+  const userid = userInfo._id
   //student ID 
   const studentid = trainee._id
 
@@ -40,18 +45,20 @@ const StudentDetail = ({route, navigation }) => {
   useEffect(() => {
     getSingleClass(userid,classid,userToken)
       .then((data) => {
-        //class名をここで表示(single)
+        //Class name store now!(single class for each student)
         setClassTitle(data.title)
+        setClassColor(data.color)
+        setCardBgColor(data.cardColor)
         setMyClassData(data)
       })
   },[])
 
   //2.Fetch Evaluation from class ID & sorting only completed evaluation
-  //class ID でとったらその中の、studentIDが同じものをfilterして自分のものだけとる
+  //P/U only student ID is matched
   useEffect(() => {
     getEvaluationsByClass(classid, userToken)
       .then((data) => {
-        //my evaluationのみをFilter(自分のevaluation)
+        //Filter only my evaluation
         data.map((item) => {
           if (item.studentId === studentid) {
             myEvalArray.push(item)
@@ -59,13 +66,14 @@ const StudentDetail = ({route, navigation }) => {
             null
           }
         })
-        //Fetch only rating == 3 (completed)終了してるSkillのみP/U
+        //Fetch only rating == 3 (completed)P/U only completed skills
         setMyCompletedEvaluations(myEvalArray.filter((item) =>item.rating === 3))
       })
   },[myClassData])
 
-  //3.Fetch completed skills 完了したSkillをGetする
+  // 3.Fetch completed skills 
   useEffect(() => {
+    // console.log('Completed Eval',myCompletedEvaluations.length, myCompletedEvaluations)
     myCompletedEvaluations.map((item, i) => {
       let skillid = item.skillId
       getSkillById(skillid,userToken)
@@ -79,154 +87,97 @@ const StudentDetail = ({route, navigation }) => {
       })
     })
   },[myCompletedEvaluations])
-  
-  //4.Fetch Program & compate how many skills I completed in the level
+
+  //4.How many skills this has 
   useEffect(() => {
-    // console.log('私の持つSkills',myAllSkills)
-    myAllSkills.map((skl,i) => {
-      // console.log('私の持つSkills',i,skl)
-      let programid = skl.programId
-      // console.log('PROGRAM ID',programid)
-      getProgramById(programid,userToken)
-        .then(data => {
-          // console.log('PROFETCHしたて',i, data)
-          data.levels.map((item) => programArray.push(item))
-          // console.log('DUPPE消す前',i,programArray)
-          //DUPEを削除してArrayに入れる
-          if (myAllSkills.length === i+1) {
-            setMyAllLevelId(programArray.filter((element, index) => 
-              programArray.indexOf(element) == index
-            ))
-            // console.log('ProgのFetch終了')
-          } else {
-            null
-          }
+    // console.log('how many skills I have',myAllSkills.length, myAllSkills)
+
+    //Total skill number I have
+      //4-1.Fetch all skills and gather only same level i am working on now
+      fetchSkills(userToken)
+      .then(data => {
+        const allSkillsArray = data
+       
+        //4-2.Only P/U level from skill I have & delete DUPE
+        myAllSkills.map((item, i) => {
+          levellistArray.push(item.level)
         })
-    })
-  }, [myAllSkills])
+        //DELETE DUPE 
+        const totallevelIhave = levellistArray.filter((eachlevel, index) => levellistArray.indexOf(eachlevel) == index)
+        // console.log('dUPE has Deleted',totallevelIhave)
 
-  //5.属してるprogramが持っているLEVELを全部Fetch　＆１つのLebelの長さを確認！Display!
-  useEffect(() => {
-    // console.log('DUPE消えたよ', myAllLevelsId)
-    // console.log('これが私の終了したスキル',myAllSkills)
-    myAllLevelsId.map((levelid,i) => {
-      //属してるprogramが持っているLEVELを全部Fetch
-      getLevelById(levelid,userToken)
-        .then(data => {
-          // console.log('LEVEL',h,data)
-          allLevelsThisProgramHasArray.push(data) 
-          // console.log('LEVELと同じかな?',h,allLevelsThisProgramHasArray.length)
-          if (myAllLevelsId.length === i+1) {
-            setAllLevelsThisProgramHas(allLevelsThisProgramHasArray)
-            // howManyCompleted(allLevelsThisProgramHasArray)
-          } else {
-            null
-          }
-        })
-    })
-  },[myAllLevelsId])
+        //4-3.My Skills （totallevelIhave (CHECK How many total skill this has)
+        totallevelIhave.map((level, i) => {
+          // console.log(level)
+          let totally = allSkillsArray.filter((skill) => {return level == skill.level}).length
+          // console.log('Number of Skill',totally)
+          // console.log('LEVEL Name:', level, 'Total SKILL Number:', totally)
 
- //6.skill arrayにループでアクセスする！自分の持つスキルがどのLEVELに入っているかMatchさせる
-  useEffect(() => {
-    let objectNBR = 0
-    // console.log('ついにここまで',allLevelsThisProgramHas.length)
-    allLevelsThisProgramHas.map((level) => {
-      level.skills.map((iteminarray) => {
-        myAllSkills.map((one,i) => {
-           //Skill ID が同じだったら 
-          if(iteminarray === one._id){
-            let NBR = objectNBR++
-
-            let oneskills = level.skills
-            let skilltotal = oneskills.length
-
-            let levelName = level.title
-              
-            let howManySkillsIcompletedArray = []
-            howManySkillsIcompletedArray.push(one)
-
-            let completedNumber = howManySkillsIcompletedArray.length
-             
-            //もし新しいRrrayの中がEmptyだったらそのまま入れる。１つ以上あれば、levelを照らし合わせる。同じだったら数を合わせる。
-            if(achievementCardArray.length == 0 ){
-              // console.log(i,'からだよ', achievementCardArray)
-              createObject(NBR, levelName, completedNumber, skilltotal)
+          //4-5.Combine my completed skilss and level name &  Level total number => make one object to pass other component
+          let compLevelForLevelIhave = myAllSkills.filter((item) => { return item.level == level}).length
+          myLevelDetailArray.push({levelName:`${level}`, totalNbr: `${totally}`, compNbr: `${compLevelForLevelIhave}`})
+          
+          if(totallevelIhave.length === i+1) {
+            //4-6.P/U one to send CurrentLevelView
+            //If LEVEL has only one just send to CurrentLevelView｜If LEVEL is over 1 P/U the one which has not done yet then send to CurrentLevelView
+            if(myLevelDetailArray.length == 1){
+              setClassCard(myLevelDetailArray)
+              setMyLevelDetail(myLevelDetailArray)
+              setIsLoading(true)
             }else {
-              // console.log(i, '入ってる',achievementCardArray)
-              //levelが同じだったらcompletedの数を合計する
-              achievementCardArray.map((item, e) => {
-                  if(item.level === levelName){
-                    // console.log('d',item)
-                    // console.log('レベル名同じ?',item.level, levelName)
-                    // console.log('数確認',item.completeSkillNumber, completedNumber)
-                    completedNumber = item.completeSkillNumber + completedNumber
-                    
-                    // console.log('DUPE消す前',e,achievementCardArray)
-                    //DUPEしているLEVEL Objectを削除してから新しいObject作る    
-                    achievementCardArray = achievementCardArray.filter((card) => (card.level !== levelName))
-
-                    // console.log('消した後',e,achievementCardArray)
-                    createObject(NBR, levelName, completedNumber, skilltotal)
-                  } else {
-                    // console.log('名前同じじゃない',item.level, levelName)
-                    createObject(NBR, levelName, completedNumber, skilltotal)
-                  }
-              })
+              setClassCard(myLevelDetail.filter((each) => {each.totalNbr !== each.compNbr}))
+              setMyLevelDetail(myLevelDetailArray)
+              setIsLoading(true)
             }
-            if (myAllSkills.length === i+1) {
-              //Send this to SkillAchievementView!
-              setAchievementCard(achievementCardArray)
-
-              //まだ終わっていないLEVELをP/UしてCurrentLevelViewに送る！
-              achievementCardArray.map((item)=> {
-                if(achievementCardArray.length == 1 || item.completeSkillNumber !== item.totalSkillNumber){
-                  setClassCard(item)
-                } else {
-                  null
-                }
-              })
-              
-            } else {
-              null
-            }
+          }else {
+            null
           }
-        })
+        })  
       })
-    })  
-  },[allLevelsThisProgramHas])
+    },[myAllSkills])  
 
-
-//FUNCTION CREATE NEW OBJECT FOR LEVEL ACHIEVEMENT ============== 
-  const createObject = (NBR, levelName, compketedNumber, skilltotal) => {
-    let achievementCard = {
-      id: NBR,
-      level : levelName,
-      completeSkillNumber : compketedNumber,
-      totalSkillNumber : skilltotal 
-    }
-    achievementCardArray.push(achievementCard)
-  }
+    //=====Modal Functions
+    const clickStudent = () => { setModalIsOpen(true)}
+    const closeBio = () => { setModalIsOpen(false)}
 
   return (
-    <View style={styles.container}>
-      <ReportView student={trainee} navigation={navigation}/>
-      <View style={styles.background}>
-        <ScrollView>
-          <TouchableOpacity style={styles.classtab}>
-            {<Text style={styles.classtabtext}>{classTitle}</Text>}
-          </TouchableOpacity>
-          <CurrentLevelView classTitle={classTitle} classCard={classCard}/>
-          <SkillsAchievementView levelCards={achievementCard}/>
-          <AttendanceListView student={trainee} /> 
-          <ViewReport student={trainee}/>
-        </ScrollView>
-      </View>  
-    </View>
+  <>
+    <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}> 
+      <View style={styles.container}>
+        <TouchableOpacity onPress={clickStudent} trainee={trainee} style={styles.biobtncontainer} shadow={5}>
+            <VStack>
+                <Text style={styles.name} fontFamily="Lexend_700">{trainee.firstname} {trainee.lastname}</Text> 
+                <Text style={styles.text} fontFamily="Lexend_400">View profile and Contact Information</Text>
+            </VStack>
+            <RightChevron/>
+        </TouchableOpacity>
+
+        <View style={styles.background}>
+        {!isLoading ? <Loading/> :
+          <ScrollView>
+            <TouchableOpacity style={styles.classtab}>
+              {<Text style={styles.classtabtext} fontFamily="Lexend_400">{classTitle}</Text>}
+            </TouchableOpacity>
+            <CurrentLevelView classTitle={classTitle} classColor={classColor} cardBgColor={cardBgColor} classCard={classCard} />
+            <SkillsAchievementView myLevelDetail={myLevelDetail}/>
+            <AttendanceListView student={trainee} /> 
+            <ViewReport student={trainee}/>
+          </ScrollView>
+        }
+        </View>
+      </View>   
+    </LinearGradient>
+
+    <Modal visible={modalIsOpen} transparent={true}>
+        <StudentBiometrics student={trainee} navigation={navigation} closeBio={closeBio}/>
+    </Modal>
+  </> 
   )
 }
+
 const styles = StyleSheet.create ({
-  container: {
-    backgroundColor: 'orange',
+  container:{
+    marginTop: 101,
   },
   background:{
     backgroundColor: '#FDFDFD',
@@ -234,6 +185,7 @@ const styles = StyleSheet.create ({
     paddingVertical: 24,
     borderTopRightRadius: 28,
     borderTopLeftRadius: 28,
+    height: '100%',
   },
   classtab:{
     borderRadius: 81,
@@ -244,11 +196,47 @@ const styles = StyleSheet.create ({
     width: 120,
   },
   classtabtext:{
-    // fontFamily: 'Lexend',
     color: '#FAF9F9',
-    fontWeight:'400',
     fontSize: 14,
     lineHeight: 21,
-  }
+  },
+  biobtncontainer: {
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    borderWidth: 1,
+    borderColor: 'rgba(238, 238, 238, 0.5)',
+    shadowColor: '#000',
+    shadowOffset: {
+        width: 0,
+        height: 4,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,    
+    paddingLeft: 16,
+    paddingRight: 8,
+    paddingVertical: 10,
+    borderRadius: 12,
+    marginHorizontal: 20,
+    marginBottom: 22,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+},
+name: {
+    color: '#212427',
+    fontSize: 28,
+    lineHeight: 30,
+},
+text: {
+    marginTop: 6,
+    color: '#212427',
+    fontSize: 16,
+    lineHeight: 20,
+},
+biobackground:{
+  backgroundColor: 'transparent',
+  flex:1,
+}
 })
 export default StudentDetail
+

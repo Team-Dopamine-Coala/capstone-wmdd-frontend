@@ -3,16 +3,19 @@ import EvaluationStack from '../stacks/EvaluationStack';
 import ReportStack from '../stacks/ReportStack';
 import StudentStack from '../stacks/StudentStack';
 import CurriculumStack from '../stacks/CurriculumStack';
+import SettingStack from '../stacks/SettingStack';
 
 import { Ionicons, createIconSetFromFontello } from '@expo/vector-icons'
 import { Image, Icon, View, Box, Text } from 'native-base'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BlurView } from 'expo-blur';
+import HeaderImage from '../layout/HeaderImage';
 
 const Tab = createBottomTabNavigator();
 
 const AppTabs = () => {
   return (
+    <>
       <Tab.Navigator
             screenOptions={({ route }) => ({
                 headerShown: false,
@@ -48,6 +51,7 @@ const AppTabs = () => {
           )
         }} />
       </Tab.Navigator>
+    </>
   )
 }
 

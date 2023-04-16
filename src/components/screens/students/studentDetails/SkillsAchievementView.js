@@ -1,19 +1,19 @@
 import { Text, VStack, View, Box } from "native-base"
 import { StyleSheet } from "react-native"
 
-const SkillsAchievementView = ({levelCards}) => {
+const SkillsAchievementView = ({myLevelDetail}) => {
   return (
     <View style={styles.container}>
-        <Text style={styles.title}>Skills Achievement</Text>
+        <Text style={styles.title} fontFamily="Lexend_500">Skills Achievement</Text>
         <VStack style={styles.skillsbox}>
-          {levelCards.map((item, i) => (
+          {myLevelDetail.map((item, i) => (
             <Box key={i} style={styles.levelbox} bg="#ffffff" shadow={5}>
-              <Text style={styles.level}>{item.level}</Text>
+              <Text style={styles.level} fontFamily="Lexend_500">Level {item.levelName}</Text>
               <Box style={styles.numbersbox}>
-                <Text style={styles.Bold}>{item.completeSkillNumber}</Text> 
-                <Text style={styles.normal}> / {item.totalSkillNumber}</Text>
+                <Text style={styles.Bold} fontFamily="Lexend_700">{item.compNbr}</Text> 
+                <Text style={styles.normal} fontFamily="Lexend_400"> / {item.totalNbr}</Text>
               </Box>
-              <Text style={styles.learned}>skills learned</Text>
+              <Text style={styles.learned} fontFamily="Lexend_300">skills learned</Text>
             </Box>
           ))}
         </VStack>
@@ -22,12 +22,9 @@ const SkillsAchievementView = ({levelCards}) => {
 }
 const styles = StyleSheet.create ({
   container: {
-    paddingVertical: 10,
   },
   title: {
-    // fontFamily: 'Lexend',
     fontSize: 16,
-    fontWeight: "500",
     lineHeight: 24,
     marginHorizontal: 10,
   },
@@ -44,8 +41,6 @@ const styles = StyleSheet.create ({
     gap: 14,
   },
   level:{
-    // fontFamily: 'Lexend',
-    fontWeight: '500',
     fontSize: 14,
     lineHeight: 30,
     marginBottom: 4,
@@ -54,30 +49,20 @@ const styles = StyleSheet.create ({
     flexDirection: 'row',
   },
   Bold:{
-    // fontFamily: 'Lexend',
     color: '#000000',
-    fontWeight: '700',
     fontSize: 32,
     lineHeight: 31,
   },
   normal:{
-    // fontFamily: 'Lexend',
     color: '#000000',
-    fontWeight: '400',
     fontSize: 16,
     lineHeight: 30,
     marginLeft: 5,
   },
   learned:{
-    // fontFamily: 'Lexend',
     color: '#000000',
-    fontWeight: '300',
     fontSize: 16,
     marginTop: 10,
   }
 })
 export default SkillsAchievementView
-
-//TODO LIST 
-//1.LEVELをLEVEL番号ごとにソーティングしてdisplayする！
-//2.CompletedしたLevel数を表示

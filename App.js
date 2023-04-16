@@ -6,6 +6,10 @@ import AppLoading from 'expo-app-loading';
 import { AuthProvider } from './src/components/context/AuthContext';
 import AppNav from './src/components/navigation/AppNav';
 
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
+
 import { useFonts } from './hooks/useFonts';
 
 export default function App() {
