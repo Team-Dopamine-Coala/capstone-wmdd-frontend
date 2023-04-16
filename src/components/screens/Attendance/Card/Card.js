@@ -39,25 +39,21 @@ const Card = ({ title, startTime, endTime, location, id, navigation, dateSelecte
    <View m={4} my={4} >
           <Box  mb={3} p={5} bg={color} width="100%" height="90%" borderRadius="md" shadow={9} position="absolute" top="5%"></Box>
           <Box ml={4} p={3} bg={cardColor} flex={1} height="100%" borderRadius="md" shadow={5}>
-            <HStack borderBottomWidth="1" borderBottomColor="#737373" mb={3} justifyContent="space-between" alignItems="center">      
-              <VStack pr={3} pb={3} space={1} >
+            <HStack borderBottomWidth="1" borderBottomColor="#737373" mb={3} justifyContent="space-between" >      
+              <VStack space={1} mb={2} pt={1} >
                 <Heading fontSize="24" fontFamily="Lexend_600" fontWeight="400">{title}</Heading>
                 <HStack alignItems="center" space={1}>
                   <Clock/>
-                  <Text  fontSize="16" color="#737373" fontFamily="Lexend_400">
-                    {moment(startTime).format('H:mm A')}
-                  </Text>   
+                  <Text fontSize="16" color="#737373" fontFamily="Lexend_400">{moment(startTime).format('H:mm A')}</Text>   
                   <RightArrow/>
-                  <Text  fontSize="16" color="#737373" fontFamily="Lexend_400">  
-                    {moment(endTime).format('H:mm A')}
-                  </Text>
+                  <Text fontSize="16" color="#737373" fontFamily="Lexend_400">{moment(endTime).format('H:mm A')}</Text>
                 </HStack>
                 <HStack alignItems="center" space={1}>
                   <MapPin/>
                   <Text fontSize="16" color="#737373" fontFamily="Lexend_400">{location}</Text>
                 </HStack>
               </VStack>
-               <AttendanceChart completed={completed}/>
+              <AttendanceChart completed={completed}/>
             </HStack>
 
             <HStack space={1} justifyContent="space-between">

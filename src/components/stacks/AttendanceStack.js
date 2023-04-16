@@ -3,7 +3,6 @@ import AttendanceStudentList from "../screens/Attendance/Screens/AttendanceStude
 import CompletedAttendance from "../screens/Attendance/Screens/CompletedAttendance"
 import ViewAttendance from "../screens/Attendance/Screens/ViewAttendance"
 import { createStackNavigator, TransitionPresets } from "@react-navigation/stack"
-import HeaderImage from '../layout/HeaderImage'
 import { Text, Button} from "native-base";
 import { selectAllCheckbox } from "../screens/Attendance/Screens/AttendanceStudentList"
 
@@ -73,10 +72,7 @@ const AttendanceStack = () => {
           fontFamily: 'Lexend_500',
           fontSize: 16,
           color:'#000000'
-        },
-        headerRight: () => (
-          <Text color="#000000" fontFamily="Lexend_400" fontSize="16" marginRight="16px">Edit</Text>
-        )
+        }
       })}
       />
     </Stack.Navigator>

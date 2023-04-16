@@ -1,9 +1,9 @@
 // not in use
 
-import { Box, FlatList, Text, VStack, Button, ScrollView } from "native-base"
+import { Box, FlatList, Text, VStack, ScrollView } from "native-base"
 import StudentCard from "../Card/StudentCard"
 
-const StudentList = ({ present, absent, presentList, absentList, navigation }) => {
+const StudentList = ({ present, absent, presentList, absentList }) => {
    
   const newAbsent = absent == '-' ? 0 : absent
   // console.log("presentListArray", presentList)
@@ -36,13 +36,6 @@ const StudentList = ({ present, absent, presentList, absentList, navigation }) =
           /> */}
         </Box>
       </ScrollView>
-      <Button
-        m="5"
-        bgColor="#404142"
-        onPress={() => {navigation.navigate('Attendance Index')}}
-      >
-        <Text fontFamily="Lexend_600" fontSize="16" color="#ffffff">Done</Text>
-      </Button>
     </VStack>
   )
 }

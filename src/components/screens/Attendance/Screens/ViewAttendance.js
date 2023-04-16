@@ -51,20 +51,17 @@ const ViewAttendance = ({ route, students, navigation, checkboxHandler, allAtten
   
   
   return (
-    <VStack bgColor="#FFFFFF" height="100%"  >
-    <Box>
-       <StudentList
-       present={present}
-       absent={absent}
-       presentList={presentList}
-       absentList={absentList}
-       navigation={navigation}
-       />
-    </Box>
+    <VStack bgColor="#FFFFFF" height="100%" >
+      <Box>
+         <StudentList
+         present={present}
+         absent={absent}
+         presentList={presentList}
+         absentList={absentList}
+         navigation={navigation}
+         />
+      </Box>
    </VStack>
-        
-
-
   )
 }
 
