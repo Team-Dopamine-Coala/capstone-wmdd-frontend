@@ -3,7 +3,6 @@ import Svg, { G, Path, Circle } from "react-native-svg"
 
 function AttendanceChart({completed, color}) {
     
-console.log(color)
     const colors = completed ? color : '#BFC2C6'
     const opacity = completed ? 0.8 : 0.2
   return (
