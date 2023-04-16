@@ -1,4 +1,4 @@
-import { Box, HStack, VStack, Text, Button, Heading } from 'native-base'
+import { Box, Text } from 'native-base'
 
 const StudentCard = ({ item, index, arraylength }) => {
 

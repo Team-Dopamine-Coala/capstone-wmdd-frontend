@@ -1,5 +1,4 @@
-import { Text, Heading, View, VStack, Input, Icon, Button, Checkbox, HStack, Box } from "native-base"
-import { Ionicons } from "@expo/vector-icons"
+import { Text, Heading, View, VStack, Input, Button, Checkbox, HStack, Box } from "native-base"
 import { useState, useEffect } from 'react'
 import { getStudentsByClass } from '../../../../utils/queries'
 import { getAllAttendance } from '../../../../utils/queries'
@@ -161,8 +160,7 @@ const updateClassAttendance = async () => {
       >
         <Text fontFamily="Lexend_600" fontSize="16" color="#ffffff">Save Attendance</Text>
       </Button>
-
-      </VStack>
+    </VStack>
   )
 }
 

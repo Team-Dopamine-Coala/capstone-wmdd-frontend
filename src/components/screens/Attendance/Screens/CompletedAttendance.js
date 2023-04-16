@@ -49,13 +49,15 @@ const CompletedAttendance = ({ route, students, navigation, checkboxHandler, all
   }, [])
 
   return (
-    <VStack  height="100%" bgColor="#FFFFFF" >
+    <VStack   height="100%" bgColor="#FFFFFF" paddingX="18px" paddingTop="31px" justifyContent="space-between">
+      <ScrollView paddingX="2px">
         <StudentList
           present={presentList.length}
           absent={absentList.length}
           presentList={presentList}
           absentList={absentList}
         />
+      </ScrollView>   
     <Button
       m="5"
       bgColor="#404142"
