@@ -12,7 +12,7 @@ const Card = ({ title, startTime, endTime, location, id, navigation, dateSelecte
   const [absent, setAbsent] =  useState("-")
   useEffect(() => {
     // TODO: fetch attendance by id
-
+    console.log()
     let present = 0
     let absent = 0
     if (attendances) {
@@ -53,7 +53,7 @@ const Card = ({ title, startTime, endTime, location, id, navigation, dateSelecte
                   <Text fontSize="16" color="#737373" fontFamily="Lexend_400">{location}</Text>
                 </HStack>
               </VStack>
-              <AttendanceChart completed={completed}/>
+              <AttendanceChart completed={completed} color={color}/>
             </HStack>
 
             <HStack space={1} justifyContent="space-between">

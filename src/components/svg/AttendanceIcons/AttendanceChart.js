@@ -1,9 +1,10 @@
 import React from "react";
 import Svg, { G, Path, Circle } from "react-native-svg"
 
-function AttendanceChart({completed}) {
+function AttendanceChart({completed, color}) {
     
-    const color = completed ? '#F3B5CA' : '#BFC2C6'
+console.log(color)
+    const colors = completed ? color : '#BFC2C6'
     const opacity = completed ? 0.8 : 0.2
   return (
     <Svg
@@ -13,7 +14,7 @@ function AttendanceChart({completed}) {
       fill="none"
       viewBox="0 0 88 88"
     >
-      <G stroke={color} opacity={opacity}>
+      <G stroke={colors} opacity={opacity}>
         <Path
           strokeLinecap="round"
           strokeLinejoin="round"
