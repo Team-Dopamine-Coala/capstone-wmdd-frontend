@@ -37,7 +37,7 @@ const ClassListItem = ({ item, navigation, calendarDate }) => {
               <AnimatedCircularProgress
                 size={90}
                 width={10}
-                fill={percentage > 0 ? percentage : 0}
+                fill={percentage}
                 tintColor={item.color}
                 backgroundColor="#D0CFD4">
                 {
