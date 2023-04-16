@@ -7,8 +7,8 @@ const ClassList = ({ classes, navigation, calendarDate }) => {
     <FlatList
       style={{ borderTopWidth: 1, borderTopColor: '#eeeeee', marginHorizontal: 0 }}
       data={classes}
-      renderItem={({ item }) => (
-        <ClassListItem item={item} navigation={navigation} calendarDate={calendarDate} />
+      renderItem={({ item, index }) => (
+        <ClassListItem item={item} navigation={navigation} calendarDate={calendarDate} order={index} />
       )}
       keyExtractor={item => item._id}
       showsHorizontalScrollIndicator={false}

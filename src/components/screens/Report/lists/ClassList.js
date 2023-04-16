@@ -6,8 +6,8 @@ const ClassList = ({ classes, navigation, openSheet, clickedClass }) => {
   return (
     <FlatList
       data={classes}
-      renderItem={({ item }) => (
-        <ClassListItem item={item} navigation={navigation} openSheet={openSheet} clickedClass={clickedClass} />
+      renderItem={({ item, index }) => (
+        <ClassListItem item={item} navigation={navigation} openSheet={openSheet} clickedClass={clickedClass} order={index} />
       )}
       keyExtractor={item => item._id}
       showsHorizontalScrollIndicator={false}
