@@ -27,6 +27,10 @@ const AttendanceStack = () => {
           title: `${route.params.classTitle}`,
           headerBackTitle: '',
           headerTitleAlign: 'center',
+          headerTintColor: '#667080',
+          headerBackTitle: null,
+          headerBackTitleVisible: false,
+          headerTitleAlign: 'center',
           headerTitleStyle: {
             fontFamily: 'Lexend_700',
             fontSize: 20
@@ -56,6 +60,9 @@ const AttendanceStack = () => {
         title: `${route.params.classTitle}`,
         headerBackTitle: '',
         headerTitleAlign: 'center',
+        headerTintColor: '#667080',
+        headerBackTitle: null,
+        headerBackTitleVisible: false,
         headerTitleStyle: {
           fontFamily: 'Lexend_700',
           fontSize: 20

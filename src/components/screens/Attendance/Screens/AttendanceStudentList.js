@@ -1,4 +1,4 @@
-import { Text, Heading, View, VStack, Input, Icon, Button, Checkbox, HStack } from "native-base"
+import { Text, Heading, View, VStack, Input, Icon, Button, Checkbox, HStack, Box } from "native-base"
 import { Ionicons } from "@expo/vector-icons"
 import { useState, useEffect } from 'react'
 import { getStudentsByClass } from '../../../../utils/queries'
@@ -6,6 +6,7 @@ import { getAllAttendance } from '../../../../utils/queries'
 import { DrawerLayoutAndroidBase } from "react-native"
 import { AWS_BACKEND_BASE_URL } from "../../../../utils/static"
 import { printType } from "graphql"
+import StudentsSearch from "../../Students/myStudents/StudentsSearch"
 // import StudentList from "../ClassList/StudentList"
 
 
@@ -119,14 +120,21 @@ const updateClassAttendance = async () => {
 
 
   return (
-    <VStack width="100%" space={1} p={3} pb={20} bgColor="#ffffff" flex={1}>
-          <Input m="1" placeholder="Search" fontSize="16" fontFamily="Lexend_400" variant="filled" width="100%" borderRadius="35" py="2" px="3" InputLeftElement={<Icon ml="2" size="4" color="gray.400" as={<Ionicons name="ios-search" />} />} />
-        <Checkbox.Group fontFamily="Lexend_400" fontSize="16" onChange={checkboxHandler}>
-        {students.map((item) => {
-            return <Checkbox fontFamily="Lexend_400" fontSize="16" m="2" value={item._id} key={item._id} colorScheme="orange" accessibilityLabel="This is a checkbox of a student" >{`${item.firstname} ${item.lastname}`}</Checkbox>
-        })}
-        </Checkbox.Group>
-        {/* <Button onPress={selectAllCheckbox}>select all</Button> */}
+    <VStack width="100%" paddingTop="16px" pb={20} bgColor="#ffffff" height="100%">
+        <Box paddingRight="20px" paddingLeft="20px">
+          <StudentsSearch/>
+        
+          <Checkbox.Group fontFamily="Lexend_400" fontSize="16" onChange={checkboxHandler} marginTop="20px">
+          {students.map((item, i) => (
+              <VStack key={i} >
+                <Checkbox fontFamily="Lexend_400" fontSize="16" m="2" value={item._id} key={item._id} colorScheme="orange" accessibilityLabel="This is a checkbox of a student" >{`${item.firstname} ${item.lastname}`}</Checkbox>
+                <HStack space={1} borderBottomWidth=".5" borderColor="#BBBBBB" justifyContent="space-between"/>                  
+              </VStack>             
+                
+          ))}
+          </Checkbox.Group>
+        </Box>  
+          {/* <Button onPress={selectAllCheckbox}>select all</Button> */}
         <Button m="5"
         bgColor="#404142"
         onPress={() => {
