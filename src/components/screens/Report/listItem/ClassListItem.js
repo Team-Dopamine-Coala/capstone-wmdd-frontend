@@ -13,8 +13,8 @@ const ClassListItem = ({ item, order, navigation, clickedClass }) => {
     <AnimatedEntrance
       axis={AnimatedEntrance.axis.horizontal}
       offset={20}
-      duration={400}
-      delay={200}
+      duration={500}
+      delay={250}
       order={order + 1}
     >
     <View mx={4} my={3}>
