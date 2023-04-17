@@ -3,6 +3,8 @@ import IndexScreen from "../screens/Evaluation/IndexScreen"
 import EvaluationStudentListScreen from "../screens/Evaluation/EvaluationStudentListScreen"
 import EvaluationIndividualStudent from "../screens/Evaluation/EvaluationIndividualStudent"
 import EvaluationIndividualStudentComment from "../screens/Evaluation/EvaluationIndividualStudentComment"
+import EvaluationComplete from '../screens/Evaluation/EvaluationComplete'
+import HeaderImage from '../layout/HeaderImage'
 
 import { createStackNavigator, TransitionPresets } from "@react-navigation/stack"
 
@@ -16,7 +18,7 @@ const EvaluationStack = () => {
   return (
     <Stack.Navigator screenOptions={TransitionScreenOptions}>
       <Stack.Screen name="Evaluation Index" component={IndexScreen}
-        options={{
+        options={({ navigation }) => ({
           title: 'Evaluation',
           headerTitleAlign: 'center',
           headerTransparent: true,
@@ -25,10 +27,10 @@ const EvaluationStack = () => {
             fontFamily: 'Lexend_700',
             fontSize: 20
           },
-          // headerRight: () => (
-          //   <Image />
-          // )
-        }}
+          headerRight: () => (
+            <HeaderImage navigations={navigation}/>
+          )
+        })}
       />
       <Stack.Screen
         name="Evaluation Student List"
@@ -39,6 +41,8 @@ const EvaluationStack = () => {
           headerTitleAlign: 'center',
           headerTransparent: true,
           headerTintColor: '#FDFDFD',
+          headerBackTitle: null,
+          headerBackTitleVisible: false,
           headerTitleStyle: {
             fontFamily: 'Lexend_700',
             fontSize: 20
@@ -53,6 +57,9 @@ const EvaluationStack = () => {
         options={({ route }) => ({
           title: '',
           headerBackTitle: '',
+          headerTintColor: '#667080',
+          headerBackTitle: null,
+          headerBackTitleVisible: false,
           studentsList: route.params.students,
           className: route.params.className
         })}
@@ -64,6 +71,9 @@ const EvaluationStack = () => {
           title: 'Add Feedback',
           headerTitleAlign: 'center',
           headerBackTitle: '',
+          headerTintColor: '#667080',
+          headerBackTitle: null,
+          headerBackTitleVisible: false,
           headerTitleStyle: {
             fontFamily: 'Lexend_500',
             fontSize: 20
@@ -72,6 +82,22 @@ const EvaluationStack = () => {
           studentName: route.params.studentName,
           classId: route.params.classId,
           className: route.params.className
+        })}
+      />
+      <Stack.Screen
+        name="Evaluation Complete"
+        component={EvaluationComplete}
+        options={({ route }) => ({
+          title: '',
+          headerBackTitle: '',
+          headerTintColor: '#667080',
+          headerBackTitle: null,
+          headerBackTitleVisible: false,
+          headerTitleStyle: {
+            fontFamily: 'Lexend_500',
+            fontSize: 20
+          },
+          dateSelected: route.params.dateSelected
         })}
       />
     </Stack.Navigator>

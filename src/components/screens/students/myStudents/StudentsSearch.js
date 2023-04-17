@@ -1,29 +1,26 @@
-import { useState } from "react"
 import { Input } from "native-base"
 import { StyleSheet } from "react-native"
 
-const StudentsSearch = ({myAllStudents}) => {
-
-const [value, setValue] = useState('')
+import Search from '../../../svg/StudentsIcons/Search'
+const StudentsSearch = () => {
 
   return (
     <>
       <Input  placeholder="Search"
-                  variant="rounded"
-                  style={styles.inputfield}
-                  // value={myAllStudents}
-                  // onPress={(e) => {
-                  //   setValue(e.target.myAllStudents)}}
+              variant="rounded"
+              style={styles.inputfield}
+              fontFamily="Lexend_400"
+              InputRightElement={
+                <Search />
+              }
       />
     </>
   )
 }
 const styles = StyleSheet.create ({
   inputfield: {
-    // fontFamily: 'Lexend',
     borderRadius:35,
     fontSize: 16,
-    fontWeight:'400',
     color: '#242424',
     paddingTop: 10,
     paddingLeft: 16,

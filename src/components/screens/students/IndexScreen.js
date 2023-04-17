@@ -1,17 +1,22 @@
-import { Box, Text, VStack, ScrollView, Input, View, HStack } from "native-base"
+import { Box, Text, VStack, ScrollView, View } from "native-base"
 import { useEffect, useState, useContext } from "react"
-import { TouchableOpacity, StyleSheet, SafeAreaView } from "react-native"
-import DropShadow from "react-native-drop-shadow";
+import { TouchableOpacity, StyleSheet } from "react-native"
 import StudentsSearch from "./myStudents/StudentsSearch"
+import { LinearGradient } from 'expo-linear-gradient';
+import Loading from "../../layout/Loading";
+import RightChevron from "../../svg/StudentsIcons/RightChevron"
 
-import {getClassesOfCoach, getStudentsByClass} from '../../../utils/queries'
+import { getClassesOfCoach, getStudentsByClass } from '../../../utils/queries'
 import { AuthContext } from '../../context/AuthContext';
 
-const IndexScreen = ({ navigation}) => {
+const IndexScreen = ({ navigation }) => {
   
-  const [nameTitle, setNameTitle] = useState([])
-  const {userToken} = useContext(AuthContext)
-  const userId = '63fcf0bd354e8150f45dd4d2'
+  const [ nameTitle, setNameTitle ] = useState([])
+  const [ isLoading, setIsLoading ] = useState(false)
+  const { userToken, userInfo } = useContext(AuthContext)
+  const [ classIndex ] = useState(true)
+
+  const userId = userInfo._id
   const myClassIds = []
   const myAllStudents = []
 
@@ -26,6 +31,7 @@ const IndexScreen = ({ navigation}) => {
         myClassIds.map((eachclassid, i) => {
           getStudentsByClass(eachclassid,userToken)
           .then((data) => {
+            // console.log('Chileden',data)
               data.map((person) => {
                 myAllStudents.push(person)
               })
@@ -34,6 +40,7 @@ const IndexScreen = ({ navigation}) => {
               myAllStudents.filter((item, index) => myAllStudents.indexOf(item) === index)
               sorting()
               displaytitle()
+              setIsLoading(true)
           })
         })
       }) 
@@ -50,7 +57,7 @@ const IndexScreen = ({ navigation}) => {
       }
       return 0
     })
-    // console.log('並べた結果',myAllStudents.length, myAllStudents)
+    // console.log('RESULT',myAllStudents.length, myAllStudents)
   }
       
   //Alphabetic Title display
@@ -63,48 +70,54 @@ const IndexScreen = ({ navigation}) => {
         return c      
     },{})
     setNameTitle(Object.values(title))
-    // console.log('nameタイトル',nameTitle)
+    // console.log('NAME　TITLE',nameTitle)
   }
   
     return(
-      <View style={styles.container}>
-        <View style={styles.background}>
-          <Box>
-            <StudentsSearch myAllStudents={myAllStudents}/>
-          </Box>
-          <ScrollView style={styles.scrollarea}>
-            {nameTitle.map((title, i) => ( 
-              <Box key={i} style={styles.box}> 
-                <Text style={styles.abc}>{title.group}</Text>
-                <VStack  style={styles.nameContainer} shadow={5}>
-                  {title.groupedConn.map((trainee, index) => (             
-                    <TouchableOpacity   key={index} 
-                                        onPress={() => {
-                                        navigation.navigate('Student Detail',{trainee})
-                                        }}>
-                      <Text style={styles.name}>{trainee.firstname} {trainee.lastname}</Text>
-                    </TouchableOpacity >
-                    // {j++ ? <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} justifyContent="space-between"/> : null}
-                  ))}
-                </VStack>
-              </Box> 
-            ))} 
-          </ScrollView>
-        </View>    
-      </View>
+      <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}>
+        <View style={styles.container}>
+          <View style={styles.background}>
+            <Box>
+              <StudentsSearch myAllStudents={myAllStudents}/>
+            </Box>
+            {!isLoading ? <Loading /> : 
+              <ScrollView style={styles.scrollarea}>
+                {nameTitle.map((title, i) => ( 
+                  <Box key={i} style={styles.box}> 
+                    <Text style={styles.abc} fontFamily="Lexend_600">{title.group}</Text>
+                    <VStack  style={styles.nameContainer} shadow={5}>
+                      {title.groupedConn.map((trainee, index) => (             
+                        <TouchableOpacity   key={index} 
+                                            onPress={() => {
+                                            navigation.navigate('Student Detail',{trainee})
+                                            }}
+                                            style={styles.nameiconbox}
+                        >
+                          <Text style={styles.name} fontFamily="Lexend_400">{trainee.firstname} {trainee.lastname}</Text>
+                           <RightChevron classIndex={classIndex}/>
+                        </TouchableOpacity >
+                        // { index < title.groupedConn.length -1 && <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} borderColor='#BBBBBB' justifyContent="space-between"/>}
+                      ))}
+                    </VStack>
+                  </Box> 
+                ))}
+              </ScrollView>
+            }
+          </View>    
+        </View>
+      </LinearGradient>
     )
 }
  
 const styles = StyleSheet.create ({
-  container: {
-    backgroundColor: 'orange',
-  },
   background: {
     backgroundColor: '#FDFDFD',
     paddingVertical:24,
     paddingHorizontal: 20,
     borderTopRightRadius:28,
     borderTopLeftRadius:28,
+    height: '100%',
+    marginTop: 99,
   },
   scrollarea: {
     marginTop: 24,
@@ -113,24 +126,25 @@ const styles = StyleSheet.create ({
     marginBottom: 20,
   },
   abc: {
-    // fontFamily: 'Lexend',
     color: '#242424',
-    fontWeight: '600',
     fontSize: 24,
     lineHeight:30,
   },
   nameContainer: {
     marginTop: 8,
-     backgroundColor: '#FDFDFD',
-     borderRadius: '12',
-     marginHorizontal: 2,
+    backgroundColor: '#FDFDFD',
+    borderRadius: 12,
+    marginHorizontal: 2,
+  },
+  nameiconbox:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   name: {
-    // fontFamily: 'Lexend',
     color: '#242424',
     paddingHorizontal: 15,
     paddingVertical: 12,
-    fontWeight: '400',
     fontSize: 16,
   }
 })

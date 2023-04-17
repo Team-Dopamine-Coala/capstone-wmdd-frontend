@@ -6,6 +6,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { View } from 'react-native';
 import Loading from "../layout/Loading";
+import PageNavs from "./PageNavs";
 
 
 const AppNav = () => {
@@ -22,7 +23,7 @@ const AppNav = () => {
 
     return(
         <NavigationContainer>
-            { userToken !== null ? <AppTabs /> : <LoginSignUpStack /> }
+            { userToken !== null ?  <PageNavs /> : <LoginSignUpStack /> }
         </NavigationContainer>
     )
 }

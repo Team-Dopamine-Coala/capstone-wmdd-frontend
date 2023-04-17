@@ -1,13 +1,14 @@
 import { Ionicons } from '@expo/vector-icons'
 import {Text, Icon, HStack, Pressable } from 'native-base'
 
-const StudentListItem = ({ item, navigation, className }) => {
+const StudentListItem = ({ item, navigation, className, calendarDate }) => {
   return (
     <Pressable
       onPress={() => {
         navigation.navigate('Evaluation Individual Student', {
           studentsList: [item],
-          className: className
+          className: className,
+          calendarDate: calendarDate
         })
       }}
       p={4}
@@ -18,8 +19,7 @@ const StudentListItem = ({ item, navigation, className }) => {
       borderBottomColor="#cccccc"
     >
       <HStack justifyContent="space-between" alignItems="center">
-        <Text textAlign="left">{item.firstname} {item.lastname}</Text>
-
+        <Text fontFamily="Lexend_400" fontSize={16} textAlign="left">{item.firstname} {item.lastname}</Text>
         <Icon size={5} as={<Ionicons name='arrow-forward' />} />
       </HStack>
     </Pressable>

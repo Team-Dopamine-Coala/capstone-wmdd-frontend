@@ -41,18 +41,21 @@ const ClassList = ({ classes, navigation, dateSelected, ready }) => {
         <FlatList
         data={classesWithCheck}
         extraData={fetchedAtdc}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <Card
             dateSelected={dateSelected}
             title={item.title}
             color={item.color}
+            cardColor={item.cardColor}
             startTime={item.startTime}
             endTime={item.endTime}
             location={item.location}
             id={item._id}
+            order={index}
             completed={item.completed}
             attendances={item.attendances ? item.attendances : null}
             navigation={navigation}
+            // showsHorizontalScrollIndicator={false}
           />
         )}
       />

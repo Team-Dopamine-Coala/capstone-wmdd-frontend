@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, VStack, Text } from 'native-base'
+import { View, Text } from 'native-base'
 import { TouchableOpacity, StyleSheet } from 'react-native'
 
 const ViewReport = ({student}) => {
@@ -7,20 +7,25 @@ const ViewReport = ({student}) => {
         console.log('move to report page')
     }
   return (
-    <View>  
-      <VStack style={styles.box} bg="#ffffff" borderRadius="md" shadow={5}>
+      <View style={styles.container} bg="#fDFDFD" shadow={5}>
         <TouchableOpacity onPress={clickReport} >
-            <Text>View Report</Text>
+            <Text style={styles.title} fontFamily="Lexend_400">View Report</Text>
         </TouchableOpacity>
-      </VStack>
-    </View>
+      </View>
   )
 }
 const styles = StyleSheet.create ({
-box: {
-    padding:10,
-  marginBottom: 10,
-  marginHorizontal: 5,
-}
+  container: {
+    paddingHorizontal: 32,
+    paddingVertical: 12,
+    marginTop: 24,
+    marginHorizontal: 5,
+    borderRadius: 12,
+  },
+  title: {
+    color: "#000000",
+    fontSize: 16,
+    lineHeight: 22,
+  }
 })
 export default ViewReport

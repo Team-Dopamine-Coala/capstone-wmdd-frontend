@@ -1,4 +1,4 @@
-import { Box, FlatList, Text, VStack, Button } from "native-base"
+import { Box, VStack, ScrollView } from "native-base"
 import StudentList from "../ClassList/StudentList"
 import { useState, useEffect, useContext } from 'react'
 import { AuthContext } from '../../../context/AuthContext';
@@ -20,7 +20,6 @@ const ViewAttendance = ({ route, students, navigation, checkboxHandler, allAtten
           const element = data[index];
           getStudentById(viewclassId, element.studentId).then(
             studentData => {
-              // console.log("studentData", viewclassId, element.studentId)
               element.firstname = studentData.firstname
               element.lastname = studentData.lastname
               if(element.present==true){
@@ -52,19 +51,17 @@ const ViewAttendance = ({ route, students, navigation, checkboxHandler, allAtten
   
   
   return (
-    <VStack bgColor="#FFFFFF" height="100%"  >
-    <Box>
-       <StudentList
-       present={present}
-       absent={absent}
-       presentList={presentList}
-       absentList={absentList}
-       />
-    </Box>
+    <VStack bgColor="#FFFFFF" height="100%" paddingX="18px" paddingTop="31px" justifyContent="space-between">
+      <ScrollView paddingX="2px">
+         <StudentList
+         present={present}
+         absent={absent}
+         presentList={presentList}
+         absentList={absentList}
+         navigation={navigation}
+         />
+      </ScrollView>   
    </VStack>
-        
-
-
   )
 }
 

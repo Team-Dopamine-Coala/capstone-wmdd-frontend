@@ -123,21 +123,14 @@ export const getLevelById = async (levelid) => {
     return data
   }
 
-// COACH===============================================
-export const getCoachDetails = async (coachid, userToken) => {
-  if (coachid) {
-    const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/users/${coachid}`, {
+  //USER ===================================================
+  export const fetchUserById = async (id, userToken) => {
+    const res = await fetch(`${AWS_BACKEND_BASE_URL}/api/users/${id}`,{
       headers: {
         "Authorization": `Bearer ${userToken}`
       },
     })
-    const data = await res.json()
 
+    const data = await res.json()
     return data
   }
-}
-
-  //PROGRAM
-  // export const getPrograms = async () => {
-  //   const res = await fetch(``)
-  // }

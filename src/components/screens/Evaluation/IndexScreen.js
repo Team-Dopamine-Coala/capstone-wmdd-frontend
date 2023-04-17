@@ -20,8 +20,6 @@ const IndexScreen = ({ navigation }) => {
   const isFocused = useIsFocused()
 
   useEffect(() => {
-    console.log(dateSelected)
-
     setIsLoading(true)
     getClassesOfCoach('63fcf0bd354e8150f45dd4d2', userToken).then(
       data => {
@@ -41,7 +39,7 @@ const IndexScreen = ({ navigation }) => {
 
   return (
     <LinearGradient colors={['#F4903F', '#F4903F', '#FC8634', '#FC8634', '#FC8634', '#F69B43', '#F69B43', '#F3AA6A', '#F3AA6A', '#F9D5B4']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} flex={1}>
-    <VStack mt="60px">
+    <VStack mt="110px">
       <Box pt={2} height="100%" bgColor="#FDFDFD" borderTopLeftRadius={20} borderTopRightRadius={20}>
         <CalendarStrip
         scrollable
@@ -55,40 +53,45 @@ const IndexScreen = ({ navigation }) => {
           fontSize: 20,
           fontFamily: 'Lexend_700',
         }}
-        startingDate={moment().subtract(3, 'days')}
-        selectedDate={moment()}
+        selectedDate={new Date()}
         onDateSelected={onDateClick}
-        minDate="2023-03-01"
-        maxDate="2023-04-3"
+        minDate="2023-04-01"
+        maxDate="2023-04-30"
         dayContainerStyle={{
           paddingBottom: 4
         }}
         dateNameStyle={{
-          marginBottom: 6,
+          marginBottom: 4,
           fontSize: 14,
           textTransform: 'capitalize',
           fontFamily: 'Lexend_400'
         }}
         dateNumberStyle={{
-          paddingBottom: 4,
+          paddingBottom: 3,
           fontSize: 16,
           fontFamily: 'Lexend_500'
         }}
+        highlightDateContainerStyle={{
+          borderRadius: 0,
+          borderBottomColor: '#F4903F',
+          borderBottomWidth: 2
+        }}
         highlightDateNameStyle={{
           color: '#F4903F',
-          marginBottom: 6,
+          marginBottom: 4,
           fontSize: 14,
           textTransform: 'capitalize',
           fontFamily: 'Lexend_400'
         }}
         highlightDateNumberStyle={{
           color: '#F4903F',
+          paddingBottom: 1,
           fontSize: 16,
           fontFamily: 'Lexend_500'
         }}
       />
       
-      {isLoading ? <Loading /> : <ClassList classes={classes} navigation={navigation} />}
+      {isLoading ? <Loading /> : <ClassList classes={classes.filter((current) => moment(current.startTime).format('YYYY-MM-DD') == moment(dateSelected).format('YYYY-MM-DD')).sort((a, b) => a.startTime > b.startTime)} navigation={navigation} calendarDate={moment(dateSelected).format('YYYY-DD-MM')} />}
     </Box>
 
     </VStack>
