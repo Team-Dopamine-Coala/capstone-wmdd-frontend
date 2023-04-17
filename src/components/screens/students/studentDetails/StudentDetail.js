@@ -164,7 +164,7 @@ const StudentDetail = ({route, navigation }) => {
               axis={AnimatedEntrance.axis.vertical}
               offset={40}
               duration={400}
-              delay={250}
+              delay={200}
               order={2}
             >
               <CurrentLevelView classTitle={classTitle} classColor={classColor} cardBgColor={cardBgColor} classCard={classCard} />
@@ -174,7 +174,7 @@ const StudentDetail = ({route, navigation }) => {
               axis={AnimatedEntrance.axis.vertical}
               offset={40}
               duration={400}
-              delay={250}
+              delay={200}
               order={3}
             >
               <SkillsAchievementView myLevelDetail={myLevelDetail}/>
@@ -184,7 +184,7 @@ const StudentDetail = ({route, navigation }) => {
               axis={AnimatedEntrance.axis.vertical}
               offset={40}
               duration={400}
-              delay={250}
+              delay={200}
               order={4}
             >
               <AttendanceListView student={trainee} />
@@ -194,7 +194,7 @@ const StudentDetail = ({route, navigation }) => {
               axis={AnimatedEntrance.axis.vertical}
               offset={40}
               duration={400}
-              delay={250}
+              delay={200}
               order={5}
             >
               <ViewReport student={trainee}/>
