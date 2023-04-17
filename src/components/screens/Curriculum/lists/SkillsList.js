@@ -58,11 +58,11 @@ const SkillsList = ({ navigation, skills }) => {
                         </Flex>
                         <FlatList 
                             horizontal
-                            data={skills.filter(skill => skill.level === 1 || skill.level === 2 )} renderItem={({ item }) => (
+                            data={skills.filter(skill => skill.level === 1 || skill.level === 2 )} renderItem={({ item, index }) => (
                             <Pressable 
                                 onPress={() => openSheet(item._id)}
                             >
-                                <SkillItem item={item}/>
+                                <SkillItem item={item} order={index} />
                             </Pressable>
                             )}    
                         />
@@ -87,9 +87,9 @@ const SkillsList = ({ navigation, skills }) => {
                         </Flex>
                         <FlatList 
                             horizontal
-                            data={skills.filter(skill => skill.level === 3 || skill.level === 4)} renderItem={({ item }) => (
+                            data={skills.filter(skill => skill.level === 3 || skill.level === 4)} renderItem={({ item, index }) => (
                             <Pressable onPress={() => openSheet(item._id)}>
-                            <SkillItem item={item} /></Pressable>
+                            <SkillItem item={item} order={index} /></Pressable>
                             )}    
                         />
                     </Box>
@@ -113,9 +113,9 @@ const SkillsList = ({ navigation, skills }) => {
                         </Flex>
                         <FlatList 
                             horizontal
-                            data={skills.filter(skill => skill.level === 5)} renderItem={({ item }) => (
+                            data={skills.filter(skill => skill.level === 5)} renderItem={({ item, index }) => (
                             <Pressable onPress={() => openSheet(item._id)}>
-                            <SkillItem item={item} /></Pressable>
+                            <SkillItem item={item} order={index} /></Pressable>
                             )}    
                         />
                     </Box>

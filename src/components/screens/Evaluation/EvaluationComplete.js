@@ -29,7 +29,7 @@ const EvaluationComplete = ({ navigation, route}) => {
         <Center>
           <Image source={{uri: "https://res.cloudinary.com/dp53wf7gb/image/upload/v1680252154/coala-blurb_emuuey.png"}} alt="Coala Blurb" size={260} />
 
-          <Text mb={3} fontFamily="Lexend_700" fontSize={24}>Evaluation Complete!</Text>
+          <Text mb={3} fontFamily="Lexend_700" fontSize={22}>Today&apos;s Evaluation Complete!</Text>
         </Center>
       
         <View flex={1}>

@@ -1,7 +1,6 @@
 import { View } from "native-base"
 import { StyleSheet } from "react-native"
 import { FadeLoading } from "react-native-fade-loading"
-StyleSheet
 
 const Loading = () => {
   return (
@@ -9,47 +8,47 @@ const Loading = () => {
       <FadeLoading
         style={[styles.box]}
         children={''}
-        primaryColor="gray"
-        secondaryColor="lightgray"
-        duration={5000}
+        primaryColor="#F8CDA7"
+        secondaryColor="#FAF5EC"
+        duration={1000}
         visible={false}
-        animated={false}
+        animated={true}
       />
       <FadeLoading
         style={[styles.box]}
         children={''}
-        primaryColor="gray"
-        secondaryColor="lightgray"
-        duration={5000}
+        primaryColor="#F8CDA7"
+        secondaryColor="#FAF5EC"
+        duration={1000}
         visible={false}
-        animated={false}
+        animated={true}
       />
       <FadeLoading
         style={[styles.box]}
         children={''}
-        primaryColor="gray"
-        secondaryColor="lightgray"
-        duration={5000}
+        primaryColor="#F8CDA7"
+        secondaryColor="#FAF5EC"
+        duration={1000}
         visible={false}
-        animated={false}
+        animated={true}
       />
       <FadeLoading
         style={[styles.box]}
         children={''}
-        primaryColor="gray"
-        secondaryColor="lightgray"
-        duration={5000}
+        primaryColor="#F8CDA7"
+        secondaryColor="#FAF5EC"
+        duration={1000}
         visible={false}
-        animated={false}
+        animated={true}
       />
       <FadeLoading
         style={[styles.box]}
         children={''}
-        primaryColor="gray"
-        secondaryColor="lightgray"
-        duration={5000}
+        primaryColor="#F8CDA7"
+        secondaryColor="#FAF5EC"
+        duration={1000}
         visible={false}
-        animated={false}
+        animated={true}
       />
     </View>
   )

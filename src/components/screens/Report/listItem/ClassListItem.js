@@ -1,14 +1,22 @@
 import { Ionicons } from '@expo/vector-icons'
 import { Icon, Box, HStack, VStack, Text, Button, Heading, View, Pressable } from 'native-base'
 import moment from 'moment'
+import AnimatedEntrance from 'react-native-animated-entrance';
 
-const ClassListItem = ({ item, navigation, clickedClass }) => {
+const ClassListItem = ({ item, order, navigation, clickedClass }) => {
 
   const clickedSeeReport = (classid, className) => {
     clickedClass(classid, className)
   }
 
   return (
+    <AnimatedEntrance
+      axis={AnimatedEntrance.axis.horizontal}
+      offset={20}
+      duration={400}
+      delay={200}
+      order={order + 1}
+    >
     <View mx={4} my={3}>
       <Box  mb={3} p={5} bg={item.color} width="100%" height="90%" borderRadius="md" shadow={9} position="absolute" top="5%"></Box>
       <Box ml={4} p={3} bg={item.cardColor} flex={1} height="100%" borderRadius="md" shadow={5}>
@@ -32,6 +40,7 @@ const ClassListItem = ({ item, navigation, clickedClass }) => {
         </Pressable>
       </Box>
     </View>
+    </AnimatedEntrance>
   )
 }
 

@@ -2,6 +2,7 @@ import { Text, VStack, View, Box, Heading, HStack, ScrollView } from "native-bas
 import { LinearGradient } from 'expo-linear-gradient'
 import { StyleSheet } from "react-native"
 import moment from "moment"
+import AnimatedEntrance from 'react-native-animated-entrance';
 
 import Phone from "../../../svg/StudentsIcons/Phone"
 import Mail from "../../../svg/StudentsIcons/Mail"
@@ -18,48 +19,72 @@ const ViewProfileScreen = ({route}) => {
                     <ScrollView>
                         <Box>
                             <Text style={styles.subheading} fontFamily="Lexend_500">Birthday</Text>
-                            <VStack style={styles.box} bg="#FDFDFD" borderRadius="md" shadow={5}>
-                                <Text style={styles.data} fontFamily="Lexend_400">{moment(student.birthday).format('ddd, D MMM YYYY')}</Text>
-                            </VStack>
+                            <AnimatedEntrance
+                            axis={AnimatedEntrance.axis.horizontal}
+                            offset={20}
+                            duration={400}
+                            delay={200}
+                            order={1}
+                            >
+                                <VStack style={styles.box} bg="#FDFDFD" borderRadius="md" shadow={5}>
+                                    <Text style={styles.data} fontFamily="Lexend_400">{moment(student.birthday).format('ddd, D MMM YYYY')}</Text>
+                                </VStack>
+                            </AnimatedEntrance>
                         </Box>
                         <Box>
                             <Text style={styles.subheading} fontFamily="Lexend_500">Medical Information</Text>
-                            <VStack style={styles.box} bg="#FDFDFD" borderRadius="md" shadow={5}>
-                                <Box>
-                                    <Text style={styles.title} fontFamily="Lexend_400">Allergies</Text>
-                                    <Text style={styles.data} fontFamily="Lexend_400">{student.allergy}</Text>
-                                </Box>
-                                <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} borderColor="#BBBBBB" justifyContent="space-between"/>
-                                <Box>
-                                    <Text style={styles.title} fontFamily="Lexend_400">Conditions</Text>
-                                    <Text style={styles.data} fontFamily="Lexend_400">{student.condition}</Text>
-                                </Box>
-                            </VStack>
+                            <AnimatedEntrance
+                            axis={AnimatedEntrance.axis.horizontal}
+                            offset={20}
+                            duration={400}
+                            delay={200}
+                            order={2}
+                            >
+                                <VStack style={styles.box} bg="#FDFDFD" borderRadius="md" shadow={5}>
+                                    <Box>
+                                        <Text style={styles.title} fontFamily="Lexend_400">Allergies</Text>
+                                        <Text style={styles.data} fontFamily="Lexend_400">{student.allergy}</Text>
+                                    </Box>
+                                    <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} borderColor="#BBBBBB" justifyContent="space-between"/>
+                                    <Box>
+                                        <Text style={styles.title} fontFamily="Lexend_400">Conditions</Text>
+                                        <Text style={styles.data} fontFamily="Lexend_400">{student.condition}</Text>
+                                    </Box>
+                                </VStack>
+                            </AnimatedEntrance>
                         </Box>
                         <Box>
                             <Text style={styles.subheading} fontFamily="Lexend_500">Guardian Information</Text>
-                            <VStack style={styles.box} bg="#FDFDFD" borderRadius="md" shadow={5}>
-                                <Box>
-                                    <Text style={styles.title} fontFamily="Lexend_400">Name</Text>
-                                    <Text style={styles.data} fontFamily="Lexend_400">{student.guardianName}</Text>
-                                </Box>
-                                <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} borderColor="#BBBBBB" justifyContent="space-between"/>
-                                <VStack >
-                                    <Text style={styles.title} fontFamily="Lexend_400">Phone Number</Text>
-                                    <HStack style={styles.infoiconbox}>
-                                        <Text style={styles.data} fontFamily="Lexend_400">{student.guardianNumber}</Text>
-                                        <Phone/>
-                                    </HStack>
+                            <AnimatedEntrance
+                            axis={AnimatedEntrance.axis.horizontal}
+                            offset={20}
+                            duration={400}
+                            delay={200}
+                            order={3}
+                            >
+                                <VStack style={styles.box} bg="#FDFDFD" borderRadius="md" shadow={5}>
+                                    <Box>
+                                        <Text style={styles.title} fontFamily="Lexend_400">Name</Text>
+                                        <Text style={styles.data} fontFamily="Lexend_400">{student.guardianName}</Text>
+                                    </Box>
+                                    <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} borderColor="#BBBBBB" justifyContent="space-between"/>
+                                    <VStack >
+                                        <Text style={styles.title} fontFamily="Lexend_400">Phone Number</Text>
+                                        <HStack style={styles.infoiconbox}>
+                                            <Text style={styles.data} fontFamily="Lexend_400">{student.guardianNumber}</Text>
+                                            <Phone/>
+                                        </HStack>
+                                    </VStack>
+                                    <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} borderColor="#BBBBBB" justifyContent="space-between"/>
+                                    <VStack>
+                                        <Text style={styles.title} fontFamily="Lexend_400">Email</Text>
+                                        <HStack style={styles.infoiconbox}>
+                                            <Text style={styles.data} fontFamily="Lexend_400">{student.guardianEmail}</Text> 
+                                            <Mail/>
+                                        </HStack>
+                                    </VStack>
                                 </VStack>
-                                <HStack space={1} mb={2} borderBottomWidth=".2" pb={2} borderColor="#BBBBBB" justifyContent="space-between"/>
-                                <VStack>
-                                    <Text style={styles.title} fontFamily="Lexend_400">Email</Text>
-                                    <HStack style={styles.infoiconbox}>
-                                        <Text style={styles.data} fontFamily="Lexend_400">{student.guardianEmail}</Text> 
-                                        <Mail/>
-                                    </HStack>
-                                </VStack>
-                            </VStack>
+                            </AnimatedEntrance>
                         </Box>
                     </ScrollView>
                 </Box>

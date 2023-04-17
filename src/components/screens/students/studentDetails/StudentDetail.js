@@ -2,6 +2,7 @@ import { View, Text,ScrollView, VStack } from "native-base"
 import { StyleSheet, TouchableOpacity, Modal } from "react-native"
 import { useContext, useState, useEffect} from "react"
 import { LinearGradient } from 'expo-linear-gradient'
+import AnimatedEntrance from 'react-native-animated-entrance';
 
 import CurrentLevelView from "./CurrentLevelView"
 import SkillsAchievementView from "./SkillsAchievementView"
@@ -146,7 +147,7 @@ const StudentDetail = ({route, navigation }) => {
       <View style={styles.container}>
         <TouchableOpacity onPress={clickStudent} trainee={trainee} style={styles.biobtncontainer} shadow={5}>
             <VStack>
-                <Text style={styles.name} fontFamily="Lexend_700">{trainee.firstname} {trainee.lastname}</Text> 
+                <Text style={styles.name} fontFamily="Lexend_600">{trainee.firstname} {trainee.lastname}</Text> 
                 <Text style={styles.text} fontFamily="Lexend_400">View profile and Contact Information</Text>
             </VStack>
             <RightChevron/>
@@ -158,10 +159,46 @@ const StudentDetail = ({route, navigation }) => {
             <TouchableOpacity style={styles.classtab}>
               {<Text style={styles.classtabtext} fontFamily="Lexend_400">{classTitle}</Text>}
             </TouchableOpacity>
-            <CurrentLevelView classTitle={classTitle} classColor={classColor} cardBgColor={cardBgColor} classCard={classCard} />
-            <SkillsAchievementView myLevelDetail={myLevelDetail}/>
-            <AttendanceListView student={trainee} /> 
-            <ViewReport student={trainee}/>
+            
+            <AnimatedEntrance
+              axis={AnimatedEntrance.axis.vertical}
+              offset={40}
+              duration={400}
+              delay={200}
+              order={1}
+            >
+              <CurrentLevelView classTitle={classTitle} classColor={classColor} cardBgColor={cardBgColor} classCard={classCard} />
+            </AnimatedEntrance>
+
+            <AnimatedEntrance
+              axis={AnimatedEntrance.axis.vertical}
+              offset={40}
+              duration={400}
+              delay={200}
+              order={2}
+            >
+              <SkillsAchievementView myLevelDetail={myLevelDetail}/>
+            </AnimatedEntrance>
+            
+            <AnimatedEntrance
+              axis={AnimatedEntrance.axis.vertical}
+              offset={40}
+              duration={400}
+              delay={200}
+              order={3}
+            >
+              <AttendanceListView student={trainee} />
+            </AnimatedEntrance>
+            
+            <AnimatedEntrance
+              axis={AnimatedEntrance.axis.vertical}
+              offset={40}
+              duration={400}
+              delay={200}
+              order={4}
+            >
+              <ViewReport student={trainee}/>
+            </AnimatedEntrance>
           </ScrollView>
         }
         </View>
@@ -224,7 +261,7 @@ const styles = StyleSheet.create ({
 },
 name: {
     color: '#212427',
-    fontSize: 28,
+    fontSize: 24,
     lineHeight: 30,
 },
 text: {
