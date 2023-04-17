@@ -23,19 +23,6 @@ const ClassList = ({ classes, navigation, openSheet, clickedClass }) => {
 
   return (
     <ScrollView>
-      {sundayClasses.length > 0 && (
-      <FlatList
-        data={sundayClasses}
-        ListHeaderComponent={() => <Heading mx="20px" fontFamily="Lexend_500" fontSize={16} lineHeight="24">Sunday</Heading>}
-        renderItem={({ item, index }) => (
-          <ClassListItem item={item} navigation={navigation} openSheet={openSheet} clickedClass={clickedClass} order={index} />
-        )}
-        keyExtractor={item => item._id}
-        showsHorizontalScrollIndicator={false}
-        scrollEnabled={false}
-        style={{ marginBottom: 20 }}
-      />
-      )}
       {mondayClasses.length > 0 && (
       <FlatList
         data={mondayClasses}
@@ -105,6 +92,19 @@ const ClassList = ({ classes, navigation, openSheet, clickedClass }) => {
         )}
         keyExtractor={item => item._id}
         showsHorizontalScrollIndicator={false}
+        style={{ marginBottom: 20 }}
+      />
+      )}
+      {sundayClasses.length > 0 && (
+      <FlatList
+        data={sundayClasses}
+        ListHeaderComponent={() => <Heading mx="20px" fontFamily="Lexend_500" fontSize={16} lineHeight="24">Sunday</Heading>}
+        renderItem={({ item, index }) => (
+          <ClassListItem item={item} navigation={navigation} openSheet={openSheet} clickedClass={clickedClass} order={index} />
+        )}
+        keyExtractor={item => item._id}
+        showsHorizontalScrollIndicator={false}
+        scrollEnabled={false}
         style={{ marginBottom: 20 }}
       />
       )}
