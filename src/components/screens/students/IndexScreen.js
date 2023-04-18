@@ -17,39 +17,33 @@ const IndexScreen = ({ navigation }) => {
   const [ classIndex ] = useState(true)
 
   const userId = userInfo._id
-  const myClassIds = []
   const myAllStudents = []
 
   useEffect(() => {
     getClassesOfCoach(userId,userToken)
       .then((data) => {
-        data.map((item) => {
-          myClassIds.push(item._id)
-        })
-        // console.log('My Class ID', myClassIds)
+        const idsList = data.map((item) => item._id);
+
         //GET KIDS for each classes this user has
-        myClassIds.map((eachclassid, i) => {
-          getStudentsByClass(eachclassid,userToken)
-          .then((data) => {
-            // console.log('Chileden',data)
-              data.map((person) => {
-                myAllStudents.push(person)
-              })
-              // console.log('THIS IS MY KIDDOS!', i, myAllStudents.length)
-              //CHECK if student has multiple classes
-              myAllStudents.filter((item, index) => myAllStudents.indexOf(item) === index)
-              sorting()
-              displaytitle()
-              setIsLoading(true)
-          })
-        })
+        const myClassIds = idsList.map((eachclassid) => {
+                  return getStudentsByClass(eachclassid,userToken);
+        });
+        Promise.all(myClassIds)
+          .then((allStudents) => {
+            const myAllStudents = allStudents.flat();
+            //CHECK if student has multiple classes
+            const finalStudentsList = myAllStudents.filter((item, index) => myAllStudents.indexOf(item) === index);
+            sorting(finalStudentsList);
+            displaytitle(finalStudentsList);
+            setIsLoading(true);
+          });
       }) 
   },[])  
 
   //====FUNCTIONS=====================================================================
   //Sorting alphabetically
-  const sorting = () => {
-    myAllStudents.sort((a,b) => {
+  const sorting = (finalStudentsList) => {
+    finalStudentsList.sort((a,b) => {
       if (a.firstname < b.firstname) {
         return -1
       } else if (a.firstname > b.firstname) {
@@ -61,8 +55,8 @@ const IndexScreen = ({ navigation }) => {
   }
       
   //Alphabetic Title display
-  const displaytitle = () => {
-    const title = myAllStudents.reduce((c,d) => {
+  const displaytitle = (finalStudentsList) => {
+    const title = finalStudentsList.reduce((c,d) => {
       let group = d.firstname[0]
     
       if(!c[group]) c[group] = {group, groupedConn: [d]}
